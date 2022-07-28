@@ -6,7 +6,7 @@ NAME = minishell
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -lreadline
+FLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
@@ -14,7 +14,7 @@ RM = rm -f
 			@${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS}
-	${CC} ${FLAGS} ${OBJS} -o ${NAME}
+	${CC} ${FLAGS} -lreadline ${OBJS} -o ${NAME}
 
 all: ${NAME}
 

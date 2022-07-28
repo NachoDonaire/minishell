@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/28 17:23:15 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/07/28 17:27:53 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(void)
 	x = 0;
 	while (x == 0)
 	{
-		texto = readline("");
+		texto = readline("Minishell > ");
 		printf("%s\n", texto);
 		if (ft_comprobar_salida(texto) == 1)
 			exit(0);
