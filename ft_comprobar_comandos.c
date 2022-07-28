@@ -1,37 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_comprobar_comandos.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/28 20:01:33 by salustianos      ###   ########.fr       */
+/*   Created: 2022/07/28 20:00:30 by salustianos       #+#    #+#             */
+/*   Updated: 2022/07/28 20:01:29 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_comprobar_salida(char *s)
+int ft_comprobar_cd(char *s)
 {
-	if (ft_strncmp(s, "exit", 4) == 0)
+	if (ft_strncmp(s, "cd", 2) == 0)
+	{
+		ft_cd();
 		return (1);
+	}
 	return (0);
 }
 
-int main(void)
+int	ft_comprobar_pwd(char *s)
 {
-	int x;
-	char *texto;
-
-	x = 0;
-	while (x == 0)
+	if (ft_strncmp(s, "pwd", 3) == 0)
 	{
-		texto = readline("Minishell> ");
-		printf("%s\n", texto);
-		if (ft_comprobar_salida(texto) == 1)
-			exit(0);
-		ft_comprobar_comando(texto);
+		ft_pwd();
+		return (1);
 	}
 	return (0);
+}
+
+int	ft_comprobar_echo(char *s)
+{
+	if (ft_strncmp(s, "echo", 4) == 0)
+	{
+		ft_echo();
+		return (1);
+	}
+	return (0);
+}
+
+int	ft_comprobar_comando(char *s)
+{
+	int x;
+
+	x = 0;
+	x += ft_comprobar_pwd(s);
+	x += ft_comprobar_cd(s);
+	x += ft_comprobar_echo(s);
+
+	return (x);
 }
