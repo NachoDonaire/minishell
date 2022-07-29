@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/29 16:08:40 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/07/29 16:11:53 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,16 @@
 void	ft_pwd()
 {
 	char *buf;
+	int	argumentos;
 
-	buf = getcwd(NULL, 0);
-	printf("%s\n", buf);
+	argumentos = 0; // ? Provisional, esto lo da la estructura
+	if (argumentos == 0)
+	{
+		buf = getcwd(NULL, 0);
+		printf("%s\n", buf);
+	}
+	else
+		printf("pwd: Demasiados argumentos\n");
 }
 
 void	ft_cd()
