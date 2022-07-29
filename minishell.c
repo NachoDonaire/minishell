@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/29 16:02:59 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/07/29 16:08:40 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_cd()
 	tmp = NULL;
 	x = 0;
 	y = 0;
-	argumento = "..";
-	argumentos = 1;  // ? Provisional
+	argumento = ".."; // ? Provisional, esto lo da la estructura
+	argumentos = 1;  // ? Provisional, esto lo da la estructura
 	if (argumentos == 0)
 		chdir(getenv("HOME"));
 	else if (argumento[0] != '.' && argumento[1] != '.')
