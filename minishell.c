@@ -6,32 +6,13 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/28 19:59:27 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/07/29 16:02:59 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t			i;
-	unsigned char	*x1;
-	unsigned char	*x2;
-
-	i = 0;
-	x1 = (unsigned char *)s1;
-	x2 = (unsigned char *)s2;
-	while (i < n)
-	{
-		if (x1[i] == '\0')
-			return ((x1[i] - x2[i]));
-		if (x1[i] != x2[i])
-			return ((x1[i] - x2[i]));
-		i++;
-	}
-	return (0);
-}
-
+// *! Necesito estructura para saber si tiene argumentos y cuales son
 void	ft_pwd()
 {
 	char *buf;
@@ -40,12 +21,58 @@ void	ft_pwd()
 	printf("%s\n", buf);
 }
 
+void	ft_cd()
+{
+	int argumentos;
+	char *buf;
+	char *tmp;
+	char *argumento;
+	size_t	x;
+	size_t 	y;
+
+	buf = NULL;
+	tmp = NULL;
+	x = 0;
+	y = 0;
+	argumento = "..";
+	argumentos = 1;  // ? Provisional
+	if (argumentos == 0)
+		chdir(getenv("HOME"));
+	else if (argumento[0] != '.' && argumento[1] != '.')
+	{
+		if (chdir(argumento) != 0)
+			printf("No existe el directorio\n");
+	}
+	else
+	{
+		tmp = buf;
+		buf = getcwd(NULL, 0);
+		free(tmp);
+		x = ft_strlen(buf);
+		y = ft_strlen(ft_strrchr(buf, '/'));
+		tmp = buf;
+		buf = ft_substr(buf, 0 , x - y);
+		free(tmp);
+		chdir(buf);
+	}
+}
+
+void	ft_env()
+{
+
+}
+
 void	ft_echo()
 {
 
 }
 
-void	ft_cd()
+void	ft_unset()
+{
+	
+}
+
+void	ft_export()
 {
 
 }

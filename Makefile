@@ -1,4 +1,4 @@
-SRCS = minishell.c main.c ft_comprobar_comandos.c
+SRCS = minishell.c main.c ft_comprobar_comandos.c utils.c
 
 OBJS = ${SRCS:.c=.o}
 

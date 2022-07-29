@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/28 20:01:28 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/07/29 16:00:11 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,12 @@ int	ft_comprobar_comando(char *s);
 int	ft_comprobar_echo(char *s);
 int	ft_comprobar_pwd(char *s);
 int ft_comprobar_cd(char *s);
+void	ft_unset();
+void	ft_env();
+void	ft_export();
+char	*ft_strrchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	*ft_calloc(size_t count, size_t size);
 
 #endif

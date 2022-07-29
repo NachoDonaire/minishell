@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/28 20:01:33 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/07/29 15:25:42 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int ft_comprobar_salida(char *s)
 {
-	if (ft_strncmp(s, "exit", 4) == 0)
+	if (ft_strncmp(s, "exit", 5) == 0)
 		return (1);
 	return (0);
 }
