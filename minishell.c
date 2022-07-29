@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/29 16:11:53 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/07/29 16:15:46 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,3 +83,5 @@ void	ft_export()
 {
 
 }
+
+// TODO Implementar libreria libft en Mafefile para no añadir los archivos a mano
