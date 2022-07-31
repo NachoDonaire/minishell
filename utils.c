@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "minishell.h"
 
-char	*freeear(char **sol, char *k)
+char	**freeear(char **sol, char *k)//, general_data *gen_data)
 {
 	int	i;
 
@@ -12,8 +12,12 @@ char	*freeear(char **sol, char *k)
 		free(sol[i++]);
 	free(sol);
 	if (!k)
+	{
 		return (NULL);
-	return (k);
+	}
+	sol = ft_split(k, ' ');
+	return (sol);
+	//printf("-%s-", gen_data->cmd.cmd[0]);
 }
 
 int	lens(char *s)
@@ -86,7 +90,7 @@ char	*pseudo_join(char *path, char *com)
 	return (sol);
 }
 
-char	*split_path(char *env, char *arg)
+char	**split_path(char *env, char *arg)//, general_data *gen_data)
 {
 	int		i;
 	char	**sol;
@@ -94,7 +98,7 @@ char	*split_path(char *env, char *arg)
 	char	*k;
 
 	if (!arg)
-		return (NULL);
+		return NULL;
 	auxy = 0;
 	sol = ft_split(env, ':');
 	auxy = 0;
@@ -108,11 +112,6 @@ char	*split_path(char *env, char *arg)
 		i++;
 		if (sol[i])
 			k = pseudo_join(sol[i], arg);
-	}
-	if (!sol[i])
-	{
-		freeear(sol, k);
-		return (0);
 	}
 	return (freeear(sol, k));
 }

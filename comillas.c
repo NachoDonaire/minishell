@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+/*en el propio comando*/
 int	check_cmllas(char *s)
 {
 	int		i;
@@ -16,31 +17,6 @@ int	check_cmllas(char *s)
 	}
 	return (0);
 }
-/*
-char	*gesteo_cmllas(char *spliteao)
-{
-	int		i;
-	char	**sol;
-	int		y;
-
-	i = 0;
-	y = 0;
-	while (spliteao[i])
-		i++;
-	sol = malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	while (spliteao[i])
-	{
-		sol[y] = gest_cmllas(spliteao[i]);
-		y++;
-		i++;
-	}
-	sol[y] = NULL;
-	return (sol);
-}
-*/
-		
-
 
 char	*gest_cmllas(char *s)
 {
@@ -58,5 +34,4 @@ char	*gest_cmllas(char *s)
 	sol[y] = '\0';
 	return (sol);
 }
-
-
+/*mas alla del comando*/

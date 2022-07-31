@@ -1,4 +1,4 @@
-SRCS	=	prueba.c utils.c ft_split.c ft_calloc.c ft_memcpy.c comillas.c \
+SRCS	=	prueba2.c utils.c ft_split.c ft_calloc.c ft_memcpy.c comillas.c  n_pipes.c check_builtins.c ft_strjoin.c check_cmd.c check_pipes.c
 
 OBJS	=	${SRCS:.c=.o}
 NAME	=	minishell
@@ -7,7 +7,7 @@ RM		=	rm -f
 CFLAGS	=	-Wall -Wextra -Werror 
 all:	${NAME}
 $(NAME):	${OBJS}
-	${CC} ${CFLAGS} -lreadline  -o ${NAME} ${OBJS}
+	${CC} ${CFLAGS}  -o ${NAME} ${OBJS} -lreadline
 clean:
 	${RM} ${OBJS}
 fclean: clean
