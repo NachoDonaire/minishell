@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 22:38:02 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 23:32:55 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void	ft_echo(char **env) // ? Revisar
 	new_line = 1;
 	y = 0;
 	z = 0;
-	argumentos = "-nnnnnn -nnnnn$TERM";
+	argumentos = "-nnnnnn t -nnnnn$TERM";
 	if (argumentos)
 	{
 		nb_argumentos = ft_split(argumentos, ' ');
@@ -190,10 +190,10 @@ void	ft_echo(char **env) // ? Revisar
 					{
 						if (nb_argumentos[p_env][y] != '$')
 							printf("%c",nb_argumentos[p_env][y]);
-						if (nb_argumentos[p_env][y] == '$')
+						else if (nb_argumentos[p_env][y] == '$')
 						{
 							y++;
-							tmp = ft_substr(nb_argumentos[p_env], y, ft_strlen(tmp));
+							tmp = ft_substr(nb_argumentos[p_env], y, ft_strlen(nb_argumentos[p_env]));
 							tmp = ft_strjoin(tmp, "=");
 							while (env[z])
 							{
@@ -209,9 +209,10 @@ void	ft_echo(char **env) // ? Revisar
 							break ;
 						}
 						y++;
-						
 					}
 				}
+				if (nb_argumentos[p_env + 1])
+					printf(" ");
 			}
 			p_env++;
 		}
