@@ -6,17 +6,17 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:00:30 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/29 15:25:11 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 12:55:32 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_comprobar_cd(char *s)
+int ft_comprobar_cd(char *s, char **env)
 {
 	if (ft_strncmp(s, "cd", 3) == 0)
 	{
-		ft_cd();
+		ft_cd(env);
 		return (1);
 	}
 	return (0);
@@ -32,21 +32,21 @@ int	ft_comprobar_pwd(char *s)
 	return (0);
 }
 
-int	ft_comprobar_echo(char *s)
+int	ft_comprobar_echo(char *s, char **env)
 {
 	if (ft_strncmp(s, "echo", 5) == 0)
 	{
-		ft_echo();
+		ft_echo(env);
 		return (1);
 	}
 	return (0);
 }
 
-int	ft_comprobar_export(char *s)
+int	ft_comprobar_export(char *s, char **env)
 {
 	if (ft_strncmp(s, "export", 7) == 0)
 	{
-		ft_export();
+		ft_export(env);
 		return (1);
 	}
 	return (0);
@@ -62,27 +62,29 @@ int	ft_comprobar_unset(char *s)
 	return (0);
 }
 
-int	ft_comprobar_env(char *s)
+int	ft_comprobar_env(char *s, char **envp)
 {
 	if (ft_strncmp(s, "env", 4) == 0)
 	{
-		ft_env();
+		ft_env(envp);
 		return (1);
 	}
 	return (0);
 }
 
-int	ft_comprobar_comando(char *s)
+int	ft_comprobar_comando(char *s, char *envp[])
 {
 	int x;
+	char **tmp;
 
 	x = 0;
+	tmp = get_env(envp);
 	x += ft_comprobar_pwd(s);
-	x += ft_comprobar_cd(s);
-	x += ft_comprobar_echo(s);
-	x += ft_comprobar_export(s);
+	x += ft_comprobar_cd(s, tmp);
+	x += ft_comprobar_echo(s, tmp);
+	x += ft_comprobar_export(s, tmp);
 	x += ft_comprobar_unset(s);
-	x += ft_comprobar_env(s);
+	x += ft_comprobar_env(s, tmp);
 
 	return (x);
 }

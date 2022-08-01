@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:15:34 by salustianos       #+#    #+#             */
-/*   Updated: 2022/07/29 19:16:47 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 12:16:19 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,45 @@ char	*ft_strrchr(const char *s, int c)
 		i--;
 	}
 	return (0);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int				i;
+	unsigned char	s2;
+
+	i = 0;
+	s2 = (unsigned char)c;
+	while (*(s + i) && s2 != *(s + i))
+		i++;
+	if (*(s + i) == s2)
+		return ((char *)(s + i));
+	return (0);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int		x;
+	int		y;
+	int		z;
+	char	*s;
+
+	if (!s1)
+		return (0);
+	x = ft_strlen(s1);
+	y = ft_strlen(s2);
+	s = malloc(x + y + 1);
+	if (!s)
+		return (0);
+	z = 0;
+	while (s1[z])
+	{
+		s[z] = (char)s1[z];
+		z++;
+	}
+	y = 0;
+	while (s2[y])
+		s[x++] = (char)s2[y++];
+	s[x] = '\0';
+	return (s);
 }
