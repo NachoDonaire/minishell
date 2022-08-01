@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 15:24:40 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 15:28:16 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void	ft_export(char **env)
 	is_there = 0;
 	while (env[x])
 	{
-		if (ft_strncmp(ft_substr(env[x], 0, ft_strlen(variable)), variable, ft_strlen(variable)) == 0 && ft_strncmp(ft_strrchr(env[x], '='),ft_strjoin("=", argumento) , ft_strlen(argumento)) == 0)
+		if (ft_strncmp(ft_substr(env[x], 0, ft_strlen(variable)), variable, ft_strlen(variable)) == 0 && ft_strncmp(ft_strchr(env[x], '='),ft_strjoin("=", argumento) , ft_strlen(argumento)) == 0)
 		{
 			is_there = 1;
 			break ;
