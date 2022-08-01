@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 13:07:52 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 15:24:40 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,17 @@ char	**get_env(char **envp) // ? Esta funcción la ejecutamos al principio para 
 				if (env[x][y] >= '0' && env[x][y] <= '8')
 				{
 					env[x][y]++;
-					break;
+					break ;
 				}
 				if (env[x][y] == '9')
 				{
 					env[x][y] = 0;
 					env[x][y - 1]++;
-					break;
+					break ;
 				}
 				y--;
 			}
-			break;
+			break ;
 		}
 		x++;
 	}
@@ -165,14 +165,64 @@ void	ft_echo(char **env)
 	
 }
 
-void	ft_unset()
+void	ft_unset(char **env)
 {
-	
+	char	*variable;
+	int		x;
+
+	x = 0;
+	variable = "PRUEBA="; // ? Provisional, esto lo da la estructura
+	while (env[x])
+	{
+		if (ft_strncmp(ft_substr(env[x], 0, ft_strlen(variable)), variable, ft_strlen(variable)) == 0)
+		{
+			while (env[x + 1])
+			{
+				env[x] = env[x + 1];
+				x++;
+			}
+			env[x] = NULL;
+			break ;
+		}
+		x++;
+	}
 }
 
 void	ft_export(char **env)
 {
-	
+	char	*argumento;
+	char	*variable;
+	int		x;
+	int		is_there;
+
+	variable = "PRUEBA="; // ? Provisional, esto lo da la estructura
+	argumento = "Hola"; // ? Provisional, esto lo da la estructura
+	x = 0;
+	is_there = 0;
+	while (env[x])
+	{
+		if (ft_strncmp(ft_substr(env[x], 0, ft_strlen(variable)), variable, ft_strlen(variable)) == 0 && ft_strncmp(ft_strrchr(env[x], '='),ft_strjoin("=", argumento) , ft_strlen(argumento)) == 0)
+		{
+			is_there = 1;
+			break ;
+		}	
+		x++;
+	}
+	if (is_there == 0)
+	{
+		x = 0;
+		while (env[x])
+		{
+			if (ft_strncmp(env[x], "_=", 2) == 0)
+			{
+				env[x + 1] = env[x];
+				break;
+			}
+			x++;
+		}
+		env[x] = ft_strjoin(variable,argumento);
+		env[x + 2] = NULL;
+	}
 }
 
 // TODO Implementar libreria libft en Mafefile para no añadir los archivos a mano

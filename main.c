@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 11:30:00 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 15:23:51 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int main(int argc, char *argv[], char *envp[])
 {
 	int x;
 	char *texto;
+	char **tmp;
 
 	(void)argc;
 	(void)argv;
+	tmp = get_env(envp);
 	x = 0;
 	while (x == 0)
 	{
@@ -33,7 +35,7 @@ int main(int argc, char *argv[], char *envp[])
 		printf("%s\n", texto);
 		if (ft_comprobar_salida(texto) == 1)
 			exit(0);
-		ft_comprobar_comando(texto, envp);
+		ft_comprobar_comando(texto, tmp);
 	}
 	return (0);
 }
