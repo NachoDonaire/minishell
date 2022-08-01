@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 22:33:11 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 22:38:02 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int ft_dollar(char *argumento)
 
 void	ft_echo(char **env) // ? Revisar
 {
-	int x;
+	int p_env;
 	int y;
 	int z;
 	char *argumentos; // ? Provisional, esto lo da la estructura
@@ -168,7 +168,7 @@ void	ft_echo(char **env) // ? Revisar
 	char *tmp;
 	char **nb_argumentos;
 
-	x = 0;
+	p_env = 0;
 	new_line = 1;
 	y = 0;
 	z = 0;
@@ -176,24 +176,24 @@ void	ft_echo(char **env) // ? Revisar
 	if (argumentos)
 	{
 		nb_argumentos = ft_split(argumentos, ' ');
-		while (nb_argumentos[x])
+		while (nb_argumentos[p_env])
 		{
-			if (ft_strncmp(nb_argumentos[x], "-n", 2) == 0 && ft_n(nb_argumentos[x]) == 0)
+			if (ft_strncmp(nb_argumentos[p_env], "-n", 2) == 0 && ft_n(nb_argumentos[p_env]) == 0)
 				new_line = 0;
 			else
 			{
-				if (ft_dollar(nb_argumentos[x]) == 0)
-					printf("%s", nb_argumentos[x]);
+				if (ft_dollar(nb_argumentos[p_env]) == 0)
+					printf("%s", nb_argumentos[p_env]);
 				else
 				{
-					while (nb_argumentos[x][y])
+					while (nb_argumentos[p_env][y])
 					{
-						if (nb_argumentos[x][y] != '$')
-							printf("%c",nb_argumentos[x][y]);
-						if (nb_argumentos[x][y] == '$')
+						if (nb_argumentos[p_env][y] != '$')
+							printf("%c",nb_argumentos[p_env][y]);
+						if (nb_argumentos[p_env][y] == '$')
 						{
 							y++;
-							tmp = ft_substr(nb_argumentos[x], y, ft_strlen(tmp));
+							tmp = ft_substr(nb_argumentos[p_env], y, ft_strlen(tmp));
 							tmp = ft_strjoin(tmp, "=");
 							while (env[z])
 							{
@@ -213,11 +213,11 @@ void	ft_echo(char **env) // ? Revisar
 					}
 				}
 			}
-			x++;
+			p_env++;
 		}
-		x = 0;
-		while (nb_argumentos[x])
-			free(nb_argumentos[x++]);
+		p_env = 0;
+		while (nb_argumentos[p_env])
+			free(nb_argumentos[p_env++]);
 		free(nb_argumentos);
 	}
 	if(new_line == 0)
