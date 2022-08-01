@@ -6,14 +6,13 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 15:28:16 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 15:30:12 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // *! Necesito estructura para saber si tiene argumentos y cuales son
-// *! Necesito primero obtener las variables de entorno
 void	ft_pwd()
 {
 	char *buf;
@@ -28,7 +27,6 @@ void	ft_pwd()
 	else
 		printf("pwd: Demasiados argumentos\n");
 }
-// *! Hay que modificar el codigo por las variables de entorno
 // *! Ver si funciona con directorios sin permiso
 void	ft_cd(char **env)
 {
