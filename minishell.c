@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 15:30:12 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 16:00:52 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,12 +137,26 @@ void	ft_echo(char **env)
 	int variable;
 	char *argumento;
 	char *copia;
+	int	salto;
 
 	argumento = "TERM="; // ? Provisional, esto lo da la estructura
 	copia = NULL;
 	x = 0;
 	y = 1;
+	salto = 1;
 	variable = 0; // ? Provisional, esto lo da la estructura
+	while (argumento[x])
+	{
+		if (argumento[x] == '-')
+		{
+			argumento = ft_strrchr(argumento, ' ');
+			argumento = ft_substr(argumento, 1, ft_strlen(argumento));
+			salto = 0;
+			break;
+		}
+		x++;
+	}
+	x = 0;
 	if (variable == 1)
 	{
 		while (env[x])
@@ -152,6 +166,8 @@ void	ft_echo(char **env)
 				copia = ft_strchr(env[x], '=');
 				while (copia[y])
 					printf("%c", copia[y++]);
+				if (salto == 0)
+					printf("%%");
 				printf("\n");
 				break;
 			}
@@ -159,8 +175,12 @@ void	ft_echo(char **env)
 		}
 	}
 	else
-		printf("%s\n", argumento);
-	
+	{
+		printf("%s", argumento);
+		if (salto == 0)
+			printf("%%");
+		printf("\n");
+	}
 }
 
 void	ft_unset(char **env)

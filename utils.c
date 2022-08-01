@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:15:34 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 15:27:45 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 15:42:11 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,24 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		s[x++] = (char)s2[y++];
 	s[x] = '\0';
 	return (s);
+}
+
+char	*ft_strrchr(const char *s, int c)
+{
+	int				i;
+	char			*src;
+	unsigned char	s2;
+
+	i = 0;
+	src = (char *)s;
+	s2 = (unsigned char)c;
+	while (*(s + i))
+		i++;
+	while (i >= 0)
+	{
+		if (s[i] == s2)
+			return ((&src[i]));
+		i--;
+	}
+	return (0);
 }
