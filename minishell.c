@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 16:00:52 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 22:33:11 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	ft_pwd()
 // *! Ver si funciona con directorios sin permiso
 void	ft_cd(char **env)
 {
-	char *argumento;
+	char *argumentos;
 	int	x;
 	char *tmp;
 	char *buf;
 
 	x = 0;
-	argumento = ".."; // ? Provisional, esto lo da la estructura
-	if (!argumento)
+	argumentos = ".."; // ? Provisional, esto lo da la estructura
+	if (!argumentos)
 	{
 		tmp = getcwd(NULL, 0);
 		chdir(getenv("HOME"));
@@ -51,7 +51,7 @@ void	ft_cd(char **env)
 			x++;
 		}
 	}
-	else if (ft_strncmp(argumento, "..", 3) == 0)
+	else if (ft_strncmp(argumentos, "..", 3) == 0)
 	{
 		tmp = getcwd(NULL, 0);
 		chdir("..");
@@ -69,7 +69,7 @@ void	ft_cd(char **env)
 	else
 	{
 		tmp = getcwd(NULL, 0);
-		if (chdir(argumento) != 0)
+		if (chdir(argumentos) != 0)
 			printf("cd: No existe el directorio\n");
 		buf = getcwd(NULL, 0);
 		while (env[x])
@@ -130,57 +130,100 @@ void	ft_env(char **env)
 		printf("%s\n",env[x++]);
 }
 
-void	ft_echo(char **env)
+int ft_n(char *argumento)
+{
+	int x;
+	
+	x = 1;
+	while(argumento[x])
+	{
+		if (argumento[x] != 'n')
+			return (1);
+		x++;
+	}
+	return (0);
+}
+
+int ft_dollar(char *argumento)
+{
+	int x;
+	
+	x = 1;
+	while(argumento[x])
+	{
+		if (argumento[x] != '$')
+			return (1);
+		x++;
+	}
+	return (0);
+}
+
+void	ft_echo(char **env) // ? Revisar
 {
 	int x;
 	int y;
-	int variable;
-	char *argumento;
-	char *copia;
-	int	salto;
+	int z;
+	char *argumentos; // ? Provisional, esto lo da la estructura
+	int	new_line;
+	char *tmp;
+	char **nb_argumentos;
 
-	argumento = "TERM="; // ? Provisional, esto lo da la estructura
-	copia = NULL;
 	x = 0;
-	y = 1;
-	salto = 1;
-	variable = 0; // ? Provisional, esto lo da la estructura
-	while (argumento[x])
+	new_line = 1;
+	y = 0;
+	z = 0;
+	argumentos = "-nnnnnn -nnnnn$TERM";
+	if (argumentos)
 	{
-		if (argumento[x] == '-')
+		nb_argumentos = ft_split(argumentos, ' ');
+		while (nb_argumentos[x])
 		{
-			argumento = ft_strrchr(argumento, ' ');
-			argumento = ft_substr(argumento, 1, ft_strlen(argumento));
-			salto = 0;
-			break;
-		}
-		x++;
-	}
-	x = 0;
-	if (variable == 1)
-	{
-		while (env[x])
-		{
-			if (ft_strncmp(env[x], argumento, ft_strlen(argumento)) == 0)
+			if (ft_strncmp(nb_argumentos[x], "-n", 2) == 0 && ft_n(nb_argumentos[x]) == 0)
+				new_line = 0;
+			else
 			{
-				copia = ft_strchr(env[x], '=');
-				while (copia[y])
-					printf("%c", copia[y++]);
-				if (salto == 0)
-					printf("%%");
-				printf("\n");
-				break;
+				if (ft_dollar(nb_argumentos[x]) == 0)
+					printf("%s", nb_argumentos[x]);
+				else
+				{
+					while (nb_argumentos[x][y])
+					{
+						if (nb_argumentos[x][y] != '$')
+							printf("%c",nb_argumentos[x][y]);
+						if (nb_argumentos[x][y] == '$')
+						{
+							y++;
+							tmp = ft_substr(nb_argumentos[x], y, ft_strlen(tmp));
+							tmp = ft_strjoin(tmp, "=");
+							while (env[z])
+							{
+								if (ft_strncmp(env[z], tmp, ft_strlen(tmp)) == 0)
+								{
+									tmp = ft_strchr(env[z], '=');
+									tmp = ft_substr(tmp, 1, ft_strlen(tmp));
+									printf("%s", tmp);
+									break ;
+								}
+								z++;
+							}
+							break ;
+						}
+						y++;
+						
+					}
+				}
 			}
 			x++;
 		}
+		x = 0;
+		while (nb_argumentos[x])
+			free(nb_argumentos[x++]);
+		free(nb_argumentos);
 	}
-	else
-	{
-		printf("%s", argumento);
-		if (salto == 0)
-			printf("%%");
-		printf("\n");
-	}
+	if(new_line == 0)
+		printf("%%");
+	printf("\n");
+	
 }
 
 void	ft_unset(char **env)

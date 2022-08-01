@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 15:42:17 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/01 21:47:36 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *s, int c);
 char	**get_env(char **envp);
 char	*ft_strrchr(const char *s, int c);
+char	**ft_split(char const *s, char c);
 
 #endif
