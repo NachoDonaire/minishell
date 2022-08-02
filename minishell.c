@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/01 23:32:55 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/02 10:05:22 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ void	ft_cd(char **env)
 	{
 		tmp = getcwd(NULL, 0);
 		chdir(getenv("HOME"));
+		if (chdir(argumentos) != 0)
+			printf("minishell : cd: HOME not set\n");
 		buf = getcwd(NULL, 0);
 		while (env[x])
 		{
 			if (ft_strncmp(env[x], "PWD=", 4) == 0)
 				env[x] = ft_strjoin("PWD=", buf);
-			if (ft_strncmp(env[x], "OLDPWD=", 7) == 0)
+			if (ft_strncmp(env[x], "OLDPWD=", 7) == 0) // ? Tengo que comprobar si existe el OLDPWD
 				env[x] = ft_strjoin("OLDPWD=", tmp);
 			x++;
 		}
@@ -60,7 +62,7 @@ void	ft_cd(char **env)
 		{
 			if (ft_strncmp(env[x], "PWD=", 4) == 0)
 				env[x] = ft_strjoin("PWD=", buf);
-			if (ft_strncmp(env[x], "OLDPWD=", 7) == 0)
+			if (ft_strncmp(env[x], "OLDPWD=", 7) == 0) // ? Tengo que comprobar si existe el OLDPWD
 				env[x] = ft_strjoin("OLDPWD=", tmp);
 			x++;
 		}
@@ -70,13 +72,13 @@ void	ft_cd(char **env)
 	{
 		tmp = getcwd(NULL, 0);
 		if (chdir(argumentos) != 0)
-			printf("cd: No existe el directorio\n");
+			printf("cd: No existe el directorio: %s\n", argumentos);
 		buf = getcwd(NULL, 0);
 		while (env[x])
 		{
 			if (ft_strncmp(env[x], "PWD=", 4) == 0)
 				env[x] = ft_strjoin("PWD=", buf);
-			if (ft_strncmp(env[x], "OLDPWD=", 7) == 0)
+			if (ft_strncmp(env[x], "OLDPWD=", 7) == 0) // ? Tengo que comprobar si existe el OLDPWD
 				env[x] = ft_strjoin("OLDPWD=", tmp);
 			x++;
 		}
