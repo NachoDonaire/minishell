@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/02 10:05:22 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/02 10:11:18 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	**get_env(char **envp) // ? Esta funcción la ejecutamos al principio para 
 	x = 0;
 	y = 0;
 	env = envp;
-	while (env[x])
+	while (env[x]) // ? Revisar SHLVL si incrementa cuando vamos a iniciar otra shell
 	{
 		if (ft_strncmp(env[x], "SHLVL=", 6) == 0)
 		{
