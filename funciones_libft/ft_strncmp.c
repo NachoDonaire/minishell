@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/02 13:38:07 by sasalama         ###   ########.fr       */
+/*   Created: 2022/01/20 09:23:36 by sasalama          #+#    #+#             */
+/*   Updated: 2022/08/02 13:30:51 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	ft_comprobar_salida(char *s)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (ft_strncmp(s, "exit", 5) == 0)
-		return (1);
-	return (0);
-}
+	size_t			i;
+	unsigned char	*x1;
+	unsigned char	*x2;
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	int		x;
-	char	*texto;
-	char	**tmp;
-
-	(void)argc;
-	(void)argv;
-	tmp = get_env(envp);
-	x = 0;
-	while (x == 0)
+	i = 0;
+	x1 = (unsigned char *)s1;
+	x2 = (unsigned char *)s2;
+	while (i < n)
 	{
-		texto = readline("Minishell> ");
-		printf("%s\n", texto);
-		if (ft_comprobar_salida(texto) == 1)
-			exit(0);
-		ft_comprobar_comando(texto, tmp);
+		if (x1[i] == '\0')
+			return ((x1[i] - x2[i]));
+		if (x1[i] != x2[i])
+			return ((x1[i] - x2[i]));
+		i++;
 	}
 	return (0);
 }

@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/02 13:38:07 by sasalama         ###   ########.fr       */
+/*   Created: 2022/08/02 13:10:46 by sasalama          #+#    #+#             */
+/*   Updated: 2022/08/02 14:39:45 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	ft_comprobar_salida(char *s)
+void	ft_unset(char **env) // *! MODIFICAR
 {
-	if (ft_strncmp(s, "exit", 5) == 0)
-		return (1);
-	return (0);
-}
-
-int	main(int argc, char *argv[], char *envp[])
-{
+	char	*v;
 	int		x;
-	char	*texto;
-	char	**tmp;
+	char	*tmp;
 
-	(void)argc;
-	(void)argv;
-	tmp = get_env(envp);
 	x = 0;
-	while (x == 0)
+	v = "OLDPWD="; // ? Provisional, esto lo da la estructura
+	while (env[x])
 	{
-		texto = readline("Minishell> ");
-		printf("%s\n", texto);
-		if (ft_comprobar_salida(texto) == 1)
-			exit(0);
-		ft_comprobar_comando(texto, tmp);
+		tmp = ft_substr(env[x], 0, ft_strlen(v));
+		if (ft_strncmp(tmp, v, ft_strlen(v)) == 0)
+		{
+			while (env[x + 1])
+			{
+				env[x] = env[x + 1];
+				x++;
+			}
+			env[x] = NULL;
+			break ;
+		}
+		x++;
 	}
-	return (0);
 }

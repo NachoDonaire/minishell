@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_comprobar_comandos.c                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 20:00:30 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/02 13:19:12 by sasalama         ###   ########.fr       */
+/*   Created: 2022/01/19 13:15:58 by sasalama          #+#    #+#             */
+/*   Updated: 2022/08/02 13:30:41 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	ft_comprobar_env(char *s, char **envp)
+char	*ft_strchr(const char *s, int c)
 {
-	if (ft_strncmp(s, "env", 4) == 0)
-	{
-		ft_env(envp);
-		return (1);
-	}
+	int				i;
+	unsigned char	s2;
+
+	i = 0;
+	s2 = (unsigned char)c;
+	while (*(s + i) && s2 != *(s + i))
+		i++;
+	if (*(s + i) == s2)
+		return ((char *)(s + i));
 	return (0);
-}
-
-int	ft_comprobar_comando(char *s, char **tmp)
-{
-	int	x;
-
-	x = 0;
-	x += ft_comprobar_pwd(s);
-	x += ft_comprobar_cd(s, tmp);
-	x += ft_comprobar_echo(s, tmp);
-	x += ft_comprobar_export(s, tmp);
-	x += ft_comprobar_unset(s, tmp);
-	x += ft_comprobar_env(s, tmp);
-
-	return (x);
 }
