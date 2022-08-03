@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:11:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/03 16:52:53 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/03 17:55:18 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_export(char **env) // *! MODIFICAR
 	char	*buf2;
 
 	v = "PRUEBA="; // ? Provisional, esto lo da la estructura
-	argumento = "Hola"; // ? Provisional, esto lo da la estructura
+	argumento = ""; // ? Provisional, esto lo da la estructura
 	x = 0;
 	is_there = 0;
 	while (env[x])

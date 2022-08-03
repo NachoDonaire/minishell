@@ -6,13 +6,13 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:46 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/03 17:30:27 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/03 18:24:44 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_eliminate(char **env, int position)
+static void	ft_eliminate(char **env, int position)
 {
 	int	x;
 
@@ -25,7 +25,7 @@ void	ft_eliminate(char **env, int position)
 	env[x] = NULL;
 }
 
-int	ft_igual(char *s)
+static int	ft_igual(char *s)
 {
 	int	x;
 
@@ -39,7 +39,7 @@ int	ft_igual(char *s)
 	return (0);
 }
 
-void	ft_find_env(char *argumento, char **env)
+static void	ft_find_env(char *argumento, char **env)
 {
 	int	tmp;
 	int	y;

@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/03 14:24:30 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/03 18:25:40 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ tputs: Puede recuperar capacidades por nombre
 
 #include "minishell.h"
 
-int	ft_comprobar_salida(char *s)
+static int	ft_comprobar_salida(char *s)
 {
 	if (ft_strncmp(s, "exit", 5) == 0)
 		return (1);

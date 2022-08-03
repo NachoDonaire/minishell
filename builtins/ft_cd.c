@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:09:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/03 15:10:25 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/03 18:24:26 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // *! Ver si funciona con directorios sin permiso
 
-void	ft_change_pwd(char **env, char *buf)
+static void	ft_change_pwd(char **env, char *buf)
 {
 	int	x;
 
@@ -26,7 +26,7 @@ void	ft_change_pwd(char **env, char *buf)
 	}
 }
 
-void	ft_change_variable_oldpwd(char **env, char *tmp)
+static void	ft_change_variable_oldpwd(char **env, char *tmp)
 {
 	int		x;
 	int		oldpwd;

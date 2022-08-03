@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_comprobar_comandos.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:00:30 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/02 13:19:12 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/03 18:25:07 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_comprobar_env(char *s, char **envp)
+static int	ft_comprobar_env(char *s, char **envp)
 {
 	if (ft_strncmp(s, "env", 4) == 0)
 	{

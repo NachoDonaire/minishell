@@ -6,13 +6,13 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/03 14:24:33 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/03 18:25:32 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_shlvl(char *s)
+static void	ft_shlvl(char *s)
 {
 	int	x;
 
@@ -62,10 +62,15 @@ char	**get_env(char **envp)
 void	ft_env(char **env)
 {
 	int		x;
+	int		z;
 
 	x = -1;
 	while (env[++x])
-		printf("%s\n", env[x]);
+	{
+		z = ft_strlen(env[x]);
+		if (env[x][z - 1] != '=')
+			printf("%s\n", env[x]);
+	}
 }
 
 // TODO Implementar libreria libft en Mafefile para no añadir los archivos a mano
