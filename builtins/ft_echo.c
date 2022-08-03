@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/03 18:29:55 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/03 18:46:47 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	ft_imprimir(char **nb_argumentos, int x, char **env)
 {
 	int		y;
 
-	if (ft_dollar(nb_argumentos[x]) == 0)
+	if (ft_dollar(nb_argumentos[x]) == 0) // ? Poner aqui funcion comillas expandir
 		printf("%s", nb_argumentos[x]);
 	else
 	{
@@ -75,7 +75,7 @@ static void	ft_imprimir(char **nb_argumentos, int x, char **env)
 		{
 			if (nb_argumentos[x][y] != '$')
 				printf("%c", nb_argumentos[x][y]);
-			else if (nb_argumentos[x][y] == '$')
+			else if (nb_argumentos[x][y] == '$') // ? Poner aqui funcion comillas expandir
 			{
 				ft_imprimir_variable(nb_argumentos, x, y, env);
 				break ;
@@ -113,7 +113,7 @@ void	ft_echo(char **env) // *! MODIFICAR para comillas simples
 
 	x = -1;
 	new_line = 1;
-	nb_argumentos = ft_split("-nnnnnn t -nnnnn$TERM", ' ');
+	nb_argumentos = ft_split("-nnnnnnt -nnnnn$TERM", ' ');
 	if (nb_argumentos)
 	{
 		new_line = ft_comprobar_saltos(nb_argumentos, x, env);
