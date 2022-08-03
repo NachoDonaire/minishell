@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:09:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/02 14:04:35 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:10:25 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ void	ft_cd(char **env)
 			printf("minishell : cd: HOME not set\n");
 		else
 			ft_change_variable_oldpwd(env, tmp);
-	}
-	else if (ft_strncmp(argumentos, "..", 3) == 0)
-	{
-		tmp = getcwd(NULL, 0);
-		chdir("..");
-		ft_change_variable_oldpwd(env, tmp);
 	}
 	else
 	{

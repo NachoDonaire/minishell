@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/02 15:36:50 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:40:41 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_dollar(char *argumento)
 	return (0);
 }
 
-void	ft_echo(char **env) // *! MODIFICAR
+void	ft_echo(char **env) // *! MODIFICAR para comillas simples
 {
 	int		p_env;
 	int		y;
@@ -106,5 +106,4 @@ void	ft_echo(char **env) // *! MODIFICAR
 	if (new_line == 0)
 		printf("%%");
 	printf("\n");
-	
 }

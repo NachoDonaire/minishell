@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:11:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/02 15:42:16 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:52:53 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_export(char **env)
+void	ft_export(char **env) // *! MODIFICAR
 {
 	char	*argumento;
 	char	*v;
@@ -54,36 +54,3 @@ void	ft_export(char **env)
 		env[x + 2] = NULL;
 	}
 }
-
-/*
-#include "../minishell.h"
-
-void	ft_export(char **env) // *! MODIFICAR
-{
-	char	*argumento;
-	int		x;
-	char	**variable;
-	char	*tmp;
-	char	*buf;
-
-	argumento = "PRUEBA=hola Adios= que=tal señor"; // ? Provisional, esto lo da la estructura
-	variable = ft_split(argumento, " ");
-	x = 0;
-	if (argumento)
-	{
-		while (variable[x])
-		{
-			tmp = ft_strchr(variable[x], '=');
-			if (tmp)
-			{
-				buf = ft_substr(variable[x], 0, ft_strlen(variable) - ft_strlen(tmp));
-			}
-			x++;
-		}
-	}
-	else
-	{
-		
-	}
-}
-*/
