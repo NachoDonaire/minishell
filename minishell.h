@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/03 15:06:34 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/04 12:49:53 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,16 @@ char	*ft_strchr(const char *s, int c);
 char	**get_env(char **envp);
 char	*ft_strrchr(const char *s, int c);
 char	**ft_split(char const *s, char c);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+int		ft_imprimir_comilla_simple(char *argumento);
+int		ft_imprimir_comilla_doble(char *argumento);
+void	ft_imprimir_variable(char **nb_argumentos, int x, int y, char **env);
+int		ft_comillas_dobles2(char *argumento);
+int		ft_comillas_simples2(char *argumento);
+int		ft_comillas_dobles(char *argumento);
+int		ft_comillas_simples(char *argumento);
+int		ft_dollar(char *argumento);
+int		ft_n(char *argumento);
 
 #endif

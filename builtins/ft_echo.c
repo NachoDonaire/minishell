@@ -6,102 +6,79 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/03 18:46:47 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/04 12:51:51 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	ft_n(char *argumento)
-{
-	int	x;
-
-	x = 1;
-	while (argumento[x])
-	{
-		if (argumento[x] != 'n')
-			return (1);
-		x++;
-	}
-	return (0);
-}
-
-static int	ft_dollar(char *argumento)
-{
-	int	x;
-
-	x = 1;
-	while (argumento[x])
-	{
-		if (argumento[x] != '$')
-			return (1);
-		x++;
-	}
-	return (0);
-}
-
-static void	ft_imprimir_variable(char **nb_argumentos, int x, int y, char **env)
-{
-	int		z;
-	char	*tmp;
-
-	z = ft_strlen(nb_argumentos[x]);
-	tmp = ft_substr(nb_argumentos[x], y + 1, z);
-	tmp = ft_strjoin(tmp, "=");
-	z = -1;
-	while (env[++z])
-	{
-		y = ft_strlen(tmp);
-		if (ft_strncmp(env[z], tmp, y) == 0)
-		{
-			tmp = ft_strchr(env[z], '=');
-			tmp = ft_substr(tmp, 1, ft_strlen(tmp));
-			printf("%s", tmp);
-			break ;
-		}
-	}
-}
-
-static void	ft_imprimir(char **nb_argumentos, int x, char **env)
+static void	ft_imprimir(char **string, int x, char **env)
 {
 	int		y;
+	int		a;
+	int		b;
 
-	if (ft_dollar(nb_argumentos[x]) == 0) // ? Poner aqui funcion comillas expandir
-		printf("%s", nb_argumentos[x]);
+	if (ft_dollar(string[x]) == 0)
+		printf("%s", string[x]);
 	else
 	{
 		y = -1;
-		while (nb_argumentos[x][++y])
+		while (string[x][++y])
 		{
-			if (nb_argumentos[x][y] != '$')
-				printf("%c", nb_argumentos[x][y]);
-			else if (nb_argumentos[x][y] == '$') // ? Poner aqui funcion comillas expandir
+			a = ft_comillas_simples(string[x]);
+			b = ft_comillas_dobles(string[x]);
+			if (string[x][y] != '$' && string[x][y] != 39 && string[x][y] != 34)
+				printf("%c", string[x][y]);
+			else if (string[x][y] == '$' && a == 0 && b == 0)
 			{
-				ft_imprimir_variable(nb_argumentos, x, y, env);
+				ft_imprimir_variable(string, x, y, env);
 				break ;
 			}
+			else if (string[x][y] != 39 && string[x][y] != 34)
+				printf("%c", string[x][y]);
 		}
 	}
+}
+
+static	void	ft_imprimir_comillas(char **array, int x, char **e, int *c)
+{
+	if (ft_imprimir_comilla_simple(array[x]) == 0)
+	{
+		c[0] = 1;
+		printf("'");
+	}
+	if (ft_imprimir_comilla_doble(array[x]) == 0)
+	{
+		c[1] = 1;
+		printf("\"");
+	}
+	ft_imprimir(array, x, e);
+	if (array[x + 1])
+		printf(" ");
 }
 
 static int	ft_comprobar_saltos(char **nb_argumentos, int x, char **env)
 {
 	int	z;
 	int	new_line;
+	int	comillas[2];
 
+	comillas[0] = 0;//simple
+	comillas[1] = 0;//doble
 	new_line = 1;
-	while (nb_argumentos[++x])
+	while (nb_argumentos[x])
 	{
 		z = ft_n(nb_argumentos[x]);
 		if (ft_strncmp(nb_argumentos[x], "-n", 2) == 0 && z == 0)
 			new_line = 0;
 		else
-		{
-			ft_imprimir(nb_argumentos, x, env);
-			if (nb_argumentos[x + 1])
-				printf(" ");
-		}
+			ft_imprimir_comillas(nb_argumentos, x, env, comillas);
+		x++;
 	}
+	if (comillas[0] == 1)
+		printf("'");
+	if (comillas[1] == 1)
+		printf("\"");
 	return (new_line);
 }
 
@@ -111,9 +88,9 @@ void	ft_echo(char **env) // *! MODIFICAR para comillas simples
 	int		new_line;
 	char	**nb_argumentos; // ? Provisional, esto lo da la estructura
 
-	x = -1;
+	x = 0;
 	new_line = 1;
-	nb_argumentos = ft_split("-nnnnnnt -nnnnn$TERM", ' ');
+	nb_argumentos = ft_split("'-nnnnnnt -nnnnn$TERM'", ' ');
 	if (nb_argumentos)
 	{
 		new_line = ft_comprobar_saltos(nb_argumentos, x, env);
