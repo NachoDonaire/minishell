@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:08:37 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/02 13:13:17 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:21:33 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	ft_pwd(void)
 {

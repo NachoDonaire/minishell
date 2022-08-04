@@ -6,11 +6,11 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:46:22 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/04 12:49:14 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/04 14:21:28 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_comillas_simples2(char *argumento)
 {

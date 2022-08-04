@@ -6,11 +6,11 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:09:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/03 18:24:26 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/04 14:21:09 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 // *! Ver si funciona con directorios sin permiso
 

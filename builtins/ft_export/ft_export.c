@@ -6,11 +6,11 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:11:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/03 17:55:18 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/04 14:21:01 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	ft_export(char **env) // *! MODIFICAR
 {

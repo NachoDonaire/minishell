@@ -6,11 +6,11 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:46 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/03 18:24:44 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/04 14:21:41 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	ft_eliminate(char **env, int position)
 {

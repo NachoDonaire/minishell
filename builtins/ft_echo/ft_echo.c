@@ -6,11 +6,11 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/04 12:51:51 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/04 14:21:18 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static void	ft_imprimir(char **string, int x, char **env)
 {

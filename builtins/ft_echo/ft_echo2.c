@@ -6,11 +6,11 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:44:56 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/04 12:47:18 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/04 14:21:23 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_n(char *argumento)
 {
