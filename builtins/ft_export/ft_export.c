@@ -6,51 +6,53 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:11:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/04 14:21:01 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/05 12:50:17 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_export(char **env) // *! MODIFICAR
+void	ft_imprimir_export(char **env)
 {
-	char	*argumento;
-	char	*v;
-	int		x;
-	int		is_there;
-	char	*tmp;
-	char	*buf;
-	char	*buf2;
+	int	x;
 
-	v = "PRUEBA="; // ? Provisional, esto lo da la estructura
-	argumento = ""; // ? Provisional, esto lo da la estructura
 	x = 0;
-	is_there = 0;
-	while (env[x])
+	while (env[++x])
 	{
-		tmp = ft_substr(env[x], 0, ft_strlen(v));
-		buf = ft_strjoin("=", argumento);
-		buf2 = ft_strchr(env[x], '=');
-		if (ft_strncmp(tmp, v, ft_strlen(v)) == 0 && ft_strncmp(buf2, buf, ft_strlen(argumento)) == 0)
-		{
-			is_there = 1;
-			break ;
-		}	
-		x++;
+		printf("%s", env[x]);
+		if (ft_igual(env[x]) == 0)
+			printf("=''");
+		if (env[x][ft_strlen(env[x]) - 1] == '=')
+			printf("''");
+		printf("\n");
 	}
-	if (is_there == 0)
+}
+
+void	ft_export_argumentos(char **env, char **argumentos)
+{
+	int		x;
+	char	*variable;
+	char	*valor;
+
+	x = 0;
+	while (argumentos[++x])
 	{
-		x = 0;
-		while (env[x])
-		{
-			if (ft_strncmp(env[x], "_=", 2) == 0)
-			{
-				env[x + 1] = env[x];
-				break ;
-			}
-			x++;
-		}
-		env[x] = ft_strjoin(v, argumento);
-		env[x + 2] = NULL;
+		variable = ft_variables(argumentos[x]);
+		valor = ft_valor(argumentos[x]);
+		if (ft_buscar_variable(variable, env) == 0)
+			ft_crear_variable(variable, valor, env);
+		else
+			ft_sustituir_variable(variable, valor, env);
 	}
+}
+
+void	ft_export(char **env)
+{
+	char	**argumentos;
+
+	argumentos = ft_split("señor adios= hola=h", ' ');
+	if (argumentos)
+		ft_export_argumentos(env, argumentos);
+	else
+		ft_imprimir_export(env);
 }

@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:46 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/04 14:21:41 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/05 12:27:53 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_eliminate(char **env, int position)
 	env[x] = NULL;
 }
 
-static int	ft_igual(char *s)
+int	ft_igual(char *s)
 {
 	int	x;
 
@@ -64,7 +64,7 @@ void	ft_unset(char **env)
 	char	**argumentos;
 
 	x = -1;
-	argumentos = ft_split("TERM= OLDPWD SHLVL=4", ' '); // ? Provisional, esto lo da la estructura
+	argumentos = ft_split("señor= adios", ' '); // ? Provisional, esto lo da la estructura
 	while (argumentos[++x])
 	{
 		z = ft_strlen(argumentos[x]) - 1;

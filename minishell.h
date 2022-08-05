@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/04 12:49:53 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/05 12:50:59 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,11 @@ int		ft_comillas_dobles(char *argumento);
 int		ft_comillas_simples(char *argumento);
 int		ft_dollar(char *argumento);
 int		ft_n(char *argumento);
+int		ft_igual(char *s);
+char	*ft_variables(char *v);
+char	*ft_valor(char *v);
+int		ft_buscar_variable(char *v, char **env);
+void	ft_crear_variable(char *variable, char *valor, char **env);
+void	ft_sustituir_variable(char *variable, char *valor, char **env);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/04 14:23:14 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/05 12:38:28 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,14 @@ char	**get_env(char **envp)
 void	ft_env(char **env)
 {
 	int		x;
-	//int		z;
 
-	x = -1;
-	while (env[++x])
-		printf("%s\n", env[x]);
+	x = 0;
+	while (env[x])
+	{
+		if (ft_igual(env[x]) != 0)
+			printf("%s\n", env[x]);
+		x++;
+	}
 }
 
 // TODO Implementar libreria libft en Mafefile para no añadir los archivos a mano
