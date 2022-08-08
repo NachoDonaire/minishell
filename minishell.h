@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/08 13:24:59 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/08 14:22:15 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/history.h>
 # include <signal.h>
 
+void	rl_replace_line (const char *text, int clear_undo);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_echo(char **env);
 void	ft_cd(char **env);

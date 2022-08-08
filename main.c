@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/08 13:25:11 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/08 14:25:44 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,24 @@ tputs: Puede recuperar capacidades por nombre
 
 #include "minishell.h"
 
+int	g_status;
+
 static int	ft_comprobar_salida(char *s)
 {
 	if (ft_strncmp(s, "exit", 5) == 0)
 		return (1);
 	return (0);
+}
+
+void	handle_sigint(int sig) // ? Repasar
+{
+	if (sig == SIGINT)
+	{
+		g_status = 130;
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+	}
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -85,6 +98,8 @@ int	main(int argc, char *argv[], char *envp[])
 	x = 0;
 	while (x == 0)
 	{
+		signal(SIGINT, handle_sigint);
+		signal(SIGQUIT, SIG_IGN);
 		texto = readline("Minishell> ");
 		add_history(texto);
 		printf("%s\n", texto);

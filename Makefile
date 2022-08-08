@@ -17,8 +17,7 @@ RM = rm -f
 			@${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS}
-		${CC} ${FLAGS} -lreadline ${OBJS} -o ${NAME}
-
+		${CC} ${FLAGS} ${OBJS} -o ${NAME} -lreadline -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
 all: ${NAME}
 
 clean:
