@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/08 14:25:44 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/08 17:23:39 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ tputs: Puede recuperar capacidades por nombre
 
 #include "minishell.h"
 
-int	g_status;
-
 static int	ft_comprobar_salida(char *s)
 {
 	if (ft_strncmp(s, "exit", 5) == 0)
@@ -79,8 +77,7 @@ void	handle_sigint(int sig) // ? Repasar
 {
 	if (sig == SIGINT)
 	{
-		g_status = 130;
-		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		ioctl(STDIN_FILENO, TIOCSTI, "\n"); // STDIN_FILENO: File descriptor terminal TIOCSTI: Este comando simula la entrada del terminal
 		rl_replace_line("", 0);
 		rl_on_new_line();
 	}
@@ -98,14 +95,16 @@ int	main(int argc, char *argv[], char *envp[])
 	x = 0;
 	while (x == 0)
 	{
-		signal(SIGINT, handle_sigint);
-		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, handle_sigint);// SIGINT: terminate process, interrupt program
 		texto = readline("Minishell> ");
-		add_history(texto);
-		printf("%s\n", texto);
-		if (ft_comprobar_salida(texto) == 1)
-			exit(0);
-		ft_comprobar_comando(texto, tmp);
+		if (texto) // Para que no haga segmentation fault con control + D
+		{
+			if (texto[0]) // Para no guarda control + C
+				add_history(texto);
+			if (ft_comprobar_salida(texto) == 1)
+				exit(0);
+			ft_comprobar_comando(texto, tmp);
+		}
 	}
 	return (0);
 }
