@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/05 12:50:59 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/08 13:24:59 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_echo(char **env);

@@ -17,7 +17,7 @@ RM = rm -f
 			@${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS}
-	${CC} ${FLAGS} -lreadline ${OBJS} -o ${NAME}
+		${CC} ${FLAGS} -lreadline ${OBJS} -o ${NAME}
 
 all: ${NAME}
 

@@ -6,7 +6,7 @@
 /*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/03 18:25:40 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/08 13:25:11 by salustianos      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	main(int argc, char *argv[], char *envp[])
 	while (x == 0)
 	{
 		texto = readline("Minishell> ");
+		add_history(texto);
 		printf("%s\n", texto);
 		if (ft_comprobar_salida(texto) == 1)
 			exit(0);
