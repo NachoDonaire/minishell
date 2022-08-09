@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:11:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 15:46:40 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:20:38 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,22 @@ void	ft_export_argumentos(char **env, char **argumentos)
 			ft_crear_variable(variable, valor, env);
 		else
 			ft_sustituir_variable(variable, valor, env);
+		free(variable);
 	}
 }
 
 void	ft_export(char **env)
 {
 	char	**argumentos;
+	int		x;
 
 	argumentos = ft_split("señor adios= hola=h", ' ');
 	if (argumentos)
 		ft_export_argumentos(env, argumentos);
 	else
 		ft_imprimir_export(env);
+	x = 0;
+	while (argumentos[x])
+		free(argumentos[x++]);
+	free(argumentos);
 }

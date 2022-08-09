@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:09:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 15:47:13 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:13:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ static void	ft_change_pwd(char **env, char *buf)
 	while (env[++x])
 	{
 		if (ft_strncmp(env[x], "PWD=", 4) == 0)
+		{
+			free(env[x]);
 			env[x] = ft_strjoin("PWD=", buf);
+		}
 	}
 }
 
@@ -39,6 +42,7 @@ static void	ft_change_variable_oldpwd(char **env, char *tmp)
 	{
 		if (ft_strncmp(env[x], "OLDPWD=", 7) == 0)
 		{
+			free(env[x]);
 			env[x] = ft_strjoin("OLDPWD=", tmp);
 			oldpwd = 1;
 		}
@@ -50,6 +54,7 @@ static void	ft_change_variable_oldpwd(char **env, char *tmp)
 	}
 	else if (oldpwd == 1)
 		ft_change_pwd(env, buf);
+	free(buf);
 }
 
 void	ft_cd(char **env)
@@ -65,6 +70,7 @@ void	ft_cd(char **env)
 			printf("minishell : cd: HOME not set\n");
 		else
 			ft_change_variable_oldpwd(env, tmp);
+		free(tmp);
 	}
 	else
 	{
@@ -73,5 +79,6 @@ void	ft_cd(char **env)
 			printf("cd: No existe el directorio: %s\n", argumentos);
 		else
 			ft_change_variable_oldpwd(env, tmp);
+		free(tmp);
 	}
 }

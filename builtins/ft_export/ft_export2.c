@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 15:46:49 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:18:53 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,10 @@ void	ft_crear_variable(char *variable, char *valor, char **env)
 			else
 				copia = ft_substr(variable, 0, ft_strlen(variable));
 			tmp = ft_substr(env[x], 0, ft_strlen(env[x]));
+			free(env[x]);
 			env[x] = copia;
 			x++;
+			free(env[x]);
 			env[x] = tmp;
 			x++;
 			env[x] = NULL;
@@ -111,6 +113,7 @@ void	ft_sustituir_variable(char *variable, char *valor, char **env)
 			if (!valor)
 				break ;
 			copia = ft_strjoin(variable, valor);
+			free(env[x]);
 			env[x] = copia;
 			break ;
 		}
