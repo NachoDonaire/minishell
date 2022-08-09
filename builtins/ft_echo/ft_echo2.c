@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:44:56 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/04 14:21:23 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/09 15:13:15 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_dollar(char *argumento)
 	return (0);
 }
 
-int	ft_comillas_simples(char *argumento)
+int	ft_c_s(char *argumento)
 {
 	int	x;
 
@@ -62,7 +62,7 @@ int	ft_comillas_simples(char *argumento)
 	return (0);
 }
 
-int	ft_comillas_dobles(char *argumento)
+int	ft_c_d(char *argumento)
 {
 	int	x;
 

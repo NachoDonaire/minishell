@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 12:49:45 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/05 12:50:14 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/09 15:07:02 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

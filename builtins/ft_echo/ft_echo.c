@@ -6,35 +6,34 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 13:44:18 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:22:52 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+static void	ft_comilla(char **s, int x, int z)
+{
+	if (s[x][0] == '\"' && s[x][z] == '\"' && s[x + 1] && s[0][0] != 39 &&
+		s[0][0] == 34 && s[2][ft_strlen(s[2]) - 1] != 34) // El 2 es el nº de argumentos
+		printf("\"");
+}
+
 static void	ft_imprimir(char **s, int x, char **env, int z)
 {
 	int		y;
-	int		a;
-	int		b;
-	int		c;
 
-	c = ft_strlen(s[2]) - 1;
+	y = -1;
 	if (ft_dollar(s[x]) == 0)
 		printf("%s", s[x]);
 	else
 	{
-		if (s[x][0] == '\"' && s[x][z] == '\"' && s[x + 1] && s[0][0] != 39 &&
-			s[0][0] == 34 && s[2][c] != 34) // El 2 es el nº de argumentos
-			printf("\"");
-		y = -1;
+		ft_comilla(s, x, z);
 		while (s[x][++y])
 		{
-			a = ft_comillas_simples(s[x]);
-			b = ft_comillas_dobles(s[x]);
 			if (s[x][y] != '$' && s[x][y] != 39 && s[x][y] != 34)
 				printf("%c", s[x][y]);
-			else if (s[x][y] == '$' && a == 0 && b == 0)
+			else if (s[x][y] == '$' && ft_c_s(s[x]) == 0 && ft_c_d(s[x]) == 0)
 			{
 				ft_imprimir_variable(s, x, y, env);
 				break ;
@@ -42,9 +41,7 @@ static void	ft_imprimir(char **s, int x, char **env, int z)
 			else if (s[x][y] != 39 && s[x][y] != 34)
 				printf("%c", s[x][y]);
 		}
-		if (s[x][0] == '\"' && s[x][z] == '\"' && s[x + 1] && s[0][0] != 39 &&
-			s[0][0] == 34 && s[2][c] != 34) // El 2 es el nº de argumentos
-			printf("\"");
+		ft_comilla(s, x, z);
 	}
 }
 
@@ -101,7 +98,7 @@ void	ft_echo(char **env) // *! MODIFICAR para comillas simples
 
 	x = 0;
 	new_line = 1;
-	nb_argumentos = ft_split("t-nnnnnn t -nnnnn$TERM", ' ');
+	nb_argumentos = ft_split("\"\"-nnnnnn t -nnnnn$TERM\"\"", ' ');
 	if (nb_argumentos)
 	{
 		new_line = ft_comprobar_saltos(nb_argumentos, x, env);

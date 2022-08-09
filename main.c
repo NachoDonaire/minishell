@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/09 14:12:41 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:06:03 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,18 @@ void	ft_salida(char *texto)
 		printf("exit\n");
 	exit(0);
 }
-
+/*
+void	ft_leaks()
+{
+	system("leaks -q minishell");
+}
+*/
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	*texto;
 	char	**tmp;
 
+	//atexit(ft_leaks);
 	tmp = get_env(envp);
 	while (argc && argv)
 	{
@@ -121,6 +127,7 @@ int	main(int argc, char *argv[], char *envp[])
 			if (ft_comprobar_salida(texto) == 1)
 				ft_salida(texto);
 			ft_comprobar_comando(texto, tmp);
+			free(texto);
 		}
 		else // Para que salga con control + D
 			ft_salida(texto);

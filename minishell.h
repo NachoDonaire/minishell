@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/09 14:09:06 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:13:30 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int		ft_imprimir_comilla_doble(char *argumento);
 void	ft_imprimir_variable(char **nb_argumentos, int x, int y, char **env);
 int		ft_comillas_dobles2(char *argumento);
 int		ft_comillas_simples2(char *argumento);
-int		ft_comillas_dobles(char *argumento);
-int		ft_comillas_simples(char *argumento);
+int		ft_c_d(char *argumento);
+int		ft_c_s(char *argumento);
 int		ft_dollar(char *argumento);
 int		ft_n(char *argumento);
 int		ft_igual(char *s);

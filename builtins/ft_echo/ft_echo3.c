@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:46:22 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/04 14:21:28 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/09 15:22:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	ft_imprimir_variable(char **nb_argumentos, int x, int y, char **env)
 
 	z = ft_strlen(nb_argumentos[x]);
 	tmp = ft_substr(nb_argumentos[x], y + 1, z);
-	if (ft_comillas_dobles2(tmp) == 0)
+	while (ft_comillas_dobles2(tmp) == 0)
 		tmp[ft_strlen(tmp) - 1] = '\0';
-	if (ft_comillas_simples2(tmp) == 0)
+	while (ft_comillas_simples2(tmp) == 0)
 		tmp[ft_strlen(tmp) - 1] = '\0';
 	tmp = ft_strjoin(tmp, "=");
 	z = -1;

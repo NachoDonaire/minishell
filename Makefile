@@ -12,12 +12,12 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
-
+#-fsanitize=address
 %.o: %.c
 			@${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}: ${OBJS}
-		${CC} ${FLAGS} ${OBJS} -o ${NAME} -lreadline -L /Users/sasalama/.brew/Cellar/readline/8.1.2/lib -I /Users/sasalama/.brew/Cellar/readline/8.1.2/include
+		${CC} ${FLAGS} ${OBJS} -o ${NAME} -lreadline -L /Users/sasalama/.brew/Cellar/readline/8.1.2/lib -I /Users/sasalama/.brew/Cellar/readline/8.1.2/include 
 all: ${NAME}
 
 clean:

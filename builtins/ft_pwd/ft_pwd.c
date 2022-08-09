@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:08:37 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/04 14:21:33 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/09 15:06:55 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
