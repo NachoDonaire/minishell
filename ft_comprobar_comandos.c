@@ -6,13 +6,13 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:20 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 15:46:21 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:03:15 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	ft_comprobar_env(char *s, char **envp)
+static int	ft_check_env(char *s, char **envp)
 {
 	if (ft_strncmp(s, "env", 4) == 0)
 	{
@@ -22,15 +22,15 @@ static int	ft_comprobar_env(char *s, char **envp)
 	return (0);
 }
 
-void	ft_comprobar_comando(char *s, char **tmp)
+void	ft_check_comand(char *s, char **tmp)
 {
 	int	x;
 
 	x = 0;
-	x += ft_comprobar_pwd(s);
-	x += ft_comprobar_cd(s, tmp);
-	x += ft_comprobar_echo(s, tmp);
-	x += ft_comprobar_export(s, tmp);
-	x += ft_comprobar_unset(s, tmp);
-	x += ft_comprobar_env(s, tmp);
+	x += ft_check_pwd(s);
+	x += ft_check_cd(s, tmp);
+	x += ft_check_echo(s, tmp);
+	x += ft_check_export(s, tmp);
+	x += ft_check_unset(s, tmp);
+	x += ft_check_env(s, tmp);
 }

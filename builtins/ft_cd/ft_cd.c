@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:09:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 16:13:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:05:16 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ static void	ft_change_variable_oldpwd(char **env, char *tmp)
 
 void	ft_cd(char **env)
 {
-	char	*argumentos;
+	char	*arguments;
 	char	*tmp;
 
-	argumentos = ".."; // ? Provisional, esto lo da la estructura
-	if (!argumentos)
+	arguments = ".."; // ? Provisional, esto lo da la estructura
+	if (!arguments)
 	{
 		tmp = getcwd(NULL, 0);
 		if (chdir(getenv("HOME")) != 0)
@@ -75,8 +75,8 @@ void	ft_cd(char **env)
 	else
 	{
 		tmp = getcwd(NULL, 0);
-		if (chdir(argumentos) != 0)
-			printf("cd: No existe el directorio: %s\n", argumentos);
+		if (chdir(arguments) != 0)
+			printf("cd: no such file or directory: %s\n", arguments);
 		else
 			ft_change_variable_oldpwd(env, tmp);
 		free(tmp);

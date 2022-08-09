@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 16:18:53 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:18:57 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_variables(char *v)
 	return (v);
 }
 
-char	*ft_valor(char *v)
+char	*ft_value(char *v)
 {
 	int	x;
 
@@ -57,7 +57,7 @@ char	*ft_valor(char *v)
 	return (NULL);
 }
 
-int	ft_buscar_variable(char *v, char **env)
+int	ft_find_variable(char *v, char **env)
 {
 	int		x;
 
@@ -71,10 +71,10 @@ int	ft_buscar_variable(char *v, char **env)
 	return (0);
 }
 
-void	ft_crear_variable(char *variable, char *valor, char **env)
+void	ft_create_variable(char *variable, char *value, char **env)
 {
 	int		x;
-	char	*copia;
+	char	*copy;
 	char	*tmp;
 
 	x = 0;
@@ -82,13 +82,13 @@ void	ft_crear_variable(char *variable, char *valor, char **env)
 	{
 		if (ft_strncmp(env[x], "_=", 2) == 0)
 		{
-			if (valor)
-				copia = ft_strjoin(variable, valor);
+			if (value)
+				copy = ft_strjoin(variable, value);
 			else
-				copia = ft_substr(variable, 0, ft_strlen(variable));
+				copy = ft_substr(variable, 0, ft_strlen(variable));
 			tmp = ft_substr(env[x], 0, ft_strlen(env[x]));
 			free(env[x]);
-			env[x] = copia;
+			env[x] = copy;
 			x++;
 			free(env[x]);
 			env[x] = tmp;
@@ -100,21 +100,21 @@ void	ft_crear_variable(char *variable, char *valor, char **env)
 	}
 }
 
-void	ft_sustituir_variable(char *variable, char *valor, char **env)
+void	ft_replace_variable(char *variable, char *value, char **env)
 {
 	int		x;
-	char	*copia;
+	char	*copy;
 
 	x = 0;
 	while (env[x])
 	{
 		if (ft_strncmp(env[x], variable, ft_strlen(variable) - 1) == 0)
 		{
-			if (!valor)
+			if (!value)
 				break ;
-			copia = ft_strjoin(variable, valor);
+			copy = ft_strjoin(variable, value);
 			free(env[x]);
-			env[x] = copia;
+			env[x] = copy;
 			break ;
 		}
 		x++;

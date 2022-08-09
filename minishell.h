@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/09 15:13:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:20:05 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_echo(char **env);
 void	ft_cd(char **env);
 void	ft_pwd(void);
-void	ft_comprobar_comando(char *s, char **enpv);
-int		ft_comprobar_echo(char *s, char **enpv);
-int		ft_comprobar_pwd(char *s);
-int		ft_comprobar_cd(char *s, char **env);
-int		ft_comprobar_unset(char *s, char **env);
-int		ft_comprobar_export(char *s, char **env);
+void	ft_check_comand(char *s, char **tmp);
+int		ft_check_echo(char *s, char **enpv);
+int		ft_check_pwd(char *s);
+int		ft_check_cd(char *s, char **env);
+int		ft_check_unset(char *s, char **env);
+int		ft_check_export(char *s, char **env);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_unset(char **env);
 void	ft_env(char **env);
@@ -46,20 +46,20 @@ char	*ft_strrchr(const char *s, int c);
 char	**ft_split(char const *s, char c);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
-int		ft_imprimir_comilla_simple(char *argumento);
-int		ft_imprimir_comilla_doble(char *argumento);
-void	ft_imprimir_variable(char **nb_argumentos, int x, int y, char **env);
-int		ft_comillas_dobles2(char *argumento);
-int		ft_comillas_simples2(char *argumento);
-int		ft_c_d(char *argumento);
-int		ft_c_s(char *argumento);
-int		ft_dollar(char *argumento);
-int		ft_n(char *argumento);
-int		ft_igual(char *s);
+int		ft_print_quotation_s(char *argument);
+int		ft_print_quotation_d(char *argument);
+void	ft_print_variable(char **nb_arguments, int x, int y, char **env);
+int		ft_print_quotation_d2(char *argument);
+int		ft_print_quotation_s2(char *argument);
+int		ft_c_d(char *argument);
+int		ft_c_s(char *argument);
+int		ft_dollar(char *argument);
+int		ft_n(char *argument);
+int		ft_equal(char *s);
 char	*ft_variables(char *v);
-char	*ft_valor(char *v);
-int		ft_buscar_variable(char *v, char **env);
-void	ft_crear_variable(char *variable, char *valor, char **env);
-void	ft_sustituir_variable(char *variable, char *valor, char **env);
+char	*ft_value(char *v);
+int		ft_find_variable(char *v, char **env);
+void	ft_create_variable(char *variable, char *value, char **env);
+void	ft_replace_variable(char *variable, char *value, char **env);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:11:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 16:20:38 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:23:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_imprimir_export(char **env)
+static void	ft_print_export(char **env)
 {
 	int	x;
 
@@ -20,7 +20,7 @@ void	ft_imprimir_export(char **env)
 	while (env[++x])
 	{
 		printf("%s", env[x]);
-		if (ft_igual(env[x]) == 0)
+		if (ft_equal(env[x]) == 0)
 			printf("=''");
 		if (env[x][ft_strlen(env[x]) - 1] == '=')
 			printf("''");
@@ -28,37 +28,37 @@ void	ft_imprimir_export(char **env)
 	}
 }
 
-void	ft_export_argumentos(char **env, char **argumentos)
+static void	ft_export_arguments(char **env, char **arguments)
 {
 	int		x;
 	char	*variable;
-	char	*valor;
+	char	*value;
 
 	x = 0;
-	while (argumentos[++x])
+	while (arguments[++x])
 	{
-		variable = ft_variables(argumentos[x]);
-		valor = ft_valor(argumentos[x]);
-		if (ft_buscar_variable(variable, env) == 0)
-			ft_crear_variable(variable, valor, env);
+		variable = ft_variables(arguments[x]);
+		value = ft_value(arguments[x]);
+		if (ft_find_variable(variable, env) == 0)
+			ft_create_variable(variable, value, env);
 		else
-			ft_sustituir_variable(variable, valor, env);
+			ft_replace_variable(variable, value, env);
 		free(variable);
 	}
 }
 
 void	ft_export(char **env)
 {
-	char	**argumentos;
+	char	**arguments;
 	int		x;
 
-	argumentos = ft_split("señor adios= hola=h", ' ');
-	if (argumentos)
-		ft_export_argumentos(env, argumentos);
+	arguments = ft_split("señor adios= hola=h", ' ');
+	if (arguments)
+		ft_export_arguments(env, arguments);
 	else
-		ft_imprimir_export(env);
+		ft_print_export(env);
 	x = 0;
-	while (argumentos[x])
-		free(argumentos[x++]);
-	free(argumentos);
+	while (arguments[x])
+		free(arguments[x++]);
+	free(arguments);
 }

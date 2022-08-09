@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 16:28:20 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:21:12 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_env(char **env)
 	x = 0;
 	while (env[x])
 	{
-		if (ft_igual(env[x]) != 0)
+		if (ft_equal(env[x]) != 0)
 			printf("%s\n", env[x]);
 		x++;
 	}

@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:08:37 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 16:21:03 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:04:32 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	ft_pwd(void)
 {
 	char	*buf;
-	int		argumentos;
+	int		arguments;
 
-	argumentos = 0; // ? Provisional, esto lo da la estructura
-	if (argumentos == 0)
+	arguments = 0; // ? Provisional, esto lo da la estructura
+	if (arguments == 0)
 	{
 		buf = getcwd(NULL, 0);
 		printf("%s\n", buf);
 		free(buf);
 	}
 	else
-		printf("pwd: Demasiados argumentos\n");
+		printf("pwd: too many arguments\n");
 }

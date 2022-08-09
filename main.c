@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:45:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 16:28:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:22:18 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ tputs: Puede recuperar capacidades por nombre
 
 #include "minishell.h"
 
-static int	ft_comprobar_salida(char *s)
+static int	ft_check_exit(char *s)
 {
 	if (ft_strncmp(s, "exit", 5) == 0)
 		return (1);
 	return (0);
 }
 
-void	handle_sigint(int sig) // ? Repasar
+static void	handle_sigint(int sig) // ? Repasar
 {
 	if (sig == SIGINT)
 	{
@@ -94,7 +94,7 @@ void	handle_sigint(int sig) // ? Repasar
 	signal(SIGQUIT, SIG_IGN); SIGQUIT: create core image, quit program SIG_IGN: ignores the signal
 */
 
-void	ft_salida(char *texto, char **tmp)
+static void	ft_exit(char *texto, char **tmp)
 {
 	int	x;
 
@@ -116,7 +116,7 @@ void	ft_leaks()
 */
 int	main(int argc, char *argv[], char *envp[])
 {
-	char	*texto;
+	char	*text;
 	char	**tmp;
 
 	//atexit(ft_leaks);
@@ -125,18 +125,18 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		signal(SIGINT, handle_sigint);// SIGINT: terminate process, interrupt program (Manejo del control + C)
 		signal(SIGQUIT, SIG_IGN); // SIGQUIT: create core image, quit program SIG_IGN: ignores the signal (Manejo control + \)
-		texto = readline("Minishell> ");
-		if (texto) // Para que no haga segmentation fault con control + D
+		text = readline("Minishell> ");
+		if (text) // Para que no haga segmentation fault con control + D
 		{
-			if (texto[0]) // Para no guardar control + C
-				add_history(texto);
-			if (ft_comprobar_salida(texto) == 1)
-				ft_salida(texto, tmp);
-			ft_comprobar_comando(texto, tmp);
-			free(texto);
+			if (text[0]) // Para no guardar control + C
+				add_history(text);
+			if (ft_check_exit(text) == 1)
+				ft_exit(text, tmp);
+			ft_check_comand(text, tmp);
+			free(text);
 		}
 		else // Para que salga con control + D
-			ft_salida(texto, tmp);
+			ft_exit(text, tmp);
 	}
 	return (0);
 }
