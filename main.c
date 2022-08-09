@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/09 13:48:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:01:21 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,17 @@ void	handle_sigint(int sig) // ? Repasar
 		rl_on_new_line();
 	}
 }
+/*
+	Señales en procesos hijos:(Al ser otro proceso creado, que tenga el manejo predeterminado)
 
+	signal(SIGINT, SIG_DFL); SIGINT: terminate process, interrupt program SIG_DFL: default handling for that signal will occur
+	signal(SIGQUIT, SIG_DFL); SIGQUIT: create core image, quit program SIG_DFL: default handling for that signal will occur
+
+	Señales en comando que no son builtins:(Para que no estropee la ejecucion de un comando)
+
+	signal(SIGINT, SIG_IGN); SIGINT: terminate process, interrupt program SIG_IGN: ignores the signal
+	signal(SIGQUIT, SIG_IGN); SIGQUIT: create core image, quit program SIG_IGN: ignores the signal
+*/
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	*texto;
