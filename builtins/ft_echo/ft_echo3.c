@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 15:46:57 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:06:37 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,27 @@ int	ft_comillas_dobles2(char *argumento)
 void	ft_imprimir_variable(char **nb_argumentos, int x, int y, char **env)
 {
 	int		z;
+	char	*copia;
 	char	*tmp;
 
-	z = ft_strlen(nb_argumentos[x]);
-	tmp = ft_substr(nb_argumentos[x], y + 1, z);
-	while (ft_comillas_dobles2(tmp) == 0)
-		tmp[ft_strlen(tmp) - 1] = '\0';
-	while (ft_comillas_simples2(tmp) == 0)
-		tmp[ft_strlen(tmp) - 1] = '\0';
-	tmp = ft_strjoin(tmp, "=");
+	copia = ft_substr(nb_argumentos[x], y + 1, ft_strlen(nb_argumentos[x]));
+	while (ft_comillas_dobles2(copia) == 0)
+		copia[ft_strlen(copia) - 1] = '\0';
+	while (ft_comillas_simples2(copia) == 0)
+		copia[ft_strlen(copia) - 1] = '\0';
+	tmp = ft_strjoin(copia, "=");
+	free(copia);
 	z = -1;
 	while (env[++z])
 	{
 		y = ft_strlen(tmp);
 		if (ft_strncmp(env[z], tmp, y) == 0)
 		{
-			tmp = ft_strchr(env[z], '=');
-			tmp = ft_substr(tmp, 1, ft_strlen(tmp));
+			free(tmp);
+			copia = ft_strchr(env[z], '=');
+			tmp = ft_substr(copia, 1, ft_strlen(copia));
 			printf("%s", tmp);
+			free(tmp);
 			break ;
 		}
 	}
