@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:11:00 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:36:26 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_quotation(char **s, int x, int z)
 {
 	if (s[x][0] == '\"' && s[x][z] == '\"' && s[x + 1] && s[0][0] != 39 &&
-		s[0][0] == 34 && s[2][ft_strlen(s[2]) - 1] != 34) // El 2 es el nº de argumentos
+		s[0][0] == 34 && s[2][ft_strlen(s[2]) - 1] != 34) // 2 is the number of arguments
 		printf("\"");
 }
 
@@ -90,11 +90,11 @@ static int	ft_check_nl(char **nb_arguments, int x, char **env)
 	return (new_line);
 }
 
-void	ft_echo(char **env) // *! MODIFICAR para comillas simples
+void	ft_echo(char **env)
 {
 	int		x;
 	int		new_line;
-	char	**nb_arguments; // ? Provisional, esto lo da la estructura
+	char	**nb_arguments; // ? Provisional, this is given by the structure
 
 	x = 0;
 	new_line = 1;

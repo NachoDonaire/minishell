@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:11:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:23:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:34:00 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_export(char **env)
 	char	**arguments;
 	int		x;
 
-	arguments = ft_split("señor adios= hola=h", ' ');
+	arguments = ft_split("señor adios= hola=h", ' '); // ? Provisional, this is given by the structure
 	if (arguments)
 		ft_export_arguments(env, arguments);
 	else

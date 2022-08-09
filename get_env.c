@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:21:12 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:32:24 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,3 @@ void	ft_env(char **env)
 		x++;
 	}
 }
-
-// TODO Implementar libreria libft en Mafefile para no añadir los archivos a mano

@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:45:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:22:18 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:32:03 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,18 @@ static void	handle_sigint(int sig) // ? Repasar
 {
 	if (sig == SIGINT)
 	{
-		ioctl(STDIN_FILENO, TIOCSTI, "\n"); // STDIN_FILENO: File descriptor terminal TIOCSTI: Este comando simula la entrada del terminal
-		rl_replace_line("", 0); // Para no guardarlo en el historial en caso de no terminar el comando
+		ioctl(STDIN_FILENO, TIOCSTI, "\n"); // STDIN_FILENO: File descriptor terminal TIOCSTI: Simulation of stdin of the terminal
+		rl_replace_line("", 0); // Unsave in the history in the case we don´t finish the command
 		rl_on_new_line();
 	}
 }
 /*
-	Señales en procesos hijos:(Al ser otro proceso creado, que tenga el manejo predeterminado)
+	Signals in child process:(Predeterminated management in the childs processes)
 
 	signal(SIGINT, SIG_DFL); SIGINT: terminate process, interrupt program SIG_DFL: default handling for that signal will occur
 	signal(SIGQUIT, SIG_DFL); SIGQUIT: create core image, quit program SIG_DFL: default handling for that signal will occur
 
-	Señales en comando que no son builtins:(Para que no estropee la ejecucion de un comando)
+	Signal in no builtins commands:(To not damage the command ejecution)
 
 	signal(SIGINT, SIG_IGN); SIGINT: terminate process, interrupt program SIG_IGN: ignores the signal
 	signal(SIGQUIT, SIG_IGN); SIGQUIT: create core image, quit program SIG_IGN: ignores the signal
@@ -123,22 +123,22 @@ int	main(int argc, char *argv[], char *envp[])
 	tmp = get_env(envp);
 	while (argc && argv)
 	{
-		signal(SIGINT, handle_sigint);// SIGINT: terminate process, interrupt program (Manejo del control + C)
-		signal(SIGQUIT, SIG_IGN); // SIGQUIT: create core image, quit program SIG_IGN: ignores the signal (Manejo control + \)
+		signal(SIGINT, handle_sigint);// SIGINT: terminate process, interrupt program (Management control + C)
+		signal(SIGQUIT, SIG_IGN); // SIGQUIT: create core image, quit program SIG_IGN: ignores the signal (Management control + \)
 		text = readline("Minishell> ");
-		if (text) // Para que no haga segmentation fault con control + D
+		if (text) // Evitate segmentation fault with control + D  
 		{
-			if (text[0]) // Para no guardar control + C
+			if (text[0]) // Unsave control + C
 				add_history(text);
 			if (ft_check_exit(text) == 1)
 				ft_exit(text, tmp);
 			ft_check_comand(text, tmp);
 			free(text);
 		}
-		else // Para que salga con control + D
+		else // To exit with control + D
 			ft_exit(text, tmp);
 	}
 	return (0);
 }
 
-// TODOS Ponerse con el status
+// TODOS Start working with command status

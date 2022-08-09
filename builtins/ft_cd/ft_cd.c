@@ -6,13 +6,13 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:09:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:05:16 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:35:28 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-// *! Ver si funciona con directorios sin permiso
+// *! See if it works without permission
 
 static void	ft_change_pwd(char **env, char *buf)
 {
@@ -62,7 +62,7 @@ void	ft_cd(char **env)
 	char	*arguments;
 	char	*tmp;
 
-	arguments = ".."; // ? Provisional, esto lo da la estructura
+	arguments = ".."; // ? Provisional, this is given by the structure
 	if (!arguments)
 	{
 		tmp = getcwd(NULL, 0);

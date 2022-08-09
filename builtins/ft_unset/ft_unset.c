@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:46 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:20:27 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:34:05 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_unset(char **env)
 	char	**arguments;
 
 	x = -1;
-	arguments = ft_split("señor= adios", ' '); // ? Provisional, esto lo da la estructura
+	arguments = ft_split("señor= adios", ' '); // ? Provisional, this is given by the structure
 	while (arguments[++x])
 	{
 		z = ft_strlen(arguments[x]) - 1;
