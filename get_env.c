@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 17:16:04 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/05 12:38:28 by salustianos      ###   ########.fr       */
+/*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
+/*   Updated: 2022/08/09 15:46:15 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/09 15:06:03 by sasalama         ###   ########.fr       */
+/*   Created: 2022/08/09 15:45:51 by sasalama          #+#    #+#             */
+/*   Updated: 2022/08/09 15:45:55 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,3 +134,5 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	return (0);
 }
+
+// TODOS Ponerse con el status
