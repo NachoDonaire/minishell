@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:45:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 15:45:55 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:28:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,18 @@ void	handle_sigint(int sig) // ? Repasar
 	signal(SIGQUIT, SIG_IGN); SIGQUIT: create core image, quit program SIG_IGN: ignores the signal
 */
 
-void	ft_salida(char *texto)
+void	ft_salida(char *texto, char **tmp)
 {
+	int	x;
+
+	x = 0;
 	if (texto)
 		printf("%s\n",texto);
 	else
 		printf("exit\n");
+	while (tmp[x])
+		free(tmp[x++]);
+	free(tmp);
 	exit(0);
 }
 /*
@@ -125,12 +131,12 @@ int	main(int argc, char *argv[], char *envp[])
 			if (texto[0]) // Para no guardar control + C
 				add_history(texto);
 			if (ft_comprobar_salida(texto) == 1)
-				ft_salida(texto);
+				ft_salida(texto, tmp);
 			ft_comprobar_comando(texto, tmp);
 			free(texto);
 		}
 		else // Para que salga con control + D
-			ft_salida(texto);
+			ft_salida(texto, tmp);
 	}
 	return (0);
 }
