@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/09 14:01:21 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:12:41 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,16 @@ void	handle_sigint(int sig) // ? Repasar
 	signal(SIGINT, SIG_IGN); SIGINT: terminate process, interrupt program SIG_IGN: ignores the signal
 	signal(SIGQUIT, SIG_IGN); SIGQUIT: create core image, quit program SIG_IGN: ignores the signal
 */
+
+void	ft_salida(char *texto)
+{
+	if (texto)
+		printf("%s\n",texto);
+	else
+		printf("exit\n");
+	exit(0);
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	*texto;
@@ -106,20 +116,14 @@ int	main(int argc, char *argv[], char *envp[])
 		texto = readline("Minishell> ");
 		if (texto) // Para que no haga segmentation fault con control + D
 		{
-			if (texto[0]) // Para no guarda control + C
+			if (texto[0]) // Para no guardar control + C
 				add_history(texto);
 			if (ft_comprobar_salida(texto) == 1)
-			{
-				printf("%s\n",texto);
-				exit(0);
-			}
+				ft_salida(texto);
 			ft_comprobar_comando(texto, tmp);
 		}
-		else
-		{
-			printf("exit\n");
-			exit(0);
-		}
+		else // Para que salga con control + D
+			ft_salida(texto);
 	}
 	return (0);
 }

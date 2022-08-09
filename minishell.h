@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/08 16:50:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:09:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_echo(char **env);
 void	ft_cd(char **env);
 void	ft_pwd(void);
-int		ft_comprobar_comando(char *s, char **enpv);
+void	ft_comprobar_comando(char *s, char **enpv);
 int		ft_comprobar_echo(char *s, char **enpv);
 int		ft_comprobar_pwd(char *s);
 int		ft_comprobar_cd(char *s, char **env);

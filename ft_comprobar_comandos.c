@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_comprobar_comandos.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 20:00:30 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/03 18:25:07 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/09 14:08:42 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_comprobar_env(char *s, char **envp)
 	return (0);
 }
 
-int	ft_comprobar_comando(char *s, char **tmp)
+void	ft_comprobar_comando(char *s, char **tmp)
 {
 	int	x;
 
@@ -33,6 +33,4 @@ int	ft_comprobar_comando(char *s, char **tmp)
 	x += ft_comprobar_export(s, tmp);
 	x += ft_comprobar_unset(s, tmp);
 	x += ft_comprobar_env(s, tmp);
-
-	return (x);
 }
