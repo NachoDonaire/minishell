@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
+/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/04 15:18:08 by salustianos      ###   ########.fr       */
+/*   Updated: 2022/08/09 13:44:18 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	ft_echo(char **env) // *! MODIFICAR para comillas simples
 
 	x = 0;
 	new_line = 1;
-	nb_argumentos = ft_split("\"-nnnnnn \"t\" -nnnnn$TERM\"", ' ');
+	nb_argumentos = ft_split("t-nnnnnn t -nnnnn$TERM", ' ');
 	if (nb_argumentos)
 	{
 		new_line = ft_comprobar_saltos(nb_argumentos, x, env);
@@ -110,7 +110,6 @@ void	ft_echo(char **env) // *! MODIFICAR para comillas simples
 			free(nb_argumentos[x++]);
 		free(nb_argumentos);
 	}
-	if (new_line == 0)
-		printf("%%");
-	printf("\n");
+	if (new_line == 1)
+		printf("\n");
 }

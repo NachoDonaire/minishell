@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:15:38 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/08 17:23:39 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:48:14 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ perror: Devuelve un error con un mensaje personalizado
 isatty: Prueba si un descriptor de archivo se refiere a una terminal
 ttyname: Devuelve el nombre de una terminal
 ttyslot: encuentre la ranura del terminal del usuario actual en algunos archivos
-ioctl: Dispositivo de control
+ioctl: Dispositivo de control escritura/lectura
 getenv: Busca una variabe de entorno
 tcsetattr: Establece los parámetros asociados con el terminal al que hace referencia el descriptor
 tcgetattr: Establece los parámetros asociados con el terminal al que hace referencia el descriptor y los almacena
@@ -78,32 +78,37 @@ void	handle_sigint(int sig) // ? Repasar
 	if (sig == SIGINT)
 	{
 		ioctl(STDIN_FILENO, TIOCSTI, "\n"); // STDIN_FILENO: File descriptor terminal TIOCSTI: Este comando simula la entrada del terminal
-		rl_replace_line("", 0);
+		rl_replace_line("", 0); // Para no guardarlo en el historial en caso de no terminar el comando
 		rl_on_new_line();
 	}
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	int		x;
 	char	*texto;
 	char	**tmp;
 
-	(void)argc;
-	(void)argv;
 	tmp = get_env(envp);
-	x = 0;
-	while (x == 0)
+	while (argc && argv)
 	{
-		signal(SIGINT, handle_sigint);// SIGINT: terminate process, interrupt program
+		signal(SIGINT, handle_sigint);// SIGINT: terminate process, interrupt program (Manejo del control + C)
+		signal(SIGQUIT, SIG_IGN); // SIGQUIT: create core image, quit program SIG_IGN: ignores the signal (Manejo control + \)
 		texto = readline("Minishell> ");
 		if (texto) // Para que no haga segmentation fault con control + D
 		{
 			if (texto[0]) // Para no guarda control + C
 				add_history(texto);
 			if (ft_comprobar_salida(texto) == 1)
+			{
+				printf("%s\n",texto);
 				exit(0);
+			}
 			ft_comprobar_comando(texto, tmp);
+		}
+		else
+		{
+			printf("exit\n");
+			exit(0);
 		}
 	}
 	return (0);
