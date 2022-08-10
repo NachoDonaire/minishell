@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:46:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 14:28:31 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:32:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_exec(char *arguments, char **env) // NOT FUNCTIONAL (TEMPORARY)
 	{
 		/*
 		//Program exec proof:
-		copy[0] = "minishell"; 
 		path = "/Users/sasalama/Desktop/salus/minishell/minishell";
 		execve(path, copy, env);
 		*/
