@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:45:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 14:19:21 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:04:37 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	main(int argc, char *argv[], char *envp[])
 		signal(SIGINT, handle_sigint);// SIGINT: terminate process, interrupt program (Management control + C)
 		signal(SIGQUIT, SIG_IGN); // SIGQUIT: create core image, quit program SIG_IGN: ignores the signal (Management control + \)
 		text = readline("Minishell> ");
-		if (text) // Evitate segmentation fault with control + D  
+		if (text) // To avoid segmentation fault with control + D
 		{
 			if (text[0]) // Unsave control + C
 				add_history(text);
