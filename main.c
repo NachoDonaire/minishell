@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:45:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 15:25:32 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:43:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,19 +126,19 @@ int	main(int argc, char *argv[], char *envp[])
 	tmp = get_env(envp);
 	while (argc && argv)
 	{
-		signal(SIGINT, handle_sigint);// SIGINT: terminate process, interrupt program (Management control + C)
-		signal(SIGQUIT, SIG_IGN); // SIGQUIT: create core image, quit program SIG_IGN: ignores the signal (Management control + \)
+		signal(SIGINT, handle_sigint);// ? SIGINT: terminate process, interrupt program (Management control + C)
+		signal(SIGQUIT, SIG_IGN); // ? SIGQUIT: create core image, quit program SIG_IGN: ignores the signal (Management control + \)
 		text = readline("Minishell> ");
-		if (text) // To avoid segmentation fault with control + D
+		if (text) // * To avoid segmentation fault with control + D
 		{
-			if (text[0]) // Unsave control + C
+			if (text[0]) // * Unsave control + C
 				add_history(text);
 			if (ft_check_exit(text) == 1)
 				ft_exit(text, tmp);
 			ft_check_comand(text, tmp);
 			free(text);
 		}
-		else // To exit with control + D
+		else // * To exit with control + D
 			ft_exit(text, tmp);
 	}
 	return (0);

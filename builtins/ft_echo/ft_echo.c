@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 15:27:03 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:44:35 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_quotation(char **s, int x, int z)
 {
 	if (s[x][0] == '\"' && s[x][z] == '\"' && s[x + 1] && s[0][0] != 39 &&
-		s[0][0] == 34 && s[2][ft_strlen(s[2]) - 1] != 34) // 2 is the number of arguments
+		s[0][0] == 34 && s[2][ft_strlen(s[2]) - 1] != 34) // * 2 is the number of arguments
 		printf("\"");
 }
 
@@ -72,8 +72,8 @@ static int	ft_check_nl(char **nb_arguments, int x, char **env)
 	int	new_line;
 	int	quotation[2];
 
-	quotation[0] = 0;//simple
-	quotation[1] = 0;//doble
+	quotation[0] = 0;//* simple
+	quotation[1] = 0;//* doble
 	new_line = 1;
 	while (nb_arguments[x])
 	{

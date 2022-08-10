@@ -6,13 +6,11 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:09:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 13:24:52 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:44:14 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-// *! See if it works without permission
 
 static void	ft_change_pwd(char **env, char *buf)
 {

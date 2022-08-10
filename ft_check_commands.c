@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:20 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 14:28:26 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:44:38 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	ft_check_comand(char *s, char **env)
 	x += ft_check_unset(s, env);
 	x += ft_check_env(s, env);
 	if (x == 0)
-		ft_exec(s, env); // NOT FUNCTIONAL (TEMPORARY)
+		ft_exec(s, env); // ! NOT FUNCTIONAL (TEMPORARY)
 }

@@ -6,13 +6,13 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:46:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 15:23:49 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:44:41 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exec(char *arguments, char **env) // NOT FUNCTIONAL (TEMPORARY)
+void	ft_exec(char *arguments, char **env) // ! NOT FUNCTIONAL (TEMPORARY)
 {
 	char	*path;
 	int		process;
@@ -26,7 +26,7 @@ void	ft_exec(char *arguments, char **env) // NOT FUNCTIONAL (TEMPORARY)
 		process = execve(path, copy, env);
 		if (process == -1)
 		{
-			//Program exec proof:
+			// * Program exec proof:
 			path = getcwd(NULL, 0);
 			tmp = ft_strjoin(path, "/");
 			free(path);
