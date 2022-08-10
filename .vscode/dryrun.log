@@ -1,0 +1,28 @@
+make: Entering directory `/Users/sasalama/Desktop/salus/minishell'
+gcc -Wall -Wextra -Werror -c get_env.c -o get_env.o
+gcc -Wall -Wextra -Werror -c main.c -o main.o
+gcc -Wall -Wextra -Werror -c ft_check_commands.c -o ft_check_commands.o
+gcc -Wall -Wextra -Werror -c utils.c -o utils.o
+gcc -Wall -Wextra -Werror -c ft_check_builtins.c -o ft_check_builtins.o
+gcc -Wall -Wextra -Werror -c builtins/ft_pwd/ft_pwd.c -o builtins/ft_pwd/ft_pwd.o
+gcc -Wall -Wextra -Werror -c builtins/ft_cd/ft_cd.c -o builtins/ft_cd/ft_cd.o
+gcc -Wall -Wextra -Werror -c builtins/ft_echo/ft_echo.c -o builtins/ft_echo/ft_echo.o
+gcc -Wall -Wextra -Werror -c builtins/ft_unset/ft_unset.c -o builtins/ft_unset/ft_unset.o
+gcc -Wall -Wextra -Werror -c builtins/ft_export/ft_export.c -o builtins/ft_export/ft_export.o
+ 
+gcc -Wall -Wextra -Werror -c builtins/ft_echo/ft_echo2.c -o builtins/ft_echo/ft_echo2.o
+gcc -Wall -Wextra -Werror -c builtins/ft_echo/ft_echo3.c -o builtins/ft_echo/ft_echo3.o
+gcc -Wall -Wextra -Werror -c builtins/ft_export/ft_export2.c -o builtins/ft_export/ft_export2.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_calloc.c -o funciones_libft/ft_calloc.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_split.c -o funciones_libft/ft_split.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_strchr.c -o funciones_libft/ft_strchr.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_strjoin.c -o funciones_libft/ft_strjoin.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_strlen.c -o funciones_libft/ft_strlen.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_strncmp.c -o funciones_libft/ft_strncmp.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_strrchr.c -o funciones_libft/ft_strrchr.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_substr.c -o funciones_libft/ft_substr.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_putchar_fd.c -o funciones_libft/ft_putchar_fd.o
+gcc -Wall -Wextra -Werror -c funciones_libft/ft_putstr_fd.c -o funciones_libft/ft_putstr_fd.o
+gcc -Wall -Wextra -Werror get_env.o main.o ft_check_commands.o utils.o ft_check_builtins.o builtins/ft_pwd/ft_pwd.o builtins/ft_cd/ft_cd.o builtins/ft_echo/ft_echo.o builtins/ft_unset/ft_unset.o builtins/ft_export/ft_export.o builtins/ft_echo/ft_echo2.o builtins/ft_echo/ft_echo3.o builtins/ft_export/ft_export2.o funciones_libft/ft_calloc.o funciones_libft/ft_split.o funciones_libft/ft_strchr.o funciones_libft/ft_strjoin.o funciones_libft/ft_strlen.o funciones_libft/ft_strncmp.o funciones_libft/ft_strrchr.o funciones_libft/ft_substr.o funciones_libft/ft_putchar_fd.o funciones_libft/ft_putstr_fd.o -o minishell -lreadline -L /Users/sasalama/.brew/Cellar/readline/8.1.2/lib -I /Users/sasalama/.brew/Cellar/readline/8.1.2/include 
+make: Leaving directory `/Users/sasalama/Desktop/salus/minishell'
+ 

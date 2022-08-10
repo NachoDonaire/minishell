@@ -6,25 +6,39 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:11:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:34:00 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:46:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static void	ft_print_quote(char *env)
+{
+	int	x;
+
+	x = 0;
+	while (env[x])
+	{
+		printf("%c",env[x]);
+		if (env[x] == '=')
+			printf("'");
+		x++;
+	}
+	if (ft_equal(env) == 0)
+		printf("='");
+	printf("'");
+}
 
 static void	ft_print_export(char **env)
 {
 	int	x;
 
 	x = 0;
-	while (env[++x])
+	while (env[x])
 	{
-		printf("%s", env[x]);
-		if (ft_equal(env[x]) == 0)
-			printf("=''");
-		if (env[x][ft_strlen(env[x]) - 1] == '=')
-			printf("''");
+		ft_print_quote(env[x]);
 		printf("\n");
+		x++;
 	}
 }
 
@@ -34,7 +48,7 @@ static void	ft_export_arguments(char **env, char **arguments)
 	char	*variable;
 	char	*value;
 
-	x = 0;
+	x = -1;
 	while (arguments[++x])
 	{
 		variable = ft_variables(arguments[x]);
@@ -50,15 +64,10 @@ static void	ft_export_arguments(char **env, char **arguments)
 void	ft_export(char **env)
 {
 	char	**arguments;
-	int		x;
 
 	arguments = ft_split("señor adios= hola=h", ' '); // ? Provisional, this is given by the structure
 	if (arguments)
 		ft_export_arguments(env, arguments);
 	else
 		ft_print_export(env);
-	x = 0;
-	while (arguments[x])
-		free(arguments[x++]);
-	free(arguments);
 }

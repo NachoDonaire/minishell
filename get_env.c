@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:32:24 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:32:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ char	**get_env(char **envp)
 	y = 0;
 	while (envp[x])
 		x++;
-	env = malloc(sizeof(char*) * x + 1);
+	env = malloc(sizeof(char*) * 1024);
 	x = -1;
 	while (envp[++x])
 	{
 		y = 0;
 		while (envp[x][y])
 			y++;
-		env[x] = malloc(sizeof(char) * y);
+		env[x] = malloc(sizeof(char) * y + 1);
 		y = -1;
 		while (envp[x][++y])
 			env[x][y] = envp[x][y];

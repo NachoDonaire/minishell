@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:36:26 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 10:26:47 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_echo(char **env)
 
 	x = 0;
 	new_line = 1;
-	nb_arguments = ft_split("\"\"-nnnnnn t -nnnnn$TERM\"\"", ' ');
+	nb_arguments = ft_split("$?", ' ');
 	if (nb_arguments)
 	{
 		new_line = ft_check_nl(nb_arguments, x, env);

@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:18:57 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:30:05 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,9 @@ void	ft_create_variable(char *variable, char *value, char **env)
 			else
 				copy = ft_substr(variable, 0, ft_strlen(variable));
 			tmp = ft_substr(env[x], 0, ft_strlen(env[x]));
-			free(env[x]);
 			env[x] = copy;
-			x++;
-			free(env[x]);
-			env[x] = tmp;
-			x++;
-			env[x] = NULL;
+			env[x + 1] = tmp;
+			env[x + 2] = NULL;
 			break ;
 		}
 		x++;
