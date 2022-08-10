@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:09:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 12:43:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:24:52 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,21 @@ static void	ft_change_variable_oldpwd(char **env, char *tmp)
 	ft_change_good_status(env);
 }
 
+static void	ft_error_arguments_cd(char *arguments, char **env)
+{
+	if (access(arguments, F_OK) != -1)
+		printf("cd: %s: Permission denied\n", arguments);
+	else
+		printf("cd: no such file or directory: %s\n", arguments);
+	ft_change_permission_status(env);
+}
+
 void	ft_cd(char **env)
 {
 	char	*arguments;
 	char	*tmp;
 
-	arguments = ".."; // ? Provisional, this is given by the structure
+	arguments = "adios"; // ? Provisional, this is given by the structure
 	if (!arguments)
 	{
 		tmp = getcwd(NULL, 0);
@@ -80,10 +89,7 @@ void	ft_cd(char **env)
 	{
 		tmp = getcwd(NULL, 0);
 		if (chdir(arguments) != 0)
-		{
-			printf("cd: no such file or directory: %s\n", arguments);
-			ft_change_permission_status(env);
-		}
+			ft_error_arguments_cd(arguments, env);
 		else
 			ft_change_variable_oldpwd(env, tmp);
 		free(tmp);
