@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:45:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 14:07:59 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:19:21 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	ft_check_exit(char *s)
 	return (0);
 }
 
-static void	handle_sigint(int sig) // ? Repasar
+static void	handle_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -82,6 +82,7 @@ static void	handle_sigint(int sig) // ? Repasar
 		rl_on_new_line();
 	}
 }
+
 /*
 	Signals in child process:(Predeterminated management in the childs processes)
 
@@ -108,12 +109,14 @@ static void	ft_exit(char *texto, char **tmp)
 	free(tmp);
 	exit(0);
 }
+
 /*
 void	ft_leaks()
 {
 	system("leaks -q minishell");
 }
 */
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	*text;

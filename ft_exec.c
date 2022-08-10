@@ -6,13 +6,13 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:46:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 14:15:37 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:28:31 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exec(char *arguments, char **env) // NOT FUNCTION (TEMPORARY)
+void	ft_exec(char *arguments, char **env) // NOT FUNCTIONAL (TEMPORARY)
 {
 	char	*path;
 	int		process;
@@ -24,5 +24,14 @@ void	ft_exec(char *arguments, char **env) // NOT FUNCTION (TEMPORARY)
 	copy[1] = NULL;
 	process = execve(path, copy, env);
 	if (process == -1)
+	{
+		/*
+		//Program exec proof:
+		copy[0] = "minishell"; 
+		path = "/Users/sasalama/Desktop/salus/minishell/minishell";
+		execve(path, copy, env);
+		*/
+		printf("Minishell: command not found: %s\n", copy[0]);
 		ft_change_bad_status(env);
+	}
 }
