@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:20 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 12:42:58 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:43:42 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,45 +20,6 @@ static int	ft_check_env(char *s, char **envp)
 		return (1);
 	}
 	return (0);
-}
-
-void	ft_change_bad_status(char **env)
-{
-	int	x;
-
-	x = 0;
-	while (env[x])
-	{
-		if (ft_strncmp(env[x], "?=", 2) == 0)
-			env[x] = ft_substr("?=127", 0, 6);
-		x++;
-	}
-}
-
-void	ft_change_permission_status(char **env)
-{
-	int	x;
-
-	x = 0;
-	while (env[x])
-	{
-		if (ft_strncmp(env[x], "?=", 2) == 0)
-			env[x] = ft_substr("?=1", 0, 4);
-		x++;
-	}
-}
-
-void	ft_change_good_status(char **env)
-{
-	int	x;
-
-	x = 0;
-	while (env[x])
-	{
-		if (ft_strncmp(env[x], "?=", 2) == 0)
-			env[x] = ft_substr("?=0", 0, 4);
-		x++;
-	}
 }
 
 void	ft_check_comand(char *s, char **env)
