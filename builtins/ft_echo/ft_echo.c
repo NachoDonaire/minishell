@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 12:35:06 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:27:03 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,7 @@ void	ft_echo(char **env)
 	if (nb_arguments)
 	{
 		new_line = ft_check_nl(nb_arguments, x, env);
-		x = 0;
-		while (nb_arguments[x])
-			free(nb_arguments[x++]);
-		free(nb_arguments);
+		ft_free_arg(nb_arguments);
 	}
 	if (new_line == 1)
 		printf("\n");

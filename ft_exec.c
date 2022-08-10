@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:46:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 15:11:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:23:49 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_exec(char *arguments, char **env) // NOT FUNCTIONAL (TEMPORARY)
 	char	*path;
 	int		process;
 	char	**copy;
+	char	*tmp;
 
 	if (arguments[0])
 	{
@@ -26,14 +27,20 @@ void	ft_exec(char *arguments, char **env) // NOT FUNCTIONAL (TEMPORARY)
 		if (process == -1)
 		{
 			//Program exec proof:
-			path = "/Users/sasalama/Desktop/salus/minishell/";
-			path = ft_strjoin(path, copy[0]);
+			path = getcwd(NULL, 0);
+			tmp = ft_strjoin(path, "/");
+			free(path);
+			path = ft_strjoin(tmp, copy[0]);
+			free(tmp);
 			process = execve(path, copy, env);
 			if (process == -1)
 			{
 				printf("Minishell: command not found: %s\n", copy[0]);
 				ft_change_bad_status(env);
+				return ;
 			}
 		}
+		ft_free_arg(copy);
+		ft_change_good_status(env);
 	}
 }

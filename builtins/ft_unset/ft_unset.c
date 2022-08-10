@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:46 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 12:35:26 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:27:58 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,6 @@ void	ft_unset(char **env)
 			break ;
 		}
 	}
-	x = 0;
-	while (arguments[x])
-		free(arguments[x++]);
-	free(arguments);
+	ft_free_arg(arguments);
 	ft_change_good_status(env);
 }
