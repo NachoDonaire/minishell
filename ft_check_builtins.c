@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_comprobar_builtins.c                            :+:      :+:    :+:   */
+/*   ft_check_builtins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:15:33 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:03:16 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:36:41 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	ft_check_cd(char *s, char **env)
 	return (0);
 }
 
-int	ft_check_pwd(char *s)
+int	ft_check_pwd(char *s, char **env)
 {
 	if (ft_strncmp(s, "pwd", 4) == 0)
 	{
-		ft_pwd();
+		ft_pwd(env);
 		return (1);
 	}
 	return (0);

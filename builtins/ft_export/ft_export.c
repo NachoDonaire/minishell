@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:11:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 11:52:55 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:35:13 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ static void	ft_print_export(char **env)
 	x = 0;
 	while (env[x])
 	{
-		ft_print_quote(env[x]);
-		printf("\n");
+		if (ft_strncmp(env[x], "?=", 2) != 0)
+		{
+			ft_print_quote(env[x]);
+			printf("\n");
+		}
 		x++;
 	}
 }
@@ -70,4 +73,5 @@ void	ft_export(char **env)
 		ft_export_arguments(env, arguments);
 	else
 		ft_print_export(env);
+	ft_change_good_status(env);
 }

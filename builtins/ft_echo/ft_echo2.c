@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:47:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/09 17:14:27 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:29:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_dollar(char *argument)
 {
 	int	x;
 
-	x = 1;
+	x = 0;
 	while (argument[x])
 	{
 		if (argument[x] != '$')
@@ -74,12 +74,12 @@ int	ft_c_d(char *argument)
 			while (argument[x])
 			{
 				if (argument[x] == 39)
-					return (1);
+					return (0);
 				x++;
 			}
-			return (0);
+			return (1);
 		}
 		x++;
 	}
-	return (1);
+	return (0);
 }

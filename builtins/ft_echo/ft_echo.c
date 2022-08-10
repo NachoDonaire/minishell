@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:10:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 11:57:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:35:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static void	ft_print(char **s, int x, char **env, int z)
 {
 	int		y;
 
-	y = -1;
+	y = 0;
 	if (ft_dollar(s[x]) == 0)
 		printf("%s", s[x]);
 	else
 	{
 		ft_quotation(s, x, z);
-		while (s[x][++y])
+		while (s[x][y])
 		{
 			if (s[x][y] != '$' && s[x][y] != 39 && s[x][y] != 34)
 				printf("%c", s[x][y]);
@@ -40,6 +40,7 @@ static void	ft_print(char **s, int x, char **env, int z)
 			}
 			else if (s[x][y] != 39 && s[x][y] != 34)
 				printf("%c", s[x][y]);
+			y++;
 		}
 		ft_quotation(s, x, z);
 	}
@@ -98,7 +99,7 @@ void	ft_echo(char **env)
 
 	x = 0;
 	new_line = 1;
-	nb_arguments = ft_split("$?h", ' ');
+	nb_arguments = ft_split("$?", ' ');
 	if (nb_arguments)
 	{
 		new_line = ft_check_nl(nb_arguments, x, env);
@@ -109,4 +110,5 @@ void	ft_echo(char **env)
 	}
 	if (new_line == 1)
 		printf("\n");
+	ft_change_good_status(env);
 }

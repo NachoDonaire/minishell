@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 11:32:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:15:33 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ char	**get_env(char **envp)
 		if (ft_strncmp(env[x], "SHLVL=", 6) == 0)
 			ft_shlvl(env[x]);
 	}
-	env[x] = NULL;
+	env[x] = "?=0";
+	env[x + 1] = NULL;
 	return (env);
 }
 
@@ -66,8 +67,9 @@ void	ft_env(char **env)
 	x = 0;
 	while (env[x])
 	{
-		if (ft_equal(env[x]) != 0)
-			printf("%s\n", env[x]);
+		if (ft_strncmp(env[x], "?=", 2) != 0)
+			if (ft_equal(env[x]) != 0)
+				printf("%s\n", env[x]);
 		x++;
 	}
 }

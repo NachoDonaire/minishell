@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/10 11:06:10 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 12:43:07 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	rl_replace_line(const char *text, int clear_undo);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_echo(char **env);
 void	ft_cd(char **env);
-void	ft_pwd(void);
+void	ft_pwd(char **env);
 void	ft_check_comand(char *s, char **tmp);
 int		ft_check_echo(char *s, char **enpv);
-int		ft_check_pwd(char *s);
+int		ft_check_pwd(char *s, char **env);
 int		ft_check_cd(char *s, char **env);
 int		ft_check_unset(char *s, char **env);
 int		ft_check_export(char *s, char **env);
@@ -61,5 +61,8 @@ char	*ft_value(char *v);
 int		ft_find_variable(char *v, char **env);
 void	ft_create_variable(char *variable, char *value, char **env);
 void	ft_replace_variable(char *variable, char *value, char **env);
+void	ft_change_good_status(char **env);
+void	ft_change_bad_status(char **env);
+void	ft_change_permission_status(char **env);
 
 #endif
