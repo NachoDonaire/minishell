@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/10 12:43:07 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:07:54 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ void	ft_replace_variable(char *variable, char *value, char **env);
 void	ft_change_good_status(char **env);
 void	ft_change_bad_status(char **env);
 void	ft_change_permission_status(char **env);
+void	ft_exec(char *arguments, char **env);
+void	ft_path(char *command, char *envp[], char **fd_path);
 
 #endif

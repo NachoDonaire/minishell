@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_commands.c                                :+:      :+:    :+:   */
+/*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 15:46:20 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 14:15:31 by sasalama         ###   ########.fr       */
+/*   Created: 2022/08/10 13:46:14 by sasalama          #+#    #+#             */
+/*   Updated: 2022/08/10 14:15:37 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	ft_check_env(char *s, char **envp)
+void	ft_exec(char *arguments, char **env) // NOT FUNCTION (TEMPORARY)
 {
-	if (ft_strncmp(s, "env", 4) == 0)
-	{
-		ft_env(envp);
-		return (1);
-	}
-	return (0);
-}
+	char	*path;
+	int		process;
+	char	**copy;
 
-void	ft_check_comand(char *s, char **env)
-{
-	int	x;
-
-	x = 0;
-	x += ft_check_pwd(s, env);
-	x += ft_check_cd(s, env);
-	x += ft_check_echo(s, env);
-	x += ft_check_export(s, env);
-	x += ft_check_unset(s, env);
-	x += ft_check_env(s, env);
-	if (x == 0)
-		ft_exec(s, env); // NOT FUNCTION (TEMPORARY)
+	ft_path(arguments, env, &path);
+	copy = malloc(sizeof(char*));
+	copy[0] = arguments;
+	copy[1] = NULL;
+	process = execve(path, copy, env);
+	if (process == -1)
+		ft_change_bad_status(env);
 }
