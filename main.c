@@ -6,7 +6,7 @@
 /*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:45:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 11:13:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:40:27 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,4 @@ int	main(int argc, char *argv[], char *envp[])
 	return (0);
 }
 
-// TODOS Start working with command status
+// TODOS Start working with command status (We have to change command status for each command)
