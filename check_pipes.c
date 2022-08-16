@@ -2,31 +2,33 @@
 
 void	handle_cmd_pipes(general_data *gen_data, char *s, char *const env[])
 {
-	char	*cmd;
-	int	i;
+	//char	*cmd;
+	int		i;
 	char	**tmp;
 
 	tmp = ft_split(s, '|');
 	i = 0;
-	if (!gen_data->cmd.cmd)
-		gen_data->cmd.cmd = ft_split(s, '|');
+	//if (!gen_data->cmd->cmd)
+	//	gen_data->cmd.cmd = ft_split(s, '|');
 	while (tmp[i])
 	{
 		gen_data->built = 0;
-		check_builtins(tmp[i], gen_data);
+		check_builtins(tmp[i], gen_data, i);
 		if (check_cmllas(tmp[i]) == 1)
 			tmp[i] = gest_cmllas(tmp[i]);
+		if (gen_data->built != 1)
+			process_string(tmp[i], gen_data, env, i);
 		//printf("--%s--", tmp[i]);
-		if (gen_data->built == 1)
-			gen_data->cmd.cmd[i] = "no_cmd";
+		/*if (gen_data->built == 1)
+			gen_data->cmd->cmd = "no_cmd";
 		else
 		{
 			cmd = obtain_cmd(tmp, i);
 			gen_data->cmd.cmd[i] = check_cmd(cmd, env);
-		}
+		}*/
 		i++;
 	}
-	gen_data->cmd.cmd[i] = NULL;
+	//gen_data->cmd[i]->cmd[i] = NULL;
 }
 
 char	*handle_cont_pipe(char *join)

@@ -20,13 +20,17 @@ char	*obtain_cmd(char **tmp, int i)
 	return (cmd);
 }
 
-char	*free_for_checkin_cmd(char **sol, char *k)
+char	*free_for_checkin_cmd(char **sol, char *k, int y)
 {
 	int	i;
 
 	i = 0;
-	while (sol[i])
-		free(sol[i++]);
+	if (!sol[y])
+	{
+		while (sol[i])
+			free(sol[i++]);
+		k = NULL;
+	}
 	if (!k)
 	{
 		free(k);
@@ -48,12 +52,13 @@ char	*check_cmd(char *cmd, char *const env[])
 	k = pseudo_join(sol[i], cmd);
 	while (sol[i] &&  access(k, F_OK) < 0)
 	{
+//		printf("--%d--\n", access(k, F_OK));
 		free(k);
 		i++;
 		if (sol[i])
 			k = pseudo_join(sol[i], cmd);
 	}
-	return (free_for_checkin_cmd(sol, k));
+	return (free_for_checkin_cmd(sol, k, i));
 }	
 
 

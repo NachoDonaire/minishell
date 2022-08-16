@@ -53,9 +53,9 @@ int	extreme_finder(char *s, char *find)
         return (0);
 }
 
-void	process_string(char *s, general_data *gen_data, char *const env[])
+void	process_string(char *s, general_data *gen_data, char *const env[], int y)
 {
-	char	*path;
+//	char	*path;
 	char	**com;
 	int	i;
 
@@ -67,14 +67,15 @@ void	process_string(char *s, general_data *gen_data, char *const env[])
 			com[i] = gest_cmllas(com[i]);
 		i++;
 	}
-	path = find_path(env);
-	split_path(&path[5], com[0], gen_data);
+//	path = find_path(env);
+//	split_path(&path[5], com[0], gen_data);
+	gen_data->cmd[y].cmd = check_cmd(com[0], env);
 	i = 0;
 	while (com[i])
 		free(com[i++]);
 }
 
-void	process_args(char *s, general_data *gen_data)
+void	process_args(char *s, general_data *gen_data, int y)
 {
 	char 	**com;
 	int	i;
@@ -87,19 +88,24 @@ void	process_args(char *s, general_data *gen_data)
 			com[i] = gest_cmllas(com[i]);
 		i++;
 	}
-	gen_data->cmd.args = com;
+	gen_data->cmd[y].args = com;
 }
 
 void	process_input(char *s, general_data *gen_data, char *const env[])
 {
-	if (finder(s, "|") == 0)
-			check_builtins(s, gen_data);
+	char	**aux;
+	int		i;
+
+	i = 0;
+	aux = ft_split(s, ' ');
+//	if (finder(s, "|") == 0)
+			check_builtins(s, gen_data, 0);
 	if (gen_data->built == 1)
 		return ;
 	if (finder(s, ".") == 1 || finder(s, "/") == 1)
 	{
-		gen_data->cmd.cmd = ft_split(s, ' ');
-		process_args(s, gen_data);
+		gen_data->cmd[0].cmd = aux[0];
+		process_args(s, gen_data, 0);
 	}
 	else if (finder(s, "|") == 1)
 	{
@@ -107,9 +113,12 @@ void	process_input(char *s, general_data *gen_data, char *const env[])
 	}
 	else
 	{
-		process_string(s, gen_data, env);
-		process_args(s, gen_data);
+		process_string(s, gen_data, env, 0);
+		process_args(s, gen_data, 0);
 	}
+	while (aux[i])
+		free(aux[i++]);
+	free(aux);
 }
 
 void	needed_free_cmd(general_data *gen_data)
@@ -117,8 +126,8 @@ void	needed_free_cmd(general_data *gen_data)
 	int	i;
 
 	i = 0;
-	while (gen_data->cmd.cmd[i])
-		free(gen_data->cmd.cmd[i++]);
+	while (gen_data->cmd[i].cmd)
+		free(gen_data->cmd[i++].cmd);
 }
 
 int     main(int argc, char **argv,  char *const env[])
@@ -148,8 +157,9 @@ int     main(int argc, char **argv,  char *const env[])
                 printf("%d", gen_data.n_cmd);
                 process_exit(s, &i);
 		*/
-		while (gen_data.cmd.cmd[y])
-			printf("%s\n", gen_data.cmd.cmd[y++]);
+		//while (gen_data.cmd[y].cmd)
+		if (gen_data.cmd[0].cmd)
+			printf("%s\n", gen_data.cmd[0].cmd);
 		y = 0;
 		process_exit(s, &i);
                 free(s);

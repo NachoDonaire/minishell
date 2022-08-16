@@ -2,7 +2,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include "minishell.h"
-
+/*
 void	freeear(char **sol, char *k, general_data *gen_data)
 {
 	int	i;
@@ -17,7 +17,7 @@ void	freeear(char **sol, char *k, general_data *gen_data)
 	i = 0;
 //	printf("-%s-", gen_data->cmd.cmd[0]);
 }
-
+*/
 int	lens(char *s)
 {
 	int	i;
@@ -74,6 +74,8 @@ char	*pseudo_join(char *path, char *com)
 	y = 0;
 	i = 0;
 	sol = malloc(sizeof(char) * (lens(path) + lens(com) + 1));
+	if (!path)
+		return (com);
 	while (path[i])
 	{
 		sol[i] = path[i];
@@ -87,7 +89,7 @@ char	*pseudo_join(char *path, char *com)
 	sol[i] = '\0';
 	return (sol);
 }
-
+/*
 void	split_path(char *env, char *arg, general_data *gen_data)
 {
 	int		i;
@@ -112,4 +114,4 @@ void	split_path(char *env, char *arg, general_data *gen_data)
 			k = pseudo_join(sol[i], arg);
 	}
 	freeear(sol, k, gen_data);
-}
+}*/

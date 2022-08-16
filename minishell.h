@@ -15,7 +15,7 @@ typedef struct builtin{
 }	builtin_data;
 /* estructura del comando provisional*/
 typedef struct comand{
-	char	**cmd;
+	char	*cmd;
 	char	**args;
 	int	infd;
 	int	outfd;
@@ -23,7 +23,7 @@ typedef struct comand{
 /*estructura general proxisional*/
 typedef struct general{
 	int		red;
-	cmd_data	cmd;
+	cmd_data	*cmd;
 	builtin_data	blt;
 	int		n_cmd;
 	int		n_pipes;
@@ -45,7 +45,7 @@ char	*gest_cmllas(char *s);
 /*en prueba2.c */
 int     finder(char *s, char *find);
 int	extreme_finder(char *s, char *find);
-void    process_string(char *s, general_data *gen_data, char *const env[]);
+void    process_string(char *s, general_data *gen_data, char *const env[], int y);
 void    process_exit(char *s, int *i);
 void    the_cmd(char *s, char *const env[], general_data *gen_data);
 void    cmd_args(char *s, cmd_data *cmd);
@@ -54,14 +54,14 @@ void	needed_free_cmd(general_data *gen_data);
 void	n_pipes(general_data *gen_data, char *s);
 void	check_cmd_pipe(general_data *gen_data, char *s, char *const env[]);
 /*en check_builtin.c*/
-void	check_builtins(char *s, general_data *gen_data);
+void	check_builtins(char *s, general_data *gen_data, int y);
 /*ft_strjoin*/
 char     *copy(char *s1, char *s2, char *x);
 char     *cncat(char *s1, char *s2);
 char    *ft_strjoin(char *s1, char *s2);
 /*en check_cmd.c*/
 char    *obtain_cmd(char **tmp, int i);
-char    *free_for_checkin_cmd(char **sol, char *k);
+char    *free_for_checkin_cmd(char **sol, char *k, int y);
 char	*check_cmd(char *cmd, char *const env[]);
 /*en check_pipes.c*/
 void    handle_cmd_pipes(general_data *gen_data, char *s, char *const env[]);
