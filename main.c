@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:45 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/24 10:58:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/24 12:08:50 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	char	*text;
 	char	**tmp;
+	char	*copy;
 
 	//atexit(ft_leaks);
 	tmp = get_env(envp);
@@ -129,6 +130,9 @@ int	main(int argc, char *argv[], char *envp[])
 		signal(SIGINT, handle_sigint);// ? SIGINT: terminate process, interrupt program (Management control + C)
 		signal(SIGQUIT, SIG_IGN); // ? SIGQUIT: create core image, quit program SIG_IGN: ignores the signal (Management control + \)
 		text = readline("Minishell> ");
+		copy = text;
+		text = ft_substr(text, 0, ft_strlen(text));
+		free(copy);
 		if (text) // * To avoid segmentation fault with control + D
 		{
 			if (text[0]) // * Unsave control + C
