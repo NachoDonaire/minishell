@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/24 10:57:53 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/24 15:01:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,56 @@ static void	ft_print_quote(char *env)
 	printf("'");
 }
 
-static void	ft_print_export(char **env)
+
+static void	ft_order(char **copy)
 {
-	int	x;
+	int		x;
+	int		y;
+	char	*tmp;
 
 	x = 0;
+	while (copy[x + 1])
+	{
+		y = x + 1;
+		while (copy[y])
+		{
+			if (ft_strcmp(copy[x], copy[y]) > 0)
+			{
+				tmp = copy[x];
+				copy[x] = copy[y];
+				copy[y] = tmp;
+			}
+			y++;
+		}
+		x++;
+	}
+}
+
+static void	ft_print_export(char **env) // ! Copy Leaks
+{
+	int		x;
+	char	**copy;
+
+	x = 0;
+	copy = malloc(1024);
 	while (env[x])
 	{
-		if (ft_strncmp(env[x], "?=", 2) != 0)
+		copy[x] = ft_substr(env[x], 0, ft_strlen(env[x]));
+		x++;
+	}
+	copy[x] = NULL;
+	ft_order(copy);
+	x = 0;
+	while (copy[x])
+	{
+		if (ft_strncmp(copy[x], "?=", 2) != 0)
 		{
-			ft_print_quote(env[x]);
+			ft_print_quote(copy[x]);
 			printf("\n");
 		}
 		x++;
 	}
+	ft_free_arg(copy);
 }
 
 static void	ft_export_arguments(char **env, char **arguments)

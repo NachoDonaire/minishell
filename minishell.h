@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:16:24 by salustianos       #+#    #+#             */
-/*   Updated: 2022/08/10 15:23:03 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:39:26 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void	ft_change_permission_status(char **env);
 void	ft_exec(char *arguments, char **env);
 void	ft_path(char *command, char *envp[], char **fd_path);
 void	ft_free_arg(char **arguments);
+int	ft_strcmp(char *s1, char *s2);
 
 #endif
