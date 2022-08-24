@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_builtins.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sasalama <sasalama@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 13:15:33 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/10 12:36:41 by sasalama         ###   ########.fr       */
+/*   Created: 2022/08/24 10:57:12 by sasalama          #+#    #+#             */
+/*   Updated: 2022/08/24 10:57:14 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

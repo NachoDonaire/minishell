@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salustianosalamanca <salustianosalamanc    +#+  +:+       +#+        */
+/*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 10:07:29 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/04 10:33:42 by salustianos      ###   ########.fr       */
+/*   Created: 2022/08/24 11:00:08 by sasalama          #+#    #+#             */
+/*   Updated: 2022/08/24 11:00:09 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
