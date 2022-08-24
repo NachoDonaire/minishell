@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/24 10:18:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:21:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	ft_change_bad_status(char **env)
 	while (env[x])
 	{
 		if (ft_strncmp(env[x], "?=", 2) == 0)
+		{
+			free(env[x]);
 			env[x] = ft_substr("?=127", 0, 6);
+		}
 		x++;
 	}
 }
@@ -33,7 +36,10 @@ void	ft_change_permission_status(char **env)
 	while (env[x])
 	{
 		if (ft_strncmp(env[x], "?=", 2) == 0)
+		{
+			free(env[x]);
 			env[x] = ft_substr("?=1", 0, 4);
+		}
 		x++;
 	}
 }
@@ -46,7 +52,10 @@ void	ft_change_good_status(char **env)
 	while (env[x])
 	{
 		if (ft_strncmp(env[x], "?=", 2) == 0)
+		{
+			free(env[x]);
 			env[x] = ft_substr("?=0", 0, 4);
+		}
 		x++;
 	}
 }
