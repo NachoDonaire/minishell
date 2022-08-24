@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:45 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/24 12:08:50 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/08/24 12:11:26 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static void	ft_exit(char *texto, char **tmp)
 		printf("%s\n",texto);
 	else
 		printf("exit\n");
-	while (tmp[x - 1])
+	while (tmp[x])
 		free(tmp[x++]);
 	free(tmp);
 	exit(0);
