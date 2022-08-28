@@ -50,6 +50,7 @@ void    process_exit(char *s, int *i);
 void    the_cmd(char *s, char *const env[], general_data *gen_data);
 void    cmd_args(char *s, cmd_data *cmd);
 void	needed_free_cmd(general_data *gen_data);
+void	process_args(char *s, general_data *gen_data, int y);
 /*en n_cmd*/
 void	n_pipes(general_data *gen_data, char *s);
 void	check_cmd_pipe(general_data *gen_data, char *s, char *const env[]);
@@ -67,4 +68,6 @@ char	*check_cmd(char *cmd, char *const env[]);
 void    handle_cmd_pipes(general_data *gen_data, char *s, char *const env[]);
 void    process_string_with_pipes(general_data *gen_data, char *s, char *const env[]);
 char	*handle_cont_pipe(char *join);
+int	gest_ampersand(char *s, general_data *gen_data, char *const env[],  int y);
+void	free_tmp(char **tmp);
 #endif

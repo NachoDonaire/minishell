@@ -8,7 +8,7 @@ void	check_builtins(char *s, general_data *gen_data, int y)
 	{
 		gen_data->blt.blt = ft_split(s, ' ');
 		gen_data->blt.args = ft_split(s, ' ');
-		gen_data->cmd[y].cmd = NULL;
+		gen_data->cmd[y].cmd = "builtin";
 		//gen_data->cmd.args = NULL;
 		gen_data->built = 1;
 	}

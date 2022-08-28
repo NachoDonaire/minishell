@@ -55,22 +55,28 @@ int	extreme_finder(char *s, char *find)
 
 void	process_string(char *s, general_data *gen_data, char *const env[], int y)
 {
-//	char	*path;
 	char	**com;
 	int	i;
 
 	i = 0;
 	com = ft_split(s, ' ');
+	if (finder(com[0], "./") == 1)
+	{
+		if (check_cmllas(com[0]) == 1)
+			com[0] = gest_cmllas(com[i]);
+		gen_data->cmd[y].cmd = com[0];
+		process_args(s, gen_data, y);
+		return ;
+	}
 	while (com[i])
 	{
 		if (check_cmllas(com[i]) == 1)
 			com[i] = gest_cmllas(com[i]);
 		i++;
 	}
-//	path = find_path(env);
-//	split_path(&path[5], com[0], gen_data);
 	gen_data->cmd[y].cmd = check_cmd(com[0], env);
 	i = 0;
+	process_args(s, gen_data, y);
 	while (com[i])
 		free(com[i++]);
 }
@@ -98,24 +104,13 @@ void	process_input(char *s, general_data *gen_data, char *const env[])
 
 	i = 0;
 	aux = ft_split(s, ' ');
-//	if (finder(s, "|") == 0)
-			check_builtins(s, gen_data, 0);
+	check_builtins(s, gen_data, 0);
 	if (gen_data->built == 1)
 		return ;
-	if (finder(s, ".") == 1 || finder(s, "/") == 1)
-	{
-		gen_data->cmd[0].cmd = aux[0];
-		process_args(s, gen_data, 0);
-	}
-	else if (finder(s, "|") == 1)
-	{
+	else if (finder(s, "|") == 1 || finder(s, "&") == 1)
 		process_string_with_pipes(gen_data, s, env);
-	}
 	else
-	{
 		process_string(s, gen_data, env, 0);
-		process_args(s, gen_data, 0);
-	}
 	while (aux[i])
 		free(aux[i++]);
 	free(aux);
@@ -150,6 +145,7 @@ int     main(int argc, char **argv,  char *const env[])
 		gen_data.built = 0;
                 s = readline("");
                 n_pipes(&gen_data, s);
+		gen_data.cmd = malloc(sizeof(cmd_data) * (gen_data.n_pipes + 1));
 		process_input(s, &gen_data, env);
 		//printf("--%d--", gen_data.built);
                 /*if (cmd.cmd[0])
@@ -158,8 +154,8 @@ int     main(int argc, char **argv,  char *const env[])
                 process_exit(s, &i);
 		*/
 		//while (gen_data.cmd[y].cmd)
-		if (gen_data.cmd[0].cmd)
-			printf("%s\n", gen_data.cmd[0].cmd);
+		while (y <= gen_data.n_pipes)
+			printf("%s\n", gen_data.cmd[y++].cmd);
 		y = 0;
 		process_exit(s, &i);
                 free(s);
