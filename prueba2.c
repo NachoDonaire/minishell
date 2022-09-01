@@ -59,6 +59,8 @@ void	process_string(char *s, general_data *gen_data, char *const env[], int y)
 	int	i;
 
 	i = 0;
+	process_sing_red(gen_data, s, y);
+	check_builtins(s, gen_data, 0);
 	com = ft_split(s, ' ');
 	if (finder(com[0], "./") == 1)
 	{
@@ -104,10 +106,10 @@ void	process_input(char *s, general_data *gen_data, char *const env[])
 
 	i = 0;
 	aux = ft_split(s, ' ');
-	check_builtins(s, gen_data, 0);
-	if (gen_data->built == 1)
-		return ;
-	else if (finder(s, "|") == 1 || finder(s, "&") == 1)
+//	check_builtins(s, gen_data, 0);
+//	if (gen_data->built == 1)
+//		return ;
+	if (finder(s, "|") == 1 || finder(s, "&") == 1)
 		process_string_with_pipes(gen_data, s, env);
 	else
 		process_string(s, gen_data, env, 0);
@@ -130,32 +132,32 @@ int     main(int argc, char **argv,  char *const env[])
         int             i;
         char            *s;
 	int		y;
-//        cmd_data        cmd;
+	int		z;
         general_data    gen_data;
 
         if (argc == 0 || !argv)
                 return (0);
         i = 0;
 	y = 0;
+	z = 0;
+	if (z == 1 || y == 1)
+		write(1, "aa", 2);
         while (i == 0)
         {
-//		if (gen_data.cmd.cmd)
-//			needed_free_cmd(&gen_data);
 		gen_data.n_pipes = 0;
 		gen_data.built = 0;
                 s = readline("");
                 n_pipes(&gen_data, s);
 		gen_data.cmd = malloc(sizeof(cmd_data) * (gen_data.n_pipes + 1));
 		process_input(s, &gen_data, env);
-		//printf("--%d--", gen_data.built);
-                /*if (cmd.cmd[0])
-                        printf("%s\n", cmd.cmd[0]);
-                printf("%d", gen_data.n_cmd);
-                process_exit(s, &i);
-		*/
-		//while (gen_data.cmd[y].cmd)
-		while (y <= gen_data.n_pipes)
-			printf("%s\n", gen_data.cmd[y++].cmd);
+		while (y <= gen_data.n_pipes && finder(s, ">") == 1)
+		{
+			while (gen_data.cmd[y].out[z])
+				printf("%s\n", gen_data.cmd[y].out[z++]);
+			printf("%d\n", gen_data.cmd[y].dred);
+			z = 0;
+			y++;
+		}
 		y = 0;
 		process_exit(s, &i);
                 free(s);
