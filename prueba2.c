@@ -60,6 +60,7 @@ void	process_string(char *s, general_data *gen_data, char *const env[], int y)
 
 	i = 0;
 	process_sing_red(gen_data, s, y);
+	process_in_red(gen_data, s, y);
 	check_builtins(s, gen_data, 0);
 	com = ft_split(s, ' ');
 	if (finder(com[0], "./") == 1)
@@ -150,10 +151,10 @@ int     main(int argc, char **argv,  char *const env[])
                 n_pipes(&gen_data, s);
 		gen_data.cmd = malloc(sizeof(cmd_data) * (gen_data.n_pipes + 1));
 		process_input(s, &gen_data, env);
-		while (y <= gen_data.n_pipes && finder(s, ">") == 1)
+		while (y <= gen_data.n_pipes && finder(s, "<") == 1)
 		{
-			while (gen_data.cmd[y].out[z])
-				printf("%s\n", gen_data.cmd[y].out[z++]);
+			while (gen_data.cmd[y].in[z])
+				printf("%s\n", gen_data.cmd[y].in[z++]);
 			printf("%d\n", gen_data.cmd[y].dred);
 			z = 0;
 			y++;

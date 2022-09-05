@@ -84,11 +84,18 @@ char	*handle_cont_pipe(char *join);
 int	gest_ampersand(char *s, general_data *gen_data, char *const env[],  int y);
 void	free_tmp(char **tmp);
 
-/*en reds.c*/
+/*en out_reds.c*/
 int	find_red(char *s);
 void	gest_reds(general_data *gen_data, char *s, int y);
 void	process_sing_red(general_data *gen_data, char *s, int y);
 void	paste_tmp_red(general_data *gen_data, char **tmp, int y);
-void	memory_for_red(char *s, general_data *gen_data);
+void	memory_for_red(general_data *gen_data, char **tmp, int y);
+
+/*en in_reds.c*/
+int	find_in_red(char *s);
+void	gest_in_reds(general_data *gen_data, char *s, int y);
+void	process_in_red(general_data *gen_data, char *s, int y);
+void	paste_tmp_in_red(general_data *gen_data, char **tmp, int y);
+void	memory_for_in_red(general_data *gen_data, char **tmp, int y);
 
 #endif

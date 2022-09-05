@@ -43,6 +43,7 @@ void	gest_reds(general_data *gen_data, char *s, int y)
 	while (tmp[i])
 		i++;
 	gen_data->cmd[y].out = malloc(sizeof(char *) * (i + 1));
+	memory_for_red(gen_data, tmp, y);
 	paste_tmp_red(gen_data, tmp, y);
 	i = 0;
 	while (tmp[i])
@@ -50,12 +51,11 @@ void	gest_reds(general_data *gen_data, char *s, int y)
 	free(tmp);
 }
 
-void	paste_tmp_red(general_data *gen_data, char **tmp, int y)
+void	memory_for_red(general_data *gen_data, char **tmp, int y)
 {
 	int	i;
 	int	z;
 	int	w;
-	int	k;
 
 	i = 0;
 	z = 1;
@@ -69,10 +69,19 @@ void	paste_tmp_red(general_data *gen_data, char **tmp, int y)
 		w++;
 		i = 0;
 	}
+}
+
+void	paste_tmp_red(general_data *gen_data, char **tmp, int y)
+{
+	int	z;
+	int	i;
+	int	w;
+	int	k;
+
+	k = 0;
 	z = 1;
 	i = 0;
 	w = 0;
-	k = 0;
 	while (tmp[z])
 	{
 		while (tmp[z][i])
@@ -94,13 +103,11 @@ void	process_sing_red(general_data *gen_data, char *s, int y)
 {
 	if (find_red(s) == 2)
 	{
-		write(1, "bb", 2);
 		gen_data->cmd[y].dred = 0;
 		gest_reds(gen_data, s, y);
 	}
 	else if (find_red(s) == 1)
 	{
-		write(1, "aa", 2);
 		gen_data->cmd[y].dred = 1;
 		gest_reds(gen_data, s, y);
 	}
