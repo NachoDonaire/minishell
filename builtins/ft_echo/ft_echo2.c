@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:39 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/24 10:57:40 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/05 09:59:38 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,14 @@ int	ft_c_d(char *argument)
 		x++;
 	}
 	return (0);
+}
+
+int	ft_nb_arguments(char **nb_arguments)
+{
+	int	x;
+
+	x = 0;
+	while (nb_arguments[x])
+		x++;
+	return (x);
 }

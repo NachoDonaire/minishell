@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/24 15:01:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/05 09:47:47 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	ft_print_quote(char *env)
 		printf("='");
 	printf("'");
 }
-
 
 static void	ft_order(char **copy)
 {

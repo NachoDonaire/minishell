@@ -6,20 +6,20 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:31 by sasalama          #+#    #+#             */
-/*   Updated: 2022/08/24 10:57:34 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/05 10:03:18 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	ft_quotation(char **s, int x, int z)
+static void	ft_quotation(char **s, int x, int z, int nb_argument)
 {
 	if (s[x][0] == '\"' && s[x][z] == '\"' && s[x + 1] && s[0][0] != 39 &&
-		s[0][0] == 34 && s[2][ft_strlen(s[2]) - 1] != 34) // * 2 is the number of arguments
+		s[0][0] == 34 && s[nb_argument][ft_strlen(s[nb_argument]) - 1] != 34)
 		printf("\"");
 }
 
-static void	ft_print(char **s, int x, char **env, int z)
+static void	ft_print(char **s, int x, char **env, int z, int nb_argument)
 {
 	int		y;
 
@@ -28,7 +28,7 @@ static void	ft_print(char **s, int x, char **env, int z)
 		printf("%s", s[x]);
 	else
 	{
-		ft_quotation(s, x, z);
+		ft_quotation(s, x, z, nb_argument);
 		while (s[x][y])
 		{
 			if (s[x][y] != '$' && s[x][y] != 39 && s[x][y] != 34)
@@ -42,11 +42,11 @@ static void	ft_print(char **s, int x, char **env, int z)
 				printf("%c", s[x][y]);
 			y++;
 		}
-		ft_quotation(s, x, z);
+		ft_quotation(s, x, z, nb_argument);
 	}
 }
 
-static	void	ft_print_quotation(char **array, int x, char **e, int *c)
+static	void	ft_print_quotation(char **array, int x, char **e, int *c, int nb_argument)
 {
 	int	z;
 
@@ -61,12 +61,12 @@ static	void	ft_print_quotation(char **array, int x, char **e, int *c)
 		c[1] = 1;
 		printf("\"");
 	}
-	ft_print(array, x, e, z);
+	ft_print(array, x, e, z, nb_argument);
 	if (array[x + 1])
 		printf(" ");
 }
 
-static int	ft_check_nl(char **nb_arguments, int x, char **env)
+static int	ft_check_nl(char **nb_arguments, int x, char **env, int nb_argument)
 {
 	int	z;
 	int	new_line;
@@ -81,7 +81,7 @@ static int	ft_check_nl(char **nb_arguments, int x, char **env)
 		if (ft_strncmp(nb_arguments[x], "-n", 2) == 0 && z == 0)
 			new_line = 0;
 		else
-			ft_print_quotation(nb_arguments, x, env, quotation);
+			ft_print_quotation(nb_arguments, x, env, quotation, nb_argument);
 		x++;
 	}
 	if (quotation[0] == 1)
@@ -94,15 +94,17 @@ static int	ft_check_nl(char **nb_arguments, int x, char **env)
 void	ft_echo(char **env)
 {
 	int		x;
+	int		y;
 	int		new_line;
 	char	**nb_arguments; // ? Provisional, this is given by the structure
 
 	x = 0;
 	new_line = 1;
-	nb_arguments = ft_split("$?", ' ');
+	nb_arguments = ft_split("\"hola $TERM \"", ' ');
+	y = ft_nb_arguments(nb_arguments);
 	if (nb_arguments)
 	{
-		new_line = ft_check_nl(nb_arguments, x, env);
+		new_line = ft_check_nl(nb_arguments, x, env, y);
 		ft_free_arg(nb_arguments);
 	}
 	if (new_line == 1)
