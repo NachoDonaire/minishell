@@ -7,7 +7,7 @@ RM		=	rm -f
 CFLAGS	=	-Wall -Wextra -Werror 
 all:	${NAME}
 $(NAME):	${OBJS}
-	${CC} ${CFLAGS}  -o ${NAME} ${OBJS} -lreadline
+	${CC} ${CFLAGS}  -o ${NAME} ${OBJS} -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib -I ~/.brew/Cellar/readline/8.1.2/include
 clean:
 	${RM} ${OBJS}
 fclean: clean

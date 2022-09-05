@@ -128,41 +128,64 @@ void	needed_free_cmd(general_data *gen_data)
 		free(gen_data->cmd[i++].cmd);
 }
 
+static void	handle_sigint(int sig)
+{
+	if (sig == SIGINT)
+	{
+		ioctl(STDIN_FILENO, TIOCSTI, "\n"); // STDIN_FILENO: File descriptor terminal TIOCSTI: Simulation of stdin of the terminal
+		rl_replace_line("", 0); // Unsave in the history in the case we don´t finish the command
+		rl_on_new_line();
+	}
+}
+
 int     main(int argc, char **argv,  char *const env[])
 {
-        int             i;
-        char            *s;
+	int             i;
+	char            *s;
 	int		y;
 	int		z;
-        general_data    gen_data;
 
-        if (argc == 0 || !argv)
-                return (0);
-        i = 0;
+	general_data    gen_data;
+
+	if (argc == 0 || !argv)
+			return (0);
+	i = 0;
 	y = 0;
 	z = 0;
-	if (z == 1 || y == 1)
-		write(1, "aa", 2);
-        while (i == 0)
-        {
+	while (i == 0)
+	{
+		signal(SIGINT, handle_sigint);
+		signal(SIGQUIT, SIG_IGN);
 		gen_data.n_pipes = 0;
 		gen_data.built = 0;
-                s = readline("");
-                n_pipes(&gen_data, s);
-		gen_data.cmd = malloc(sizeof(cmd_data) * (gen_data.n_pipes + 1));
-		process_input(s, &gen_data, env);
-		while (y <= gen_data.n_pipes && finder(s, "<") == 1)
+		s = readline("Minishell> ");
+		if (s)
 		{
-			while (gen_data.cmd[y].in[z])
-				printf("%s\n", gen_data.cmd[y].in[z++]);
-			printf("%d\n", gen_data.cmd[y].dred);
-			z = 0;
-			y++;
+			if (s[0])
+			{
+				add_history(s);
+				n_pipes(&gen_data, s);
+				gen_data.cmd = malloc(sizeof(cmd_data) * (gen_data.n_pipes + 1));
+				process_input(s, &gen_data, env);
+				while (y <= gen_data.n_pipes && finder(s, "<") == 1)
+				{
+					while (gen_data.cmd[y].in[z])
+						printf("%s\n", gen_data.cmd[y].in[z++]);
+					printf("%d\n", gen_data.cmd[y].dred);
+					z = 0;
+					y++;
+				}
+				y = 0;
+				process_exit(s, &i);
+				free(s);
+			}
 		}
-		y = 0;
-		process_exit(s, &i);
-                free(s);
-        }
-        return (0);
+		else
+		{
+			printf("exit");
+			i = 1;
+		}
+	}
+	return (0);
 }
   

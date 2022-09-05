@@ -3,7 +3,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <readline/readline.h>
+# include <string.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <sys/ioctl.h>
 
 /*estructura inside cmd*/
 typedef struct insidecmd{
@@ -34,6 +38,8 @@ typedef struct general{
 	int		n_pipes;
 	int		built;
 }	general_data;
+
+void	rl_replace_line(const char *text, int clear_undo);
 
 /*en utils.c*/
 char	*find_path(char *const env[]);
