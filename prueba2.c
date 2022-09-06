@@ -156,9 +156,8 @@ int     main(int argc, char **argv,  char *env[])
 {
 	char            *s;
 	t_general_data    gen_data;
+	char			*tmp;
 
-	if (argc == 0 || !argv)
-			return (0);
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -171,6 +170,9 @@ int     main(int argc, char **argv,  char *env[])
 		{
 			if (s[0])
 			{
+				tmp = s;
+				s = ft_substr(s, 0, ft_strlen(s));
+				free(tmp);
 				add_history(s);
 				n_pipes(&gen_data, s);
 				gen_data.cmd = malloc(sizeof(t_cmd_data) * (gen_data.n_pipes + 1));

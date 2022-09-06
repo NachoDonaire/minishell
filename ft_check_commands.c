@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:03 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/06 18:00:04 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:26:48 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_check_comand(t_general_data *gen_data)
 	x += ft_check_export(gen_data);
 	x += ft_check_unset(gen_data);
 	x += ft_check_env(gen_data);
-	printf("%dhola", x);
+	printf("%d\n",x); //When the command finish the next one is with the last parameters command
 	if (x == 0)
 		ft_exec(gen_data); // ! NOT FUNCTIONAL (TEMPORARY)
 }
