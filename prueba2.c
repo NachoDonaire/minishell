@@ -61,7 +61,7 @@ void	process_string(char *s, t_general_data *gen_data, char *const env[], int y)
 	i = 0;
 	process_sing_red(gen_data, s, y);
 	process_in_red(gen_data, s, y);
-	check_builtins(s, gen_data, 0);
+	check_builtins(s, gen_data, y);
 	com = ft_split(s, ' ');
 	if (finder(com[0], "./") == 1)
 	{
@@ -157,6 +157,7 @@ int     main(int argc, char **argv,  char *env[])
 		signal(SIGINT, handle_sigint);
 		signal(SIGQUIT, SIG_IGN);
 		gen_data.n_pipes = 0;
+		gen_data.n_built = 0;
 		gen_data.built = 0;
 		s = readline("Minishell> ");
 		if (s)
@@ -166,16 +167,17 @@ int     main(int argc, char **argv,  char *env[])
 				add_history(s);
 				n_pipes(&gen_data, s);
 				gen_data.cmd = malloc(sizeof(t_cmd_data) * (gen_data.n_pipes + 1));
+				gen_data.blt = malloc(sizeof(t_builtin_data) * (gen_data.n_pipes + 1));
 				process_input(s, &gen_data, gen_data.env);
-				printf("%s\n",gen_data.blt.blt);
+			/*	printf("%s\n",gen_data.blt.blt);
 				printf("%s\n",gen_data.blt.args[0]);
 				printf("%s\n",gen_data.blt.args[1]);
-				ft_check_comand(&gen_data);
-				/*while (y <= gen_data.n_pipes && finder(s, "<") == 1)
+				*/
+//				ft_check_comand(&gen_data);
+				/*while (y <= gen_data.n_pipes)
 				{
-					while (gen_data.cmd[y].in[z])
-						printf("%s\n", gen_data.cmd[y].in[z++]);
-					printf("%d\n", gen_data.cmd[y].dred);
+					printf("%s\n", gen_data.blt[y].blt);
+//					printf("%d\n", gen_data.cmd[y].dred);
 					z = 0;
 					y++;
 				}*/

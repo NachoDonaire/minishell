@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:31 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/06 12:06:04 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:04:20 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,11 @@ void	ft_echo(t_general_data *gen_data)
 	int		new_line;
 
 	new_line = 1;
-	gen_data->blt.nb_arguments = ft_nb_arguments(gen_data->blt.args);
-	if (gen_data->blt.args[0])
-		printf("%d\n", gen_data->blt.nb_arguments);
-	free(gen_data->blt.blt);
-	ft_free_arg(gen_data->blt.args);
+	gen_data->blt->nb_arguments = ft_nb_arguments(gen_data->blt->args);
+	if (gen_data->blt->args[0])
+		printf("%d\n", gen_data->blt->nb_arguments);
+	free(gen_data->blt->blt);
+	ft_free_arg(gen_data->blt->args);
 	/*if (gen_data->blt.args)
 	{
 		new_line = ft_check_nl(gen_data);

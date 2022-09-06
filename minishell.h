@@ -39,10 +39,11 @@ typedef struct s_general
 	char	**env;
 	int		red;
 	t_cmd_data	*cmd;
-	t_builtin_data	blt;
+	t_builtin_data	*blt;
 	int		n_cmd;
 	int		n_pipes;
 	int		built;
+	int		n_built;
 }	t_general_data;
 
 void	rl_replace_line(const char *text, int clear_undo);
