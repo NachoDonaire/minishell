@@ -5,102 +5,93 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 10:59:48 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 11:52:14 by ndonaire         ###   ########.fr       */
+/*   Created: 2022/03/04 09:40:12 by ndonaire          #+#    #+#             */
+/*   Updated: 2022/09/07 14:42:44 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	ft_countwords(char const *s2, char c)
+static int	ft_char_count(const char *str, char c)
 {
-	int	x;
-	int	y;
-	int	z;
-
-	x = 0;
-	y = 0;
-	z = 0;
-	while (s2[x])
-	{
-		if (s2[x] != c && z == 0)
-		{
-			z = 1;
-			y++;
-		}
-		else if (s2[x] == c)
-			z = 0;
-		x++;
-	}
-	return (y);
-}
-
-static char	*ft_word(char const *s3, int z, int x)
-{
-	int		i;
-	char	*s4;
+	int	i;
+	int	cont;
 
 	i = 0;
-	s4 = malloc(x - z + 1);
-	if (!s4)
-		return (0);
-	while (z < x)
+	cont = 0;
+	while (*str)
 	{
-		s4[i] = s3[z];
-		i++;
-		z++;
+		if (*str != c && cont == 0)
+		{
+			cont = 1;
+			i++;
+		}
+		else if (*str == c)
+			cont = 0;
+		str++;
 	}
-	s4[i] = '\0';
-	return (s4);
+	return (i);
 }
 
-static char	**ft_clear(char **s1, size_t x)
+static size_t	ft_strclen(const char *s, char c)
 {
-	size_t	y;
+	size_t	len;
 
-	y = 0;
-	while (y < x)
-	{
-		free(s1[y]);
-		y++;
-	}
-	free (s1);
-	return (0);
+	len = 0;
+	while (s[len] != '\0' && s[len] != c)
+		len++;
+	return (len);
 }
 
-int	ft_table(int *x2)
+char	**ft_free(char **x, int pos)
 {
-	x2[0] = 0;
-	x2[1] = 0;
-	x2[2] = -1;
-	return (x2[0]);
+	char	**aux;
+
+	aux = 0;
+	while (pos >= 0)
+	{
+		free(x[pos]);
+		pos--;
+	}
+	free(x);
+	return (aux);
+}
+
+char	**ft_reserva(const char *s, char c)
+{
+	char	**aux;
+
+	aux = malloc(sizeof(char **) * (ft_char_count(s, c) + 1));
+	if (!aux)
+		return (NULL);
+	return (aux);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		x[3];
-	char	**s1;
+	size_t	charlen[2];
+	char	**x;
 
-	x[0] = ft_table(x);
+	charlen[1] = 0;
 	if (!s)
-		return (0);
-	s1 = malloc((ft_countwords(s, c) + 1) * sizeof(char *));
-	if (!s1)
-		return (0);
-	while (x[0] <= (int)ft_strlen(s))
+		return (NULL);
+	x = ft_reserva(s, c);
+	if (!x)
+		return (NULL);
+	while (*s)
 	{
-		if (s[x[0]] != c && x[2] == -1)
-			x[2] = x[0];
-		else if ((s[x[0]] == c || x[0] == (int)ft_strlen(s)) && x[2] >= 0)
+		while (*s && *s == c)
+			s++;
+		if (*s)
 		{
-			s1[x[1]] = ft_word(s, x[2], x[0]);
-			if (!s1[x[1]])
-				return (ft_clear(s1, x[1]));
-			x[2] = -1;
-			x[1]++;
+			charlen[0] = ft_strclen(s, c);
+			x[charlen[1]] = (char *)ft_calloc(charlen[0] + 1, sizeof(char));
+			if (!x[charlen[1]])
+				return (ft_free(x, charlen[1]));
+			ft_memcpy(x[charlen[1]++], s, charlen[0]);
+			s += charlen[0];
 		}
-		x[0]++;
 	}
-	s1[x[1]] = 0;
-	return (s1);
+	x[charlen[1]] = NULL;
+	return (x);
 }

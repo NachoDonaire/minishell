@@ -6,11 +6,11 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:38 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 12:17:49 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:00:53 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	ft_free_arg(char **arguments)
 {

@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*obtain_cmd(char **tmp, int i)
 {

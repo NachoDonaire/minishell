@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *const env[])
 {

@@ -6,11 +6,11 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 14:27:50 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:00:48 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	ft_check_cd(t_general_data *gen_data, int x)
 {
