@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:03 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 14:27:53 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 14:32:03 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_check_env(t_general_data *gen_data, int x)
 	{
 		if (ft_strncmp(gen_data->blt[x].blt, "env", 4) == 0)
 		{
-			ft_env(gen_data->env, x);
+			ft_env(gen_data->env);
 			return (1);
 		}
 	}

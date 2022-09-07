@@ -125,7 +125,7 @@ void	ft_echo(t_general_data *gen_data, int position);
 void	ft_cd(t_general_data *gen_data, int position);
 void	ft_pwd(char **env);
 void	ft_unset(t_general_data *gen_data, int position);
-void	ft_env(char **env, int position);
+void	ft_env(char **env);
 void	ft_export(t_general_data *gen_data, int position);
 
 /*env*/
