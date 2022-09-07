@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:58:55 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:09:09 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void	split_path(char *env, char *arg, t_general_data *gen_data);
 int		checkin_path(char *s, char *find);
 int		lens(char *s);
 void	freeear(char **sol, char *k, t_general_data *gen_data);
+
+/*en utils2.c*/
+int		extreme_finder(char *s, char *find);
+int		finder(char *s, char *find);
 
 /*en commillas.c, gesteo de las comillas en el comando(por el momento)*/
 int		check_cmllas(char *s);
@@ -190,5 +194,12 @@ char	*ft_strjoin(char *s1, char *s2);
 /*en memory.c*/
 void	reserva(t_general_data *gen_data);
 void	needed_free(t_general_data *gen_data, int y);
+
+/*signal*/
+void	handle_sigint(int sig);
+
+/*exit*/
+void	ft_exit(char *texto, char **tmp);
+int	ft_check_exit(char *s);
 
 #endif

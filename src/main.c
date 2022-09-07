@@ -1,72 +1,5 @@
 #include "../includes/minishell.h"
 
-static int	ft_check_exit(char *s)
-{
-	if (ft_strncmp(s, "exit", 5) == 0)
-		return (1);
-	return (0);
-}
-
-static void	ft_exit(char *texto, char **tmp)
-{
-	int	x;
-
-	x = 0;
-	if (texto)
-		printf("%s\n", texto);
-	else
-		printf("exit\n");
-	while (tmp[x])
-		free(tmp[x++]);
-	free(tmp);
-	exit(0);
-}
-
-int	finder(char *s, char *find)
-{
-	int	i;
-	int	y;
-
-	i = 0;
-	y = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-	{
-		while (s[i] == find[y])
-		{
-			y++;
-			i++;
-			if (find[y] == '\0')
-				return (1);
-		}
-		y = 0;
-		i++;
-	}
-	return (0);
-}
-
-int	extreme_finder(char *s, char *find)
-{
-	int	i;
-	int	y;
-
-	i = 0;
-	y = 0;
-	if (!s)
-		return (0);
-	while (s[i] == ' ')
-		i++;
-	while (s[i] == find[y])
-	{
-		y++;
-		i++;
-		if (find[y] == '\0')
-			return (1);
-	}
-	return (0);
-}
-
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 {
 	char	**com;
@@ -146,16 +79,6 @@ void	needed_free_cmd(t_general_data *gen_data)
 	i = 0;
 	while (gen_data->cmd[i].cmd)
 		free(gen_data->cmd[i++].cmd);
-}
-
-static void	handle_sigint(int sig)
-{
-	if (sig == SIGINT)
-	{
-		ioctl(STDIN_FILENO, TIOCSTI, "\n"); // STDIN_FILENO: File descriptor terminal TIOCSTI: Simulation of stdin of the terminal
-		rl_replace_line("", 0); // Unsave in the history in the case we don´t finish the command
-		rl_on_new_line();
-	}
 }
 
 int     main(int argc, char **argv,  char *env[])

@@ -2,22 +2,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include "../../includes/minishell.h"
-/*
-void	freeear(char **sol, char *k, t_general_data *gen_data)
-{
-	int	i;
 
-	i = 0;
-	while (sol[i])
-		free(sol[i++]);
-	free(sol);
-	if (!k)
-		gen_data->cmd.cmd = NULL;
-	gen_data->cmd.cmd = ft_split(k, ' ');;
-	i = 0;
-//	printf("-%s-", gen_data->cmd.cmd[0]);
-}
-*/
 int	lens(char *s)
 {
 	int	i;
@@ -101,30 +86,3 @@ int	ft_strcmp(char *s1, char *s2)
 	}
 	return (s1[i] - s2[i]);
 }
-
-/*
-void	split_path(char *env, char *arg, t_general_data *gen_data)
-{
-	int		i;
-	char	**sol;
-	int		auxy;
-	char	*k;
-
-	if (!arg)
-		return ;
-	auxy = 0;
-	sol = ft_split(env, ':');
-	auxy = 0;
-	i = 0;
-	k = pseudo_join(sol[i], arg);
-	while (sol[auxy])
-		auxy++;
-	while (sol[i] && access(k, F_OK) < 0)
-	{
-		free(k);
-		i++;
-		if (sol[i])
-			k = pseudo_join(sol[i], arg);
-	}
-	freeear(sol, k, gen_data);
-}*/
