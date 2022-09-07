@@ -67,7 +67,7 @@ int	extreme_finder(char *s, char *find)
 	return (0);
 }
 
-void	process_string(char *s, t_general_data *gen_data, char *const env[], int y)
+void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 {
 	char	**com;
 	int		i;
@@ -120,7 +120,7 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 	gen_data->cmd[y].args = com;
 }
 
-void	process_input(char *s, t_general_data *gen_data, char *const env[])
+void	process_input(char *s, t_general_data *gen_data, char *env[])
 {
 	char	**aux;
 	int		i;

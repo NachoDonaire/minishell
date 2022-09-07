@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *const env[])
+void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 {
 	int		i;
 	char	**tmp;
@@ -38,7 +38,7 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *const env[])
 	free_tmp(tmp);
 }
 
-int	gest_ampersand(char *s, t_general_data *gen_data, char *const env[], int y)
+int	gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y)
 {
 	char	**tmp;
 	int		i;
@@ -84,7 +84,7 @@ char	*handle_cont_pipe(char *join)
 	return (join);
 }
 
-void	process_string_with_pipes(t_general_data *gen_data, char *s, char *const env[])
+void	process_string_with_pipes(t_general_data *gen_data, char *s, char *env[])
 {
 	handle_cmd_pipes(gen_data, s, env);
 }

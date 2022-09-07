@@ -30,21 +30,21 @@ typedef struct s_comand
 	char	**args;
 	char	**out;
 	char	**in;
-	int	dred;
+	int		dred;
 }	t_cmd_data;
 
 /*estructura general proxisional*/
 typedef struct s_general
 {
-	char	**env;
-	int		red;
-	t_cmd_data	*cmd;
+	char			**env;
+	int				red;
+	t_cmd_data		*cmd;
 	t_builtin_data	*blt;
-	int		n_cmd;
-	int		n_pipes;
-	int		built;
-	int		n_built;
-	char	*sort;
+	int				n_cmd;
+	int				n_pipes;
+	int				built;
+	int				n_built;
+	char			*sort;
 }	t_general_data;
 
 void	rl_replace_line(const char *text, int clear_undo);
@@ -53,30 +53,27 @@ void	rl_replace_line(const char *text, int clear_undo);
 char	*find_path(char *const env[]);
 char	*pseudo_join(char *path, char *com);
 void	split_path(char *env, char *arg, t_general_data *gen_data);
-int	checkin_path(char *s, char *find);
-int	lens(char *s);
-char	**ft_split(char const *s, char c);
+int		checkin_path(char *s, char *find);
+int		lens(char *s);
 void	freeear(char **sol, char *k, t_general_data *gen_data);
-void	*ft_calloc(size_t nmemb, size_t size);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 /*en commillas.c, gesteo de las comillas en el comando(por el momento)*/
-int	check_cmllas(char *s);
+int		check_cmllas(char *s);
 char	*gest_cmllas(char *s);
 
 /*en prueba2.c */
 int     finder(char *s, char *find);
-int	extreme_finder(char *s, char *find);
-void    process_string(char *s, t_general_data *gen_data, char *const env[], int y);
+int		extreme_finder(char *s, char *find);
+void    process_string(char *s, t_general_data *gen_data, char *env[], int y);
 void    process_exit(char *s, int *i);
-void    the_cmd(char *s, char *const env[], t_general_data *gen_data);
+void    the_cmd(char *s, char *env[], t_general_data *gen_data);
 void    cmd_args(char *s, t_cmd_data *cmd);
 void	needed_free_cmd(t_general_data *gen_data);
 void	process_args(char *s, t_general_data *gen_data, int y);
 
 /*en n_cmd*/
 void	n_pipes(t_general_data *gen_data, char *s);
-void	check_cmd_pipe(t_general_data *gen_data, char *s, char *const env[]);
+void	check_cmd_pipe(t_general_data *gen_data, char *s, char *env[]);
 
 /*en check_builtin.c*/
 void	check_builtins(char *s, t_general_data *gen_data, int y);
@@ -84,29 +81,28 @@ void	check_builtins(char *s, t_general_data *gen_data, int y);
 /*ft_strjoin*/
 char     *copy(char *s1, char *s2, char *x);
 char     *cncat(char *s1, char *s2);
-char    *ft_strjoin(char *s1, char *s2);
 
 /*en check_cmd.c*/
 char    *obtain_cmd(char **tmp, int i);
 char    *free_for_checkin_cmd(char **sol, char *k, int y);
-char	*check_cmd(char *cmd, char *const env[]);
+char	*check_cmd(char *cmd, char *env[]);
 
 /*en check_pipes.c*/
-void    handle_cmd_pipes(t_general_data *gen_data, char *s, char *const env[]);
-void    process_string_with_pipes(t_general_data *gen_data, char *s, char *const env[]);
+void    handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[]);
+void    process_string_with_pipes(t_general_data *gen_data, char *s, char *env[]);
 char	*handle_cont_pipe(char *join);
-int	gest_ampersand(char *s, t_general_data *gen_data, char *const env[],  int y);
+int		gest_ampersand(char *s, t_general_data *gen_data, char *env[],  int y);
 void	free_tmp(char **tmp);
 
 /*en out_reds.c*/
-int	find_red(char *s);
+int		find_red(char *s);
 void	gest_reds(t_general_data *gen_data, char *s, int y);
 void	process_sing_red(t_general_data *gen_data, char *s, int y);
 void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y);
 void	memory_for_red(t_general_data *gen_data, char **tmp, int y);
 
 /*en in_reds.c*/
-int	find_in_red(char *s);
+int		find_in_red(char *s);
 void	gest_in_reds(t_general_data *gen_data, char *s, int y);
 void	process_in_red(t_general_data *gen_data, char *s, int y);
 void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y);
@@ -173,6 +169,10 @@ char	*ft_strrchr(const char *s, int c);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	**ft_split(char const *s, char c);
+void	*ft_calloc(size_t nmemb, size_t size);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+char    *ft_strjoin(char *s1, char *s2);
 
 /*en memory.c*/
 void	reserva(t_general_data *gen_data);
