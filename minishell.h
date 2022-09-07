@@ -116,17 +116,17 @@ void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y);
 /*exec builtins*/
 
 void	ft_check_comand(t_general_data *gen_data);
-int		ft_check_cd(t_general_data *gen_data);
-int		ft_check_pwd(t_general_data *gen_data);
-int		ft_check_echo(t_general_data *gen_data);
-int		ft_check_export(t_general_data *gen_data);
-int		ft_check_unset(t_general_data *gen_data);
-void	ft_echo(t_general_data *gen_data);
-void	ft_cd(t_general_data *gen_data);
+int		ft_check_cd(t_general_data *gen_data, int x);
+int		ft_check_pwd(t_general_data *gen_data, int x);
+int		ft_check_echo(t_general_data *gen_data, int x);
+int		ft_check_export(t_general_data *gen_data, int x);
+int		ft_check_unset(t_general_data *gen_data, int x);
+void	ft_echo(t_general_data *gen_data, int position);
+void	ft_cd(t_general_data *gen_data, int position);
 void	ft_pwd(char **env);
-void	ft_unset(t_general_data *gen_data);
-void	ft_env(char **env);
-void	ft_export(t_general_data *gen_data);
+void	ft_unset(t_general_data *gen_data, int position);
+void	ft_env(char **env, int position);
+void	ft_export(t_general_data *gen_data, int position);
 
 /*env*/
 char	**get_env(char **envp);
@@ -161,7 +161,7 @@ void	ft_change_bad_status(char **env);
 void	ft_change_permission_status(char **env);
 
 /*exec temporal*/
-void	ft_exec(t_general_data *gen_data);
+void	ft_exec(t_general_data *gen_data, int position);
 void	ft_path(char *command, char *envp[], char **fd_path);
 
 /*funciones libft*/

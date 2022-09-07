@@ -77,28 +77,30 @@ void	process_string(char *s, t_general_data *gen_data, char *const env[], int y)
 	process_in_red(gen_data, s, y);
 	gen_data->built = 0;
 	check_builtins(s, gen_data, y);
+	gen_data->sort[0] = '0';
 	if (gen_data->built == 0)
 	{
-	com = ft_split(s, ' ');
-	if (finder(com[0], "./") == 1)
-	{
-		if (check_cmllas(com[0]) == 1)
-			com[0] = gest_cmllas(com[i]);
-		gen_data->cmd[y].cmd = com[0];
+		gen_data->sort[0] = '1';
+		com = ft_split(s, ' ');
+		if (finder(com[0], "./") == 1)
+		{
+			if (check_cmllas(com[0]) == 1)
+				com[0] = gest_cmllas(com[i]);
+			gen_data->cmd[y].cmd = com[0];
+			process_args(s, gen_data, y);
+			return ;
+		}
+		while (com[i])
+		{
+			if (check_cmllas(com[i]) == 1)
+				com[i] = gest_cmllas(com[i]);
+			i++;
+		}
+		gen_data->cmd[y].cmd = check_cmd(com[0], env);
+		i = 0;
 		process_args(s, gen_data, y);
-		return ;
-	}
-	while (com[i])
-	{
-		if (check_cmllas(com[i]) == 1)
-			com[i] = gest_cmllas(com[i]);
-		i++;
-	}
-	gen_data->cmd[y].cmd = check_cmd(com[0], env);
-	i = 0;
-	process_args(s, gen_data, y);
-	while (com[i])
-		free(com[i++]);
+		while (com[i])
+			free(com[i++]);
 	}
 }
 
@@ -190,7 +192,7 @@ int     main(int argc, char **argv,  char *env[])
 			//	while (gen_data.cmd->args[y])
 			//		printf("%s\n", gen_data.cmd->args[y++]);
 			//	printf("--%d--\n", gen_data.n_cmd);
-		//		ft_check_comand(&gen_data);
+				ft_check_comand(&gen_data);
 				while(gen_data.sort[y])
 					printf("--%c--\n", gen_data.sort[y++]);
 				y = 0;

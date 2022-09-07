@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 10:05:16 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 13:58:49 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ static void	ft_print_export(t_general_data *gen_data) // ! Copy Leaks
 	ft_free_arg(copy);
 }
 
-static void	ft_export_arguments(t_general_data *gen_data)
+static void	ft_export_arguments(t_general_data *gen_data, int position)
 {
 	int		x;
 	char	*variable;
 	char	*value;
 
 	x = -1;
-	while (gen_data->blt->args[++x])
+	while (gen_data->blt[position].args[++x])
 	{
-		variable = ft_variables(gen_data->blt->args[x]);
-		value = ft_value(gen_data->blt->args[x]);
+		variable = ft_variables(gen_data->blt[position].args[x]);
+		value = ft_value(gen_data->blt[position].args[x]);
 		if (ft_find_variable(variable, gen_data->env) == 0)
 			ft_create_variable(variable, value, gen_data->env);
 		else
@@ -99,10 +99,10 @@ static void	ft_export_arguments(t_general_data *gen_data)
 	}
 }
 
-void	ft_export(t_general_data *gen_data)
+void	ft_export(t_general_data *gen_data, int position)
 {
-	if (gen_data->blt->args[0])
-		ft_export_arguments(gen_data);
+	if (gen_data->blt[position].args[0])
+		ft_export_arguments(gen_data, position);
 	else
 		ft_print_export(gen_data);
 	ft_change_good_status(gen_data->env);
