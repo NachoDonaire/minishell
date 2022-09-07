@@ -44,6 +44,7 @@ typedef struct s_general
 	int		n_pipes;
 	int		built;
 	int		n_built;
+	char	*sort;
 }	t_general_data;
 
 void	rl_replace_line(const char *text, int clear_undo);
@@ -172,4 +173,9 @@ char	*ft_strrchr(const char *s, int c);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+/*en memory.c*/
+void	reserva(t_general_data *gen_data);
+void	needed_free(t_general_data *gen_data, int y);
+
 #endif

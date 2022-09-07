@@ -75,7 +75,10 @@ void	process_string(char *s, t_general_data *gen_data, char *const env[], int y)
 	i = 0;
 	process_sing_red(gen_data, s, y);
 	process_in_red(gen_data, s, y);
-	check_builtins(s, gen_data, 0);
+	gen_data->built = 0;
+	check_builtins(s, gen_data, y);
+	if (gen_data->built == 0)
+	{
 	com = ft_split(s, ' ');
 	if (finder(com[0], "./") == 1)
 	{
@@ -96,6 +99,7 @@ void	process_string(char *s, t_general_data *gen_data, char *const env[], int y)
 	process_args(s, gen_data, y);
 	while (com[i])
 		free(com[i++]);
+	}
 }
 
 void	process_args(char *s, t_general_data *gen_data, int y)
@@ -157,7 +161,9 @@ int     main(int argc, char **argv,  char *env[])
 	char            *s;
 	t_general_data    gen_data;
 	char			*tmp;
+	int				y;
 
+	y = 0;
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -166,6 +172,7 @@ int     main(int argc, char **argv,  char *env[])
 		gen_data.n_pipes = 0;
 		gen_data.built = 0;
 		gen_data.n_built = 0;
+		gen_data.n_cmd = 1;
 		s = readline("Minishell> ");
 		if (s)
 		{
@@ -176,12 +183,17 @@ int     main(int argc, char **argv,  char *env[])
 				free(tmp);
 				add_history(s);
 				n_pipes(&gen_data, s);
-				gen_data.cmd = malloc(sizeof(t_cmd_data) * (gen_data.n_pipes + 1));
-				gen_data.blt = malloc(1024);
+				reserva(&gen_data);
 				if (ft_check_exit(s) == 1)
 					ft_exit(s, gen_data.env);
 				process_input(s, &gen_data, gen_data.env);
-				ft_check_comand(&gen_data);
+			//	while (gen_data.cmd->args[y])
+			//		printf("%s\n", gen_data.cmd->args[y++]);
+			//	printf("--%d--\n", gen_data.n_cmd);
+		//		ft_check_comand(&gen_data);
+				while(gen_data.sort[y])
+					printf("--%c--\n", gen_data.sort[y++]);
+				y = 0;
 				/*while (y <= gen_data.n_pipes && finder(s, "<") == 1)
 				{
 					while (gen_data.cmd[y].in[z])
@@ -190,8 +202,11 @@ int     main(int argc, char **argv,  char *env[])
 					z = 0;
 					y++;
 				}*/
+				free(gen_data.sort);
 				free(s);
+				needed_free(&gen_data, gen_data.n_cmd);
 			}
+		//	printf("%s\n", gen_data.cmd[0].cmd);
 		}
 		else
 			ft_exit(s, gen_data.env);

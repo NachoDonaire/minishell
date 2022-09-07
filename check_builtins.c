@@ -29,11 +29,24 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 	{
 		tmp = ft_split(s, ' ');
 		paste_in_built(gen_data, tmp[0]);
-		copy = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt), ft_strlen(s));
+		copy = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt), ft_strlen(s) + 1);
 		gen_data->blt[gen_data->n_built].args = ft_split(copy, ' ');
-		gen_data->cmd[y].cmd = "builtin";
-		gen_data->cmd[y].args = NULL;
+	//	printf("//%d//", y);
+	gen_data->cmd[y].cmd = malloc(sizeof(char) * 8); 
+		//gen_data->cmd[y].cmd = "builtin";
+		gen_data->cmd[y].args =  malloc(sizeof(char *) * 1);
+		gen_data->cmd[y].args[0] = malloc(sizeof(char) * 2);
+	//	gen_data->cmd[y].args[0] = "a"; 
+	//	gen_data->cmd[y].args[1] = 0;
 		gen_data->built = 1;
 		gen_data->n_built++;
 	}
+	/*
+	else
+	{
+		gen_data->blt[gen_data->n_built].blt = malloc(sizeof(char) * 1);
+		gen_data->cmd[y].args =  malloc(sizeof(char *) * 1);
+		gen_data
+		*/
+
 }

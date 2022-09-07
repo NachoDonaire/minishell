@@ -2,10 +2,12 @@
 
 void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *const env[])
 {
-	int	i;
+	int		i;
 	char	**tmp;
-	int	y;
+	int		y;
+	int		z;
 
+	z = 0;
 	tmp = ft_split(s, '|');
 	i = 0;
 	y = 0;
@@ -20,11 +22,19 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *const env[])
 			if (check_cmllas(tmp[i]) == 1)
 				tmp[i] = gest_cmllas(tmp[i]);
 			if (gen_data->built != 1)
+			{
+				gen_data->sort[z] = '1';
 				process_string(tmp[i], gen_data, env, y);
+			}
+			else if (gen_data->built == 1)
+				gen_data->sort[z] = '0';
+			z++;
 			y++;
 		}
 		i++;
 	}
+	gen_data->sort[z] = '\0';
+	gen_data->n_cmd = y;
 	free_tmp(tmp);
 }
 

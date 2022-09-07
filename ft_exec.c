@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 10:07:05 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 12:19:21 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_exec(t_general_data *gen_data) // ! NOT FUNCTIONAL (TEMPORARY)
 				return ;
 			}
 		}
-		ft_free_arg(copy);
 		ft_change_good_status(gen_data->env);
 	}
 }

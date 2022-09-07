@@ -62,6 +62,5 @@ void	n_pipes(t_general_data *gen_data, char *s)
 			gen_data->n_pipes++;
 		i++;
 	}
-	gen_data->n_cmd++;
 }
 

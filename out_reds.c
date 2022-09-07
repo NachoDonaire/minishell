@@ -115,7 +115,7 @@ void	process_sing_red(t_general_data *gen_data, char *s, int y)
 	{
 		gen_data->cmd[y].dred = 0;
 		gen_data->cmd[y].out = malloc(sizeof(char *) * 1);
-		gen_data->cmd[y].out[0] = "";
+		gen_data->cmd[y].out[0] = malloc(1); 
 	}
 }
 

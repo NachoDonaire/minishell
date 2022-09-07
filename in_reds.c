@@ -87,6 +87,6 @@ void	process_in_red(t_general_data *gen_data, char *s, int y)
 	else
 	{
 		gen_data->cmd[y].in = malloc(sizeof(char) * 1);
-		gen_data->cmd[y].in[0] = "";
+		gen_data->cmd[y].in[0] = malloc(1);
 	}
 }
