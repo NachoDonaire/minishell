@@ -41,7 +41,7 @@ char	*free_for_checkin_cmd(char **sol, char *k, int y)
 	return (k);
 }
 
-char	*check_cmd(char *cmd, char *const env[])
+char	*check_cmd(char *cmd, char *env[])
 {
 	char	*path;
 	char	*k;

@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/07 16:44:02 by sasalama          #+#    #+#             */
+/*   Updated: 2022/09/07 16:44:26 by sasalama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # ifndef MINILIB_H
-#define MINILIB_H
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+# define MINILIB_H
+
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
