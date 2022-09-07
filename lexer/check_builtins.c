@@ -31,9 +31,16 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 		paste_in_built(gen_data, tmp[0]);
 		copy = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt), ft_strlen(s) + 1);
 		gen_data->blt[gen_data->n_built].args = ft_split(copy, ' ');
-		gen_data->cmd[y].cmd = malloc(sizeof(char) * 8); 
-		gen_data->cmd[y].args = malloc(sizeof(char *) * 1);
-		gen_data->cmd[y].args[0] = malloc(sizeof(char) * 2);
+		gen_data->cmd[y].cmd = malloc(1); 
+		gen_data->cmd[y].args = malloc(1);
+		gen_data->cmd[y].args[0] = malloc(1);
+		gen_data->cmd[y].args[0] = NULL;
+		gen_data->cmd[y].out = malloc(1);
+		gen_data->cmd[y].in = malloc(1);
+		gen_data->cmd[y].out[0] = malloc(1);
+		gen_data->cmd[y].out[0] = NULL;
+		gen_data->cmd[y].in[0] = malloc(1);
+		gen_data->cmd[y].in[0] = NULL;
 		gen_data->built = 1;
 		gen_data->n_built++;
 	}

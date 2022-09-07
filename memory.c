@@ -25,11 +25,11 @@ void	needed_free(t_general_data *gen_data, int y)
 	{
 		if (gen_data->cmd[i].cmd)
 			free(gen_data->cmd[i].cmd);
-		if (gen_data->cmd[i].args)
+		if (gen_data->cmd[i].args[0])
 			ft_free_arg(gen_data->cmd[i].args);
-		if (gen_data->cmd[i].out)
+		if (gen_data->cmd[i].out[0])
 			ft_free_arg(gen_data->cmd[i].out);
-		if (gen_data->cmd[i].in)
+		if (gen_data->cmd[i].in[0])
 			ft_free_arg(gen_data->cmd[i].in);
 		i++;
 	}
