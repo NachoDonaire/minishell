@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:18:10 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:21:28 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,15 @@ int		finder(char *s, char *find);
 int		check_cmllas(char *s);
 char	*gest_cmllas(char *s);
 
-/*en prueba2.c */
+/*en ft_process_input.c*/
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y);
-void	process_exit(char *s, int *i);
+void	process_args(char *s, t_general_data *gen_data, int y);
+void	process_input(char *s, t_general_data *gen_data, char *env[]);
+
+/*en prueba2.c */
 void	the_cmd(char *s, char *env[], t_general_data *gen_data);
 void	cmd_args(char *s, t_cmd_data *cmd);
 void	needed_free_cmd(t_general_data *gen_data);
-void	process_args(char *s, t_general_data *gen_data, int y);
 
 /*en n_cmd*/
 void	n_pipes(t_general_data *gen_data, char *s);
