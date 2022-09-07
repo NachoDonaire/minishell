@@ -1,4 +1,4 @@
-SRCS	=	prueba2.c utils.c memory.c ft_status.c env/ft_get_env.c \
+SRCS	=	main.c utils/utils.c memory.c status/ft_status.c env/ft_get_env.c \
 			lexer/comillas.c lexer/n_pipes.c lexer/check_builtins.c lexer/check_cmd.c lexer/check_pipes.c lexer/out_reds.c lexer/in_reds.c \
 			funciones_libft/ft_split.c funciones_libft/ft_calloc.c funciones_libft/ft_memcpy.c funciones_libft/ft_strchr.c funciones_libft/ft_strlen.c funciones_libft/ft_strjoin.c \
 			funciones_libft/ft_strncmp.c funciones_libft/ft_strrchr.c funciones_libft/ft_substr.c funciones_libft/ft_putchar_fd.c funciones_libft/ft_putstr_fd.c \
