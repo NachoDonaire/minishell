@@ -13,7 +13,7 @@ static void	ft_exit(char *texto, char **tmp)
 
 	x = 0;
 	if (texto)
-		printf("%s\n",texto);
+		printf("%s\n", texto);
 	else
 		printf("exit\n");
 	while (tmp[x])

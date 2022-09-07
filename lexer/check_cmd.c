@@ -22,7 +22,8 @@ char	*obtain_cmd(char **tmp, int i)
 
 char	*free_for_checkin_cmd(char **sol, char *k, int y)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	if (!sol[y])
@@ -34,7 +35,8 @@ char	*free_for_checkin_cmd(char **sol, char *k, int y)
 	if (!k)
 	{
 		free(k);
-		return ("no_cmd");
+		tmp = ft_substr("no_cmd", 0, 7);
+		return (tmp);
 	}
 	return (k);
 }
