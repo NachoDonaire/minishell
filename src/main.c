@@ -131,7 +131,7 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 //	if (gen_data->built == 1)
 //		return ;
 	if (finder(s, "|") == 1 || finder(s, "&") == 1)
-		process_string_with_pipes(gen_data, s, env);
+		process_string_w_pipes(gen_data, s, env);
 	else
 		process_string(s, gen_data, env, 0);
 	while (aux[i])

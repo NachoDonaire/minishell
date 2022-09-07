@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 16:44:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:44:26 by sasalama         ###   ########.fr       */
+/*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
+/*   Updated: 2022/09/07 16:58:55 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef MINILIB_H
-# define MINILIB_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -75,12 +75,12 @@ int		check_cmllas(char *s);
 char	*gest_cmllas(char *s);
 
 /*en prueba2.c */
-int     finder(char *s, char *find);
+int		finder(char *s, char *find);
 int		extreme_finder(char *s, char *find);
-void    process_string(char *s, t_general_data *gen_data, char *env[], int y);
-void    process_exit(char *s, int *i);
-void    the_cmd(char *s, char *env[], t_general_data *gen_data);
-void    cmd_args(char *s, t_cmd_data *cmd);
+void	process_string(char *s, t_general_data *gen_data, char *env[], int y);
+void	process_exit(char *s, int *i);
+void	the_cmd(char *s, char *env[], t_general_data *gen_data);
+void	cmd_args(char *s, t_cmd_data *cmd);
 void	needed_free_cmd(t_general_data *gen_data);
 void	process_args(char *s, t_general_data *gen_data, int y);
 
@@ -92,19 +92,19 @@ void	check_cmd_pipe(t_general_data *gen_data, char *s, char *env[]);
 void	check_builtins(char *s, t_general_data *gen_data, int y);
 
 /*ft_strjoin*/
-char     *copy(char *s1, char *s2, char *x);
-char     *cncat(char *s1, char *s2);
+char	*copy(char *s1, char *s2, char *x);
+char	*cncat(char *s1, char *s2);
 
 /*en check_cmd.c*/
-char    *obtain_cmd(char **tmp, int i);
-char    *free_for_checkin_cmd(char **sol, char *k, int y);
+char	*obtain_cmd(char **tmp, int i);
+char	*free_for_checkin_cmd(char **sol, char *k, int y);
 char	*check_cmd(char *cmd, char *env[]);
 
 /*en check_pipes.c*/
-void    handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[]);
-void    process_string_with_pipes(t_general_data *gen_data, char *s, char *env[]);
+void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[]);
+void	process_string_w_pipes(t_general_data *gen_data, char *s, char *env[]);
 char	*handle_cont_pipe(char *join);
-int		gest_ampersand(char *s, t_general_data *gen_data, char *env[],  int y);
+int		gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y);
 void	free_tmp(char **tmp);
 
 /*en out_reds.c*/
@@ -185,7 +185,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
-char    *ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(char *s1, char *s2);
 
 /*en memory.c*/
 void	reserva(t_general_data *gen_data);

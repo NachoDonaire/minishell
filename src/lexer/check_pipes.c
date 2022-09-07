@@ -84,7 +84,7 @@ char	*handle_cont_pipe(char *join)
 	return (join);
 }
 
-void	process_string_with_pipes(t_general_data *gen_data, char *s, char *env[])
+void	process_string_w_pipes(t_general_data *gen_data, char *s, char *env[])
 {
 	handle_cmd_pipes(gen_data, s, env);
 }
