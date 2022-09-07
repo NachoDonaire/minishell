@@ -22,39 +22,39 @@ static void	ft_exit(char *texto, char **tmp)
 	exit(0);
 }
 
-int     finder(char *s, char *find)
+int	finder(char *s, char *find)
 {
-        int     i;
-        int     y;
+	int	i;
+	int	y;
 
-        i = 0;
-        y = 0;
-        if (!s)
-                return (0);
-        while (s[i])
-        {
-                while (s[i] == find[y])
-                {
-                        y++;
-                        i++;
-                        if (find[y] == '\0')
-                                return (1);
-                }
-                y = 0;
-                i++;
-        }
-        return (0);
+	i = 0;
+	y = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		while (s[i] == find[y])
+		{
+			y++;
+			i++;
+			if (find[y] == '\0')
+				return (1);
+		}
+		y = 0;
+		i++;
+	}
+	return (0);
 }
 
 int	extreme_finder(char *s, char *find)
 {
-        int     i;
-        int     y;
+	int	i;
+	int	y;
 
-        i = 0;
-        y = 0;
-        if (!s)
-                return (0);
+	i = 0;
+	y = 0;
+	if (!s)
+		return (0);
 	while (s[i] == ' ')
 		i++;
 	while (s[i] == find[y])
@@ -64,13 +64,13 @@ int	extreme_finder(char *s, char *find)
 		if (find[y] == '\0')
 			return (1);
 	}
-        return (0);
+	return (0);
 }
 
 void	process_string(char *s, t_general_data *gen_data, char *const env[], int y)
 {
 	char	**com;
-	int	i;
+	int		i;
 
 	i = 0;
 	process_sing_red(gen_data, s, y);
@@ -106,8 +106,8 @@ void	process_string(char *s, t_general_data *gen_data, char *const env[], int y)
 
 void	process_args(char *s, t_general_data *gen_data, int y)
 {
-	char 	**com;
-	int	i;
+	char	**com;
+	int		i;
 
 	i = 0;
 	com = ft_split(s, ' ');
@@ -160,8 +160,8 @@ static void	handle_sigint(int sig)
 
 int     main(int argc, char **argv,  char *env[])
 {
-	char            *s;
-	t_general_data    gen_data;
+	char			*s;
+	t_general_data	gen_data;
 	char			*tmp;
 	int				y;
 

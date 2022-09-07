@@ -17,7 +17,6 @@ int	check_cmllas(char *s)
 				return (1);
 			/*if ((s[i] == '\0' || s[i] == ' ') && s[i - 1] == '"')
 			   return (1);*/
-
 		}
 	}
 	return (0);

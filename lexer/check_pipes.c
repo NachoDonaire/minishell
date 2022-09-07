@@ -41,7 +41,7 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *const env[])
 int	gest_ampersand(char *s, t_general_data *gen_data, char *const env[], int y)
 {
 	char	**tmp;
-	int	i;
+	int		i;
 
 	tmp = ft_split(s, '&');
 	i = 0;
@@ -70,9 +70,6 @@ void	free_tmp(char **tmp)
 	free(tmp);
 }
 
-
-
-
 char	*handle_cont_pipe(char *join)
 {
 	int	i;
@@ -91,8 +88,3 @@ void	process_string_with_pipes(t_general_data *gen_data, char *s, char *const en
 {
 	handle_cmd_pipes(gen_data, s, env);
 }
-
-
-
-
-

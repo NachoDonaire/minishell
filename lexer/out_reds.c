@@ -36,7 +36,7 @@ int	find_red(char *s)
 void	gest_reds(t_general_data *gen_data, char *s, int y)
 {
 	char	**tmp;
-	int	i;
+	int		i;
 
 	tmp = ft_split(s, '>');
 	i = 0;
