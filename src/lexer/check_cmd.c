@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:22:58 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:03:21 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ char	*obtain_cmd(char **tmp, int i)
 	while (tmp[i][y] != ' ' && tmp[i][y])
 		cmd[z++] = tmp[i][y++];
 	cmd[z] = '\0';
-/*	if (check_cmllas(cmd) == 1)
-		cmd = gest_cmllas(cmd);
-		*/
 	return (cmd);
 }
 
@@ -42,7 +39,7 @@ char	*free_for_checkin_cmd(char **sol, char *k, int y)
 	{
 		while (sol[i])
 			free(sol[i++]);
-		k = NULL;
+		k = 0;
 	}
 	if (!k)
 	{
@@ -66,7 +63,6 @@ char	*check_cmd(char *cmd, char *env[])
 	k = pseudo_join(sol[i], cmd);
 	while (sol[i] && access(k, F_OK) < 0)
 	{
-//		printf("--%d--\n", access(k, F_OK));
 		free(k);
 		i++;
 		if (sol[i])

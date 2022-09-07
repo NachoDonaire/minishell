@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:09 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:23:10 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:08:56 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	find_in_red(char *s)
 	return (0);
 }
 
-void    memory_for_in_red(t_general_data *gen_data, char **tmp, int y)
+void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y)
 {
 	int	i;
 	int	z;
@@ -46,7 +46,7 @@ void    memory_for_in_red(t_general_data *gen_data, char **tmp, int y)
 	}
 }
 
-void    paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y)
+void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y)
 {
 	int	z;
 	int	i;

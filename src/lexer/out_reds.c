@@ -6,25 +6,11 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:23:16 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:10:55 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	find_double_red(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '>' && s[i + 1] == '>' && s[i + 2] != '>')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	find_red(char *s)
 {
@@ -127,7 +113,7 @@ void	process_sing_red(t_general_data *gen_data, char *s, int y)
 	{
 		gen_data->cmd[y].dred = 0;
 		gen_data->cmd[y].out = malloc(sizeof(char *) * 1);
-		gen_data->cmd[y].out[0] = malloc(1); 
+		gen_data->cmd[y].out[0] = malloc(1);
 	}
 }
 

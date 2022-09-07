@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:04 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:23:05 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:08:35 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	check_cmllas(char *s)
 			i++;
 			if (s[i] == '"')
 				return (1);
-			/*if ((s[i] == '\0' || s[i] == ' ') && s[i - 1] == '"')
-			   return (1);*/
 		}
 	}
 	return (0);

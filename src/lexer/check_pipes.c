@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:23:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:38:31 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 	}
 	gen_data->sort[z] = '\0';
 	gen_data->n_cmd = y;
-	free_tmp(tmp);
+	ft_free_arg(tmp);
 }
 
 int	gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y)
@@ -68,18 +68,8 @@ int	gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y)
 		i++;
 		y++;
 	}
-	free_tmp(tmp);
+	ft_free_arg(tmp);
 	return (y);
-}
-
-void	free_tmp(char **tmp)
-{
-	int	i;
-
-	i = 0;
-	while (tmp[i])
-		free(tmp[i++]);
-	free(tmp);
 }
 
 char	*handle_cont_pipe(char *join)

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:22:37 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:54:42 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,59 +21,46 @@ void	needed_free_cmd(t_general_data *gen_data)
 		free(gen_data->cmd[i++].cmd);
 }
 
-int main(int argc, char **argv, char *env[])
+static void	ft_iniciate(t_general_data *gen_data)
+{
+	gen_data->n_pipes = 0;
+	gen_data->built = 0;
+	gen_data->n_built = 0;
+	gen_data->n_cmd = 1;
+}
+
+static void	ft_free_all(t_general_data *gen_data, char *s)
+{
+	free(gen_data->sort);
+	free(s);
+	needed_free(gen_data, gen_data->n_cmd);
+}
+
+int	main(int argc, char **argv, char *env[])
 {
 	char			*s;
 	t_general_data	gen_data;
-	char			*tmp;
-	int				y;
 
-	y = 0;
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
 		signal(SIGINT, handle_sigint);
 		signal(SIGQUIT, SIG_IGN);
-		gen_data.n_pipes = 0;
-		gen_data.built = 0;
-		gen_data.n_built = 0;
-		gen_data.n_cmd = 1;
+		ft_iniciate(&gen_data);
 		s = readline("Minishell> ");
-		if (s)
+		if (s && s[0])
 		{
-			if (s[0])
-			{
-				tmp = s;
-				s = ft_substr(s, 0, ft_strlen(s));
-				free(tmp);
-				add_history(s);
-				n_pipes(&gen_data, s);
-				reserva(&gen_data);
-				if (ft_check_exit(s) == 1)
-					ft_exit(s, gen_data.env);
-				process_input(s, &gen_data, gen_data.env);
-			//	while (gen_data.cmd->args[y])
-			//		printf("%s\n", gen_data.cmd->args[y++]);
-			//	printf("--%d--\n", gen_data.n_cmd);
-				ft_check_comand(&gen_data);
-				y = 0;
-				/*while (y <= gen_data.n_pipes && finder(s, "<") == 1)
-				{
-					while (gen_data.cmd[y].in[z])
-						printf("%s\n", gen_data.cmd[y].in[z++]);
-					printf("%d\n", gen_data.cmd[y].dred);
-					z = 0;
-					y++;
-				}*/
-				free(gen_data.sort);
-				free(s);
-				needed_free(&gen_data, gen_data.n_cmd);
-			}
-		//	printf("%s\n", gen_data.cmd[0].cmd);
+			add_history(s);
+			n_pipes(&gen_data, s);
+			reserva(&gen_data);
+			if (ft_check_exit(s) == 1)
+				ft_exit(s, gen_data.env);
+			process_input(s, &gen_data, gen_data.env);
+			ft_check_comand(&gen_data);
+			ft_free_all(&gen_data, s);
 		}
-		else
+		else if (!s)
 			ft_exit(s, gen_data.env);
 	}
-	printf("exit\n");
 	return (0);
 }

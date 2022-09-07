@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:21:28 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:30:17 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[]);
 void	process_string_w_pipes(t_general_data *gen_data, char *s, char *env[]);
 char	*handle_cont_pipe(char *join);
 int		gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y);
-void	free_tmp(char **tmp);
 
 /*en out_reds.c*/
 int		find_red(char *s);
