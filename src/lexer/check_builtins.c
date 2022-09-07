@@ -30,6 +30,8 @@ void	paste_in_built(t_general_data *gen_data, char *s)
 	gen_data->blt[gen_data->n_built].blt[z] = '\0';
 }
 
+
+
 void	check_builtins(char *s, t_general_data *gen_data, int y)
 {
 	char	**tmp;
@@ -54,6 +56,8 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 		gen_data->cmd[y].in[0] = malloc(1);
 		gen_data->cmd[y].in[0] = NULL;
 		gen_data->built = 1;
+		process_sing_red(gen_data, s, y, 1);
+		process_in_red(gen_data, s, y, 1);
 		gen_data->n_built++;
 	}
 }

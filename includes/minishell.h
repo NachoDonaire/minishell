@@ -33,6 +33,9 @@ typedef struct s_builtin
 {
 	char	*blt;
 	char	**args;
+	char	**out;
+	char	**in;
+	int		dred;
 	int		nb_arguments;
 }	t_builtin_data;
 
@@ -113,17 +116,17 @@ void	free_tmp(char **tmp);
 
 /*en out_reds.c*/
 int		find_red(char *s);
-void	gest_reds(t_general_data *gen_data, char *s, int y);
-void	process_sing_red(t_general_data *gen_data, char *s, int y);
-void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y);
-void	memory_for_red(t_general_data *gen_data, char **tmp, int y);
+void	gest_reds(t_general_data *gen_data, char *s, int y, int ref);
+void	process_sing_red(t_general_data *gen_data, char *s, int y, int ref);
+void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y, int ref);
+void	memory_for_red(t_general_data *gen_data, char **tmp, int y, int ref);
 
 /*en in_reds.c*/
 int		find_in_red(char *s);
-void	gest_in_reds(t_general_data *gen_data, char *s, int y);
-void	process_in_red(t_general_data *gen_data, char *s, int y);
-void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y);
-void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y);
+void	gest_in_reds(t_general_data *gen_data, char *s, int y, int ref);
+void	process_in_red(t_general_data *gen_data, char *s, int y, int ref);
+void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
+void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
 
 
 /*exec builtins*/

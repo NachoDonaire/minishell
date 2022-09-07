@@ -27,9 +27,13 @@ int main(int argc, char **argv, char *env[])
 	t_general_data	gen_data;
 	char			*tmp;
 	int				y;
+	int			z;
 
+	z = 0;
 	y = 0;
 	gen_data.env = get_env(env);
+	if (y == 233333 || z == 987678)
+		write(1, "a", 1);
 	while (argc && argv)
 	{
 		signal(SIGINT, handle_sigint);
@@ -52,10 +56,19 @@ int main(int argc, char **argv, char *env[])
 				if (ft_check_exit(s) == 1)
 					ft_exit(s, gen_data.env);
 				process_input(s, &gen_data, gen_data.env);
+/*				while (y < gen_data.n_built)
+				{
+					while (gen_data.blt[y].out[z])
+						printf("%s\n", gen_data.blt[y].out[z++]);
+					z = 0;
+					y++;
+				}
+				*/
+
 			//	while (gen_data.cmd->args[y])
 			//		printf("%s\n", gen_data.cmd->args[y++]);
 			//	printf("--%d--\n", gen_data.n_cmd);
-				ft_check_comand(&gen_data);
+				//ft_check_comand(&gen_data);
 				y = 0;
 				/*while (y <= gen_data.n_pipes && finder(s, "<") == 1)
 				{

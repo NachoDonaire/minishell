@@ -18,8 +18,8 @@ void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 	int		i;
 
 	i = 0;
-	process_sing_red(gen_data, s, y);
-	process_in_red(gen_data, s, y);
+	process_sing_red(gen_data, s, y, 0);
+	process_in_red(gen_data, s, y, 0);
 	gen_data->built = 0;
 	check_builtins(s, gen_data, y);
 	gen_data->sort[0] = '0';
