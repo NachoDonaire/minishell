@@ -1,4 +1,4 @@
-#include "../minishell.h"
+#include "../includes/minishell.h"
 
 /*en el propio comando*/
 int	check_cmllas(char *s)

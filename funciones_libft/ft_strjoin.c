@@ -6,11 +6,11 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:59:36 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 15:00:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:31:17 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../includes/minishell.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {

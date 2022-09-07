@@ -1,4 +1,4 @@
-#include "../minishell.h"
+#include "../includes/minishell.h"
 
 void	paste_in_built(t_general_data *gen_data, char *s)
 {

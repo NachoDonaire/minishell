@@ -1,4 +1,4 @@
-#include "../minishell.h"
+#include "../includes/minishell.h"
 /*
 void	free_check_cmd_pipe(char *com, char **args)
 {

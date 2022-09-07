@@ -6,11 +6,11 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:59:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 11:45:04 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:31:17 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../includes/minishell.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

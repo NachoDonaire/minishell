@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include "../minishell.h"
+#include "../includes/minishell.h"
 /*
 void	freeear(char **sol, char *k, t_general_data *gen_data)
 {
