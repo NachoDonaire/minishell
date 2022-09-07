@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:31 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/06 18:26:00 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 10:04:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static void	ft_print(int x, int z, t_general_data *gen_data)
 	int		y;
 	char	**s;
 
-	s = gen_data->blt.args;
+	s = gen_data->blt->args;
 	y = 0;
 	if (ft_dollar(s[x]) == 0)
 		printf("%s", s[x]);
 	else
 	{
-		ft_quotation(s, x, z, gen_data->blt.nb_arguments);
+		ft_quotation(s, x, z, gen_data->blt->nb_arguments);
 		while (s[x][y])
 		{
 			if (s[x][y] != '$' && s[x][y] != 39 && s[x][y] != 34)
@@ -44,7 +44,7 @@ static void	ft_print(int x, int z, t_general_data *gen_data)
 				printf("%c", s[x][y]);
 			y++;
 		}
-		ft_quotation(s, x, z, gen_data->blt.nb_arguments);
+		ft_quotation(s, x, z, gen_data->blt->nb_arguments);
 	}
 }
 
@@ -52,19 +52,19 @@ static	void	ft_print_quotation(int *c, t_general_data *gen_data, int x)
 {
 	int	z;
 
-	z = ft_strlen(gen_data->blt.args[x]) - 1;
-	if (ft_print_quotation_s(gen_data->blt.args[x]) == 0 && gen_data->blt.args[x][z] != 34)
+z = ft_strlen(gen_data->blt->args[x]) - 1;
+	if (ft_print_quotation_s(gen_data->blt->args[x]) == 0 && gen_data->blt->args[x][z] != 34)
 	{
 		c[0] = 1;
 		printf("'");
 	}
-	if (ft_print_quotation_d(gen_data->blt.args[x]) == 0 && gen_data->blt.args[x][z] != 39)
+	if (ft_print_quotation_d(gen_data->blt->args[x]) == 0 && gen_data->blt->args[x][z] != 39)
 	{
 		c[1] = 1;
 		printf("\"");
 	}
 	ft_print(x, z, gen_data);
-	if (gen_data->blt.args[x + 1])
+	if (gen_data->blt->args[x + 1])
 		printf(" ");
 }
 
@@ -79,10 +79,10 @@ static int	ft_check_nl(t_general_data *gen_data)
 	quotation[0] = 0;
 	quotation[1] = 0;
 	new_line = 1;
-	while (gen_data->blt.args[x])
+	while (gen_data->blt->args[x])
 	{
-		z = ft_n(gen_data->blt.args[x]);
-		if (ft_strncmp(gen_data->blt.args[x], "-n", 2) == 0 && z == 0)
+		z = ft_n(gen_data->blt->args[x]);
+		if (ft_strncmp(gen_data->blt->args[x], "-n", 2) == 0 && z == 0)
 			new_line = 0;
 		else
 			ft_print_quotation(quotation, gen_data, x);
@@ -100,11 +100,11 @@ void	ft_echo(t_general_data *gen_data)
 	int		new_line;
 
 	new_line = 1;
-	gen_data->blt.nb_arguments = ft_nb_arguments(gen_data->blt.args);
-	if (gen_data->blt.args[0])
+	gen_data->blt->nb_arguments = ft_nb_arguments(gen_data->blt->args);
+	if (gen_data->blt->args[0])
 	{
 		new_line = ft_check_nl(gen_data);
-		ft_free_arg(gen_data->blt.args);
+		ft_free_arg(gen_data->blt->args);
 	}
 	if (new_line == 1)
 		printf("\n");

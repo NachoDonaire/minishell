@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/06 17:54:50 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 10:07:05 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_exec(t_general_data *gen_data) // ! NOT FUNCTIONAL (TEMPORARY)
 	char	**copy;
 	char	*tmp;
 
-	
 	if (gen_data->cmd->args[0])
 	{
 		copy = gen_data->cmd->args;

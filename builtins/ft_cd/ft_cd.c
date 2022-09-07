@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/06 11:23:35 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 10:02:34 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_cd(t_general_data *gen_data)
 {
 	char	*tmp;
 
-	if (!gen_data->blt.args[0])
+	if (!gen_data->blt->args[0])
 	{
 		tmp = getcwd(NULL, 0);
 		if (chdir(getenv("HOME")) != 0)
@@ -84,8 +84,8 @@ void	ft_cd(t_general_data *gen_data)
 	else
 	{
 		tmp = getcwd(NULL, 0);
-		if (chdir(gen_data->blt.args[0]) != 0)
-			ft_error_arguments_cd(gen_data->blt.args[0], gen_data->env);
+		if (chdir(gen_data->blt->args[0]) != 0)
+			ft_error_arguments_cd(gen_data->blt->args[0], gen_data->env);
 		else
 			ft_change_variable_oldpwd(gen_data->env, tmp);
 		free(tmp);
