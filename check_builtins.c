@@ -1,5 +1,23 @@
 #include "minishell.h"
 
+void	paste_in_built(t_general_data *gen_data, char *s)
+{
+	int	i;
+	int	z;
+
+	i = 0;
+	z = 0;
+	while (s[i])
+		i++;
+	gen_data->blt[gen_data->n_built].blt = malloc(sizeof(char) * (i + 1));
+	i = 0;
+	while (s[i] == ' ')
+		i++;
+	while (s[i])
+		gen_data->blt[gen_data->n_built].blt[z++] = s[i++];
+	gen_data->blt[gen_data->n_built].blt[z] = '\0';
+}
+
 void	check_builtins(char *s, t_general_data *gen_data, int y)
 {
 	char	**tmp;
@@ -10,12 +28,12 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 			|| extreme_finder(s, "unset") == 1 || extreme_finder(s, "env") == 1)
 	{
 		tmp = ft_split(s, ' ');
-		gen_data->blt->blt = ft_substr(tmp[0], 0, ft_strlen(tmp[0]));
-		copy = ft_substr(s, ft_strlen(tmp[0]), ft_strlen(s));
-		ft_free_arg(tmp);
-		gen_data->blt->args = ft_split(copy, ' ');
+		paste_in_built(gen_data, tmp[0]);
+		copy = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt), ft_strlen(s));
+		gen_data->blt[gen_data->n_built].args = ft_split(copy, ' ');
 		gen_data->cmd[y].cmd = "builtin";
 		gen_data->cmd[y].args = NULL;
 		gen_data->built = 1;
+		gen_data->n_built++;
 	}
 }

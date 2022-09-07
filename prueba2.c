@@ -165,6 +165,7 @@ int     main(int argc, char **argv,  char *env[])
 		signal(SIGQUIT, SIG_IGN);
 		gen_data.n_pipes = 0;
 		gen_data.built = 0;
+		gen_data.n_built = 0;
 		s = readline("Minishell> ");
 		if (s)
 		{
@@ -176,6 +177,7 @@ int     main(int argc, char **argv,  char *env[])
 				add_history(s);
 				n_pipes(&gen_data, s);
 				gen_data.cmd = malloc(sizeof(t_cmd_data) * (gen_data.n_pipes + 1));
+				gen_data.blt = malloc(1024);
 				if (ft_check_exit(s) == 1)
 					ft_exit(s, gen_data.env);
 				process_input(s, &gen_data, gen_data.env);

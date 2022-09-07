@@ -43,6 +43,7 @@ typedef struct s_general
 	int		n_cmd;
 	int		n_pipes;
 	int		built;
+	int		n_built;
 }	t_general_data;
 
 void	rl_replace_line(const char *text, int clear_undo);
