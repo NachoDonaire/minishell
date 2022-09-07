@@ -1,10 +1,10 @@
-SRCS	=	main.c utils/utils.c memory.c status/ft_status.c env/ft_get_env.c \
-			lexer/comillas.c lexer/n_pipes.c lexer/check_builtins.c lexer/check_cmd.c lexer/check_pipes.c lexer/out_reds.c lexer/in_reds.c \
-			funciones_libft/ft_split.c funciones_libft/ft_calloc.c funciones_libft/ft_memcpy.c funciones_libft/ft_strchr.c funciones_libft/ft_strlen.c funciones_libft/ft_strjoin.c \
-			funciones_libft/ft_strncmp.c funciones_libft/ft_strrchr.c funciones_libft/ft_substr.c funciones_libft/ft_putchar_fd.c funciones_libft/ft_putstr_fd.c \
-			builtins/ft_pwd/ft_pwd.c builtins/ft_cd/ft_cd.c builtins/ft_echo/ft_echo.c builtins/ft_unset/ft_unset.c \
-			builtins/ft_echo/ft_echo2.c builtins/ft_echo/ft_echo3.c  builtins/ft_export/ft_export2.c builtins/ft_export/ft_export.c \
-			exec/ft_check_commands.c exec/ft_check_builtins.c exec/ft_exec.c exec/ft_path.c \
+SRCS	=	src/main.c src/utils/utils.c src/memory.c src/status/ft_status.c src/env/ft_get_env.c \
+			src/lexer/comillas.c src/lexer/n_pipes.c src/lexer/check_builtins.c src/lexer/check_cmd.c src/lexer/check_pipes.c src/lexer/out_reds.c src/lexer/in_reds.c \
+			src/funciones_libft/ft_split.c src/funciones_libft/ft_calloc.c src/funciones_libft/ft_memcpy.c src/funciones_libft/ft_strchr.c src/funciones_libft/ft_strlen.c src/funciones_libft/ft_strjoin.c \
+			src/funciones_libft/ft_strncmp.c src/funciones_libft/ft_strrchr.c src/funciones_libft/ft_substr.c src/funciones_libft/ft_putchar_fd.c src/funciones_libft/ft_putstr_fd.c \
+			src/builtins/ft_pwd/ft_pwd.c src/builtins/ft_cd/ft_cd.c src/builtins/ft_echo/ft_echo.c src/builtins/ft_unset/ft_unset.c \
+			src/builtins/ft_echo/ft_echo2.c src/builtins/ft_echo/ft_echo3.c  src/builtins/ft_export/ft_export2.c src/builtins/ft_export/ft_export.c \
+			src/exec/ft_check_commands.c src/exec/ft_check_builtins.c src/exec/ft_exec.c src/exec/ft_path.c \
 
 
 OBJS	=	${SRCS:.c=.o}
