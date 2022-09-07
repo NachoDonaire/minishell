@@ -34,6 +34,3 @@ void	needed_free(t_general_data *gen_data, int y)
 		i++;
 	}
 }
-
-
-
