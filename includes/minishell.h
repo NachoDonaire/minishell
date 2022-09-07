@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:17:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:18:10 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,6 @@ void	handle_sigint(int sig);
 
 /*exit*/
 void	ft_exit(char *texto, char **tmp);
-int	ft_check_exit(char *s);
+int		ft_check_exit(char *s);
 
 #endif
