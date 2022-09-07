@@ -193,8 +193,6 @@ int     main(int argc, char **argv,  char *env[])
 			//		printf("%s\n", gen_data.cmd->args[y++]);
 			//	printf("--%d--\n", gen_data.n_cmd);
 				ft_check_comand(&gen_data);
-				while(gen_data.sort[y])
-					printf("--%c--\n", gen_data.sort[y++]);
 				y = 0;
 				/*while (y <= gen_data.n_pipes && finder(s, "<") == 1)
 				{

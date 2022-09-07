@@ -2,13 +2,9 @@
 
 void	reserva(t_general_data *gen_data)
 {
-	int	i;
-
-	i = 0;
 	gen_data->cmd = malloc(sizeof(t_cmd_data) * (gen_data->n_pipes + 1));
 	gen_data->blt = malloc(sizeof(t_builtin_data) * (gen_data->n_pipes + 1));
 	gen_data->sort = malloc(sizeof(char) * (gen_data->n_pipes + 1));
-
 }
 
 void	needed_free(t_general_data *gen_data, int y)
@@ -16,8 +12,6 @@ void	needed_free(t_general_data *gen_data, int y)
 	int	i;
 
 	i = 0;
-	if (y == 45555)
-		write(2, "aa", 2);
 	while (i < gen_data->n_built)
 	{
 		if (gen_data->blt[i].blt)
