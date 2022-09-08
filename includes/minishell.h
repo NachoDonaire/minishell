@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 18:30:17 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:21:28 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct s_builtin
 {
 	char	*blt;
 	char	**args;
+	char	**out;
+	char	**in;
+	int		dred;
 	int		nb_arguments;
 }	t_builtin_data;
 
@@ -109,20 +112,21 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[]);
 void	process_string_w_pipes(t_general_data *gen_data, char *s, char *env[]);
 char	*handle_cont_pipe(char *join);
 int		gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y);
+void	free_tmp(char **tmp);
 
 /*en out_reds.c*/
 int		find_red(char *s);
-void	gest_reds(t_general_data *gen_data, char *s, int y);
-void	process_sing_red(t_general_data *gen_data, char *s, int y);
-void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y);
-void	memory_for_red(t_general_data *gen_data, char **tmp, int y);
+void	gest_reds(t_general_data *gen_data, char *s, int y, int ref);
+void	process_sing_red(t_general_data *gen_data, char *s, int y, int ref);
+void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y, int ref);
+void	memory_for_red(t_general_data *gen_data, char **tmp, int y, int ref);
 
 /*en in_reds.c*/
 int		find_in_red(char *s);
-void	gest_in_reds(t_general_data *gen_data, char *s, int y);
-void	process_in_red(t_general_data *gen_data, char *s, int y);
-void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y);
-void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y);
+void	gest_in_reds(t_general_data *gen_data, char *s, int y, int ref);
+void	process_in_red(t_general_data *gen_data, char *s, int y, int ref);
+void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
+void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
 
 
 /*exec builtins*/

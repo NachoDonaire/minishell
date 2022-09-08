@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:49 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 18:02:28 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:22:52 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,34 @@ void	paste_in_built(t_general_data *gen_data, char *s)
 	gen_data->blt[gen_data->n_built].blt[z] = '\0';
 }
 
-void	ft_reset_cmd(t_general_data *gen_data, int y)
-{
-	gen_data->cmd[y].cmd = malloc(1);
-	gen_data->cmd[y].args = malloc(1);
-	gen_data->cmd[y].args[0] = malloc(1);
-	gen_data->cmd[y].args[0] = 0;
-	gen_data->cmd[y].out = malloc(1);
-	gen_data->cmd[y].in = malloc(1);
-	gen_data->cmd[y].out[0] = malloc(1);
-	gen_data->cmd[y].out[0] = 0;
-	gen_data->cmd[y].in[0] = malloc(1);
-	gen_data->cmd[y].in[0] = 0;
-}
+
 
 void	check_builtins(char *s, t_general_data *gen_data, int y)
 {
 	char	**tmp;
-	char	*cp;
+	char	*copy;
 
 	if (extreme_finder(s, "echo") == 1 || extreme_finder(s, "pwd") == 1
-		|| extreme_finder(s, "cd") == 1 || extreme_finder(s, "export") == 1
-		|| extreme_finder(s, "unset") == 1 || extreme_finder(s, "env") == 1)
+			|| extreme_finder(s, "cd") == 1 || extreme_finder(s, "export") == 1
+			|| extreme_finder(s, "unset") == 1 || extreme_finder(s, "env") == 1)
 	{
 		tmp = ft_split(s, ' ');
 		paste_in_built(gen_data, tmp[0]);
-		cp = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt),
-				ft_strlen(s));
-		gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
-		free(cp);
-		ft_reset_cmd(gen_data, y);
+		copy = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt), ft_strlen(s) + 1);
+		gen_data->blt[gen_data->n_built].args = ft_split(copy, ' ');
+		gen_data->cmd[y].cmd = malloc(1); 
+		gen_data->cmd[y].args = malloc(1);
+		gen_data->cmd[y].args[0] = malloc(1);
+		gen_data->cmd[y].args[0] = NULL;
+		gen_data->cmd[y].out = malloc(1);
+		gen_data->cmd[y].in = malloc(1);
+		gen_data->cmd[y].out[0] = malloc(1);
+		gen_data->cmd[y].out[0] = NULL;
+		gen_data->cmd[y].in[0] = malloc(1);
+		gen_data->cmd[y].in[0] = NULL;
 		gen_data->built = 1;
+		process_sing_red(gen_data, s, y, 1);
+		process_in_red(gen_data, s, y, 1);
 		gen_data->n_built++;
 	}
 }
