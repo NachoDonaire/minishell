@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:21:28 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 09:51:12 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	gest_reds(t_general_data *gen_data, char *s, int y, int ref);
 void	process_sing_red(t_general_data *gen_data, char *s, int y, int ref);
 void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y, int ref);
 void	memory_for_red(t_general_data *gen_data, char **tmp, int y, int ref);
+int		find_double_red(char *s);
 
 /*en in_reds.c*/
 int		find_in_red(char *s);

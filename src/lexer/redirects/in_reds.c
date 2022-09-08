@@ -6,11 +6,11 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:09 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:23:10 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 09:54:03 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	find_in_red(char *s)
 {
@@ -26,7 +26,7 @@ int	find_in_red(char *s)
 	return (0);
 }
 
-void    memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
+void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
 {
 	int	i;
 	int	z;
@@ -49,7 +49,7 @@ void    memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
 	}
 }
 
-void    paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
+void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
 {
 	int	z;
 	int	i;
