@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 12:30:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:59:31 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	reserva(t_general_data *gen_data)
 	gen_data->cmd->fd = malloc(1);
 	gen_data->blt->fd = malloc(1);
 	gen_data->cmd->fd[0] = STDOUT_FILENO;
+	gen_data->cmd->fd[1] = 0;
 	gen_data->blt->fd[0] = STDOUT_FILENO;
+	gen_data->blt->fd[1] = 0;
 }
 
 void	needed_free(t_general_data *gen_data, int y)
