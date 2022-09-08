@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:54:28 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:41:52 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_print_quote(char *env)
 	x = 0;
 	while (env[x])
 	{
-		printf("%c",env[x]);
+		printf("%c", env[x]);
 		if (env[x] == '=')
 			printf("'");
 		x++;

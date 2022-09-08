@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:35:51 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:52:48 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,6 @@ void	process_in_red(t_general_data *gen_data, char *s, int y, int ref);
 void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
 void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
 
-
-
 /*exec builtins*/
 
 void	ft_check_comand(t_general_data *gen_data);
@@ -172,6 +170,11 @@ void	ft_replace_variable(char *variable, char *value, char **env);
 char	*ft_variables(char *v);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_value(char *v);
+
+/*unset*/
+
+void	ft_not_equal(t_general_data *gen_data, int p, int x);
+void	ft_print_bad(t_general_data *gen_data, int p, int x);
 
 /*status*/
 

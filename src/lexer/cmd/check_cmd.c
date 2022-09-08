@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 09:57:26 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:55:23 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,3 @@ char	*check_cmd(char *cmd, char *env[])
 	}
 	return (free_for_checkin_cmd(sol, k, i));
 }	
-
-
-
-

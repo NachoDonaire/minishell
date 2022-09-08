@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:50:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:56:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_shlvl(char *s)
 		if (s[x] >= '0' && s[x] <= '8')
 		{
 			s[x]++;
-			break ; 
+			break ;
 		}
 		if (s[x] == '9')
 			s[x] = '0';
@@ -37,7 +37,7 @@ char	**get_env(char **envp)
 	char	**env;
 
 	y = 0;
-	env = malloc(sizeof(char*) * 1024);
+	env = malloc(sizeof(char *) * 1024);
 	x = -1;
 	while (envp[++x])
 	{

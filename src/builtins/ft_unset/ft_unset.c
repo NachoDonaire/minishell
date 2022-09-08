@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:53:56 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:52:17 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,28 @@ static void	ft_find_env(char *argument, char **env)
 	}
 }
 
-void	ft_unset(t_general_data *gen_data, int position)
+void	ft_unset(t_general_data *gen_data, int p)
 {
 	int		x;
 	int		z;
-	int		tmp;
 
 	x = -1;
-	while (gen_data->blt[position].args[++x])
+	while (gen_data->blt[p].args[++x])
 	{
-		z = ft_strlen(gen_data->blt[position].args[x]) - 1;
-		tmp = ft_equal(gen_data->blt[position].args[x]);
-		if (gen_data->blt[position].args[x][z] != '=' && gen_data->blt[position].args[x][z + 1] == '\0' && tmp == 0)
+		z = ft_strlen(gen_data->blt[p].args[x]) - 1;
+		if (gen_data->blt[p].args[x][z] != '=' &&
+			gen_data->blt[p].args[x][z + 1] == '\0' &&
+			ft_equal(gen_data->blt[p].args[x]) == 0)
 		{
-			gen_data->blt[position].args[x] = ft_strjoin(gen_data->blt[position].args[x], "=");
+			ft_not_equal(gen_data, p, x);
 			z++;
 		}
-		if (gen_data->blt[position].args[x][z] == '=' && gen_data->blt[position].args[x][z + 1] == '\0')
-			ft_find_env(gen_data->blt[position].args[x], gen_data->env);
+		if (gen_data->blt[p].args[x][z] == '=' &&
+			gen_data->blt[p].args[x][z + 1] == '\0')
+			ft_find_env(gen_data->blt[p].args[x], gen_data->env);
 		else
 		{
-		printf("unset: %s: invalid parameter name\n", gen_data->blt[position].args[x]);
+			ft_print_bad(gen_data, p, x);
 			break ;
 		}
 	}

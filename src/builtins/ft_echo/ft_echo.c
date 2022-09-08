@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:31 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:53:49 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:56:46 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,25 @@ static void	ft_print(int x, int z, t_general_data *gen_data, int position)
 	}
 }
 
-static	void	ft_print_quotation(int *c, t_general_data *gen_data, int x, int position)
+static	void	ft_print_q(int *c, t_general_data *gen_data, int x, int p)
 {
 	int	z;
 
-z = ft_strlen(gen_data->blt[position].args[x]) - 1;
-	if (ft_print_quotation_s(gen_data->blt[position].args[x]) == 0 && gen_data->blt->args[x][z] != 34)
+z = ft_strlen(gen_data->blt[p].args[x]) - 1;
+	if (ft_print_quotation_s(gen_data->blt[p].args[x]) == 0
+		&& gen_data->blt->args[x][z] != 34)
 	{
 		c[0] = 1;
 		printf("'");
 	}
-	if (ft_print_quotation_d(gen_data->blt[position].args[x]) == 0 && gen_data->blt[position].args[x][z] != 39)
+	if (ft_print_quotation_d(gen_data->blt[p].args[x]) == 0
+		&& gen_data->blt[p].args[x][z] != 39)
 	{
 		c[1] = 1;
 		printf("\"");
 	}
-	ft_print(x, z, gen_data, position);
-	if (gen_data->blt[position].args[x + 1])
+	ft_print(x, z, gen_data, p);
+	if (gen_data->blt[p].args[x + 1])
 		printf(" ");
 }
 
@@ -85,7 +87,7 @@ static int	ft_check_nl(t_general_data *gen_data, int position)
 		if (ft_strncmp(gen_data->blt[position].args[x], "-n", 2) == 0 && z == 0)
 			new_line = 0;
 		else
-			ft_print_quotation(quotation, gen_data, x, position);
+			ft_print_q(quotation, gen_data, x, position);
 		x++;
 	}
 	if (quotation[0] == 1)
@@ -95,14 +97,14 @@ static int	ft_check_nl(t_general_data *gen_data, int position)
 	return (new_line);
 }
 
-void	ft_echo(t_general_data *gen_data, int position)
+void	ft_echo(t_general_data *gen_data, int p)
 {
 	int		new_line;
 
 	new_line = 1;
-	gen_data->blt[position].nb_arguments = ft_nb_arguments(gen_data->blt[position].args);
-	if (gen_data->blt[position].args[0])
-		new_line = ft_check_nl(gen_data, position);
+	gen_data->blt[p].nb_arguments = ft_nb_arguments(gen_data->blt[p].args);
+	if (gen_data->blt[p].args[0])
+		new_line = ft_check_nl(gen_data, p);
 	if (new_line == 1)
 		printf("\n");
 	ft_change_good_status(gen_data->env);

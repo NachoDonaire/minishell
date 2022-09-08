@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 09:50:34 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:13:11 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:54:55 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_ref_zero(t_general_data *gen_data, char *s, int y, int ref)
 	{
 		gen_data->cmd[y].dred = 0;
 		gen_data->cmd[y].out = malloc(sizeof(char *) * 1);
-		gen_data->cmd[y].out[0] = malloc(1); 
+		gen_data->cmd[y].out[0] = malloc(1);
 	}
 }
 
@@ -62,7 +62,7 @@ void	ft_ref_one(t_general_data *gen_data, char *s, int y, int ref)
 	{
 		gen_data->blt[gen_data->n_built].dred = 0;
 		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
-		gen_data->blt[gen_data->n_built].out[0] = malloc(1); 
+		gen_data->blt[gen_data->n_built].out[0] = malloc(1);
 	}
 }
 

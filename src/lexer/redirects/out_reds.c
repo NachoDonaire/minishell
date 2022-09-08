@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:17:21 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:55:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,3 @@ void	process_sing_red(t_general_data *gen_data, char *s, int y, int ref)
 	else if (ref == 1)
 		ft_ref_one(gen_data, s, y, ref);
 }
-
