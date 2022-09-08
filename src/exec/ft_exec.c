@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:50:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:03:09 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_exec(t_general_data *gen_data, int position) // ! NOT FUNCTIONAL (TEMPOR
 	char	**copy;
 	char	*tmp;
 
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	if (gen_data->cmd[position].args[0])
 	{
 		copy = gen_data->cmd[position].args;
