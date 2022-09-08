@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:52:48 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:22:24 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int		ft_check_export(t_general_data *gen_data, int x);
 int		ft_check_unset(t_general_data *gen_data, int x);
 void	ft_echo(t_general_data *gen_data, int position);
 void	ft_cd(t_general_data *gen_data, int position);
-void	ft_pwd(char **env);
+void	ft_pwd(t_general_data *gen_data);
 void	ft_unset(t_general_data *gen_data, int position);
 void	ft_env(char **env);
 void	ft_export(t_general_data *gen_data, int position);

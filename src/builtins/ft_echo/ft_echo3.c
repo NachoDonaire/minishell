@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:45 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:54:10 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:20:07 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_print_variable(char **nb_arguments, int x, int y, char **env)
 			free(tmp);
 			copy = ft_strchr(env[z], '=');
 			tmp = ft_substr(copy, 1, ft_strlen(copy));
-			printf("%s", tmp);
+			printf("%s", tmp); // change to write
 			free(tmp);
 			break ;
 		}

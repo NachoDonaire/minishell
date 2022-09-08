@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:50:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:21:50 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_check_pwd(t_general_data *gen_data, int x)
 	{
 		if (ft_strncmp(gen_data->blt[x].blt, "pwd", 4) == 0)
 		{
-			ft_pwd(gen_data->env);
+			ft_pwd(gen_data);
 			return (1);
 		}
 	}
