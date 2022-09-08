@@ -1,4 +1,4 @@
-SRCS	=	src/main.c src/utils/utils.c src/utils/utils2.c src/memory.c src/status/ft_status.c src/env/ft_get_env.c \
+SRCS	=	src/main.c src/utils/utils.c src/utils/utils2.c src/free/memory.c src/status/ft_status.c src/env/ft_get_env.c \
 			src/lexer/input/comillas.c src/lexer/pipes/n_pipes.c src/lexer/builtins/check_builtins.c src/lexer/cmd/check_cmd.c src/lexer/pipes/check_pipes.c src/lexer/redirects/out_reds.c  src/lexer/redirects/out_reds2.c src/lexer/redirects/in_reds.c \
 			src/lexer/redirects/in_reds2.c src/funciones_libft/ft_split.c src/funciones_libft/ft_calloc.c src/funciones_libft/ft_memcpy.c src/funciones_libft/ft_strchr.c src/funciones_libft/ft_strlen.c src/funciones_libft/ft_strjoin.c \
 			src/funciones_libft/ft_strncmp.c src/funciones_libft/ft_strrchr.c src/funciones_libft/ft_substr.c src/funciones_libft/ft_putchar_fd.c src/funciones_libft/ft_putstr_fd.c \
