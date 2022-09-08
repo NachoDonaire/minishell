@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 09:34:34 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:21:54 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int main(int argc, char **argv, char *env[])
 					z = 0;
 					y++;
 				}
+				
 				y = 0;
 				while (y < gen_data.n_cmd)
 				{

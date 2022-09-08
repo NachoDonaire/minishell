@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:49 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:22:52 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:18:21 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,20 @@ void	paste_in_built(t_general_data *gen_data, char *s)
 	gen_data->blt[gen_data->n_built].blt[z] = '\0';
 }
 
+int	args_with_reds(char *copy)
+{
+	int	i;
 
+	i = 0;
+	while (copy[i])
+	{
+		if (copy[i] == '>' || copy[i] == '<')
+			break ;
+		i++;
+	}
+	printf("--%d--\n", i);
+	return (i);
+}
 
 void	check_builtins(char *s, t_general_data *gen_data, int y)
 {
@@ -43,7 +56,7 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 	{
 		tmp = ft_split(s, ' ');
 		paste_in_built(gen_data, tmp[0]);
-		copy = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt), ft_strlen(s) + 1);
+		copy = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt), args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt));
 		gen_data->blt[gen_data->n_built].args = ft_split(copy, ' ');
 		gen_data->cmd[y].cmd = malloc(1); 
 		gen_data->cmd[y].args = malloc(1);
