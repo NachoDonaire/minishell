@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:22:37 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 09:34:34 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,27 @@ int main(int argc, char **argv, char *env[])
 				if (ft_check_exit(s) == 1)
 					ft_exit(s, gen_data.env);
 				process_input(s, &gen_data, gen_data.env);
-/*				while (y < gen_data.n_built)
+				while (y < gen_data.n_built)
 				{
 					while (gen_data.blt[y].out[z])
 						printf("%s\n", gen_data.blt[y].out[z++]);
 					z = 0;
 					y++;
 				}
-				*/
-
+				y = 0;
+				while (y < gen_data.n_cmd)
+				{
+					while (gen_data.cmd[y].out[z])
+						printf("%s\n", gen_data.cmd[y].out[z++]);
+					z = 0;
+					y++;
+				}
 			//	while (gen_data.cmd->args[y])
 			//		printf("%s\n", gen_data.cmd->args[y++]);
 			//	printf("--%d--\n", gen_data.n_cmd);
-				//ft_check_comand(&gen_data);
-				y = 0;
-				/*while (y <= gen_data.n_pipes && finder(s, "<") == 1)
+				ft_check_comand(&gen_data);
+				y = 0;/*
+				while (y <= gen_data.n_pipes && finder(s, "<") == 1)
 				{
 					while (gen_data.cmd[y].in[z])
 						printf("%s\n", gen_data.cmd[y].in[z++]);
