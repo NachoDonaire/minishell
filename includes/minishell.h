@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 12:33:05 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:33:00 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <sys/ioctl.h>
+# include <fcntl.h>
 
 /*estructura inside cmd*/
 typedef struct s_insidecmd
@@ -35,7 +36,8 @@ typedef struct s_builtin
 	char	**args;
 	char	**out;
 	char	**in;
-	int		*fd;
+	int		*fd_out;
+	int		*fd_in;
 	int		dred;
 	int		nb_arguments;
 }	t_builtin_data;
@@ -47,7 +49,8 @@ typedef struct s_comand
 	char	**args;
 	char	**out;
 	char	**in;
-	int		*fd;
+	int		*fd_out;
+	int		*fd_in;
 	int		dred;
 }	t_cmd_data;
 
@@ -131,6 +134,12 @@ void	gest_in_reds(t_general_data *gen_data, char *s, int y, int ref);
 void	process_in_red(t_general_data *gen_data, char *s, int y, int ref);
 void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
 void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
+
+/*en fd_reds*/
+void	fd_reds_out_b(t_general_data *gen_data);
+void	fd_reds_in_b(t_general_data *gen_data);
+void	fd_reds_out(t_general_data *gen_data, int z);
+void	fd_reds_in(t_general_data *gen_data, int z);
 
 /*exec builtins*/
 

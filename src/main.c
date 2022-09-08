@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 12:13:44 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:49:43 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ static void	ft_free_all(t_general_data *gen_data, char *s)
 int	main(int argc, char **argv, char *env[])
 {
 	char			*s;
+	int				y;
+	int				z;
 	t_general_data	gen_data;
 
+	z = 0;
+	y = 0;
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -56,7 +60,15 @@ int	main(int argc, char **argv, char *env[])
 			if (ft_check_exit(s) == 1)
 				ft_exit(s, gen_data.env);
 			process_input(s, &gen_data, gen_data.env);
-			ft_check_comand(&gen_data);
+			while (y < gen_data.n_built)
+			{
+				while (gen_data.blt[y].out[z])
+					printf("//%s//\n", gen_data.blt[y].out[z++]);
+				z = 0;
+				y++;
+			}
+			y = 0;
+			//ft_check_comand(&gen_data);
 			ft_free_all(&gen_data, s);
 		}
 		else if (!s)

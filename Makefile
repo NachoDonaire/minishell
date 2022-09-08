@@ -5,7 +5,7 @@ SRCS	=	src/main.c src/utils/utils.c src/utils/utils2.c src/free/memory.c src/sta
 			src/builtins/ft_pwd/ft_pwd.c src/builtins/ft_cd/ft_cd.c src/builtins/ft_echo/ft_echo.c src/builtins/ft_unset/ft_unset.c src/builtins/ft_unset/ft_unset2.c \
 			src/builtins/ft_echo/ft_echo2.c src/builtins/ft_echo/ft_echo3.c  src/builtins/ft_export/ft_export2.c src/builtins/ft_export/ft_export.c \
 			src/exec/ft_check_commands.c src/exec/ft_check_builtins.c src/exec/ft_exec.c src/exec/ft_path.c \
-			src/signal/ft_signal.c src/exit/ft_exit.c src/lexer/input/ft_process_input.c
+			src/signal/ft_signal.c src/exit/ft_exit.c src/lexer/input/ft_process_input.c src/lexer/redirects/fd_reds.c \
 
 
 OBJS	=	${SRCS:.c=.o}

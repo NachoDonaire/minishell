@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:55:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:37:12 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	gest_reds(t_general_data *gen_data, char *s, int y, int ref)
 	while (tmp[i])
 		i++;
 	if (ref == 0)
-		gen_data->cmd[y].out = malloc(sizeof(char *) * (i + 1));
+		gen_data->cmd[y].out = malloc(sizeof(char *) * (i));
 	else if (ref == 1)
-		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * (i + 1));
+		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * (i));
 	memory_for_red(gen_data, tmp, y, ref);
 	paste_tmp_red(gen_data, tmp, y, ref);
 	i = 0;
@@ -93,12 +93,23 @@ void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y, int ref)
 		t[1]++;
 		t[3]++;
 	}
+	if (ref == 0)
+		gen_data->cmd[y].out[t[3]] = NULL;
+	else if (ref == 0)
+		gen_data->blt[t[4]].out[t[3]] = NULL;
 }
 
 void	process_sing_red(t_general_data *gen_data, char *s, int y, int ref)
 {
 	if (ref == 0)
+	{
 		ft_ref_zero(gen_data, s, y, ref);
+		fd_reds_out(gen_data, y);
+	}
 	else if (ref == 1)
+	{
 		ft_ref_one(gen_data, s, y, ref);
+		fd_reds_out_b(gen_data);
+	}
 }
+

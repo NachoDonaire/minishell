@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:45 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 12:35:28 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:30:25 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	ft_print_variable(char **arg, int x, int y, t_general_data *gen_data)
 			free(tmp);
 			copy = ft_strchr(gen_data->env[z], '=');
 			tmp = ft_substr(copy, 1, ft_strlen(copy));
-			while (gen_data->blt->fd[a])
-				ft_putstr_fd(tmp, gen_data->blt->fd[a++]);
+			while (gen_data->blt->fd_out[a])
+				ft_putstr_fd(tmp, gen_data->blt->fd_out[a++]);
 			free(tmp);
 			break ;
 		}

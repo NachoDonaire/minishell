@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:09 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:26:22 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:39:11 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	process_in_red(t_general_data *gen_data, char *s, int y, int ref)
 			gen_data->cmd[y].in = malloc(sizeof(char) * 1);
 			gen_data->cmd[y].in[0] = malloc(1);
 		}
+		fd_reds_in(gen_data, y);
 	}
 	else if (ref == 1)
 	{
@@ -116,5 +117,6 @@ void	process_in_red(t_general_data *gen_data, char *s, int y, int ref)
 			gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
 			gen_data->blt[gen_data->n_built].in[0] = malloc(1);
 		}
+		fd_reds_in_b(gen_data);
 	}
 }
