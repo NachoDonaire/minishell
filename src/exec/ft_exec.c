@@ -6,13 +6,13 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 12:03:09 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:12:49 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_exec(t_general_data *gen_data, int position) // ! NOT FUNCTIONAL (TEMPORARY)
+void	ft_exec(t_general_data *gen_data, int position)
 {
 	char	*path;
 	int		process;
@@ -28,7 +28,6 @@ void	ft_exec(t_general_data *gen_data, int position) // ! NOT FUNCTIONAL (TEMPOR
 		process = execve(path, copy, gen_data->env);
 		if (process == -1)
 		{
-			// * Program exec proof:
 			path = getcwd(NULL, 0);
 			tmp = ft_strjoin(path, "/");
 			free(path);

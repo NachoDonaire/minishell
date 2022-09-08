@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 09:57:42 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:12:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 {
+	//printf("hola");
 	process_sing_red(gen_data, s, y, 0);
 	process_in_red(gen_data, s, y, 0);
 	gen_data->built = 0;
@@ -77,9 +78,6 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 
 	i = 0;
 	aux = ft_split(s, ' ');
-//	check_builtins(s, gen_data, 0);
-//	if (gen_data->built == 1)
-//		return ;
 	if (finder(s, "|") == 1 || finder(s, "&") == 1)
 		process_string_w_pipes(gen_data, s, env);
 	else
