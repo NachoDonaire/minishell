@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 09:41:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:38:24 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int argc, char **argv, char *env[])
 			if (ft_check_exit(s) == 1)
 				ft_exit(s, gen_data.env);
 			process_input(s, &gen_data, gen_data.env);
+			/*
 			while (y < gen_data.n_built)
 			{
 				while (gen_data.blt[y].out[z])
@@ -74,7 +75,7 @@ int	main(int argc, char **argv, char *env[])
 					printf("%s\n", gen_data.cmd[y].out[z++]);
 				z = 0;
 				y++;
-			}
+			}*/
 			ft_check_comand(&gen_data);
 			ft_free_all(&gen_data, s);
 		}
