@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:49 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 09:57:32 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:43:57 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,21 @@ void	ft_reset_cmd(t_general_data *gen_data, int y)
 	gen_data->cmd[y].in[0] = 0;
 }
 
+int	args_with_reds(char *copy)
+{
+	int	i;
+
+	i = 0;
+	while (copy[i])
+	{
+		if (copy[i] == '>' || copy[i] == '<')
+			break ;
+		i++;
+	}
+	printf("--%d--\n", i);
+	return (i);
+}
+
 void	check_builtins(char *s, t_general_data *gen_data, int y)
 {
 	char	**tmp;
@@ -56,7 +71,7 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 		tmp = ft_split(s, ' ');
 		paste_in_built(gen_data, tmp[0]);
 		cp = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt),
-				ft_strlen(s) + 1);
+				args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt));
 		gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
 		free(cp);
 		ft_reset_cmd(gen_data, y);
