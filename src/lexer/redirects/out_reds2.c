@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 09:50:34 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 09:54:10 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:13:11 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,65 @@ int	find_double_red(char *s)
 	{
 		if (s[i] == '>' && s[i + 1] == '>' && s[i + 2] != '>')
 			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	ft_ref_zero(t_general_data *gen_data, char *s, int y, int ref)
+{
+	if (find_red(s) == 2)
+	{
+		gen_data->cmd[y].dred = 0;
+		gest_reds(gen_data, s, y, ref);
+	}
+	else if (find_red(s) == 1)
+	{
+		gen_data->cmd[y].dred = 1;
+		gest_reds(gen_data, s, y, ref);
+	}
+	else
+	{
+		gen_data->cmd[y].dred = 0;
+		gen_data->cmd[y].out = malloc(sizeof(char *) * 1);
+		gen_data->cmd[y].out[0] = malloc(1); 
+	}
+}
+
+void	ft_ref_one(t_general_data *gen_data, char *s, int y, int ref)
+{
+	if (find_red(s) == 2)
+	{
+		gen_data->blt[gen_data->n_built].dred = 0;
+		gest_reds(gen_data, s, y, ref);
+	}
+	else if (find_red(s) == 1)
+	{
+		gen_data->blt[gen_data->n_built].dred = 1;
+		gest_reds(gen_data, s, y, ref);
+	}
+	else
+	{
+		gen_data->blt[gen_data->n_built].dred = 0;
+		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
+		gen_data->blt[gen_data->n_built].out[0] = malloc(1); 
+	}
+}
+
+int	find_red(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '>')
+		{
+			if (s[i + 1] == '>')
+				return (1);
+			else
+				return (2);
+		}
 		i++;
 	}
 	return (0);
