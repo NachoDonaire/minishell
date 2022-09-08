@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:45 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 12:20:07 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:35:28 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ int	ft_print_quotation_d2(char *argument)
 	return (1);
 }
 
-void	ft_print_variable(char **nb_arguments, int x, int y, char **env)
+void	ft_print_variable(char **arg, int x, int y, t_general_data *gen_data)
 {
 	int		z;
 	char	*copy;
 	char	*tmp;
+	int		a;
 
-	copy = ft_substr(nb_arguments[x], y + 1, ft_strlen(nb_arguments[x]));
+	a = 0;
+	copy = ft_substr(arg[x], y + 1, ft_strlen(arg[x]));
 	while (ft_print_quotation_d2(copy) == 0)
 		copy[ft_strlen(copy) - 1] = '\0';
 	while (ft_print_quotation_s2(copy) == 0)
@@ -54,15 +56,16 @@ void	ft_print_variable(char **nb_arguments, int x, int y, char **env)
 	tmp = ft_strjoin(copy, "=");
 	free(copy);
 	z = -1;
-	while (env[++z])
+	while (gen_data->env[++z])
 	{
 		y = ft_strlen(tmp);
-		if (ft_strncmp(env[z], tmp, y) == 0)
+		if (ft_strncmp(gen_data->env[z], tmp, y) == 0)
 		{
 			free(tmp);
-			copy = ft_strchr(env[z], '=');
+			copy = ft_strchr(gen_data->env[z], '=');
 			tmp = ft_substr(copy, 1, ft_strlen(copy));
-			printf("%s", tmp); // change to write
+			while (gen_data->blt->fd[a])
+				ft_putstr_fd(tmp, gen_data->blt->fd[a++]);
 			free(tmp);
 			break ;
 		}

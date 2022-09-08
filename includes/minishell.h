@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 12:22:24 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:33:05 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_builtin
 	char	**args;
 	char	**out;
 	char	**in;
+	int		*fd;
 	int		dred;
 	int		nb_arguments;
 }	t_builtin_data;
@@ -46,6 +47,7 @@ typedef struct s_comand
 	char	**args;
 	char	**out;
 	char	**in;
+	int		*fd;
 	int		dred;
 }	t_cmd_data;
 
@@ -151,7 +153,7 @@ char	**get_env(char **envp);
 /*echo*/
 int		ft_print_quotation_s(char *argument);
 int		ft_print_quotation_d(char *argument);
-void	ft_print_variable(char **nb_arguments, int x, int y, char **env);
+void	ft_print_variable(char **nb_arguments, int x, int y, t_general_data *gen_data);
 int		ft_print_quotation_d2(char *argument);
 int		ft_print_quotation_s2(char *argument);
 int		ft_c_d(char *argument);
