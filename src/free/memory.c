@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 14:05:21 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:14:32 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	reserva(t_general_data *gen_data)
 void	needed_free(t_general_data *gen_data, int y)
 {
 	int	i;
-	int	z;
+	/*int	z;
 	int	w;
 
 	w = 0;
-	z = 0;
+	z = 0;*/
 	i = 0;
 	while (i < gen_data->n_built - 1)
 	{

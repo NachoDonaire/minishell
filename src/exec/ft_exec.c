@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 14:04:51 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:14:16 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_exec(t_general_data *gen_data, int position)
 					{
 						printf("Minishell: command not found: %s\n", copy[0]);
 						ft_change_bad_status(gen_data->env);
-						return ;
+						exit (0);
 					}
 				}
 			}
