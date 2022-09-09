@@ -55,7 +55,7 @@ void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
 	{
 		while (tmp[t[1]][t[2]])
 		{
-			if (tmp[t[1]][t[2]] == ' ')
+			while (tmp[t[1]][t[2]] == ' ')
 				t[2]++;
 			if (ref == 0)
 				gen_data->cmd[y].in[t[3]][t[0]++] = tmp[t[1]][t[2]];

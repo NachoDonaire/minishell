@@ -13,6 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <sys/wait.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
