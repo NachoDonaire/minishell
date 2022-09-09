@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 17:37:12 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/09 12:55:19 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,8 @@ void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y, int ref)
 void	process_sing_red(t_general_data *gen_data, char *s, int y, int ref)
 {
 	if (ref == 0)
-	{
 		ft_ref_zero(gen_data, s, y, ref);
-		fd_reds_out(gen_data, y);
-	}
 	else if (ref == 1)
-	{
 		ft_ref_one(gen_data, s, y, ref);
-		fd_reds_out_b(gen_data);
-	}
 }
 

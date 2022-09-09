@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:09 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 15:39:11 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/09 12:25:04 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,23 +100,41 @@ void	process_in_red(t_general_data *gen_data, char *s, int y, int ref)
 	if (ref == 0)
 	{
 		if (find_in_red(s) == 1)
+		{
 			gest_in_reds(gen_data, s, y, ref);
+			fd_reds_in(gen_data, y);
+		}
 		else
 		{
-			gen_data->cmd[y].in = malloc(sizeof(char) * 1);
-			gen_data->cmd[y].in[0] = malloc(1);
+			gen_data->cmd[y].in = malloc(sizeof(char *) * 1);
+			gen_data->cmd[y].in[0] = malloc(sizeof(char) * 1);
+			gen_data->cmd[y].fd_in = malloc(sizeof(int) * 1);
 		}
-		fd_reds_in(gen_data, y);
 	}
 	else if (ref == 1)
 	{
 		if (find_in_red(s) == 1)
+		{
 			gest_in_reds(gen_data, s, y, ref);
+			fd_reds_in_b(gen_data);
+		}
 		else
 		{
 			gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
 			gen_data->blt[gen_data->n_built].in[0] = malloc(1);
+			gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
+
 		}
-		fd_reds_in_b(gen_data);
 	}
 }
+
+void	no_red_in(t_general_data *gen_data, int y)
+{
+	gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
+	gen_data->blt[gen_data->n_built].in[0] = malloc(1);
+	gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
+	gen_data->cmd[y].in = malloc(sizeof(char) * 1);
+	gen_data->cmd[y].in[0] = malloc(1);
+	gen_data->cmd[y].fd_in = malloc(sizeof(int) * 1);
+}
+

@@ -9,7 +9,6 @@ void	fd_reds_out_b(t_general_data *gen_data)
 	i = 0;
 	while (gen_data->blt[gen_data->n_built].out[i])
 		i++;
-	free(gen_data->blt[gen_data->n_built].fd_out);
 	gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * (i + 1));
 	i = 0;
 	while (gen_data->blt[gen_data->n_built].out[i])
@@ -31,7 +30,6 @@ void	fd_reds_in_b(t_general_data *gen_data)
 	i = 0;
 	while (gen_data->blt[gen_data->n_built].in[i])
 		i++;
-	free(gen_data->blt[gen_data->n_built].fd_in);
 	gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * (i + 1));
 	i = 0;
 	while (gen_data->blt[gen_data->n_built].in[i])
@@ -53,7 +51,6 @@ void	fd_reds_out(t_general_data *gen_data, int z)
 	i = 0;
 	while (gen_data->cmd[z].out[i])
 		i++;
-	free(gen_data->cmd->fd_out);
 	gen_data->cmd[z].fd_out = malloc(sizeof(int) * (i + 1));
 	i = 0;
 	while (gen_data->cmd[z].out[i])
@@ -63,6 +60,7 @@ void	fd_reds_out(t_general_data *gen_data, int z)
 			write(2, "error\n", 7);
 		y++;
 	}
+//	printf("--%d--", gen_data->cmd[z].fd_out[y - 1]);
 	gen_data->cmd[z].fd_out[y] = -1;
 }
 
@@ -75,7 +73,6 @@ void	fd_reds_in(t_general_data *gen_data, int z)
 	i = 0;
 	while (gen_data->cmd[z].in[i])
 		i++;
-	free(gen_data->cmd->fd_in);
 	gen_data->cmd[z].fd_in = malloc(sizeof(int) * (i + 1));
 	i = 0;
 	while (gen_data->cmd[z].in[i])
