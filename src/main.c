@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 13:07:46 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:32:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char **argv, char *env[])
 	char			*s;
 	t_general_data	gen_data;
 
+	g_status = 0;
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{

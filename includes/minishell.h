@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 12:00:58 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:52:35 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
+
+/*global*/
+
+int				g_status;
 
 /*estructura inside cmd*/
 typedef struct s_insidecmd
@@ -213,6 +217,7 @@ char	**ft_split(char const *s, char c);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_itoa(int n);
 
 /*en memory.c*/
 void	reserva(t_general_data *gen_data);

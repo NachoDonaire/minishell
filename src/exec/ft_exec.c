@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 18:18:18 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:57:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void ft_child(t_general_data *gen_data, int position)
 	char	**copy;
 	char	*tmp;
 
+	g_status = 0;
 	copy = gen_data->cmd[position].args;
 	if (ft_strncmp(copy[0], "./", 2) == 0)
 	{
@@ -34,8 +35,8 @@ void ft_child(t_general_data *gen_data, int position)
 	if (process == -1)
 	{
 		printf("Minishell: command not found: %s\n", copy[0]);
-		ft_change_bad_status(gen_data->env);
-		exit (0);
+		g_status = 127;
+		exit (g_status);
 	}
 }
 
@@ -59,6 +60,6 @@ void	ft_exec(t_general_data *gen_data, int position)
 			i++;
 			position++;
 		}
-		ft_change_good_status(gen_data->env);
 	}
+	printf("--%d--\n",g_status);
 }
