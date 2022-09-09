@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 13:07:41 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:04:51 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,42 @@ void	ft_exec(t_general_data *gen_data, int position)
 	char	**copy;
 	char	*tmp;
 	int		pid;
+	int		i;
 
+	i = 0;
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	if (gen_data->cmd[position].args[0])
 	{
-		pid = fork();
-		if (pid == 0)
+		while (i <= gen_data->n_pipes)
 		{
-			copy = gen_data->cmd[position].args;
-			ft_path(copy[0], gen_data->env, &path);
-			process = execve(path, copy, gen_data->env);
-			if (process == -1)
+			pid = fork();
+			if (pid == 0)
 			{
-				path = getcwd(NULL, 0);
-				tmp = ft_strjoin(path, "/");
-				free(path);
-				path = ft_strjoin(tmp, copy[0]);
-				free(tmp);
+				copy = gen_data->cmd[position].args;
+				ft_path(copy[0], gen_data->env, &path);
 				process = execve(path, copy, gen_data->env);
 				if (process == -1)
 				{
-					printf("Minishell: command not found: %s\n", copy[0]);
-					ft_change_bad_status(gen_data->env);
-					return ;
+					path = getcwd(NULL, 0);
+					tmp = ft_strjoin(path, "/");
+					free(path);
+					path = ft_strjoin(tmp, copy[0]);
+					free(tmp);
+					process = execve(path, copy, gen_data->env);
+					if (process == -1)
+					{
+						printf("Minishell: command not found: %s\n", copy[0]);
+						ft_change_bad_status(gen_data->env);
+						return ;
+					}
 				}
 			}
-		}
 		else
 			wait(NULL);
+		i++;
+		position++;
+		}
 		ft_change_good_status(gen_data->env);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 13:07:44 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:05:21 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	reserva(t_general_data *gen_data)
 	gen_data->cmd = malloc(sizeof(t_cmd_data) * (gen_data->n_pipes + 1));
 	gen_data->blt = malloc(sizeof(t_builtin_data) * (gen_data->n_pipes + 1));
 	gen_data->sort = malloc(sizeof(char) * (gen_data->n_pipes + 1));
-	gen_data
 /*	gen_data->cmd->fd_out = malloc(1);
 	gen_data->blt->fd_out = malloc(1);
 	gen_data->cmd->fd_out[0] = STDOUT_FILENO;
