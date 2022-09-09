@@ -6,18 +6,41 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 17:20:29 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:18:18 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_exec(t_general_data *gen_data, int position)
+void ft_child(t_general_data *gen_data, int position)
 {
 	char	*path;
 	int		process;
 	char	**copy;
 	char	*tmp;
+
+	copy = gen_data->cmd[position].args;
+	if (ft_strncmp(copy[0], "./", 2) == 0)
+	{
+		path = getcwd(NULL, 0);
+		tmp = ft_strjoin(path, "/");
+		free(path);
+		path = ft_strjoin(tmp, copy[0]);
+		free(tmp);
+		process = execve(path, copy, gen_data->env);
+	}
+	ft_path(copy[0], gen_data->env, &path);
+	process = execve(path, copy, gen_data->env);
+	if (process == -1)
+	{
+		printf("Minishell: command not found: %s\n", copy[0]);
+		ft_change_bad_status(gen_data->env);
+		exit (0);
+	}
+}
+
+void	ft_exec(t_general_data *gen_data, int position)
+{
 	int		pid;
 	int		i;
 
@@ -30,26 +53,7 @@ void	ft_exec(t_general_data *gen_data, int position)
 		{
 			pid = fork();
 			if (pid == 0)
-			{
-				copy = gen_data->cmd[position].args;
-				if (ft_strncmp(copy[0], "./", 2) == 0)
-				{
-					path = getcwd(NULL, 0);
-					tmp = ft_strjoin(path, "/");
-					free(path);
-					path = ft_strjoin(tmp, copy[0]);
-					free(tmp);
-					process = execve(path, copy, gen_data->env);
-				}
-				ft_path(copy[0], gen_data->env, &path);
-				process = execve(path, copy, gen_data->env);
-				if (process == -1)
-				{
-					printf("Minishell: command not found: %s\n", copy[0]);
-					ft_change_bad_status(gen_data->env);
-					exit (0);
-				}
-			}
+				ft_child(gen_data, position);
 			else
 				wait(NULL);
 			i++;

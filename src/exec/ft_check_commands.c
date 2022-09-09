@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:03 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:50:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:09:11 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_check_env(t_general_data *gen_data, int x)
 
 void	ft_built(t_general_data *gen_data, int x)
 {
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	ft_check_pwd(gen_data, x);
 	ft_check_cd(gen_data, x);
 	ft_check_echo(gen_data, x);
