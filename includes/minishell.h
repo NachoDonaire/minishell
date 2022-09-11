@@ -71,6 +71,7 @@ typedef struct s_general
 	int				n_built;
 	char			*sort;
 	int				good_status;
+	int				pipe[2];
 }	t_general_data;
 
 void	rl_replace_line(const char *text, int clear_undo);
@@ -107,6 +108,7 @@ void	check_cmd_pipe(t_general_data *gen_data, char *s, char *env[]);
 
 /*en check_builtin.c*/
 void	check_builtins(char *s, t_general_data *gen_data, int y);
+int	args_with_reds(char *copy);
 
 /*ft_strjoin*/
 char	*copy(char *s1, char *s2, char *x);

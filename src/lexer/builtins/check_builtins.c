@@ -55,6 +55,8 @@ int	args_with_reds(char *copy)
 			break ;
 		i++;
 	}
+	if (copy[i + 1] == '<' || copy[i + 1] == '>')
+		i++;
 	return (i);
 }
 

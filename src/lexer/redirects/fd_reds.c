@@ -34,7 +34,7 @@ void	fd_reds_in_b(t_general_data *gen_data)
 	i = 0;
 	while (gen_data->blt[gen_data->n_built].in[i])
 	{
-		gen_data->blt[gen_data->n_built].fd_in[y] = open(gen_data->blt[gen_data->n_built].in[i++], O_WRONLY |  O_CREAT | O_TRUNC, 0644);
+		gen_data->blt[gen_data->n_built].fd_in[y] = open(gen_data->blt[gen_data->n_built].in[i++], O_RDONLY);
 		if (gen_data->blt[gen_data->n_built].fd_in[y] < 0)
 			write(2, "error\n", 7);
 		y++;
@@ -77,7 +77,7 @@ void	fd_reds_in(t_general_data *gen_data, int z)
 	i = 0;
 	while (gen_data->cmd[z].in[i])
 	{
-		gen_data->cmd[z].fd_in[y] = open(gen_data->cmd[z].in[i++], O_WRONLY |  O_CREAT | O_TRUNC, 0644);
+		gen_data->cmd[z].fd_in[y] = open(gen_data->cmd[z].in[i++], O_RDONLY);
 		if (gen_data->cmd[z].fd_in[y] < 0)
 			write(2, "error\n", 7);
 		y++;
