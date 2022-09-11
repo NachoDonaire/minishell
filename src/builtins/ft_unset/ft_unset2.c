@@ -16,7 +16,7 @@ void	ft_print_bad(t_general_data *gen_data, int p, int x)
 {
 	printf("unset: %s: ", gen_data->blt[p].args[x]);
 	printf("invalid parameter name\n");
-	ft_change_bad_status(gen_data->env);
+	ft_change_bad_status(gen_data->env, gen_data);
 }
 
 void	ft_not_equal(t_general_data *gen_data, int p, int x)

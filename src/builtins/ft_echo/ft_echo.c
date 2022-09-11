@@ -148,5 +148,5 @@ void	ft_echo(t_general_data *gen_data, int p)
 		while (gen_data->blt->fd_out[a])
 			ft_putchar_fd('\n', gen_data->blt->fd_out[a++]);
 	}
-	ft_change_good_status(gen_data->env);
+	ft_change_good_status(gen_data->env, gen_data);
 }

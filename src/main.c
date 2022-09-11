@@ -41,7 +41,7 @@ int	main(int argc, char **argv, char *env[])
 	char			*s;
 	t_general_data	gen_data;
 
-	g_status = 0;
+	gen_data.good_status = 0;
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{

@@ -81,5 +81,5 @@ void	ft_unset(t_general_data *gen_data, int p)
 			break ;
 		}
 	}
-	ft_change_good_status(gen_data->env);
+	ft_change_good_status(gen_data->env, gen_data);
 }

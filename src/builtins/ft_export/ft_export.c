@@ -105,5 +105,5 @@ void	ft_export(t_general_data *gen_data, int position)
 		ft_export_arguments(gen_data, position);
 	else
 		ft_print_export(gen_data);
-	ft_change_good_status(gen_data->env);
+	ft_change_good_status(gen_data->env, gen_data);
 }

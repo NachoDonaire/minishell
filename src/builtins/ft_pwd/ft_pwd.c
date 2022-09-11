@@ -21,13 +21,13 @@ void	ft_pwd(t_general_data *gen_data)
 	if (gen_data->blt->args[2])
 	{
 		printf("pwd: too many arguments\n");
-		ft_change_bad_status(gen_data->env);
+		ft_change_bad_status(gen_data->env, gen_data);
 		return ;
 	}
 	buf = getcwd(NULL, 0);
 	while (gen_data->blt->fd_out[x])
 		ft_putstr_fd(buf, gen_data->blt->fd_out[x++]);
 	printf("\n");
-	ft_change_good_status(gen_data->env);
+	ft_change_good_status(gen_data->env, gen_data);
 	free(buf);
 }

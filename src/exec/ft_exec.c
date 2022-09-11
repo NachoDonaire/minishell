@@ -19,7 +19,7 @@ void ft_child(t_general_data *gen_data, int position)
 	char	**copy;
 	char	*tmp;
 
-	g_status = 0;
+	gen_data->good_status = 0;
 	copy = gen_data->cmd[position].args;
 	if (ft_strncmp(copy[0], "./", 2) == 0)
 	{
@@ -35,8 +35,8 @@ void ft_child(t_general_data *gen_data, int position)
 	if (process == -1)
 	{
 		printf("Minishell: command not found: %s\n", copy[0]);
-		g_status = 127;
-		exit (g_status);
+		gen_data->good_status = 127;
+		exit (gen_data->good_status);
 	}
 }
 
@@ -61,5 +61,5 @@ void	ft_exec(t_general_data *gen_data, int position)
 			position++;
 		}
 	}
-	printf("--%d--\n",g_status);
+	printf("--%d--\n",gen_data->good_status);
 }

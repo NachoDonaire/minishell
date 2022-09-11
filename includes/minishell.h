@@ -26,7 +26,6 @@
 
 /*global*/
 
-int				g_status;
 
 /*estructura inside cmd*/
 typedef struct s_insidecmd
@@ -71,6 +70,7 @@ typedef struct s_general
 	int				built;
 	int				n_built;
 	char			*sort;
+	int				good_status;
 }	t_general_data;
 
 void	rl_replace_line(const char *text, int clear_undo);
@@ -196,9 +196,9 @@ void	ft_print_bad(t_general_data *gen_data, int p, int x);
 
 /*status*/
 
-void	ft_change_good_status(char **env);
-void	ft_change_bad_status(char **env);
-void	ft_change_permission_status(char **env);
+void	ft_change_good_status(char **env, t_general_data *gen_data);
+void	ft_change_bad_status(char **env, t_general_data *gen_data);
+void	ft_change_permission_status(char **env, t_general_data *gen_data);
 
 /*exec temporal*/
 void	ft_exec(t_general_data *gen_data, int position);
