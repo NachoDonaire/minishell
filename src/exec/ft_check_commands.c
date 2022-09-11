@@ -57,15 +57,25 @@ void	ft_check_comand(t_general_data *gen_data)
 {
 	int	x;
 	int	y;
+	int	n_blt;
+	int	n_cmd;
 
 	x = 0;
+	n_cmd = 0;
 	y = ft_last_built(gen_data->sort);
+	n_blt = 0;
 	while (gen_data->sort[x])
 	{
 		if (gen_data->sort[x] == '0' && x == y)
-			ft_built(gen_data, x);
+		{
+			ft_built(gen_data, n_blt);
+			n_blt++;
+		}
 		else if (gen_data->sort[x] == '1')
-			ft_exec(gen_data, x);
+		{
+			ft_exec(gen_data, n_cmd);
+			n_cmd++;
+		}
 		x++;
 	}
 }

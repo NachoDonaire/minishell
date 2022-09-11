@@ -96,6 +96,7 @@ char	*gest_cmllas(char *s);
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y);
 void	process_args(char *s, t_general_data *gen_data, int y);
 void	process_input(char *s, t_general_data *gen_data, char *env[]);
+//void	finish_data(t_general_data *gen_data);
 
 /*en prueba2.c */
 void	the_cmd(char *s, char *env[], t_general_data *gen_data);
@@ -108,7 +109,7 @@ void	check_cmd_pipe(t_general_data *gen_data, char *s, char *env[]);
 
 /*en check_builtin.c*/
 void	check_builtins(char *s, t_general_data *gen_data, int y);
-int	args_with_reds(char *copy);
+char	*args_with_reds(char *copy);
 
 /*ft_strjoin*/
 char	*copy(char *s1, char *s2, char *x);
@@ -222,14 +223,14 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_itoa(int n);
 
 /*en memory.c*/
-void	reserva(t_general_data *gen_data);
+void	reserva(t_general_data *gen_data, char *env[]);
 void	needed_free(t_general_data *gen_data, int y);
 
 /*signal*/
 void	handle_sigint(int sig);
 
 /*exit*/
-void	ft_exit(char *texto, char **tmp);
+void	ft_exit(char *texto);
 int		ft_check_exit(char *s);
 
 #endif

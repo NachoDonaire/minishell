@@ -17,6 +17,7 @@ void	ft_reset_table3(int *table)
 	table[0] = 0;
 	table[1] = 0;
 	table[2] = 0;
+	table[3] = 0;
 }
 
 void	ft_handle_cmd_pipes2(t_general_data *gen_data, int *t, char **tmp)
@@ -29,16 +30,16 @@ void	ft_handle_cmd_pipes2(t_general_data *gen_data, int *t, char **tmp)
 	{
 		gen_data->sort[t[0]] = '1';
 		process_string(tmp[t[1]], gen_data, gen_data->env, t[2]);
+		t[2]++;
 	}
 	else if (gen_data->built == 1)
 		gen_data->sort[t[0]] = '0';
 	t[0]++;
-	t[2]++;
 }
 
 void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 {
-	int		table[3];
+	int		table[4];
 	char	**tmp;
 
 	ft_reset_table3(table);

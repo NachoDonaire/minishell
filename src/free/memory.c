@@ -12,11 +12,12 @@
 
 #include "../../includes/minishell.h"
 
-void	reserva(t_general_data *gen_data)
+void	reserva(t_general_data *gen_data, char *env[])
 {
 	gen_data->cmd = malloc(sizeof(t_cmd_data) * (gen_data->n_pipes + 1));
 	gen_data->blt = malloc(sizeof(t_builtin_data) * (gen_data->n_pipes + 1));
 	gen_data->sort = malloc(sizeof(char) * (gen_data->n_pipes + 1));
+	gen_data->env = env;
 /*	gen_data->cmd->fd_out = malloc(1);
 	gen_data->blt->fd_out = malloc(1);
 	gen_data->cmd->fd_out[0] = STDOUT_FILENO;

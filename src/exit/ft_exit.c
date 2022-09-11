@@ -19,17 +19,15 @@ int	ft_check_exit(char *s)
 	return (0);
 }
 
-void	ft_exit(char *texto, char **tmp)
+void	ft_exit(char *texto)//, char **tmp)
 {
-	int	x;
-
-	x = 0;
 	if (texto)
 		printf("%s\n", texto);
 	else
 		printf("exit\n");
-	while (tmp[x])
+/*	while (tmp[x])
 		free(tmp[x++]);
 	free(tmp);
+	*/
 	exit(0);
 }

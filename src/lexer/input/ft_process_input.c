@@ -25,7 +25,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	char	**com;
 	int		i;
 
-	gen_data->sort[0] = '1';
+//	gen_data->sort[0] = '1';
 	com = ft_split(s, ' ');
 	if (finder(com[0], "./") == 1)
 	{
@@ -48,58 +48,12 @@ void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 	process_sing_red(gen_data, s, y, 0);
 	process_in_red(gen_data, s, y, 0);
 	gen_data->built = 0;
-	check_builtins(s, gen_data, y);
-	gen_data->sort[0] = '0';
+	if (gen_data->n_pipes == 0)
+		check_builtins(s, gen_data, y);
+//	gen_data->sort[0] = '0';
 	if (gen_data->built == 0)
 		ft_not_built(s, gen_data, env, y);
 }
-/*
-void	process_args(char *s, t_general_data *gen_data, int y)
-{
-	char	**com;
-	int		i;
-	int		z;
-	int		w;
-	int		q;
-
-	w = 0;
-	z = 0;
-	q = 0;
-	i = 0;
-	com = ft_split(s, ' ');
-	while (com[i])
-	{
-		if (check_cmllas(com[i]) == 1)
-			com[i] = gest_cmllas(com[i]);
-		i++;
-	}
-	gen_data->cmd[y].args = malloc(sizeof(char *) * (i));
-	i = 0;
-	while (com[i])
-	{
-		while (com[i][z])
-			z++;
-		gen_data->cmd[y].args[w] = malloc(sizeof(char) * z);
-		z = 0;
-		while (com[i][z])
-		{
-			if (ft_strlen(com[i]) == 1 && com[i][z])
-			{
-				w--;
-				break ;
-			}
-			if (com[i][z] == '<' || com[i][z] == '>')
-				z++;
-			gen_data->cmd[y].args[w][q++] = com[i][z++];
-		}
-		if (z != 0)
-			gen_data->cmd[y].args[w][q] = '\0';
-		z = 0;
-		i++;
-		w++;
-	}
-}
-*/
 
 void	process_args(char *s, t_general_data *gen_data, int y)
 {
@@ -107,6 +61,7 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 	int	i;
 	int	z;
 
+	i = 0;
 	while (s[i])
 		i++;
 	cp = malloc(sizeof(char) * (i+ 1));
@@ -122,12 +77,6 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 	gen_data->cmd[y].args = ft_split(cp, ' ');
 }
 		
-
-/*	cp = ft_substr(s, ft_strlen(gen_data->cmd[y].cmd), args_with_reds(s) - ft_strlen(gen_data->cmd[y].cmd));
-	gen_data->cmd[y].args = ft_split(cp, ' ');
-	printf("--%s--", cp);
-	*/
-
 void	process_input(char *s, t_general_data *gen_data, char *env[])
 {
 	char	**aux;
@@ -136,10 +85,25 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 	i = 0;
 	aux = ft_split(s, ' ');
 	if (finder(s, "|") == 1 || finder(s, "&") == 1)
+	{
 		process_string_w_pipes(gen_data, s, env);
+	}
 	else
+	{
 		process_string(s, gen_data, env, 0);
+		if (gen_data->built == 1)
+			gen_data->sort[0] = '0';
+		else if (gen_data->built == 0)
+			gen_data->sort[0] = '1';
+	}
 	while (aux[i])
 		free(aux[i++]);
 	free(aux);
 }
+/*
+void	finish_data(t_general_data *gen_data)
+{
+	gen_data->cmd[gen_data->n_cmd] = NULL;
+	gen_data->blt[gen_data->n_built] = NULL;
+}
+*/
