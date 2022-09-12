@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 18:52:35 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:33:39 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,14 +223,14 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_itoa(int n);
 
 /*en memory.c*/
-void	reserva(t_general_data *gen_data, char *env[]);
+void	reserva(t_general_data *gen_data);
 void	needed_free(t_general_data *gen_data, int y);
 
 /*signal*/
 void	handle_sigint(int sig);
 
 /*exit*/
-void	ft_exit(char *texto);
+void	ft_exit(char *texto, char **tmp);
 int		ft_check_exit(char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 18:32:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:38:47 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ int	main(int argc, char **argv, char *env[])
 			n_pipes(&gen_data, s);
 			if (ft_check_exit(s) == 1)
 				ft_exit(s, gen_data.env);
-			reserva(&gen_data, env);
+			reserva(&gen_data);
 			process_input(s, &gen_data, gen_data.env);
+			printf("%s",gen_data.blt->args[0]);
+			printf("\n");
 			ft_check_comand(&gen_data);
 			ft_free_all(&gen_data, s);
 		}

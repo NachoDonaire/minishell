@@ -6,25 +6,23 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 17:14:32 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:33:20 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	reserva(t_general_data *gen_data, char *env[])
+void	reserva(t_general_data *gen_data)
 {
 	gen_data->cmd = malloc(sizeof(t_cmd_data) * (gen_data->n_pipes + 1));
 	gen_data->blt = malloc(sizeof(t_builtin_data) * (gen_data->n_pipes + 1));
 	gen_data->sort = malloc(sizeof(char) * (gen_data->n_pipes + 1));
-	gen_data->env = env;
-/*	gen_data->cmd->fd_out = malloc(1);
+	gen_data->cmd->fd_out = malloc(1);
 	gen_data->blt->fd_out = malloc(1);
 	gen_data->cmd->fd_out[0] = STDOUT_FILENO;
 	gen_data->cmd->fd_out[1] = 0;
 	gen_data->blt->fd_out[0] = STDOUT_FILENO;
 	gen_data->blt->fd_out[1] = 0;
-	*/
 }
 
 void	needed_free(t_general_data *gen_data, int y)

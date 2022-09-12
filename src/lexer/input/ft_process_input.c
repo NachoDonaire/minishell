@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 12:11:03 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:39:39 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 void	process_input(char *s, t_general_data *gen_data, char *env[])
 {
 	char	**aux;
-	int		i;
 
-	i = 0;
 	aux = ft_split(s, ' ');
 	if (finder(s, "|") == 1 || finder(s, "&") == 1)
 	{
@@ -96,9 +94,7 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 		else if (gen_data->built == 0)
 			gen_data->sort[0] = '1';
 	}
-	while (aux[i])
-		free(aux[i++]);
-	free(aux);
+	ft_free_arg(aux);
 }
 /*
 void	finish_data(t_general_data *gen_data)
