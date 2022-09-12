@@ -21,9 +21,6 @@ int	ft_check_exit(char *s)
 
 void	ft_exit(char *texto, char **tmp)
 {
-	int	x;
-
-	x = 0;
 	if (texto)
 		printf("%s\n", texto);
 	else
