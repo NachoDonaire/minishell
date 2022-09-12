@@ -75,6 +75,14 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 	}
 	cp[z] = '\0';
 	gen_data->cmd[y].args = ft_split(cp, ' ');
+	if (!gen_data->cmd[y].args[0])
+	{
+		gen_data->cmd[y].args = malloc(sizeof(char *) * 1);
+		gen_data->cmd[y].args[0] = malloc(sizeof(char ) * 1);
+		gen_data->cmd[y].args[0] = NULL;
+	}
+//	write(1, "aa", 2);
+//	printf("%s\n", cp);
 }
 		
 void	process_input(char *s, t_general_data *gen_data, char *env[])

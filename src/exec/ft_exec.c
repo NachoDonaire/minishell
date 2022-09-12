@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 18:57:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:07:43 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void ft_child(t_general_data *gen_data, int position)
 	int		process;
 	char	**copy;
 //	char	*tmp;
-//	int		i;
+	int		i;
 
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	i = 0;
 	gen_data->good_status = 0;
 	copy = gen_data->cmd[position].args;
 	/*if (ft_strncmp(copy[0], "./", 2) == 0)
@@ -32,10 +35,21 @@ void ft_child(t_general_data *gen_data, int position)
 		process = execve(path, copy, gen_data->env);
 	}*/
 
-	/*while (gen_data->cmd[position].fd_in[i] > 0)
+	while (gen_data->cmd[position].fd_in[i] > 0)
 	{
 		dup2(gen_data->cmd[position].fd_in[i++], 0);
-	}*/
+	}
+	i = 0;
+	if (position < gen_data->n_cmd - 1)
+	{
+		close(gen_data->pipe[0]);
+		dup2(gen_data->pipe[1], 1);
+	}
+	if (position == gen_data->n_cmd - 1)
+	{
+		close(gen_data->pipe[1]);
+		dup2(gen_data->pipe[0], 0);
+	}
 	//ft_path(copy[0], gen_data->env, &path);
 	process = execve(gen_data->cmd[position].cmd, copy, gen_data->env);
 	if (process == -1)
@@ -54,19 +68,20 @@ void	ft_exec(t_general_data *gen_data, int position)
 	//i = 0;
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
-	pipe(gen_data->pipe);
 	if (gen_data->cmd[position].cmd)
 	{
 		pid = fork();
 		if (pid == 0)
 		{
+			pipe(gen_data->pipe);
 			ft_child(gen_data, position);
 		}
 		else
 		{
-			wait(NULL);
+		//	wait(NULL);
 			wait(NULL);
 		}
+		waitpid(pid, NULL, 0);
 	}
 	printf("--%d--\n",gen_data->good_status);
 }

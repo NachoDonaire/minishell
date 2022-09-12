@@ -44,32 +44,28 @@ void	ft_reset_cmd(t_general_data *gen_data, int y)
 	gen_data->cmd[y].in[0] = 0;
 }
 
-char	*args_with_reds(char *copy)
+int	args_with_reds(char *copy)
 {
-	int	i;
-	int	y;
-	char	*s;
+	int		i;
 
-	y = 0;
 	i = 0;
 	while (copy[i])
 	{
-		while (copy[i] == '>' || copy[i] == '<')
+		if (copy[i] == '>' || copy[i] == '<')
 			break;
 		i++;
 	}
-	if (y == 0)
-		return (copy);
-	y = ft_strlen(copy) - i;
-	s = malloc(sizeof(char) * (y + 1));
+	return (i);
+}
+
+int	n_spaces(char *copy)
+{
+	int	i;
+
 	i = 0;
-	while (i <= y)
-	{
-		s[i] = copy[i];
+	while (copy[i] == ' ')
 		i++;
-	}
-	s[i] = '\0';
-	return (s);
+	return (i);
 }
 
 void	check_builtins(char *s, t_general_data *gen_data, int y)
@@ -83,9 +79,10 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 	{
 		tmp = ft_split(s, ' ');
 		paste_in_built(gen_data, tmp[0]);
-		//cp = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt),
-		//		args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt));
-		cp = args_with_reds(s);
+		cp = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt) + n_spaces(s),
+				args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt));
+
+	//	cp = args_with_reds(s);
 		gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
 		free(cp);
 		ft_reset_cmd(gen_data, y);

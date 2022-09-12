@@ -33,7 +33,7 @@ static void	ft_free_all(t_general_data *gen_data, char *s)
 {
 	free(gen_data->sort);
 	free(s);
-	needed_free(gen_data, gen_data->n_pipes);
+	needed_free(gen_data, gen_data->n_cmd);
 }
 
 int	main(int argc, char **argv, char *env[])
@@ -60,8 +60,9 @@ int	main(int argc, char **argv, char *env[])
 				ft_exit(s, gen_data.env);
 			reserva(&gen_data);
 			process_input(s, &gen_data, gen_data.env);
-			printf("%s",gen_data.blt->args[0]);
-			printf("\n");
+		//	printf("%s\n",gen_data.blt->args[0]);
+		//	printf("%s",gen_data.blt->blt);
+		//	printf("\n");
 			ft_check_comand(&gen_data);
 			ft_free_all(&gen_data, s);
 		}

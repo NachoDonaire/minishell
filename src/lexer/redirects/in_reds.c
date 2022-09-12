@@ -108,6 +108,7 @@ void	process_in_red(t_general_data *gen_data, char *s, int y, int ref)
 		{
 			gen_data->cmd[y].in = malloc(sizeof(char *) * 1);
 			gen_data->cmd[y].in[0] = malloc(sizeof(char) * 1);
+			gen_data->cmd[y].in[0] = NULL;
 			gen_data->cmd[y].fd_in = malloc(sizeof(int) * 1);
 		}
 	}
@@ -122,6 +123,7 @@ void	process_in_red(t_general_data *gen_data, char *s, int y, int ref)
 		{
 			gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
 			gen_data->blt[gen_data->n_built].in[0] = malloc(1);
+			gen_data->blt[gen_data->n_built].in[0] = NULL;
 			gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
 
 		}

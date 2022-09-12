@@ -23,6 +23,12 @@ void	reserva(t_general_data *gen_data)
 	gen_data->cmd->fd_out[1] = 0;
 	gen_data->blt->fd_out[0] = STDOUT_FILENO;
 	gen_data->blt->fd_out[1] = 0;
+	gen_data->cmd->fd_in = malloc(1);
+	gen_data->blt->fd_in = malloc(1);
+	gen_data->cmd->fd_in[0] = STDOUT_FILENO;
+	gen_data->cmd->fd_in[1] = 0;
+	gen_data->blt->fd_in[0] = STDOUT_FILENO;
+	gen_data->blt->fd_in[1] = 0;
 }
 
 void	needed_free(t_general_data *gen_data, int y)
@@ -34,6 +40,7 @@ void	needed_free(t_general_data *gen_data, int y)
 	w = 0;
 	z = 0;*/
 	i = 0;
+	(void)y;
 	while (i < gen_data->n_built - 1)
 	{
 		if (gen_data->blt[i].blt)
@@ -51,7 +58,10 @@ void	needed_free(t_general_data *gen_data, int y)
 
 		i++;
 	}
+//	write(1, "aa", 2);
 	i = 0;
+//	printf("%d\n", y);
+//	i
 	while (i < y)
 	{
 		if (gen_data->cmd[i].cmd)
@@ -62,10 +72,11 @@ void	needed_free(t_general_data *gen_data, int y)
 			free(gen_data->cmd[i].fd_out);
 		if (gen_data->cmd[i].fd_in)
 			free(gen_data->cmd[i].fd_in);
-		if (gen_data->cmd[i].out[0])
+		if (gen_data->cmd[i].out)
 			ft_free_arg(gen_data->cmd[i].out);
-		if (gen_data->cmd[i].in[0])
+		if (gen_data->cmd[i].in)
 			ft_free_arg(gen_data->cmd[i].in);
 		i++;
 	}
+//	write(1, "bb", 2);
 }

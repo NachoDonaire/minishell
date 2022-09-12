@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/12 09:33:39 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:20:38 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	check_cmd_pipe(t_general_data *gen_data, char *s, char *env[]);
 
 /*en check_builtin.c*/
 void	check_builtins(char *s, t_general_data *gen_data, int y);
-char	*args_with_reds(char *copy);
+int		args_with_reds(char *copy);
 
 /*ft_strjoin*/
 char	*copy(char *s1, char *s2, char *x);
