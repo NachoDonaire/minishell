@@ -41,6 +41,13 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	gen_data->cmd[y].cmd = check_cmd(com[0], env);
 	process_args(s, gen_data, y);
 	ft_free_arg(com);
+	if (gen_data->n_pipes == 0)
+	{
+		gen_data->sort[0] = '1';
+		gen_data->sort[1] = '\0';
+	}
+
+
 }
 
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y)

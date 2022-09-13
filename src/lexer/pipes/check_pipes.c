@@ -41,7 +41,9 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 {
 	int		table[4];
 	char	**tmp;
+	int		i;
 
+	i = 0;
 	ft_reset_table3(table);
 	tmp = ft_split(s, '|');
 	while (tmp[table[1]])
@@ -54,6 +56,9 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 	}
 	gen_data->sort[table[0]] = '\0';
 	gen_data->n_cmd = table[2];
+	gen_data->pipe = malloc(sizeof(int *) * gen_data->n_cmd);
+	while (i <= gen_data->n_cmd)
+		gen_data->pipe[i++] = malloc(sizeof(int) * 2);
 	ft_free_arg(tmp);
 }
 

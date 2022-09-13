@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:03 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/12 14:07:42 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:20:56 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,25 @@ int	ft_last_built(char *s)
 
 void	ft_check_comand(t_general_data *gen_data)
 {
-	int	x;
 	int	y;
 	int	n_blt;
 	int	n_cmd;
 
-	x = 0;
 	n_cmd = 0;
 	y = ft_last_built(gen_data->sort);
 	n_blt = 0;
-	while (gen_data->sort[x])
+	while (gen_data->exec_pos <= gen_data->n_cmd + gen_data->n_built)
 	{
-		if (gen_data->sort[x] == '0' && x == y)
+		if (gen_data->sort[gen_data->exec_pos] == '0' && gen_data->exec_pos == y)
 		{
 			ft_built(gen_data, n_blt);
 			n_blt++;
 		}
-		else if (gen_data->sort[x] == '1')
+		else if (gen_data->sort[gen_data->exec_pos] == '1')
 		{
-			ft_exec(gen_data, n_cmd);
-			n_cmd++;
+			n_cmd = ft_exec(gen_data, n_cmd);
+			gen_data->exec_pos--;
 		}
-		x++;
+		gen_data->exec_pos++;
 	}
 }

@@ -27,6 +27,7 @@ static void	ft_iniciate(t_general_data *gen_data)
 	gen_data->built = 0;
 	gen_data->n_built = 0;
 	gen_data->n_cmd = 1;
+	gen_data->exec_pos = 0;
 }
 
 static void	ft_free_all(t_general_data *gen_data, char *s)

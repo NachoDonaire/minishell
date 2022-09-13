@@ -6,12 +6,12 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/12 14:07:43 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:20:54 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+/*
 void ft_child(t_general_data *gen_data, int position)
 {
 	int		process;
@@ -45,31 +45,93 @@ void ft_child(t_general_data *gen_data, int position)
 		exit (gen_data->good_status);
 	}
 }
-
-void	ft_exec(t_general_data *gen_data, int position)
+*/
+void ft_child(t_general_data *gen_data, int position)
 {
-	int		pid;
-//	char	*s;
-//	int		i;
+	int	exec;
 
-//	i = 0;
-//	s = malloc(sizeof(char) * 10000);
+	exec = 0;
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	if (gen_data->n_pipes == 0)
+	{
+		exec = execve(gen_data->cmd[position].cmd, gen_data->cmd[position].args, gen_data->env);
+		if (exec < 0)
+		{
+			printf("Minishell: command not found: %s\n", gen_data->cmd[position].cmd);
+			gen_data->good_status = 127;
+			exit (gen_data->good_status);
+		}
+	}
+	else
+	{
+		if (position == 0)
+		{
+			close(gen_data->pipe[position][0]);
+			dup2(gen_data->pipe[position][1], 1);
+			close(gen_data->pipe[position][1]);
+		}
+		else if (position > 0 && position < gen_data->n_cmd - 1)
+		{
+			close(gen_data->pipe[position][0]);
+			dup2(gen_data->pipe[position - 1][0], 0);
+			close(gen_data->pipe[position - 1][0]);
+			dup2(gen_data->pipe[position][1], 1);
+			close(gen_data->pipe[position][1]);
+		}
+		else
+		{
+			dup2(gen_data->pipe[position - 1][0], 0);
+			close(gen_data->pipe[position - 1][0]);
+		}
+	}
+
+	exec = execve(gen_data->cmd[position].cmd, gen_data->cmd[position].args, gen_data->env);
+	if (exec < 0)
+	{
+		printf("Minishell: command not found: %s\n", gen_data->cmd[position].cmd);
+		gen_data->good_status = 127;
+		exit (gen_data->good_status);
+	}
+}
+
+int	ft_exec(t_general_data *gen_data, int position)
+{
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	if (gen_data->cmd[position].cmd)
 	{
-		pid = fork();
-		if (pid == 0)
+		if (gen_data->sort[gen_data->exec_pos] == '1' && gen_data->sort[gen_data->exec_pos])
 		{
-			pipe(gen_data->pipe);
-			ft_child(gen_data, position);
-		}
+			if (gen_data->sort[gen_data->exec_pos + 1] == '1' || gen_data->n_pipes == 1) 
+			{
+				if (pipe(gen_data->pipe[position]) < 0)
+					write(1, "error\n", 6);
+			}
+			gen_data->pid = fork();
+			if (gen_data->pid == 0)
+			{
+				ft_child(gen_data, position);
+			}
 			else
-		{
-		//	wait(NULL);
-			wait(NULL);
+			{
+				if (gen_data->n_pipes != 0)
+				{
+					if (position == 0)
+						close(gen_data->pipe[position][1]);
+					else
+					{
+						close(gen_data->pipe[position - 1][0]);
+						close(gen_data->pipe[position][1]);
+					}
+				}
+				gen_data->exec_pos++;
+				wait(NULL);
+				wait(NULL);
+				ft_exec(gen_data, position + 1);
+			}
 		}
-		waitpid(pid, NULL, 0);
 	}
 	printf("--%d--\n",gen_data->good_status);
+	return (position);
 }
