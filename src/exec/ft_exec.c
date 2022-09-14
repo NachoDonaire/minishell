@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 13:37:34 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:41:15 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ void	ft_child_pipes(t_general_data *gen_data, int position)
 void	ft_child_not_pipes(t_general_data *gen_data, int position)
 {
 	int	exec;
-	int	x;
+	//int	x;
 
 	exec = 0;
-	x = 0;
+	/*x = 0;
 	while (gen_data->cmd[position].fd_out[x])
 	{
 		dup2(gen_data->cmd[position].fd_out[x], 1);
 		x++;
-	}
+	}*/
 	exec = execve(gen_data->cmd[position].cmd,
 			gen_data->cmd[position].args, gen_data->env);
 	if (exec < 0)
