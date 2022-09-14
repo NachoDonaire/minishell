@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/12 13:20:38 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:19:15 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ void	ft_print_bad(t_general_data *gen_data, int p, int x);
 
 /*status*/
 
+void	ft_check_status(t_general_data *gen_data, int position);
 void	ft_change_good_status(char **env, t_general_data *gen_data);
 void	ft_change_bad_status(char **env, t_general_data *gen_data);
 void	ft_change_permission_status(char **env, t_general_data *gen_data);

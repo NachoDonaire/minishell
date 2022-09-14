@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/13 13:20:54 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/14 09:17:04 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,5 @@ int	ft_exec(t_general_data *gen_data, int position)
 			}
 		}
 	}
-	printf("--%d--\n",gen_data->good_status);
 	return (position);
 }
