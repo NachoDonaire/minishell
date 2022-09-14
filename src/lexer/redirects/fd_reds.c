@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fd_reds.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/14 10:23:14 by sasalama          #+#    #+#             */
+/*   Updated: 2022/09/14 11:24:53 by sasalama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../includes/minishell.h"
 
 void	fd_reds_out_b(t_general_data *gen_data)
 {
-	int	i;
-	int	y;
+	int		i;
+	int		y;
+	int		z;
+	char	*s;
 
 	y = 0;
 	i = 0;
@@ -13,7 +27,9 @@ void	fd_reds_out_b(t_general_data *gen_data)
 	i = 0;
 	while (gen_data->blt[gen_data->n_built].out[i])
 	{
-		gen_data->blt[gen_data->n_built].fd_out[y] = open(gen_data->blt[gen_data->n_built].out[i++], O_WRONLY |  O_CREAT | O_TRUNC, 0644);
+		s = gen_data->blt[gen_data->n_built].out[i++];
+		z = open(s, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		gen_data->blt[gen_data->n_built].fd_out[y] = z;
 		if (gen_data->blt[gen_data->n_built].fd_out[y] < 0)
 			write(2, "error\n", 7);
 		y++;
@@ -23,8 +39,10 @@ void	fd_reds_out_b(t_general_data *gen_data)
 
 void	fd_reds_in_b(t_general_data *gen_data)
 {
-	int	i;
-	int	y;
+	int		i;
+	int		y;
+	int		z;
+	char	*s;
 
 	y = 0;
 	i = 0;
@@ -34,7 +52,9 @@ void	fd_reds_in_b(t_general_data *gen_data)
 	i = 0;
 	while (gen_data->blt[gen_data->n_built].in[i])
 	{
-		gen_data->blt[gen_data->n_built].fd_in[y] = open(gen_data->blt[gen_data->n_built].in[i++], O_RDONLY);
+		s = gen_data->blt[gen_data->n_built].in[i++];
+		z = open(s, O_RDONLY);
+		gen_data->blt[gen_data->n_built].fd_in[y] = z;
 		if (gen_data->blt[gen_data->n_built].fd_in[y] < 0)
 			write(2, "error\n", 7);
 		y++;
@@ -44,8 +64,10 @@ void	fd_reds_in_b(t_general_data *gen_data)
 
 void	fd_reds_out(t_general_data *gen_data, int z)
 {
-	int	i;
-	int	y;
+	int		i;
+	int		y;
+	int		a;
+	char	*s;
 
 	y = 0;
 	i = 0;
@@ -55,12 +77,13 @@ void	fd_reds_out(t_general_data *gen_data, int z)
 	i = 0;
 	while (gen_data->cmd[z].out[i])
 	{
-		gen_data->cmd[z].fd_out[y] = open(gen_data->cmd[z].out[i++], O_WRONLY |  O_CREAT | O_TRUNC, 0644);
+		s = gen_data->cmd[z].out[i++];
+		a = open(s, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		gen_data->cmd[z].fd_out[y] = a;
 		if (gen_data->cmd[z].fd_out[y] < 0)
 			write(2, "error\n", 7);
 		y++;
 	}
-//	printf("--%d--", gen_data->cmd[z].fd_out[y - 1]);
 	gen_data->cmd[z].fd_out[y] = -1;
 }
 

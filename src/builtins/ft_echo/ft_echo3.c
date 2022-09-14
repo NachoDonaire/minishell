@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:45 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 15:30:25 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:07:51 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,12 @@ int	ft_print_quotation_d2(char *argument)
 	return (1);
 }
 
-void	ft_print_variable(char **arg, int x, int y, t_general_data *gen_data)
+void	ft_print_v2(int y, t_general_data *gen_data, char *copy, char *tmp)
 {
-	int		z;
-	char	*copy;
-	char	*tmp;
-	int		a;
+	int	z;
+	int	a;
 
 	a = 0;
-	copy = ft_substr(arg[x], y + 1, ft_strlen(arg[x]));
-	while (ft_print_quotation_d2(copy) == 0)
-		copy[ft_strlen(copy) - 1] = '\0';
-	while (ft_print_quotation_s2(copy) == 0)
-		copy[ft_strlen(copy) - 1] = '\0';
-	tmp = ft_strjoin(copy, "=");
-	free(copy);
 	z = -1;
 	while (gen_data->env[++z])
 	{
@@ -72,42 +63,19 @@ void	ft_print_variable(char **arg, int x, int y, t_general_data *gen_data)
 	}
 }
 
-int	ft_print_quotation_d(char *argument)
+void	ft_print_v(char **arg, int x, int y, t_general_data *gen_data)
 {
-	int	x;
-	int	z;
+	char	*copy;
+	char	*tmp;
+	int		a;
 
-	x = 0;
-	z = ft_strlen(argument) - 1;
-	while (argument[x])
-	{
-		if (argument[x] == 39)
-		{
-			if (argument[x + 1] == 34 && argument[z] != 34)
-				return (0);
-			return (1);
-		}
-		x++;
-	}
-	return (1);
-}
-
-int	ft_print_quotation_s(char *argument)
-{
-	int	x;
-	int	z;
-
-	x = 0;
-	z = ft_strlen(argument) - 1;
-	while (argument[x])
-	{
-		if (argument[x] == 34)
-		{
-			if (argument[x + 1] == 39 && argument[z] != 39)
-				return (0);
-			return (1);
-		}
-		x++;
-	}
-	return (1);
+	a = 0;
+	copy = ft_substr(arg[x], y + 1, ft_strlen(arg[x]));
+	while (ft_print_quotation_d2(copy) == 0)
+		copy[ft_strlen(copy) - 1] = '\0';
+	while (ft_print_quotation_s2(copy) == 0)
+		copy[ft_strlen(copy) - 1] = '\0';
+	tmp = ft_strjoin(copy, "=");
+	free(copy);
+	ft_print_v2(y, gen_data, copy, tmp);
 }

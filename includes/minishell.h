@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 09:19:15 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:17:48 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <fcntl.h>
 
 /*global*/
-
 
 /*estructura inside cmd*/
 typedef struct s_insidecmd
@@ -174,7 +173,7 @@ char	**get_env(char **envp);
 /*echo*/
 int		ft_print_quotation_s(char *argument);
 int		ft_print_quotation_d(char *argument);
-void	ft_print_variable(char **nb_arguments, int x, int y, t_general_data *gen_data);
+void	ft_print_v(char **nb_arguments, int x, int y, t_general_data *gen_data);
 int		ft_print_quotation_d2(char *argument);
 int		ft_print_quotation_s2(char *argument);
 int		ft_c_d(char *argument);
@@ -184,6 +183,9 @@ int		ft_n(char *argument);
 int		ft_equal(char *s);
 int		ft_nb_arguments(char **nb_arguments);
 void	ft_free_arg(char **arguments);
+int		ft_check_nl(t_general_data *gen_data, int position);
+void	ft_print_fdout(t_general_data *gen_data, char s);
+void	ft_print(int x, int z, t_general_data *gen_data, int position);
 
 /*export*/
 
@@ -207,7 +209,7 @@ void	ft_change_bad_status(char **env, t_general_data *gen_data);
 void	ft_change_permission_status(char **env, t_general_data *gen_data);
 
 /*exec temporal*/
-int	ft_exec(t_general_data *gen_data, int position);
+int		ft_exec(t_general_data *gen_data, int position);
 void	ft_path(char *command, char *envp[], char **fd_path);
 
 /*funciones libft*/

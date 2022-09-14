@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/12 09:39:39 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:30:57 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	char	**com;
 	int		i;
 
-//	gen_data->sort[0] = '1';
 	com = ft_split(s, ' ');
 	if (finder(com[0], "./") == 1)
 	{
@@ -46,8 +45,6 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 		gen_data->sort[0] = '1';
 		gen_data->sort[1] = '\0';
 	}
-
-
 }
 
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
@@ -57,7 +54,6 @@ void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 	gen_data->built = 0;
 	if (gen_data->n_pipes == 0)
 		check_builtins(s, gen_data, y);
-//	gen_data->sort[0] = '0';
 	if (gen_data->built == 0)
 		ft_not_built(s, gen_data, env, y);
 }
@@ -65,13 +61,13 @@ void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 void	process_args(char *s, t_general_data *gen_data, int y)
 {
 	char	*cp;
-	int	i;
-	int	z;
+	int		i;
+	int		z;
 
 	i = 0;
 	while (s[i])
 		i++;
-	cp = malloc(sizeof(char) * (i+ 1));
+	cp = malloc(sizeof(char) * (i + 1));
 	i = 0;
 	z = 0;
 	while (s[i])
@@ -88,19 +84,15 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 		gen_data->cmd[y].args[0] = malloc(sizeof(char ) * 1);
 		gen_data->cmd[y].args[0] = NULL;
 	}
-//	write(1, "aa", 2);
-//	printf("%s\n", cp);
 }
-		
+
 void	process_input(char *s, t_general_data *gen_data, char *env[])
 {
 	char	**aux;
 
 	aux = ft_split(s, ' ');
 	if (finder(s, "|") == 1 || finder(s, "&") == 1)
-	{
 		process_string_w_pipes(gen_data, s, env);
-	}
 	else
 	{
 		process_string(s, gen_data, env, 0);
@@ -111,10 +103,3 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 	}
 	ft_free_arg(aux);
 }
-/*
-void	finish_data(t_general_data *gen_data)
-{
-	gen_data->cmd[gen_data->n_cmd] = NULL;
-	gen_data->blt[gen_data->n_built] = NULL;
-}
-*/

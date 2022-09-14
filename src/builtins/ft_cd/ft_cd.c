@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:40:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:39:34 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_change_pwd(char **env, char *buf)
 	}
 }
 
-static void	ft_change_variable_oldpwd(char **env, char *tmp, t_general_data *gen_data)
+static void	ft_change_oldpwd(char **env, char *tmp, t_general_data *gen_data)
 {
 	int		x;
 	int		oldpwd;
@@ -56,7 +56,7 @@ static void	ft_change_variable_oldpwd(char **env, char *tmp, t_general_data *gen
 	ft_change_good_status(env, gen_data);
 }
 
-static void	ft_error_arguments_cd(char *arguments, char **env, t_general_data *gen_data)
+static void	ft_error_cd(char *arguments, char **env, t_general_data *gen_data)
 {
 	if (access(arguments, F_OK) != -1)
 		printf("cd: %s: Permission denied\n", arguments);
@@ -78,16 +78,16 @@ void	ft_cd(t_general_data *gen_data, int p)
 			ft_change_permission_status(gen_data->env, gen_data);
 		}
 		else
-			ft_change_variable_oldpwd(gen_data->env, tmp, gen_data);
+			ft_change_oldpwd(gen_data->env, tmp, gen_data);
 		free(tmp);
 	}
 	else
 	{
 		tmp = getcwd(NULL, 0);
 		if (chdir(gen_data->blt[p].args[0]) != 0)
-			ft_error_arguments_cd(gen_data->blt[p].args[0], gen_data->env, gen_data);
+			ft_error_cd(gen_data->blt[p].args[0], gen_data->env, gen_data);
 		else
-			ft_change_variable_oldpwd(gen_data->env, tmp, gen_data);
+			ft_change_oldpwd(gen_data->env, tmp, gen_data);
 		free(tmp);
 	}
 }

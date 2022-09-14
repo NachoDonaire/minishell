@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:49 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/12 09:41:37 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:59:02 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	args_with_reds(char *copy)
 	while (copy[i])
 	{
 		if (copy[i] == '>' || copy[i] == '<')
-			break;
+			break ;
 		i++;
 	}
 	return (i);
@@ -72,6 +72,8 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 {
 	char	**tmp;
 	char	*cp;
+	int		x;
+	int		z;
 
 	if (extreme_finder(s, "echo") == 1 || extreme_finder(s, "pwd") == 1
 		|| extreme_finder(s, "cd") == 1 || extreme_finder(s, "export") == 1
@@ -79,10 +81,9 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 	{
 		tmp = ft_split(s, ' ');
 		paste_in_built(gen_data, tmp[0]);
-		cp = ft_substr(s, ft_strlen(gen_data->blt[gen_data->n_built].blt) + n_spaces(s),
-				args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt));
-
-	//	cp = args_with_reds(s);
+		x = ft_strlen(gen_data->blt[gen_data->n_built].blt) + n_spaces(s);
+		z = args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt);
+		cp = ft_substr(s, x, z);
 		gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
 		free(cp);
 		ft_reset_cmd(gen_data, y);

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/12 09:33:20 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:31:42 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,11 @@ void	reserva(t_general_data *gen_data)
 	gen_data->blt->fd_in[1] = 0;
 }
 
-void	needed_free(t_general_data *gen_data, int y)
+void	ft_free_built(t_general_data *gen_data)
 {
 	int	i;
-	/*int	z;
-	int	w;
 
-	w = 0;
-	z = 0;*/
 	i = 0;
-	(void)y;
 	while (i < gen_data->n_built - 1)
 	{
 		if (gen_data->blt[i].blt)
@@ -55,13 +50,15 @@ void	needed_free(t_general_data *gen_data, int y)
 			ft_free_arg(gen_data->blt[i].out);
 		if (gen_data->blt[i].in[0])
 			ft_free_arg(gen_data->blt[i].in);
-
 		i++;
 	}
-//	write(1, "aa", 2);
+}
+
+void	ft_free_cmd(t_general_data *gen_data, int y)
+{
+	int	i;
+
 	i = 0;
-//	printf("%d\n", y);
-//	i
 	while (i < y)
 	{
 		if (gen_data->cmd[i].cmd)
@@ -78,5 +75,10 @@ void	needed_free(t_general_data *gen_data, int y)
 			ft_free_arg(gen_data->cmd[i].in);
 		i++;
 	}
-//	write(1, "bb", 2);
+}
+
+void	needed_free(t_general_data *gen_data, int y)
+{
+	ft_free_built(gen_data);
+	ft_free_cmd(gen_data, y);
 }

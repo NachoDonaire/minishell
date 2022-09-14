@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 09:50:34 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 13:07:42 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:19:16 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,3 @@ void	no_red_out(t_general_data *gen_data, int y)
 	gen_data->cmd[y].out[0] = malloc(1);
 	gen_data->cmd[y].fd_out = malloc(sizeof(int) * 1);
 }
-

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/12 09:38:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:38:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,8 @@ int	main(int argc, char **argv, char *env[])
 {
 	char			*s;
 	t_general_data	gen_data;
-//	int		y;
 
-	gen_data.good_status = 0;
 	gen_data.env = get_env(env);
-//	i = 0;
-//	y = 0;
 	while (argc && argv)
 	{
 		signal(SIGINT, handle_sigint);
@@ -61,9 +57,6 @@ int	main(int argc, char **argv, char *env[])
 				ft_exit(s, gen_data.env);
 			reserva(&gen_data);
 			process_input(s, &gen_data, gen_data.env);
-		//	printf("%s\n",gen_data.blt->args[0]);
-		//	printf("%s",gen_data.blt->blt);
-		//	printf("\n");
 			ft_check_comand(&gen_data);
 			ft_free_all(&gen_data, s);
 		}
