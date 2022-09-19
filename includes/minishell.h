@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/19 10:17:35 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:19:14 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,13 +175,7 @@ void	ft_export(t_general_data *gen_data, int position);
 char	**get_env(char **envp);
 
 /*echo*/
-int		ft_print_quotation_s(char *argument);
-int		ft_print_quotation_d(char *argument);
 void	ft_print_v(char **nb_arguments, int x, int y, t_general_data *gen_data);
-int		ft_print_quotation_d2(char *argument);
-int		ft_print_quotation_s2(char *argument);
-int		ft_c_d(char *argument);
-int		ft_c_s(char *argument);
 int		ft_dollar(char *argument);
 int		ft_n(char *argument);
 int		ft_equal(char *s);
@@ -189,7 +183,7 @@ int		ft_nb_arguments(char **nb_arguments);
 void	ft_free_arg(char **arguments);
 int		ft_check_nl(t_general_data *gen_data, int position);
 void	ft_print_fdout(t_general_data *gen_data, char s);
-void	ft_print(int x, int z, t_general_data *gen_data, int position);
+void	ft_print(int x, t_general_data *gen_data, int position);
 
 /*export*/
 
