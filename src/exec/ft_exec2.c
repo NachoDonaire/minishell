@@ -6,14 +6,15 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/19 10:18:40 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/19 10:50:38 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_child_pipes(t_general_data *gen_data, int position)
+void	ft_child_pipes(t_general_data *gen_data, int position, int x)
 {
+	dup2(gen_data->cmd[position].fd_out[x], 1);
 	if (position == 0)
 	{
 		close(gen_data->pipe[position][0]);
@@ -63,7 +64,7 @@ void	ft_child(t_general_data *gen_data, int position, int x)
 	if (gen_data->n_pipes == 0)
 		ft_child_not_pipes(gen_data, position, x);
 	else
-		ft_child_pipes(gen_data, position);
+		ft_child_pipes(gen_data, position, x);
 	exec = execve(gen_data->cmd[position].cmd,
 			gen_data->cmd[position].args, gen_data->env);
 	if (exec < 0)
