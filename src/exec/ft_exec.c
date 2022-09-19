@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/19 10:02:49 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/19 10:14:18 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,30 @@ void	ft_father(t_general_data *gen_data, int position)
 	gen_data->exec_pos++;
 }
 
-int	ft_exec(t_general_data *gen_data, int position)
+void	ft_exec2(t_general_data *gen_data, int position)
 {
 	int	x;
 
+	x = 0;
+	while (gen_data->cmd[position].fd_out[x + 1])
+	{
+		gen_data->pid = fork();
+		if (gen_data->pid == 0)
+			ft_child(gen_data, position, x);
+		else
+		{
+			ft_father(gen_data, position);
+			wait(NULL);
+			ft_exec(gen_data, position + 1);
+		}
+		x++;
+	}
+}
+
+int	ft_exec(t_general_data *gen_data, int position)
+{
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
-	x = 0;
 	if (gen_data->cmd[position].cmd)
 	{
 		if (gen_data->sort[gen_data->exec_pos] == '1'
@@ -108,19 +125,7 @@ int	ft_exec(t_general_data *gen_data, int position)
 				if (pipe(gen_data->pipe[position]) < 0)
 					write(1, "error\n", 6);
 			}
-			while (gen_data->cmd[position].fd_out[x + 1])
-			{
-				gen_data->pid = fork();
-				if (gen_data->pid == 0)
-					ft_child(gen_data, position, x);
-				else
-				{
-					ft_father(gen_data, position);
-					wait(NULL);
-					ft_exec(gen_data, position + 1);
-				}
-				x++;
-			}
+			ft_exec2(gen_data, position);
 		}
 	}
 	return (position);
