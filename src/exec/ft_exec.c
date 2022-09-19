@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 13:41:15 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/19 10:02:49 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,13 @@ void	ft_child_pipes(t_general_data *gen_data, int position)
 	}
 }
 
-void	ft_child_not_pipes(t_general_data *gen_data, int position)
+void	ft_child_not_pipes(t_general_data *gen_data, int position, int x)
 {
 	int	exec;
-	//int	x;
 
 	exec = 0;
-	/*x = 0;
-	while (gen_data->cmd[position].fd_out[x])
-	{
-		dup2(gen_data->cmd[position].fd_out[x], 1);
-		x++;
-	}*/
+	dup2(gen_data->cmd[position].fd_out[x], 1);
+	close(gen_data->cmd[position].fd_out[x]);
 	exec = execve(gen_data->cmd[position].cmd,
 			gen_data->cmd[position].args, gen_data->env);
 	if (exec < 0)
@@ -58,7 +53,7 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position)
 	}
 }
 
-void	ft_child(t_general_data *gen_data, int position)
+void	ft_child(t_general_data *gen_data, int position, int x)
 {
 	int	exec;
 
@@ -66,7 +61,7 @@ void	ft_child(t_general_data *gen_data, int position)
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	if (gen_data->n_pipes == 0)
-		ft_child_not_pipes(gen_data, position);
+		ft_child_not_pipes(gen_data, position, x);
 	else
 		ft_child_pipes(gen_data, position);
 	exec = execve(gen_data->cmd[position].cmd,
@@ -97,8 +92,11 @@ void	ft_father(t_general_data *gen_data, int position)
 
 int	ft_exec(t_general_data *gen_data, int position)
 {
+	int	x;
+
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
+	x = 0;
 	if (gen_data->cmd[position].cmd)
 	{
 		if (gen_data->sort[gen_data->exec_pos] == '1'
@@ -110,14 +108,18 @@ int	ft_exec(t_general_data *gen_data, int position)
 				if (pipe(gen_data->pipe[position]) < 0)
 					write(1, "error\n", 6);
 			}
-			gen_data->pid = fork();
-			if (gen_data->pid == 0)
-				ft_child(gen_data, position);
-			else
+			while (gen_data->cmd[position].fd_out[x + 1])
 			{
-				ft_father(gen_data, position);
-				wait(NULL);
-				ft_exec(gen_data, position + 1);
+				gen_data->pid = fork();
+				if (gen_data->pid == 0)
+					ft_child(gen_data, position, x);
+				else
+				{
+					ft_father(gen_data, position);
+					wait(NULL);
+					ft_exec(gen_data, position + 1);
+				}
+				x++;
 			}
 		}
 	}
