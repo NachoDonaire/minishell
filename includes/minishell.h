@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 11:17:48 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/19 10:17:35 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,10 @@ void	fd_reds_out_b(t_general_data *gen_data);
 void	fd_reds_in_b(t_general_data *gen_data);
 void	fd_reds_out(t_general_data *gen_data, int z);
 void	fd_reds_in(t_general_data *gen_data, int z);
+
+/*exec cmd*/
+
+void	ft_exec2(t_general_data *gen_data, int position);
 
 /*exec builtins*/
 
