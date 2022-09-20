@@ -12,23 +12,18 @@
 
 #include "../../includes/minishell.h"
 
-int	ft_exec(t_general_data *gen_data, int position)
+int	ft_exec(t_general_data *gen_data, int position, int  n_built)
 {
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
-	if (gen_data->cmd[position].cmd)
-	{
-		if (gen_data->sort[gen_data->exec_pos] == '1'
-			&& gen_data->sort[gen_data->exec_pos])
+		if (gen_data->sort[gen_data->exec_pos])
 		{
-			if (gen_data->sort[gen_data->exec_pos + 1] == '1'
-				|| gen_data->n_pipes == 1)
+			if (gen_data->sort[gen_data->exec_pos + 1] && gen_data->n_pipes > 0)
 			{
-				if (pipe(gen_data->pipe[position]) < 0)
+				if (pipe(gen_data->pipe[gen_data->pipe_pos]) < 0)
 					write(1, "error\n", 6);
 			}
-			ft_exec2(gen_data, position);
+			ft_exec2(gen_data, position, n_built);
 		}
-	}
 	return (position);
 }

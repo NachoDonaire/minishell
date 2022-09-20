@@ -55,27 +55,20 @@ int	ft_last_built(char *s)
 
 void	ft_check_comand(t_general_data *gen_data)
 {
-	int	y;
 	int	n_blt;
 	int	n_cmd;
 
 	n_cmd = 0;
-	y = ft_last_built(gen_data->sort);
 	n_blt = 0;
-	while (gen_data->exec_pos <= gen_data->n_cmd + gen_data->n_built)
-	{
-		if (gen_data->sort[gen_data->exec_pos] == '0'
-			&& gen_data->exec_pos == y)
+/*		if (gen_data->n_pipes == 0 && gen_data->built != 0)
 		{
 			ft_built(gen_data, n_blt);
 			n_blt++;
-		}
-		else if (gen_data->sort[gen_data->exec_pos] == '1')
-		{
-			n_cmd = ft_exec(gen_data, n_cmd);
+		}*/
+		//else
+		//{
+			n_cmd = ft_exec(gen_data, n_cmd, n_blt);
 			ft_check_status(gen_data, n_cmd);
-			gen_data->exec_pos--;
-		}
+		//}
 		gen_data->exec_pos++;
-	}
 }

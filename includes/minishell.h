@@ -73,6 +73,7 @@ typedef struct s_general
 	int				**pipe;
 	int				exec_pos;
 	int				pid;
+	int				pipe_pos;
 }	t_general_data;
 
 void	rl_replace_line(const char *text, int clear_undo);
@@ -154,7 +155,7 @@ void	fd_reds_in(t_general_data *gen_data, int z);
 
 /*exec cmd*/
 
-void	ft_exec2(t_general_data *gen_data, int position);
+void	ft_exec2(t_general_data *gen_data, int position, int n_built);
 
 /*exec builtins*/
 
@@ -207,7 +208,7 @@ void	ft_change_bad_status(char **env, t_general_data *gen_data);
 void	ft_change_permission_status(char **env, t_general_data *gen_data);
 
 /*exec temporal*/
-int		ft_exec(t_general_data *gen_data, int position);
+int		ft_exec(t_general_data *gen_data, int position, int n_built);
 void	ft_path(char *command, char *envp[], char **fd_path);
 
 /*funciones libft*/

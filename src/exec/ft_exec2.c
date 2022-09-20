@@ -12,26 +12,26 @@
 
 #include "../../includes/minishell.h"
 
-void	ft_child_pipes(t_general_data *gen_data, int position)
+void	ft_child_pipes(t_general_data *gen_data)
 {
-	if (position == 0)
+	if (gen_data->pipe_pos == 0)
 	{
-		close(gen_data->pipe[position][0]);
-		dup2(gen_data->pipe[position][1], 1);
-		close(gen_data->pipe[position][1]);
+		close(gen_data->pipe[gen_data->pipe_pos][0]);
+		dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
+		close(gen_data->pipe[gen_data->pipe_pos][1]);
 	}
-	else if (position > 0 && position < gen_data->n_cmd - 1)
+	else if (gen_data->pipe_pos > 0 && gen_data->pipe_pos < gen_data->n_cmd - 1)
 	{
-		close(gen_data->pipe[position][0]);
-		dup2(gen_data->pipe[position - 1][0], 0);
-		close(gen_data->pipe[position - 1][0]);
-		dup2(gen_data->pipe[position][1], 1);
-		close(gen_data->pipe[position][1]);
+		close(gen_data->pipe[gen_data->pipe_pos][0]);
+		dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
+		close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
+		dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
+		close(gen_data->pipe[gen_data->pipe_pos][1]);
 	}
 	else
 	{
-		dup2(gen_data->pipe[position - 1][0], 0);
-		close(gen_data->pipe[position - 1][0]);
+		dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
+		close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
 	}
 }
 
@@ -59,7 +59,7 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position)
 	}
 }
 
-void	ft_child(t_general_data *gen_data, int position)
+void	ft_child(t_general_data *gen_data, int position, int  n_built)
 {
 	int	exec;
 
@@ -69,42 +69,59 @@ void	ft_child(t_general_data *gen_data, int position)
 	if (gen_data->n_pipes == 0)
 		ft_child_not_pipes(gen_data, position);
 	else
-		ft_child_pipes(gen_data, position);
-	exec = execve(gen_data->cmd[position].cmd,
-			gen_data->cmd[position].args, gen_data->env);
+		ft_child_pipes(gen_data);
+
+       	if (gen_data->sort[gen_data->exec_pos] == '1')
+	{
+		exec = execve(gen_data->cmd[position].cmd, gen_data->cmd[position].args, gen_data->env);
+	}
+        else if (gen_data->sort[gen_data->exec_pos] == '0')
+        {
+		gen_data->blt[n_built].blt = check_cmd(gen_data->blt[n_built].blt, gen_data->env);
+                exec = execve(gen_data->blt[n_built].blt, gen_data->blt[n_built].args, gen_data->env);
+        }
+
 	if (exec < 0)
 	{
-		printf("Minishell: command not found: %s\n",
-			gen_data->cmd[position].cmd);
+		if (gen_data->sort[gen_data->exec_pos] == '1')
+			printf("Minishell: command not found: %s\n", gen_data->cmd[position].cmd);
+		else if (gen_data->sort[gen_data->exec_pos] == '0')
+			printf("Minishell: command not found: %s\n", gen_data->blt[n_built].blt);
+		
 		gen_data->good_status = 127;
 		exit (gen_data->good_status);
 	}
 }
 
-void	ft_father(t_general_data *gen_data, int position)
+void	ft_father(t_general_data *gen_data)
 {
 	if (gen_data->n_pipes != 0)
 	{
-		if (position == 0)
-			close(gen_data->pipe[position][1]);
+		if (gen_data->pipe_pos == 0)
+			close(gen_data->pipe[gen_data->pipe_pos][1]);
 		else
 		{
-			close(gen_data->pipe[position - 1][0]);
-			close(gen_data->pipe[position][1]);
+			close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
+			close(gen_data->pipe[gen_data->pipe_pos][1]);
 		}
 	}
+	gen_data->pipe_pos++;
 	gen_data->exec_pos++;
 }
 
-void	ft_exec2(t_general_data *gen_data, int position)
+void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 {
 	gen_data->pid = fork();
 	if (gen_data->pid == 0)
-		ft_child(gen_data, position);
+		ft_child(gen_data, position, n_built);
 	else
 	{
-		ft_father(gen_data, position);
 		wait(NULL);
-		ft_exec(gen_data, position + 1);
+		ft_father(gen_data);
+		if (gen_data->sort[gen_data->exec_pos - 1] == '1' && gen_data->sort[gen_data->exec_pos])
+			ft_exec(gen_data, position + 1, n_built);
+		else if (gen_data->sort[gen_data->exec_pos - 1] == '0' && gen_data->sort[gen_data->exec_pos])
+			ft_exec(gen_data, position , n_built + 1);
+
 	}
 }

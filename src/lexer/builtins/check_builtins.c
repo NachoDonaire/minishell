@@ -86,6 +86,11 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 		cp = ft_substr(s, x, z);
 		gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
 		free(cp);
+		if (gen_data->n_pipes > 0)
+		{
+			ft_free_arg(gen_data->blt[gen_data->n_built].args);
+			gen_data->blt[gen_data->n_built].args = ft_split(s, ' ');
+		}
 		ft_reset_cmd(gen_data, y);
 		gen_data->built = 1;
 		process_sing_red(gen_data, s, y, 1);
