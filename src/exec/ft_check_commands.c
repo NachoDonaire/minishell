@@ -60,15 +60,15 @@ void	ft_check_comand(t_general_data *gen_data)
 
 	n_cmd = 0;
 	n_blt = 0;
-/*		if (gen_data->n_pipes == 0 && gen_data->built != 0)
+		if (gen_data->n_pipes == 0 && gen_data->built != 0)
 		{
 			ft_built(gen_data, n_blt);
 			n_blt++;
-		}*/
-		//else
-		//{
+		}
+		else
+		{
 			n_cmd = ft_exec(gen_data, n_cmd, n_blt);
 			ft_check_status(gen_data, n_cmd);
-		//}
+		}
 		gen_data->exec_pos++;
 }

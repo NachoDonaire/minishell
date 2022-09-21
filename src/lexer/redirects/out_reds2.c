@@ -46,7 +46,9 @@ void	ft_ref_zero(t_general_data *gen_data, char *s, int y, int ref)
 		gen_data->cmd[y].out = malloc(sizeof(char *) * 1);
 		gen_data->cmd[y].out[0] = malloc(1);
 		gen_data->cmd[y].out[0] = NULL;
-		gen_data->cmd[y].fd_out = malloc(sizeof(int) * 1);
+		gen_data->cmd[y].fd_out = malloc(sizeof(int) * 2);
+		gen_data->cmd[y].fd_out[0] = 1;
+		gen_data->cmd[y].fd_out[1] = -1;
 	}
 }
 
@@ -70,8 +72,9 @@ void	ft_ref_one(t_general_data *gen_data, char *s, int y, int ref)
 		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
 		gen_data->blt[gen_data->n_built].out[0] = malloc(1);
 		gen_data->blt[gen_data->n_built].out[0] = NULL;
-		gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * 1);
+		gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * 2);
 		gen_data->blt[gen_data->n_built].fd_out[0] = 1;
+		gen_data->blt[gen_data->n_built].fd_out[1] = -1;
 	}
 }
 

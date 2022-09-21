@@ -29,6 +29,9 @@ static void	ft_iniciate(t_general_data *gen_data)
 	gen_data->n_cmd = 1;
 	gen_data->exec_pos = 0;
 	gen_data->pipe_pos = 0;
+	gen_data->std_in = dup(0);
+	gen_data->std_out = dup(1);
+	gen_data->count_wait = 0;
 }
 
 static void	ft_free_all(t_general_data *gen_data, char *s)
@@ -61,11 +64,15 @@ int	main(int argc, char **argv, char *env[])
 			reserva(&gen_data);
 			process_input(s, &gen_data, gen_data.env);
 			ft_check_comand(&gen_data);
+			if (gen_data.n_pipes > 0)
+			{
+				dup2(gen_data.std_out, 1);
+				dup2(gen_data.std_in, 0);
+			}
 			ft_free_all(&gen_data, s);
 		}
 		else if (!s)
 		{
-				write(1, "aa", 2);
 			ft_exit(s, gen_data.env);
 		}
 	}

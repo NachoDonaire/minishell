@@ -20,7 +20,7 @@ void	ft_child_pipes(t_general_data *gen_data)
 		dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
 		close(gen_data->pipe[gen_data->pipe_pos][1]);
 	}
-	else if (gen_data->pipe_pos > 0 && gen_data->pipe_pos < gen_data->n_cmd - 1)
+	else if (gen_data->pipe_pos > 0 && gen_data->pipe_pos < gen_data->n_pipes)
 	{
 		close(gen_data->pipe[gen_data->pipe_pos][0]);
 		dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
@@ -66,11 +66,13 @@ void	ft_child(t_general_data *gen_data, int position, int  n_built)
 	exec = 0;
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+	dup_in_reds(gen_data, position, n_built);
 	if (gen_data->n_pipes == 0)
 		ft_child_not_pipes(gen_data, position);
 	else
 		ft_child_pipes(gen_data);
-
+//	if (gen_data->cmd[position].fd_out[0] != 1 || gen_data->blt[n_built].fd_out[0] != 1)
+		dup_reds(gen_data, position, n_built);
        	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
 		exec = execve(gen_data->cmd[position].cmd, gen_data->cmd[position].args, gen_data->env);

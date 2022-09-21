@@ -74,6 +74,9 @@ typedef struct s_general
 	int				exec_pos;
 	int				pid;
 	int				pipe_pos;
+	int				std_in;
+	int				std_out;
+	int				count_wait;
 }	t_general_data;
 
 void	rl_replace_line(const char *text, int clear_undo);
@@ -210,6 +213,8 @@ void	ft_change_permission_status(char **env, t_general_data *gen_data);
 /*exec temporal*/
 int		ft_exec(t_general_data *gen_data, int position, int n_built);
 void	ft_path(char *command, char *envp[], char **fd_path);
+void	dup_reds(t_general_data *gen_data, int position, int n_built);
+void	dup_in_reds(t_general_data *gen_data, int position, int n_built);
 
 /*funciones libft*/
 size_t	ft_strlen(const char *s);

@@ -27,3 +27,38 @@ int	ft_exec(t_general_data *gen_data, int position, int  n_built)
 		}
 	return (position);
 }
+
+void	dup_reds(t_general_data *gen_data, int position, int n_built)
+{
+	int	i;
+
+	i = 0;
+	if (gen_data->sort[gen_data->exec_pos] == '1')
+	{
+		while (gen_data->cmd[position].fd_out[i] > 2)
+			dup2(gen_data->cmd[position].fd_out[i++], 1);
+	}
+	else if (gen_data->sort[gen_data->exec_pos] == '0')
+	{
+		while (gen_data->blt[n_built].fd_out[i] > 2)
+			dup2(gen_data->blt[n_built].fd_out[i++], 1);
+	}
+}
+
+void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
+{
+	int	i;
+
+	i = 0;
+	if (gen_data->sort[gen_data->exec_pos] == '1')
+	{
+		while (gen_data->cmd[position].fd_in[i] > 0)
+			dup2(gen_data->cmd[position].fd_in[i++], 0);
+	}
+	else if (gen_data->sort[gen_data->exec_pos] == '0')
+	{
+		while (gen_data->blt[n_built].fd_in[i] > 0)
+			dup2(gen_data->blt[n_built].fd_in[i++], 0);
+	}
+}
+
