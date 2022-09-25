@@ -45,7 +45,12 @@ int	main(int argc, char **argv, char *env[])
 {
 	char			*s;
 	t_general_data	gen_data;
+	/*int	y;
+	int	i;
 
+	i = 0;
+	*/
+//	y = 0;
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -63,6 +68,15 @@ int	main(int argc, char **argv, char *env[])
 			}
 			reserva(&gen_data);
 			process_input(s, &gen_data, gen_data.env);
+			/*while (y < gen_data.n_pipes + 1)
+			{
+				while (gen_data.cmd[y].fd_out[i] > 0)
+					printf("--%d--\n", gen_data.blt[y].dred[i++]);
+				i = 0;
+				y++;
+			}
+			y = 0;
+			*/
 			ft_check_comand(&gen_data);
 			if (gen_data.n_pipes > 0)
 			{

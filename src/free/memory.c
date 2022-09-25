@@ -50,6 +50,8 @@ void	ft_free_built(t_general_data *gen_data)
 			ft_free_arg(gen_data->blt[i].out);
 		if (gen_data->blt[i].in[0])
 			ft_free_arg(gen_data->blt[i].in);
+		if (gen_data->blt[i].dred)
+			free(gen_data->blt[i].dred);
 		i++;
 	}
 }
@@ -73,6 +75,8 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 			ft_free_arg(gen_data->cmd[i].out);
 		if (gen_data->cmd[i].in)
 			ft_free_arg(gen_data->cmd[i].in);
+		if (gen_data->cmd[i].dred)
+			free(gen_data->cmd[i].dred);
 		i++;
 	}
 }

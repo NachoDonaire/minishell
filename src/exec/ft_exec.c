@@ -35,8 +35,11 @@ void	dup_reds(t_general_data *gen_data, int position, int n_built)
 	i = 0;
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
-		while (gen_data->cmd[position].fd_out[i] > 2)
+		while (gen_data->cmd[position].fd_out[i] > 0)
+		{
+			
 			dup2(gen_data->cmd[position].fd_out[i++], 1);
+		}
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
 	{

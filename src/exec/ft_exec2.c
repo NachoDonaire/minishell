@@ -35,19 +35,12 @@ void	ft_child_pipes(t_general_data *gen_data)
 	}
 }
 
-void	ft_child_not_pipes(t_general_data *gen_data, int position)
+void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 {
 	int	exec;
-	int	x;
 
 	exec = 0;
-	x = 0;
-	while (gen_data->cmd[position].fd_out[x])
-	{
-		dup2(gen_data->cmd[position].fd_out[x], 1);
-		close(gen_data->cmd[position].fd_out[x]);
-		x++;
-	}
+	dup_reds(gen_data, position, n_built);
 	exec = execve(gen_data->cmd[position].cmd,
 			gen_data->cmd[position].args, gen_data->env);
 	if (exec < 0)
@@ -68,11 +61,11 @@ void	ft_child(t_general_data *gen_data, int position, int  n_built)
 	signal(SIGQUIT, SIG_DFL);
 	dup_in_reds(gen_data, position, n_built);
 	if (gen_data->n_pipes == 0)
-		ft_child_not_pipes(gen_data, position);
+		ft_child_not_pipes(gen_data, position, n_built);
 	else
 		ft_child_pipes(gen_data);
 //	if (gen_data->cmd[position].fd_out[0] != 1 || gen_data->blt[n_built].fd_out[0] != 1)
-		dup_reds(gen_data, position, n_built);
+	dup_reds(gen_data, position, n_built);
        	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
 		exec = execve(gen_data->cmd[position].cmd, gen_data->cmd[position].args, gen_data->env);
@@ -95,8 +88,13 @@ void	ft_child(t_general_data *gen_data, int position, int  n_built)
 	}
 }
 
-void	ft_father(t_general_data *gen_data)
+void	ft_father(t_general_data *gen_data, int position, int n_built)
 {
+	int	i;
+
+	i = 0;
+	if (n_built == 23)
+		write(1, "a", 1);
 	if (gen_data->n_pipes != 0)
 	{
 		if (gen_data->pipe_pos == 0)
@@ -107,6 +105,10 @@ void	ft_father(t_general_data *gen_data)
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
 		}
 	}
+	while (gen_data->cmd[position].fd_out[i])
+		i++;
+	i--;
+	dup2(gen_data->cmd[position].fd_out[i], 1);
 	gen_data->pipe_pos++;
 	gen_data->exec_pos++;
 }
@@ -119,7 +121,7 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 	else
 	{
 		wait(NULL);
-		ft_father(gen_data);
+		ft_father(gen_data, position, n_built);
 		if (gen_data->sort[gen_data->exec_pos - 1] == '1' && gen_data->sort[gen_data->exec_pos])
 			ft_exec(gen_data, position + 1, n_built);
 		else if (gen_data->sort[gen_data->exec_pos - 1] == '0' && gen_data->sort[gen_data->exec_pos])

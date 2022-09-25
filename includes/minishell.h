@@ -23,6 +23,7 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
+# include "get_next_line.h"
 
 /*global*/
 
@@ -41,7 +42,7 @@ typedef struct s_builtin
 	char	**in;
 	int		*fd_out;
 	int		*fd_in;
-	int		dred;
+	int		*dred;
 	int		nb_arguments;
 }	t_builtin_data;
 
@@ -54,7 +55,7 @@ typedef struct s_comand
 	char	**in;
 	int		*fd_out;
 	int		*fd_in;
-	int		dred;
+	int		*dred;
 }	t_cmd_data;
 
 /*estructura general proxisional*/
@@ -132,7 +133,7 @@ int		gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y);
 void	free_tmp(char **tmp);
 
 /*en out_reds.c*/
-int		find_red(char *s);
+int		find_red(t_general_data *gen_data, char *s, int pos, int ref);
 void	gest_reds(t_general_data *gen_data, char *s, int y, int ref);
 void	process_sing_red(t_general_data *gen_data, char *s, int y, int ref);
 void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y, int ref);
@@ -241,5 +242,9 @@ void	handle_sigint(int sig);
 /*exit*/
 void	ft_exit(char *texto, char **tmp);
 int		ft_check_exit(char *s);
+
+/*d_red.c*/
+void	already_red(t_general_data *gen_data, int position, int n_built);
+char	*double_red(t_general_data *gen_data, int position, int n_built);
 
 #endif
