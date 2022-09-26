@@ -6,13 +6,13 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 10:24:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/09 12:02:37 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/26 12:49:45 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int	find_in_red(char *s)
+int	find_in_red_bad(char *s)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/19 19:52:50 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/26 13:28:49 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*obtain_cmd(char **tmp, int i)
 	return (cmd);
 }
 
-char	*free_for_checkin_cmd(char **sol, char *k, int y)
+char	*free_for_checkin_cmd(char **sol, char *k, int y, char *cmd)
 {
 	int		i;
 	char	*tmp;
@@ -44,7 +44,8 @@ char	*free_for_checkin_cmd(char **sol, char *k, int y)
 	if (!k)
 	{
 		free(k);
-		tmp = ft_substr("no_cmd", 0, 7);
+		tmp = ft_substr(cmd, 0, ft_strlen(cmd));
+		//free(tmp);
 		return (tmp);
 	}
 	return (k);
@@ -75,5 +76,5 @@ char	*check_cmd(char *cmd, char *env[])
 		if (sol[i])
 			k = pseudo_join(sol[i], cmd);
 	}
-	return (free_for_checkin_cmd(sol, k, i));
+	return (free_for_checkin_cmd(sol, k, i, cmd));
 }	

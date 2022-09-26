@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 10:38:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/26 13:28:45 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ int	main(int argc, char **argv, char *env[])
 {
 	char			*s;
 	t_general_data	gen_data;
-	/*int	y;
+	/*
+	int	y;
 	int	i;
 
 	i = 0;
-	*/
-//	y = 0;
+	
+	y = 0;
+*/
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -68,15 +70,18 @@ int	main(int argc, char **argv, char *env[])
 			}
 			reserva(&gen_data);
 			process_input(s, &gen_data, gen_data.env);
-			/*while (y < gen_data.n_pipes + 1)
+			/*
+			while (y < gen_data.n_pipes + 1)
 			{
-				while (gen_data.cmd[y].fd_out[i] > 0)
-					printf("--%d--\n", gen_data.blt[y].dred[i++]);
+				while (gen_data.cmd[y].in_dred[i])
+				{
+					printf("--%d--\n", gen_data.cmd[y].in_dred[i++]);
+				}
 				i = 0;
 				y++;
 			}
 			y = 0;
-			*/
+	*/		
 			ft_check_comand(&gen_data);
 			if (gen_data.n_pipes > 0)
 			{

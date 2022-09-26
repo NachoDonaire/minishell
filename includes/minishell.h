@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/19 20:19:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/26 13:25:43 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_builtin
 	int		*fd_out;
 	int		*fd_in;
 	int		*dred;
+	int		*in_dred;
 	int		nb_arguments;
 }	t_builtin_data;
 
@@ -55,6 +56,7 @@ typedef struct s_comand
 	char	**in;
 	int		*fd_out;
 	int		*fd_in;
+	int		*in_dred;
 	int		*dred;
 }	t_cmd_data;
 
@@ -123,7 +125,7 @@ char	*cncat(char *s1, char *s2);
 
 /*en check_cmd.c*/
 char	*obtain_cmd(char **tmp, int i);
-char	*free_for_checkin_cmd(char **sol, char *k, int y);
+char	*free_for_checkin_cmd(char **sol, char *k, int y, char *cmd);
 char	*check_cmd(char *cmd, char *env[]);
 
 /*en check_pipes.c*/
@@ -144,7 +146,7 @@ void	ft_ref_zero(t_general_data *gen_data, char *s, int y, int ref);
 void	no_red_out(t_general_data *gen_data, int y);
 
 /*en in_reds.c*/
-int		find_in_red(char *s);
+int		find_in_red(t_general_data *gen_data, char *s, int pos, int ref);
 void	gest_in_reds(t_general_data *gen_data, char *s, int y, int ref);
 void	process_in_red(t_general_data *gen_data, char *s, int y, int ref);
 void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
