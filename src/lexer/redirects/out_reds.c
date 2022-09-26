@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 09:14:56 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:05:43 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y, int ref)
 	{
 		while (tmp[t[1]][t[2]])
 		{
-			while (tmp[t[1]][t[2]] == ' ' || tmp[t[1]][t[2]] == '>')
+			while (tmp[t[1]][t[2]] == ' ' ||tmp[t[1]][t[2]] == '>')
 				t[2]++;
 			if (ref == 0)
 				gen_data->cmd[y].out[t[3]][t[0]++] = tmp[t[1]][t[2]];

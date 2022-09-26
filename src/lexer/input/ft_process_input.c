@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 10:17:06 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:30:57 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 {
 	char	**aux;
 
-	reserva(gen_data);
 	aux = ft_split(s, ' ');
 	if (finder(s, "|") == 1 || finder(s, "&") == 1)
 		process_string_w_pipes(gen_data, s, env);
