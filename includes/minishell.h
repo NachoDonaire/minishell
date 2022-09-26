@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 10:06:41 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/26 10:34:00 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ int		ft_nb_arguments(char **nb_arguments);
 void	ft_free_arg(char **arguments);
 int		ft_check_nl(t_general_data *gen_data, int position);
 void	ft_print_fdout(t_general_data *gen_data, char s);
+void	ft_print_fdout2(t_general_data *gen_data, char *s);
 void	ft_print(int x, t_general_data *gen_data, int position);
 
 /*export*/
