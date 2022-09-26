@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 11:24:53 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/26 09:22:39 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ void	fd_reds_out_b(t_general_data *gen_data)
 
 	y = 0;
 	w = 0;
-	i = 0;
-	while (gen_data->blt[gen_data->n_built].out[i])
-		i++;
+	i = ft_count_out_blt(gen_data);
 	gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * (i + 1));
-	i = 0;
-	while (gen_data->blt[gen_data->n_built].out[i])
+	i = -1;
+	while (gen_data->blt[gen_data->n_built].out[++i])
 	{
 		s = gen_data->blt[gen_data->n_built].out[i];
 		if (gen_data->blt[gen_data->n_built].dred[w] == 1)
@@ -38,7 +36,6 @@ void	fd_reds_out_b(t_general_data *gen_data)
 		if (gen_data->blt[gen_data->n_built].fd_out[y] < 0)
 			write(2, "error\n", 7);
 		y++;
-		i++;
 		w++;
 	}
 	gen_data->blt[gen_data->n_built].fd_out[y] = -1;
@@ -79,14 +76,12 @@ void	fd_reds_out(t_general_data *gen_data, int z)
 
 	y = 0;
 	w = 0;
-	i = 0;
-	while (gen_data->cmd[z].out[i])
-		i++;
+	i = ft_count_out_cmd(gen_data, z);
 	gen_data->cmd[z].fd_out = malloc(sizeof(int) * (i + 1));
-	i = 0;
-	while (gen_data->cmd[z].out[i])
+	i = -1;
+	while (gen_data->cmd[z].out[++i])
 	{
-		s = gen_data->cmd[z].out[i++];
+		s = gen_data->cmd[z].out[i];
 		if (gen_data->cmd[z].dred[w++] == 1)
 			a = open(s, O_RDWR | O_CREAT | O_APPEND, 0644);
 		else

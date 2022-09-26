@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_builtins.c                                   :+:      :+:    :+:   */
+/*   fd_reds2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 17:22:49 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 09:53:53 by sasalama         ###   ########.fr       */
+/*   Created: 2022/09/26 09:21:57 by sasalama          #+#    #+#             */
+/*   Updated: 2022/09/26 09:22:33 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int	args_with_reds(char *copy)
+int	ft_count_out_blt(t_general_data *gen_data)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	while (copy[i])
-	{
-		if (copy[i] == '>' || copy[i] == '<')
-			break ;
+	while (gen_data->blt[gen_data->n_built].out[i])
 		i++;
-	}
 	return (i);
 }
 
-void	check_builtins(char *s, t_general_data *gen_data, int y)
+int	ft_count_out_cmd(t_general_data *gen_data, int z)
 {
-	if (extreme_finder(s, "echo") == 1 || extreme_finder(s, "pwd") == 1
-		|| extreme_finder(s, "cd") == 1 || extreme_finder(s, "export") == 1
-		|| extreme_finder(s, "unset") == 1 || extreme_finder(s, "env") == 1)
-	{
-		check_builtins2(s, gen_data, y);
-	}
+	int	i;
+
+	i = 0;
+	while (gen_data->cmd[z].out[i])
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/19 20:19:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/26 10:06:41 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	check_cmd_pipe(t_general_data *gen_data, char *s, char *env[]);
 /*en check_builtin.c*/
 void	check_builtins(char *s, t_general_data *gen_data, int y);
 int		args_with_reds(char *copy);
+void	check_builtins2(char *s, t_general_data *gen_data, int y);
 
 /*ft_strjoin*/
 char	*copy(char *s1, char *s2, char *x);
@@ -156,10 +157,13 @@ void	fd_reds_out_b(t_general_data *gen_data);
 void	fd_reds_in_b(t_general_data *gen_data);
 void	fd_reds_out(t_general_data *gen_data, int z);
 void	fd_reds_in(t_general_data *gen_data, int z);
+int		ft_count_out_cmd(t_general_data *gen_data, int z);
+int		ft_count_out_blt(t_general_data *gen_data);
 
 /*exec cmd*/
 
 void	ft_exec2(t_general_data *gen_data, int position, int n_built);
+void	ft_father(t_general_data *gen_data, int position, int n_built);
 
 /*exec builtins*/
 
@@ -246,5 +250,7 @@ int		ft_check_exit(char *s);
 /*d_red.c*/
 void	already_red(t_general_data *gen_data, int position, int n_built);
 char	*double_red(t_general_data *gen_data, int position, int n_built);
+int		ft_count_dr_blt(t_general_data *gen_data, int n_built);
+int		ft_count_dr_cmd(t_general_data *gen_data, int position);
 
 #endif

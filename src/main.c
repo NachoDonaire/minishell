@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 10:38:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/26 10:17:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,20 @@ static void	ft_free_all(t_general_data *gen_data, char *s)
 	needed_free(gen_data, gen_data->n_cmd);
 }
 
+void	ft_copy_fd(t_general_data *gen_data)
+{
+	if (gen_data->n_pipes > 0)
+	{
+		dup2(gen_data->std_out, 1);
+		dup2(gen_data->std_in, 0);
+	}
+}
+
 int	main(int argc, char **argv, char *env[])
 {
 	char			*s;
 	t_general_data	gen_data;
-	/*int	y;
-	int	i;
 
-	i = 0;
-	*/
-//	y = 0;
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -63,32 +67,14 @@ int	main(int argc, char **argv, char *env[])
 			add_history(s);
 			n_pipes(&gen_data, s);
 			if (ft_check_exit(s) == 1)
-			{
 				ft_exit(s, gen_data.env);
-			}
-			reserva(&gen_data);
 			process_input(s, &gen_data, gen_data.env);
-			/*while (y < gen_data.n_pipes + 1)
-			{
-				while (gen_data.cmd[y].fd_out[i] > 0)
-					printf("--%d--\n", gen_data.blt[y].dred[i++]);
-				i = 0;
-				y++;
-			}
-			y = 0;
-			*/
 			ft_check_comand(&gen_data);
-			if (gen_data.n_pipes > 0)
-			{
-				dup2(gen_data.std_out, 1);
-				dup2(gen_data.std_in, 0);
-			}
+			ft_copy_fd(&gen_data);
 			ft_free_all(&gen_data, s);
 		}
 		else if (!s)
-		{
 			ft_exit(s, gen_data.env);
-		}
 	}
 	return (0);
 }
