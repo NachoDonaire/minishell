@@ -6,11 +6,30 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:31 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 09:07:09 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:51:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+int	ft_quote(char *s)
+{
+	int x;
+	int	y;
+
+	y = 0;
+	x = ft_strlen(s);
+	while (x >= 0)
+	{
+		if (s[x] == '\'' || s[x] == '\"')
+			break ;
+		x--;
+		y++;
+	}
+	if (y == 1)
+		y++;
+	return (y);
+}
 
 void	ft_print_v(char **arg, int x, int y, t_general_data *gen_data)
 {
@@ -19,7 +38,8 @@ void	ft_print_v(char **arg, int x, int y, t_general_data *gen_data)
 	int		z;
 	int		a;
 
-	copy = ft_substr(arg[x], y + 1, ft_strlen(arg[x]));
+	a = ft_quote(arg[x]);
+	copy = ft_substr(arg[x], y + 1, ft_strlen(arg[x]) - a - 1);
 	tmp = ft_strjoin(copy, "=");
 	free(copy);
 	a = 0;
@@ -53,9 +73,13 @@ void	ft_print(int x, t_general_data *gen_data, int position)
 		y = 0;
 		while (s[x][y])
 		{
-			if (s[x][y] != '$')
+			if (s[x][y] != '$' && s[x][y] != '\'' && s[x][y] != '\"')
+			{
+				if (s[x][y - 1] == '$')
+					ft_print_fdout(gen_data, s[x][y - 1]);
 				ft_print_fdout(gen_data, s[x][y]);
-			else if (s[x][y] == '$')
+			}
+			else if (s[x][y] == '$' && s[x][y - 1] != '\'')
 			{
 				ft_print_v(s, x, y, gen_data);
 				break ;
