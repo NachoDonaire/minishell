@@ -78,6 +78,15 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 	}
 	cp[z] = '\0';
 	gen_data->cmd[y].args = ft_split(cp, ' ');
+	z = 0;
+	while (gen_data->cmd[y].args[z])
+	{
+		if (check_cmllas(gen_data->cmd[y].args[z]) == 1)
+		{
+			gen_data->cmd[y].args[z] = gest_cmllas(gen_data->cmd[y].args[z]);
+		}
+		z++;
+	}
 	if (!gen_data->cmd[y].args[0])
 	{
 		gen_data->cmd[y].args = malloc(sizeof(char *) * 1);

@@ -38,15 +38,14 @@ static void	ft_free_all(t_general_data *gen_data, char *s)
 {
 	free(gen_data->sort);
 	free(s);
-	needed_free(gen_data, gen_data->n_cmd);
+//	needed_free(gen_data, gen_data->n_cmd);
 }
 
 int	main(int argc, char **argv, char *env[])
 {
 	char			*s;
 	t_general_data	gen_data;
-	/*
-	int	y;
+/*	int	y;
 	int	i;
 
 	i = 0;
@@ -70,18 +69,18 @@ int	main(int argc, char **argv, char *env[])
 			}
 			reserva(&gen_data);
 			process_input(s, &gen_data, gen_data.env);
-			/*
+	/*		
 			while (y < gen_data.n_pipes + 1)
 			{
-				while (gen_data.cmd[y].in_dred[i])
+				while (gen_data.cmd[y].args[i])
 				{
-					printf("--%d--\n", gen_data.cmd[y].in_dred[i++]);
+					printf("--%s--\n", gen_data.cmd[y].args[i++]);
 				}
 				i = 0;
 				y++;
 			}
 			y = 0;
-	*/		
+	*/	
 			ft_check_comand(&gen_data);
 			if (gen_data.n_pipes > 0)
 			{

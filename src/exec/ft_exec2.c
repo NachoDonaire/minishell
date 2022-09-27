@@ -90,12 +90,7 @@ void	ft_child(t_general_data *gen_data, int position, int  n_built)
 
 void	ft_father(t_general_data *gen_data, int position, int n_built)
 {
-	int	i;
-
-	i = 0;
-	if (n_built == 23)
-		write(1, "a", 1);
-	if (gen_data->n_pipes != 0)
+	if (gen_data->n_pipes != 0 && gen_data->exec_pos != gen_data->n_pipes)
 	{
 		if (gen_data->pipe_pos == 0)
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
@@ -105,10 +100,7 @@ void	ft_father(t_general_data *gen_data, int position, int n_built)
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
 		}
 	}
-	while (gen_data->cmd[position].fd_out[i])
-		i++;
-	i--;
-	dup2(gen_data->cmd[position].fd_out[i], 1);
+	dup_reds(gen_data, position, n_built);
 	gen_data->pipe_pos++;
 	gen_data->exec_pos++;
 }
@@ -125,7 +117,9 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 		if (gen_data->sort[gen_data->exec_pos - 1] == '1' && gen_data->sort[gen_data->exec_pos])
 			ft_exec(gen_data, position + 1, n_built);
 		else if (gen_data->sort[gen_data->exec_pos - 1] == '0' && gen_data->sort[gen_data->exec_pos])
+		{
 			ft_exec(gen_data, position , n_built + 1);
+		}
 
 	}
 }

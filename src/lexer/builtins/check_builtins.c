@@ -58,6 +58,24 @@ int	args_with_reds(char *copy)
 	return (i);
 }
 
+char	*the_arg(char *s)
+{
+	int	i;
+	char	*z;
+
+	z = malloc(sizeof(char ) * (ft_strlen(s) + 1));
+	while (s[i])
+	{
+		if (s[i] == '<' || s[i] == '>')
+			break ;
+		z[i] = s[i];
+		i++;
+	}
+	z[i] = '\0';
+	return (z);
+}
+
+
 int	n_spaces(char *copy)
 {
 	int	i;
@@ -85,12 +103,22 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 		z = args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt);
 		cp = ft_substr(s, x, z);
 		gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
-		free(cp);
 		if (gen_data->n_pipes > 0)
 		{
 			ft_free_arg(gen_data->blt[gen_data->n_built].args);
-			gen_data->blt[gen_data->n_built].args = ft_split(s, ' ');
+			cp = the_arg(s);
+			gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
+			x = 0;
+			while (gen_data->blt[gen_data->n_built].args[x])
+			{
+				if (check_cmllas(gen_data->blt[gen_data->n_built].args[x]) == 1)
+					gen_data->blt[gen_data->n_built].args[x] = gest_cmllas(gen_data->blt[gen_data->n_built].args[x]);
+				x++;
+			}
+
+				
 		}
+		free(cp);
 		ft_reset_cmd(gen_data, y);
 		gen_data->built = 1;
 		process_sing_red(gen_data, s, y, 1);

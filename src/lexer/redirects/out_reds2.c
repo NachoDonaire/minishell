@@ -92,7 +92,10 @@ int	find_red(t_general_data *gen_data, char *s, int pos, int ref)
 	y = 0;
 	i = 0;
 	memory_dred(gen_data, s, pos, ref);
-	gen_data->cmd[pos].dred[z] = -1;
+	if (ref == 0)
+		gen_data->cmd[pos].dred[z] = -1;
+	else if (ref == 1)
+		gen_data->blt[gen_data->n_built].dred[z] = -1;
 	while (s[i])
 	{
 		while (s[i] == '>')

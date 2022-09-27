@@ -73,7 +73,7 @@ void	fd_reds_in_b(t_general_data *gen_data)
 				write(2, "error\n", 7);
 			y++;
 		}
-		if (gen_data->blt[gen_data->n_built].in_dred < 0)
+		if (gen_data->blt[gen_data->n_built].in_dred[z] < 0)
 			break ;
 	}
 	gen_data->blt[gen_data->n_built].fd_in[y] = -1;

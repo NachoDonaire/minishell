@@ -25,6 +25,7 @@ void	ft_process_in_ref0(t_general_data *gen_data, char *s, int y, int ref)
 		gen_data->cmd[y].in[0] = malloc(sizeof(char) * 1);
 		gen_data->cmd[y].in[0] = NULL;
 		gen_data->cmd[y].fd_in = malloc(sizeof(int) * 1);
+		gen_data->cmd[y].fd_in[0] = -1;
 	}
 }
 
@@ -41,6 +42,8 @@ void	ft_process_in_ref1(t_general_data *gen_data, char *s, int y, int ref)
 		gen_data->blt[gen_data->n_built].in[0] = malloc(1);
 		gen_data->blt[gen_data->n_built].in[0] = NULL;
 		gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
+		gen_data->blt[gen_data->n_built].fd_in[0] = -1;
+
 	}
 }
 
@@ -81,7 +84,10 @@ int	find_in_red(t_general_data *gen_data, char *s, int pos, int ref)
 	y = 0;
 	i = 0;
 	memory_indred(gen_data, s, pos, ref);
-	gen_data->cmd[pos].in_dred[z] = -1;
+	if (ref == 0)
+		gen_data->cmd[pos].in_dred[z] = -1;
+	else if (ref == 1)
+		gen_data->blt[gen_data->n_built].in_dred[z] = -1;
 	while (s[i])
 	{
 		while (s[i] == '<')
