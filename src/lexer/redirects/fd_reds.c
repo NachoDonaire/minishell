@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 13:28:43 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:05:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ void	fd_reds_out_b(t_general_data *gen_data)
 		w++;
 	}
 	if (i == 0)
+	{
 		gen_data->blt[gen_data->n_built].fd_out[y] = 1;
+		gen_data->blt[gen_data->n_built].fd_out[y + 1] = -1;
+	}
+		
 	else
 		gen_data->blt[gen_data->n_built].fd_out[y] = -1;
 }

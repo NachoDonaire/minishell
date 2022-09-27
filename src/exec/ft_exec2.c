@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/19 20:23:06 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:03:24 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,25 +64,20 @@ void	ft_child(t_general_data *gen_data, int position, int  n_built)
 		ft_child_not_pipes(gen_data, position, n_built);
 	else
 		ft_child_pipes(gen_data);
-//	if (gen_data->cmd[position].fd_out[0] != 1 || gen_data->blt[n_built].fd_out[0] != 1)
 	dup_reds(gen_data, position, n_built);
-       	if (gen_data->sort[gen_data->exec_pos] == '1')
-	{
+    if (gen_data->sort[gen_data->exec_pos] == '1')
 		exec = execve(gen_data->cmd[position].cmd, gen_data->cmd[position].args, gen_data->env);
-	}
-        else if (gen_data->sort[gen_data->exec_pos] == '0')
-        {
+	else if (gen_data->sort[gen_data->exec_pos] == '0')
+	{
 		gen_data->blt[n_built].blt = check_cmd(gen_data->blt[n_built].blt, gen_data->env);
-                exec = execve(gen_data->blt[n_built].blt, gen_data->blt[n_built].args, gen_data->env);
-        }
-
+		exec = execve(gen_data->blt[n_built].blt, gen_data->blt[n_built].args, gen_data->env);
+	}
 	if (exec < 0)
 	{
 		if (gen_data->sort[gen_data->exec_pos] == '1')
 			printf("Minishell: command not found: %s\n", gen_data->cmd[position].cmd);
 		else if (gen_data->sort[gen_data->exec_pos] == '0')
 			printf("Minishell: command not found: %s\n", gen_data->blt[n_built].blt);
-		
 		gen_data->good_status = 127;
 		exit (gen_data->good_status);
 	}
@@ -117,9 +112,6 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 		if (gen_data->sort[gen_data->exec_pos - 1] == '1' && gen_data->sort[gen_data->exec_pos])
 			ft_exec(gen_data, position + 1, n_built);
 		else if (gen_data->sort[gen_data->exec_pos - 1] == '0' && gen_data->sort[gen_data->exec_pos])
-		{
 			ft_exec(gen_data, position , n_built + 1);
-		}
-
 	}
 }

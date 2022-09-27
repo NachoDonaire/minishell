@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:49 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 10:59:02 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/27 12:56:22 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ int	args_with_reds(char *copy)
 
 char	*the_arg(char *s)
 {
-	int	i;
+	int		i;
 	char	*z;
 
+	i = 0;
 	z = malloc(sizeof(char ) * (ft_strlen(s) + 1));
 	while (s[i])
 	{
