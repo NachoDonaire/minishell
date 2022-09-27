@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndonaire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 12:19:29 by ndonaire          #+#    #+#             */
-/*   Updated: 2022/04/20 13:29:52 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/26 11:44:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,16 @@ char	*lecture(char *buff, int fd)
 {
 	int		lec;
 	char	*sol;
-	int	BUFFER_SIZE;
+	int		size;
 
-	BUFFER_SIZE = 1;
+	size = 1;
 	if (!buff)
-	{
-		buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	}
+		buff = ft_calloc(size + 1, sizeof(char));
 	lec = 1;
-	sol = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	sol = malloc((size + 1) * sizeof(char));
 	while (lec > 0)
 	{
-		lec = read(fd, sol, BUFFER_SIZE);
+		lec = read(fd, sol, size);
 		if (lec < 0)
 		{
 			free(buff);
@@ -128,45 +126,3 @@ char	*get_next_line(int fd)
 	buff = next_line(buff);
 	return (sol);
 }
-
-/*
-int main()
-  {
-    int fd;
-    char *s;
-	char *s2;
-  //char *s3;
-//char *s4 ;
-//char *s5;
-//char *s6;
-//	char *s7;
-//	char *s8;
-//	char *s9;
-
-    fd = open("multiple_line_with_nl", O_RDONLY);
-  s = get_next_line(fd);
-   printf("%s", s);
-  s2 = get_next_line(fd);
-  printf("%s", s2);
- //s3 = get_next_line(fd);
- //printf("%s", s3);
-
-   //y = n_char_fd(fd);
-   //printf("%d", y);
- //s4 = get_next_line(fd);
- //printf("%s", s4);
- //s5 = get_next_line(fd);
- //printf("%s", s5);
-
-//s6 = get_next_line(fd);
-// s7 = get_next_line(fd);
- //s8 = get_next_line(fd);
- //s9 = get_next_line(fd);
-
- //printf("%s", s6);
- //printf("%s", s7);
- //printf("%s", s8);
- //printf("%s", s9);
-  //system("leaks a.out");
-  return (0);
-  }*/

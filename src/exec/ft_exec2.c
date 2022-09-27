@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 13:03:24 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:27:34 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 	int	exec;
 
 	exec = 0;
+	(void)n_built;
 	dup_reds(gen_data, position, n_built);
 	exec = execve(gen_data->cmd[position].cmd,
 			gen_data->cmd[position].args, gen_data->env);
@@ -52,11 +53,10 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 	}
 }
 
-void	ft_child(t_general_data *gen_data, int position, int  n_built)
+void	ft_child(t_general_data *gen_data, int position, int n_built)
 {
-	int	exec;
+	char	*s3[2];
 
-	exec = 0;
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	dup_in_reds(gen_data, position, n_built);
@@ -65,21 +65,16 @@ void	ft_child(t_general_data *gen_data, int position, int  n_built)
 	else
 		ft_child_pipes(gen_data);
 	dup_reds(gen_data, position, n_built);
-    if (gen_data->sort[gen_data->exec_pos] == '1')
-		exec = execve(gen_data->cmd[position].cmd, gen_data->cmd[position].args, gen_data->env);
+	if (gen_data->sort[gen_data->exec_pos] == '1')
+	{
+		s3[0] = gen_data->cmd[position].cmd;
+		execve(s3[0], gen_data->cmd[position].args, gen_data->env);
+	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
 	{
-		gen_data->blt[n_built].blt = check_cmd(gen_data->blt[n_built].blt, gen_data->env);
-		exec = execve(gen_data->blt[n_built].blt, gen_data->blt[n_built].args, gen_data->env);
-	}
-	if (exec < 0)
-	{
-		if (gen_data->sort[gen_data->exec_pos] == '1')
-			printf("Minishell: command not found: %s\n", gen_data->cmd[position].cmd);
-		else if (gen_data->sort[gen_data->exec_pos] == '0')
-			printf("Minishell: command not found: %s\n", gen_data->blt[n_built].blt);
-		gen_data->good_status = 127;
-		exit (gen_data->good_status);
+		s3[1] = gen_data->blt[n_built].blt;
+		s3[1] = check_cmd(s3[1], gen_data->env);
+		execve(s3[1], gen_data->blt[n_built].args, gen_data->env);
 	}
 }
 
@@ -102,16 +97,29 @@ void	ft_father(t_general_data *gen_data, int position, int n_built)
 
 void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 {
+	int	i;
+
 	gen_data->pid = fork();
 	if (gen_data->pid == 0)
+	{
 		ft_child(gen_data, position, n_built);
+		if (gen_data->sort[gen_data->exec_pos] == '1')
+			printf("Minishell: command not found: %s\n",
+				gen_data->cmd[position].cmd);
+		else if (gen_data->sort[gen_data->exec_pos] == '0')
+			printf("Minishell: command not found: %s\n",
+				gen_data->blt[n_built].blt);
+		gen_data->good_status = 127;
+		exit (gen_data->good_status);
+	}
 	else
 	{
 		wait(NULL);
 		ft_father(gen_data, position, n_built);
-		if (gen_data->sort[gen_data->exec_pos - 1] == '1' && gen_data->sort[gen_data->exec_pos])
+		i = gen_data->sort[gen_data->exec_pos - 1];
+		if (i == '1' && gen_data->sort[gen_data->exec_pos])
 			ft_exec(gen_data, position + 1, n_built);
-		else if (gen_data->sort[gen_data->exec_pos - 1] == '0' && gen_data->sort[gen_data->exec_pos])
-			ft_exec(gen_data, position , n_built + 1);
+		else if (i == '0' && gen_data->sort[gen_data->exec_pos])
+			ft_exec(gen_data, position, n_built + 1);
 	}
 }

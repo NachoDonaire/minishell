@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 13:25:43 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/27 09:10:13 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_general
 	int				std_in;
 	int				std_out;
 	int				count_wait;
+	char			*s;
 }	t_general_data;
 
 void	rl_replace_line(const char *text, int clear_undo);
@@ -118,6 +119,7 @@ void	check_cmd_pipe(t_general_data *gen_data, char *s, char *env[]);
 /*en check_builtin.c*/
 void	check_builtins(char *s, t_general_data *gen_data, int y);
 int		args_with_reds(char *copy);
+void	check_builtins2(char *s, t_general_data *gen_data, int y);
 
 /*ft_strjoin*/
 char	*copy(char *s1, char *s2, char *x);
@@ -144,6 +146,7 @@ int		find_double_red(char *s);
 void	ft_ref_one(t_general_data *gen_data, char *s, int y, int ref);
 void	ft_ref_zero(t_general_data *gen_data, char *s, int y, int ref);
 void	no_red_out(t_general_data *gen_data, int y);
+void	memory_dred(t_general_data *gen_data, char *s, int pos, int ref);
 
 /*en in_reds.c*/
 int		find_in_red(t_general_data *gen_data, char *s, int pos, int ref);
@@ -152,12 +155,15 @@ void	process_in_red(t_general_data *gen_data, char *s, int y, int ref);
 void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
 void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
 void	no_red_in(t_general_data *gen_data, int y);
+void	memory_indred(t_general_data *gen_data, char *s, int pos, int ref);
 
 /*en fd_reds*/
 void	fd_reds_out_b(t_general_data *gen_data);
 void	fd_reds_in_b(t_general_data *gen_data);
 void	fd_reds_out(t_general_data *gen_data, int z);
 void	fd_reds_in(t_general_data *gen_data, int z);
+int		ft_count_cmd_in(t_general_data *gen_data);
+int		ft_count_blt_out(t_general_data *gen_data);
 
 /*exec cmd*/
 
@@ -191,6 +197,7 @@ void	ft_free_arg(char **arguments);
 int		ft_check_nl(t_general_data *gen_data, int position);
 void	ft_print_fdout(t_general_data *gen_data, char s);
 void	ft_print(int x, t_general_data *gen_data, int position);
+void	ft_print_fdout2(t_general_data *gen_data, char *s);
 
 /*export*/
 

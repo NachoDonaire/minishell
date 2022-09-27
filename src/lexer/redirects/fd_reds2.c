@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   fd_reds2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 11:34:25 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:50:43 by sasalama         ###   ########.fr       */
+/*   Created: 2022/09/26 12:00:54 by sasalama          #+#    #+#             */
+/*   Updated: 2022/09/26 12:01:13 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_count_blt_out(t_general_data *gen_data)
 {
-	size_t	x;
-	char	*s;
+	int	i;
 
-	x = 0;
-	s = malloc(sizeof(char) * count * size);
-	if (s == 0)
-		return (0);
-	while (x < sizeof(char) * count * size)
-	{
-		s[x] = '\0';
-		x++;
-	}
-	return (s);
+	i = 0;
+	while (gen_data->blt[gen_data->n_built].out[i])
+		i++;
+	return (i);
+}
+
+int	ft_count_cmd_in(t_general_data *gen_data)
+{
+	int	i;
+
+	i = 0;
+	while (gen_data->blt[gen_data->n_built].in[i])
+		i++;
+	return (i);
 }

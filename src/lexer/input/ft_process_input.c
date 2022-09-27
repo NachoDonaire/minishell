@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 11:30:57 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:31:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,7 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 	while (gen_data->cmd[y].args[z])
 	{
 		if (check_cmllas(gen_data->cmd[y].args[z]) == 1)
-		{
 			gen_data->cmd[y].args[z] = gest_cmllas(gen_data->cmd[y].args[z]);
-		}
 		z++;
 	}
 	if (!gen_data->cmd[y].args[0])
@@ -99,6 +97,7 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 {
 	char	**aux;
 
+	reserva(gen_data);
 	aux = ft_split(s, ' ');
 	if (finder(s, "|") == 1 || finder(s, "&") == 1)
 		process_string_w_pipes(gen_data, s, env);
