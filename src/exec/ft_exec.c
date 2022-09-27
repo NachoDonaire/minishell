@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 13:28:51 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:13:41 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
 		while (gen_data->cmd[position].fd_in[i] > 0)// gen_data->cmd[position].in_dred[i] == 0)
-		 {
-			 while (gen_data->cmd[position].in_dred[i] > 0)
-				 i++;
+		{
+			while (gen_data->cmd[position].in_dred[i] > 0)
+				i++;
 			dup2(gen_data->cmd[position].fd_in[i++], 0);
-		 }
+		}
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')//&& gen_data->cmd[position].in_dred[i] == 0)
 	{
