@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 13:27:34 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:01:43 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 	}
 }
 
+void	ft_check_blt_args(t_general_data *gen_data, int n_built)
+{
+	if (ft_strncmp(gen_data->blt[n_built].blt, "pwd", 3) == 0 && gen_data->blt[n_built].args[1])
+	{
+		printf("pwd: too many arguments\n");
+		gen_data->good_status = 127;
+		exit (gen_data->good_status);
+	}
+}
+
 void	ft_child(t_general_data *gen_data, int position, int n_built)
 {
 	char	*s3[2];
@@ -74,6 +84,7 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	{
 		s3[1] = gen_data->blt[n_built].blt;
 		s3[1] = check_cmd(s3[1], gen_data->env);
+		ft_check_blt_args(gen_data, n_built);
 		execve(s3[1], gen_data->blt[n_built].args, gen_data->env);
 	}
 }
