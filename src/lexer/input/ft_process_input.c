@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 13:31:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:43:17 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ft_programm(t_general_data *gen_data, char	**com, int y, char *s)
 {
 	if (check_cmllas(com[0]) == 1)
 		com[0] = gest_cmllas(com[0]);
-	gen_data->cmd[y].cmd = com[0];
+	gen_data->cmd[y].cmd = ft_substr(com[0], 0, ft_strlen(com[0]));
+	ft_free_arg(com);
 	process_args(s, gen_data, y);
 }
 
@@ -78,6 +79,7 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 	}
 	cp[z] = '\0';
 	gen_data->cmd[y].args = ft_split(cp, ' ');
+	free(cp);
 	z = 0;
 	while (gen_data->cmd[y].args[z])
 	{
@@ -95,10 +97,6 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 
 void	process_input(char *s, t_general_data *gen_data, char *env[])
 {
-	char	**aux;
-
-	reserva(gen_data);
-	aux = ft_split(s, ' ');
 	if (finder(s, "|") == 1 || finder(s, "&") == 1)
 		process_string_w_pipes(gen_data, s, env);
 	else
@@ -109,5 +107,4 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 		else if (gen_data->built == 0)
 			gen_data->sort[0] = '1';
 	}
-	ft_free_arg(aux);
 }

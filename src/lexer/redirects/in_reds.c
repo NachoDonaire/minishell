@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:09 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 11:06:38 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:41:21 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ void	gest_in_reds(t_general_data *gen_data, char *s, int y, int ref)
 		gen_data->blt[gen_data->n_built].in = malloc(sizeof(char *) * (i + 1));
 	memory_for_in_red(gen_data, tmp, y, ref);
 	paste_tmp_in_red(gen_data, tmp, y, ref);
-	i = 0;
-	while (tmp[i])
-		free(tmp[i++]);
-	free(tmp);
+	ft_free_arg(tmp);
 }
 
 void	no_red_in(t_general_data *gen_data, int y)

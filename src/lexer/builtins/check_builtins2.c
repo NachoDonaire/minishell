@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:42:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 13:36:19 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:37:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	paste_in_built(t_general_data *gen_data, char *s)
 		i++;
 	while (s[i])
 		gen_data->blt[gen_data->n_built].blt[z++] = s[i++];
+	free(s);
 	gen_data->blt[gen_data->n_built].blt[z] = '\0';
 }
 
@@ -94,7 +95,7 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 	int		z;
 
 	tmp = ft_split(s, ' ');
-	paste_in_built(gen_data, tmp[0]);
+	paste_in_built(gen_data, ft_substr(tmp[0], 0, ft_strlen(tmp[0])));
 	x = ft_strlen(gen_data->blt[gen_data->n_built].blt) + n_spaces(s);
 	z = args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt);
 	cp = ft_substr(s, x, z);

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:05:19 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/12 09:32:50 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:25:23 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_exit(char *texto, char **tmp)
 		printf("%s\n", texto);
 	else
 		printf("exit\n");
+	free(texto);
 	ft_free_arg(tmp);
 	exit(0);
 }

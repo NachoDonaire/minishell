@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 12:04:06 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:32:33 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	ft_iniciate(t_general_data *gen_data)
 
 static void	ft_free_all(t_general_data *gen_data, char *s)
 {
-	free(gen_data->sort);
 	free(s);
 	needed_free(gen_data, gen_data->n_cmd);
 }
@@ -67,6 +66,7 @@ int	main(int argc, char **argv, char *env[])
 			n_pipes(&gen_data, gen_data.s);
 			if (ft_check_exit(gen_data.s) == 1)
 				ft_exit(gen_data.s, gen_data.env);
+			reserva(&gen_data);
 			process_input(gen_data.s, &gen_data, gen_data.env);
 			ft_check_comand(&gen_data);
 			copy_dup(&gen_data);
