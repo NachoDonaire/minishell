@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/28 11:02:40 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:45:19 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@ void	ft_check_status(t_general_data *gen_data, int position)
 {
 	char	*path;
 	char	**copy;
-	char	*s;
 
 	ft_change_good_status(gen_data->env, gen_data);
 	copy = gen_data->cmd[position].args;
 	ft_path(copy[0], gen_data->env, &path);
-	s = gen_data->blt[position].blt;
-	if (path == NULL || (ft_strncmp(s, "pwd", 3) == 0
-		&& gen_data->blt[position].args[1]))
+	if (!gen_data->blt[position].blt)
+		gen_data->blt[position].blt = ft_substr("", 0, 0);
+	if (path == NULL || (ft_strncmp(gen_data->blt[position].blt, "pwd", 3) == 0 && gen_data->blt[position].args[1]))
 		ft_change_bad_status(gen_data->env, gen_data);
 }
 

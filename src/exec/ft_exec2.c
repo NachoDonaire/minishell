@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/28 11:01:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:40:18 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 	int	exec;
 
 	exec = 0;
-	(void)n_built;
 	dup_reds(gen_data, position, n_built);
 	exec = execve(gen_data->cmd[position].cmd,
 			gen_data->cmd[position].args, gen_data->env);
