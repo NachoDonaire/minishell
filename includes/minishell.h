@@ -100,10 +100,11 @@ int		finder(char *s, char *find);
 /*en commillas.c, gesteo de las comillas en el comando(por el momento)*/
 int		check_cmllas(char *s);
 char	*gest_cmllas(char *s);
+char	**dr_comillas(char *s);
 
 /*en ft_process_input.c*/
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y);
-void	process_args(char *s, t_general_data *gen_data, int y);
+void	process_args(char *s, t_general_data *gen_data, int y, int ref);
 void	process_input(char *s, t_general_data *gen_data, char *env[]);
 //void	finish_data(t_general_data *gen_data);
 

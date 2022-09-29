@@ -103,6 +103,8 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 	if (gen_data->n_pipes > 0)
 	{
 		cp = the_arg(s);
+		gen_data->blt[gen_data->n_built].args = dr_comillas(cp);
+		/*
 		gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
 		x = 0;
 		while (gen_data->blt[gen_data->n_built].args[x])
@@ -110,7 +112,7 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 			if (check_cmllas(gen_data->blt[gen_data->n_built].args[x]) == 1)
 				gen_data->blt[gen_data->n_built].args[x] = gest_cmllas(gen_data->blt[gen_data->n_built].args[x]);
 			x++;
-		}
+		}*/
 	}
 	free(cp);
 	ft_reset_cmd(gen_data, y);

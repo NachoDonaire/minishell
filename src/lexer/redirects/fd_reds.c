@@ -41,10 +41,10 @@ void	fd_reds_out_b(t_general_data *gen_data)
 	if (i == 0)
 	{
 		gen_data->blt[gen_data->n_built].fd_out[y] = 1;
-		gen_data->blt[gen_data->n_built].fd_out[y + 1] = -1;
+		gen_data->blt[gen_data->n_built].fd_out[y + 1] = -2;
 	}
 	else
-		gen_data->blt[gen_data->n_built].fd_out[y] = -1;
+		gen_data->blt[gen_data->n_built].fd_out[y] = -2;
 }
 
 void	fd_reds_in_b(t_general_data *gen_data)
@@ -74,7 +74,7 @@ void	fd_reds_in_b(t_general_data *gen_data)
 		if (gen_data->blt[gen_data->n_built].in_dred[z] < 0)
 			break ;
 	}
-	gen_data->blt[gen_data->n_built].fd_in[y] = -1;
+	gen_data->blt[gen_data->n_built].fd_in[y] = -2;
 }
 
 void	fd_reds_out(t_general_data *gen_data, int z)
@@ -102,17 +102,17 @@ void	fd_reds_out(t_general_data *gen_data, int z)
 			write(2, "error\n", 7);
 		table[0]++;
 	}
-	gen_data->cmd[z].fd_out[table[0]] = -1;
+	gen_data->cmd[z].fd_out[table[0]] = -2;
 }
 
 void	fd_reds_in(t_general_data *gen_data, int z)
 {
 	int	i;
 	int	y;
-	int	w;
+//	int	w;
 
 	y = 0;
-	w = 0;
+//	w = 0;
 	i = 0;
 	while (gen_data->cmd[z].in[i])
 		i++;
@@ -120,15 +120,16 @@ void	fd_reds_in(t_general_data *gen_data, int z)
 	i = 0;
 	while (gen_data->cmd[z].in[i])
 	{
-		if (gen_data->cmd[z].in_dred[w++] == 0)
-		{
-			gen_data->cmd[z].fd_in[y] = open(gen_data->cmd[z].in[i++], O_RDONLY);
+		//if (gen_data->cmd[z].in_dred[w++] == 0)
+		//{
+			gen_data->cmd[z].fd_in[y] = open(gen_data->cmd[z].in[i], O_RDONLY);
 			if (gen_data->cmd[z].fd_in[y] < 0)
 				write(2, "error\n", 7);
 			y++;
-		}
-		if (gen_data->cmd[z].in_dred[w] == -1)
-			break ;
+		//}
+	//	if (gen_data->cmd[z].in_dred[w] == -1)
+	//		break ;
+		i++;
 	}
-	gen_data->cmd[z].fd_in[y] = -1;
+	gen_data->cmd[z].fd_in[y] = -2;
 }

@@ -83,6 +83,8 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 
 void	needed_free(t_general_data *gen_data, int y)
 {
+	if (y == 23)
+		return ;
 	ft_free_built(gen_data);
 	ft_free_cmd(gen_data, y);
 }

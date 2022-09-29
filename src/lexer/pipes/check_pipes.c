@@ -24,8 +24,8 @@ void	ft_handle_cmd_pipes2(t_general_data *gen_data, int *t, char **tmp)
 {
 	gen_data->built = 0;
 	check_builtins(tmp[t[1]], gen_data, t[2]);
-	if (check_cmllas(tmp[t[1]]) == 1)
-		tmp[t[1]] = gest_cmllas(tmp[t[1]]);
+	//if (check_cmllas(tmp[t[1]]) == 1)
+	//	tmp[t[1]] = gest_cmllas(tmp[t[1]]);
 	if (gen_data->built != 1)
 	{
 		gen_data->sort[t[0]] = '1';

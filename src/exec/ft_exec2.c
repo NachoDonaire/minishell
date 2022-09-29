@@ -83,13 +83,15 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	{
 		s3[1] = gen_data->blt[n_built].blt;
 		s3[1] = check_cmd(s3[1], gen_data->env);
-		ft_check_blt_args(gen_data, n_built);
+	//	ft_check_blt_args(gen_data, n_built);
 		execve(s3[1], gen_data->blt[n_built].args, gen_data->env);
 	}
 }
 
 void	ft_father(t_general_data *gen_data, int position, int n_built)
 {
+	if (position == 2333 || n_built == 2333)
+		write(1, "aa", 2);
 	if (gen_data->n_pipes != 0 && gen_data->exec_pos != gen_data->n_pipes)
 	{
 		if (gen_data->pipe_pos == 0)
@@ -100,7 +102,7 @@ void	ft_father(t_general_data *gen_data, int position, int n_built)
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
 		}
 	}
-	dup_reds(gen_data, position, n_built);
+//	dup_reds(gen_data, position, n_built);
 	gen_data->pipe_pos++;
 	gen_data->exec_pos++;
 }

@@ -18,7 +18,7 @@ void	ft_programm(t_general_data *gen_data, char	**com, int y, char *s)
 		com[0] = gest_cmllas(com[0]);
 	gen_data->cmd[y].cmd = ft_substr(com[0], 0, ft_strlen(com[0]));
 	ft_free_arg(com);
-	process_args(s, gen_data, y);
+	process_args(s, gen_data, y, 0);
 }
 
 void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
@@ -39,7 +39,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 			com[i] = gest_cmllas(com[i]);
 	}
 	gen_data->cmd[y].cmd = check_cmd(com[0], env);
-	process_args(s, gen_data, y);
+	process_args(s, gen_data, y, 0);
 	ft_free_arg(com);
 	if (gen_data->n_pipes == 0)
 	{
@@ -59,7 +59,7 @@ void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 		ft_not_built(s, gen_data, env, y);
 }
 
-void	process_args(char *s, t_general_data *gen_data, int y)
+/*void	process_args(char *s, t_general_data *gen_data, int y)
 {
 	char	*cp;
 	int		i;
@@ -93,6 +93,29 @@ void	process_args(char *s, t_general_data *gen_data, int y)
 		gen_data->cmd[y].args[0] = malloc(sizeof(char ) * 1);
 		gen_data->cmd[y].args[0] = NULL;
 	}
+}
+*/
+
+void	process_args(char *s, t_general_data *gen_data, int y, int ref)
+{
+	char	**wallace;
+	char	**anthony;
+
+	wallace = dr_comillas(s);
+	if (finder(s, ">") == 1)
+	{
+		anthony = ft_split(s, '>');
+		wallace = dr_comillas(anthony[0]);
+	}
+	else if (finder(s, "<") == 1)
+	{
+		anthony = ft_split(s, '<');
+		wallace = dr_comillas(anthony[0]);
+	}
+	if (ref == 0)
+		gen_data->cmd[y].args = wallace;
+	else if (ref == 1)
+		gen_data->blt[gen_data->n_built].args = wallace;
 }
 
 void	process_input(char *s, t_general_data *gen_data, char *env[])

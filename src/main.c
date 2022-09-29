@@ -38,7 +38,9 @@ static void	ft_iniciate(t_general_data *gen_data)
 
 static void	ft_free_all(t_general_data *gen_data, char *s)
 {
-	free(s);
+	if (!s)
+		return ;
+	//free(s);
 	needed_free(gen_data, gen_data->n_cmd);
 }
 
@@ -54,7 +56,12 @@ void	copy_dup(t_general_data	*gen_data)
 int	main(int argc, char **argv, char *env[])
 {
 	t_general_data	gen_data;
+/*	int	i;
+	int	y;
 
+	i = 0;
+	y = 0;
+*/
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -68,9 +75,19 @@ int	main(int argc, char **argv, char *env[])
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
 			process_input(gen_data.s, &gen_data, gen_data.env);
+		/*	while (y <= gen_data.n_pipes)
+			{
+				while (gen_data.cmd[y].fd_in[i])
+					printf("%d\n", gen_data.cmd[y].fd_in[i++]);
+				i = 0;
+				y++;
+			}
+			y = 0;
+		*/	
 			ft_check_comand(&gen_data);
 			copy_dup(&gen_data);
 			ft_free_all(&gen_data, gen_data.s);
+			//ft_free_all(&gen_data, gen_data.s);
 		}
 		else if (!gen_data.s)
 			ft_exit(gen_data.s, gen_data.env);

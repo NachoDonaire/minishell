@@ -63,7 +63,7 @@ void	memory_indred(t_general_data *gen_data, char *s, int pos, int ref)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '<' && s[i + 1] != '<')
+		if (s[i] == ' ')
 			y++;
 		i++;
 	}

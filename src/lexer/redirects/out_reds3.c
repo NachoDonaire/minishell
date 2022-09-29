@@ -16,15 +16,21 @@ void	gest_reds(t_general_data *gen_data, char *s, int y, int ref)
 {
 	char	**tmp;
 	int		i;
+	int		z;
 
+	z = 0;
 	tmp = ft_split(s, '>');
 	i = 0;
-	while (tmp[i])
+	while (s[i])
+	{
+		if (s[i] == ' ' || s[i] == '>')
+			z++;
 		i++;
+	}
 	if (ref == 0)
-		gen_data->cmd[y].out = malloc(sizeof(char *) * (i));
+		gen_data->cmd[y].out = malloc(sizeof(char *) * (z));
 	else if (ref == 1)
-		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * (i));
+		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * (z));
 	memory_for_red(gen_data, tmp, y, ref);
 	paste_tmp_red(gen_data, tmp, y, ref);
 	i = 0;
@@ -93,7 +99,7 @@ void	memory_dred(t_general_data *gen_data, char *s, int pos, int ref)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '>' && s[i + 1] != '>')
+		if (s[i] == ' ' || s[i] == '>')
 			y++;
 		i++;
 	}
