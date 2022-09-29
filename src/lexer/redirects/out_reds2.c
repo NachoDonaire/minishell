@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 09:50:34 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 13:34:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:45:13 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,18 @@ void	find_red_two(t_general_data *gen_data, int ref, int pos, int *table)
 		gen_data->blt[gen_data->n_built].dred[table[0]++] = 1;
 }
 
+void	ft_reset_table4(int *table)
+{
+	table[0] = 0;
+	table[1] = 0;
+	table[2] = 0;
+}
+
 int	find_red(t_general_data *gen_data, char *s, int pos, int ref)
 {
 	int	table[3];
 
-	table[0] = 0;
-	table[1] = 0;
-	table[2] = 0;
+	ft_reset_table4(table);
 	memory_dred(gen_data, s, pos, ref);
 	if (ref == 0)
 		gen_data->cmd[pos].dred[table[0]] = -1;

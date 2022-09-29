@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:42:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/29 12:29:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:55:09 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	paste_in_built(t_general_data *gen_data, char *s)
 
 void	ft_reset_cmd(t_general_data *gen_data, int y)
 {
-	gen_data->cmd[y].cmd = malloc(1);
 	gen_data->cmd[y].args = malloc(1);
 	gen_data->cmd[y].args[0] = malloc(1);
 	gen_data->cmd[y].args[0] = 0;
@@ -104,15 +103,6 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 	{
 		cp = the_arg(s);
 		gen_data->blt[gen_data->n_built].args = dr_comillas(cp);
-		/*
-		gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
-		x = 0;
-		while (gen_data->blt[gen_data->n_built].args[x])
-		{
-			if (check_cmllas(gen_data->blt[gen_data->n_built].args[x]) == 1)
-				gen_data->blt[gen_data->n_built].args[x] = gest_cmllas(gen_data->blt[gen_data->n_built].args[x]);
-			x++;
-		}*/
 	}
 	free(cp);
 	ft_reset_cmd(gen_data, y);

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:03 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/28 10:38:02 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:55:40 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ void	ft_pwd(t_general_data *gen_data)
 	}
 	buf = getcwd(NULL, 0);
 	while (gen_data->blt->fd_out[x])
-		ft_putstr_fd(buf, gen_data->blt->fd_out[x++]);
-	printf("\n");
+	{
+		ft_putstr_fd(buf, gen_data->blt->fd_out[x]);
+		ft_putstr_fd("\n", gen_data->blt->fd_out[x]);
+		x++;
+	}
 	ft_change_good_status(gen_data->env, gen_data);
 	free(buf);
 }
