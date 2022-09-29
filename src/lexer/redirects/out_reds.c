@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 11:24:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:27:23 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,37 @@
 
 void	memory_for_red(t_general_data *gen_data, char **tmp, int y, int ref)
 {
-        int     i;
-        int     z;
-        int     w;
-        int     x;
-        int     q;
-        char    **wallace;
+	int		i;
+	int		z;
+	int		w;
+	int		x;
+	int		q;
+	char	**wallace;
 
-        i = 0;
-        q = 0;
-        z = 1;
-        w = 0;
-        x = gen_data->n_built;
-        while (tmp[z])
-        {
-                wallace = dr_comillas(tmp[z]);
-                while (wallace[i])
-                {
-                        while (wallace[i][q])
-                                q++;
-                        if (ref == 0)
-                                gen_data->cmd[y].out[w] = malloc(sizeof(char) * (q + 1));
-                        else if (ref == 1)
-                                gen_data->blt[x].out[w] = malloc(sizeof(char) * (q + 1));
-                        q = 0;
-                        i++;
+	i = 0;
+	q = 0;
+	z = 1;
+	w = 0;
+	x = gen_data->n_built;
+	while (tmp[z])
+	{
+		wallace = dr_comillas(tmp[z]);
+		while (wallace[i])
+		{
+			while (wallace[i][q])
+				q++;
+			if (ref == 0)
+				gen_data->cmd[y].out[w] = malloc(sizeof(char) * (q + 1));
+			else if (ref == 1)
+				gen_data->blt[x].out[w] = malloc(sizeof(char) * (q + 1));
+			q = 0;
+			i++;
 			w++;
-                }
-                i = 0;
-                z++;
-                q = 0;
-             //   w++;
-        }
+		}
+		i = 0;
+		z++;
+		q = 0;
+	}
 }
 
 /*	int	i;
@@ -89,10 +88,10 @@ void	ft_modify_table(int *t)
 
 void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y, int ref)
 {
-	int	t[5];
+	int		t[5];
 	char	**wallace;
-	int	i;
-	int	w;
+	int		i;
+	int		w;
 
 	i = 0;
 	w = 0;

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:04 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 13:30:54 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:26:25 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ char	*gest_cmllas(char *s)
 
 char	**dr_comillas(char *s)
 {
-	int	i;
-	int	y;
-	int	z;
-	int	spaces;
-	int	w;
-	int	cmllas;
-	int	aviso;
+	int		i;
+	int		y;
+	int		z;
+	int		spaces;
+	int		w;
+	int		cmllas;
+	int		aviso;
 	char	**wallace;
 
 	spaces = 0;
@@ -92,13 +92,13 @@ char	**dr_comillas(char *s)
 	{
 		while (s[i])
 		{
-			while ((s[i] == ' ' || s[i] == '>') && s[i]) //|| s[i] == '<' || s[i] == '>')
+			while ((s[i] == ' ' || s[i] == '>') && s[i])
 			{
 				spaces++;
 				i++;
 			}
 			if (s[i] == '"' || s[i] == '\0')
-				break;
+				break ;
 			aviso++;
 			i++;
 		}
@@ -109,7 +109,7 @@ char	**dr_comillas(char *s)
 			i = i - aviso - spaces;
 			while (s[i] == ' ' || s[i] == '>')
 				i++;
-			while (y < aviso || s[i] == ' ' || s[i] == '>')//|| s[i] == '<' || s[i] == '>')
+			while (y < aviso || s[i] == ' ' || s[i] == '>')
 			{
 				if ((s[i] == ' ' && i != 0) || s[i] == '>' )
 				{
@@ -121,7 +121,7 @@ char	**dr_comillas(char *s)
 					{
 						wallace[z][w] = '\0';
 						z++;
-						wallace[z] = malloc(sizeof(char ) * (aviso- y + 1));
+						wallace[z] = malloc(sizeof(char ) * (aviso - y + 1));
 						w = 0;
 					}
 				}
@@ -141,7 +141,7 @@ char	**dr_comillas(char *s)
 				i++;
 				y++;
 			}
-			wallace[z] = malloc(sizeof(char ) * ( y + 1));
+			wallace[z] = malloc(sizeof(char ) * (y + 1));
 			i = i - y;
 			while (s[i])
 			{
