@@ -83,7 +83,7 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	{
 		s3[1] = gen_data->blt[n_built].blt;
 		s3[1] = check_cmd(s3[1], gen_data->env);
-		ft_check_blt_args(gen_data, n_built);
+//		ft_check_blt_args(gen_data, n_built);
 		execve(s3[1], gen_data->blt[n_built].args, gen_data->env);
 	}
 }

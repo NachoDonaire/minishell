@@ -106,7 +106,7 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 		gen_data->blt[gen_data->n_built].args = dr_comillas(cp);
 	}
 	free(cp);
-	ft_reset_cmd(gen_data, y);
+	//ft_reset_cmd(gen_data, y);
 	gen_data->built = 1;
 	process_sing_red(gen_data, s, y, 1);
 	process_in_red(gen_data, s, y, 1);

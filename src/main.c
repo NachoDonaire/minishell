@@ -75,15 +75,15 @@ int	main(int argc, char **argv, char *env[])
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
 			process_input(gen_data.s, &gen_data, gen_data.env);
-		/*	while (y <= gen_data.n_pipes)
+			/*while (y <= gen_data.n_built)
 			{
-				while (gen_data.cmd[y].fd_in[i])
-					printf("%d\n", gen_data.cmd[y].fd_in[i++]);
+				while (gen_data.blt[y].out[i])
+					printf("%s\n", gen_data.cmd[y].fd_in[i++]);
 				i = 0;
 				y++;
 			}
 			y = 0;
-		*/	
+			*/
 			ft_check_comand(&gen_data);
 			copy_dup(&gen_data);
 			ft_free_all(&gen_data, gen_data.s);

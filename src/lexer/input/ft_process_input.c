@@ -130,4 +130,7 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 		else if (gen_data->built == 0)
 			gen_data->sort[0] = '1';
 	}
+	if (!gen_data->cmd[0].cmd)
+		ft_reset_cmd(gen_data, 0);
+		
 }

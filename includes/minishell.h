@@ -121,6 +121,7 @@ void	check_cmd_pipe(t_general_data *gen_data, char *s, char *env[]);
 void	check_builtins(char *s, t_general_data *gen_data, int y);
 int		args_with_reds(char *copy);
 void	check_builtins2(char *s, t_general_data *gen_data, int y);
+void	ft_reset_cmd(t_general_data *gen_data, int y);
 
 /*ft_strjoin*/
 char	*copy(char *s1, char *s2, char *x);

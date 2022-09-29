@@ -74,13 +74,13 @@ void	paste_tmp_red(t_general_data *gen_data, char **tmp, int y, int ref)
 				if (ref == 0)
 					gen_data->cmd[y].out[t[3]][t[0]++] = wallace[t[6]][t[5]];
 				else if (ref == 1)
-					gen_data->blt[t[4]].out[t[3]][t[0]++] = wallace[t[6]][t[5]];
+					gen_data->blt[gen_data->n_built].out[t[3]][t[0]++] = wallace[t[6]][t[5]];
 				t[5]++;
 			}
 			if (ref == 0)
 				gen_data->cmd[y].out[t[3]][t[0]] = '\0';
 			else if (ref == 1)
-				gen_data->blt[t[4]].out[t[3]][t[0]++] = '\0';
+				gen_data->blt[gen_data->n_built].out[t[3]][t[0]++] = '\0';
 			t[6]++;
 			t[5] = 0;
 			t[3]++;
