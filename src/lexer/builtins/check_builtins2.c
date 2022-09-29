@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:42:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/29 12:55:09 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:21:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	paste_in_built(t_general_data *gen_data, char *s)
 
 void	ft_reset_cmd(t_general_data *gen_data, int y)
 {
+	gen_data->cmd[y].cmd = malloc(1);
 	gen_data->cmd[y].args = malloc(1);
 	gen_data->cmd[y].args[0] = malloc(1);
 	gen_data->cmd[y].args[0] = 0;
