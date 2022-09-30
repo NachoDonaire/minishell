@@ -80,6 +80,7 @@ typedef struct s_general
 	int				std_in;
 	int				std_out;
 	int				count_wait;
+	int				smith_blt;
 	char			*s;
 }	t_general_data;
 
@@ -106,6 +107,8 @@ char	**dr_comillas(char *s);
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y);
 void	process_args(char *s, t_general_data *gen_data, int y, int ref);
 void	process_input(char *s, t_general_data *gen_data, char *env[]);
+void	ft_reset_blt(t_general_data *gen_data);
+
 //void	finish_data(t_general_data *gen_data);
 
 /*en prueba2.c */

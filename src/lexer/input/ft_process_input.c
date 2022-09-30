@@ -21,6 +21,28 @@ void	ft_programm(t_general_data *gen_data, char	**com, int y, char *s)
 	process_args(s, gen_data, y, 0);
 }
 
+void	ft_reset_blt(t_general_data *gen_data)
+{
+	gen_data->blt[gen_data->n_built].blt = malloc(1);
+	gen_data->blt[gen_data->n_built].args = malloc(sizeof(char *) * 1);
+	gen_data->blt[gen_data->n_built].args[0] = malloc(1);
+	gen_data->blt[gen_data->n_built].args[0] = NULL;
+	gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
+	gen_data->blt[gen_data->n_built].out[0] = malloc(1);
+	gen_data->blt[gen_data->n_built].out[0] = NULL;
+	gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * 2);
+	gen_data->blt[gen_data->n_built].fd_out[0] = 1;
+	gen_data->blt[gen_data->n_built].fd_out[1] = -1;
+	gen_data->blt[gen_data->n_built].dred = malloc(1);
+	gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
+	gen_data->blt[gen_data->n_built].in[0] = malloc(1);
+	gen_data->blt[gen_data->n_built].in[0] = NULL;
+	gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
+	gen_data->blt[gen_data->n_built].fd_in[0] = -1;
+
+}
+
+
 void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 {
 	char	**com;
@@ -45,6 +67,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	{
 		gen_data->sort[0] = '1';
 		gen_data->sort[1] = '\0';
+		ft_reset_blt(gen_data);
 	}
 }
 
@@ -54,7 +77,9 @@ void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 	process_in_red(gen_data, s, y, 0);
 	gen_data->built = 0;
 	if (gen_data->n_pipes == 0)
+	{
 		check_builtins(s, gen_data, y);
+	}
 	if (gen_data->built == 0)
 		ft_not_built(s, gen_data, env, y);
 }
@@ -130,7 +155,9 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 		else if (gen_data->built == 0)
 			gen_data->sort[0] = '1';
 	}
-	if (!gen_data->cmd[0].cmd)
+	if (gen_data->built == 1 && gen_data->n_pipes == 0)
+	{
 		ft_reset_cmd(gen_data, 0);
+	}
 		
 }

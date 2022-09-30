@@ -37,12 +37,13 @@ void	ft_reset_cmd(t_general_data *gen_data, int y)
 	gen_data->cmd[y].args = malloc(1);
 	gen_data->cmd[y].args[0] = malloc(1);
 	gen_data->cmd[y].args[0] = 0;
-	gen_data->cmd[y].out = malloc(1);
+/*	gen_data->cmd[y].out = malloc(1);
 	gen_data->cmd[y].in = malloc(1);
 	gen_data->cmd[y].out[0] = malloc(1);
 	gen_data->cmd[y].out[0] = 0;
 	gen_data->cmd[y].in[0] = malloc(1);
 	gen_data->cmd[y].in[0] = 0;
+	*/
 }
 
 int	args_with_reds(char *copy)

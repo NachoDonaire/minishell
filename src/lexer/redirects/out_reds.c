@@ -102,5 +102,7 @@ void	process_sing_red(t_general_data *gen_data, char *s, int y, int ref)
 	if (ref == 0)
 		ft_ref_zero(gen_data, s, y, ref);
 	else if (ref == 1)
+	{
 		ft_ref_one(gen_data, s, y, ref);
+	}
 }

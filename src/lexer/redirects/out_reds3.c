@@ -63,7 +63,6 @@ void	ft_ref_one(t_general_data *gen_data, char *s, int y, int ref)
 	}
 	else
 	{
-		gen_data->blt[gen_data->n_built].dred = 0;
 		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
 		gen_data->blt[gen_data->n_built].out[0] = malloc(1);
 		gen_data->blt[gen_data->n_built].out[0] = NULL;

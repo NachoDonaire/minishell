@@ -17,8 +17,10 @@ void	reserva(t_general_data *gen_data)
 	gen_data->cmd = malloc(sizeof(t_cmd_data) * (gen_data->n_pipes + 1));
 	gen_data->blt = malloc(sizeof(t_builtin_data) * (gen_data->n_pipes + 1));
 	gen_data->sort = malloc(sizeof(char) * (gen_data->n_pipes + 1));
-	gen_data->cmd->fd_out = malloc(1);
-	gen_data->blt->fd_out = malloc(1);
+	/*if (finder(s, ">") == 0)
+	{
+		gen_data->cmd->fd_out = malloc(1);
+		gen_data->blt->fd_out = malloc(1);
 	gen_data->cmd->fd_out[0] = STDOUT_FILENO;
 	gen_data->cmd->fd_out[1] = 0;
 	gen_data->blt->fd_out[0] = STDOUT_FILENO;
@@ -28,7 +30,7 @@ void	reserva(t_general_data *gen_data)
 	gen_data->cmd->fd_in[0] = STDOUT_FILENO;
 	gen_data->cmd->fd_in[1] = 0;
 	gen_data->blt->fd_in[0] = STDOUT_FILENO;
-	gen_data->blt->fd_in[1] = 0;
+	gen_data->blt->fd_in[1] = 0;*/
 }
 
 void	ft_free_built(t_general_data *gen_data)
@@ -36,7 +38,28 @@ void	ft_free_built(t_general_data *gen_data)
 	int	i;
 
 	i = 0;
-	while (i < gen_data->n_built - 1)
+	//printf("--%d--\n", gen_data->n_built);
+	if (gen_data->n_built == 0)
+	{
+		ft_reset_blt(gen_data);
+		if (gen_data->blt[i].blt)
+			free(gen_data->blt[i].blt);
+		if (gen_data->blt[i].args[0])
+			ft_free_arg(gen_data->blt[i].args);
+		if (gen_data->blt[i].fd_out)
+			free(gen_data->blt[i].fd_out);
+		if (gen_data->blt[i].fd_in)
+			free(gen_data->blt[i].fd_in);
+		if (gen_data->blt[i].out[0])
+			ft_free_arg(gen_data->blt[i].out);
+		if (gen_data->blt[i].in[0])
+			ft_free_arg(gen_data->blt[i].in);
+		if (gen_data->blt[i].dred)
+			free(gen_data->blt[i].dred);
+		return ;
+	}
+
+	while (i < gen_data->n_built)
 	{
 		if (gen_data->blt[i].blt)
 			free(gen_data->blt[i].blt);
@@ -61,6 +84,7 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	int	i;
 
 	i = 0;
+//	printf("--%d--\n", y);
 	while (i < y)
 	{
 		if (gen_data->cmd[i].cmd)
@@ -71,9 +95,9 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 			free(gen_data->cmd[i].fd_out);
 		if (gen_data->cmd[i].fd_in)
 			free(gen_data->cmd[i].fd_in);
-		if (gen_data->cmd[i].out)
+		if (gen_data->cmd[i].out[0])
 			ft_free_arg(gen_data->cmd[i].out);
-		if (gen_data->cmd[i].in)
+		if (gen_data->cmd[i].in[0])
 			ft_free_arg(gen_data->cmd[i].in);
 		if (gen_data->cmd[i].dred)
 			free(gen_data->cmd[i].dred);
@@ -83,8 +107,6 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 
 void	needed_free(t_general_data *gen_data, int y)
 {
-	if (y == 23)
-		return ;
 	ft_free_built(gen_data);
 	ft_free_cmd(gen_data, y);
 }
