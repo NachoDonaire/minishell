@@ -48,7 +48,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	char	**com;
 	int		i;
 
-	com = ft_split(s, ' ');
+	com = dr_comillas(s);
 	if (finder(com[0], "./") == 1)
 	{
 		ft_programm(gen_data, com, y, s);

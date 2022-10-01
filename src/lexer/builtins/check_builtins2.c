@@ -95,7 +95,7 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 	int		x;
 	int		z;
 
-	tmp = ft_split(s, ' ');
+	tmp = dr_comillas(s);
 	paste_in_built(gen_data, ft_substr(tmp[0], 0, ft_strlen(tmp[0])));
 	x = ft_strlen(gen_data->blt[gen_data->n_built].blt) + n_spaces(s);
 	z = args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt);
@@ -107,6 +107,7 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 		gen_data->blt[gen_data->n_built].args = dr_comillas(cp);
 	}
 	free(cp);
+	ft_free_arg(tmp);
 	//ft_reset_cmd(gen_data, y);
 	gen_data->built = 1;
 	process_sing_red(gen_data, s, y, 1);

@@ -38,7 +38,6 @@ void	ft_free_built(t_general_data *gen_data)
 	int	i;
 
 	i = 0;
-	//printf("--%d--\n", gen_data->n_built);
 	if (gen_data->n_built == 0)
 	{
 		ft_reset_blt(gen_data);
@@ -56,6 +55,7 @@ void	ft_free_built(t_general_data *gen_data)
 			ft_free_arg(gen_data->blt[i].in);
 		if (gen_data->blt[i].dred)
 			free(gen_data->blt[i].dred);
+		printf("--%d--\n", i - gen_data->n_built);
 		return ;
 	}
 
@@ -77,6 +77,7 @@ void	ft_free_built(t_general_data *gen_data)
 			free(gen_data->blt[i].dred);
 		i++;
 	}
+	printf("--%d--\n", i - gen_data->n_built);
 }
 
 void	ft_free_cmd(t_general_data *gen_data, int y)
@@ -84,7 +85,6 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	int	i;
 
 	i = 0;
-//	printf("--%d--\n", y);
 	while (i < y)
 	{
 		if (gen_data->cmd[i].cmd)
@@ -103,6 +103,7 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 			free(gen_data->cmd[i].dred);
 		i++;
 	}
+	printf("--%d--\n", y - gen_data->n_cmd);
 }
 
 void	needed_free(t_general_data *gen_data, int y)

@@ -17,7 +17,7 @@ int	find_red2(t_general_data *gen_data, int ref, int z, int pos)
 	if (ref == 0)
 		gen_data->cmd[pos].dred[z] = -1;
 	else if (ref == 1)
-		gen_data->blt[gen_data->n_built].dred[z++] = -1;
+		gen_data->blt[gen_data->n_built].dred[z] = -1;
 	if (z == 0)
 		return (0);
 	return (1);

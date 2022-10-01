@@ -39,7 +39,9 @@ static void	ft_iniciate(t_general_data *gen_data)
 
 static void	ft_free_all(t_general_data *gen_data, char *s)
 {
-	free(s);
+	//free(s);
+	if (!s)
+		write(1, "aa", 2);
 	needed_free(gen_data, gen_data->n_cmd);
 }
 
@@ -74,6 +76,7 @@ int	main(int argc, char **argv, char *env[])
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
 			process_input(gen_data.s, &gen_data, gen_data.env);
+			write(1, "hola\n", 5);
 			/*while (y <= gen_data.n_built)
 			{
 				while (gen_data.blt[y].out[i])
@@ -84,8 +87,10 @@ int	main(int argc, char **argv, char *env[])
 			y = 0;
 			*/
 			ft_check_comand(&gen_data);
+			write(1, "que\n", 4);
 			copy_dup(&gen_data);
 			ft_free_all(&gen_data, gen_data.s);
+			write(1, "tal\n", 4);
 			//ft_free_all(&gen_data, gen_data.s);
 		}
 		else if (!gen_data.s)
