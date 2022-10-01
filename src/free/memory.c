@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 10:31:42 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/01 19:24:32 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,7 @@ void	needed_free(t_general_data *gen_data, int y)
 {
 	ft_free_built(gen_data);
 	ft_free_cmd(gen_data, y);
+	free(gen_data->blt);
+	free(gen_data->cmd);
+	free(gen_data->sort);
 }

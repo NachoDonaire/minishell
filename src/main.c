@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/28 19:32:33 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/01 19:23:34 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	ft_iniciate(t_general_data *gen_data)
 
 static void	ft_free_all(t_general_data *gen_data, char *s)
 {
-	//free(s);
+	free(s);
 	if (!s)
 		write(1, "aa", 2);
 	needed_free(gen_data, gen_data->n_cmd);
