@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/28 19:43:17 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:30:58 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,43 +84,6 @@ void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 		ft_not_built(s, gen_data, env, y);
 }
 
-/*void	process_args(char *s, t_general_data *gen_data, int y)
-{
-	char	*cp;
-	int		i;
-	int		z;
-
-	i = 0;
-	while (s[i])
-		i++;
-	cp = malloc(sizeof(char) * (i + 1));
-	i = 0;
-	z = 0;
-	while (s[i])
-	{
-		if (s[i] == '>' || s[i] == '<')
-			break ;
-		cp[z++] = s[i++];
-	}
-	cp[z] = '\0';
-	gen_data->cmd[y].args = ft_split(cp, ' ');
-	free(cp);
-	z = 0;
-	while (gen_data->cmd[y].args[z])
-	{
-		if (check_cmllas(gen_data->cmd[y].args[z]) == 1)
-			gen_data->cmd[y].args[z] = gest_cmllas(gen_data->cmd[y].args[z]);
-		z++;
-	}
-	if (!gen_data->cmd[y].args[0])
-	{
-		gen_data->cmd[y].args = malloc(sizeof(char *) * 1);
-		gen_data->cmd[y].args[0] = malloc(sizeof(char ) * 1);
-		gen_data->cmd[y].args[0] = NULL;
-	}
-}
-*/
-
 void	process_args(char *s, t_general_data *gen_data, int y, int ref)
 {
 	char	**wallace;
@@ -159,5 +122,4 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 	{
 		ft_reset_cmd(gen_data, 0);
 	}
-		
 }

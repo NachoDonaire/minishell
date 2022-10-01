@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:04 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/29 12:26:25 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:30:12 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**dr_comillas(char *s)
 	aviso = 0;
 	i = 0;
 	cmllas = 0;
-	y = 0;
+	y = 1;
 	z = 0;
 	while (s[i])
 	{
@@ -164,6 +164,7 @@ char	**dr_comillas(char *s)
 		spaces = 0;
 		cmllas--;
 	}
-	wallace[z] = NULL;
+	wallace[z] = malloc(1);
+	wallace[z] = 0;
 	return (wallace);
 }
