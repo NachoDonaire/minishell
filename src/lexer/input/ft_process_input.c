@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 16:31:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/02 23:36:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	while (com[++i])
 	{
 		if (check_cmllas(com[i]) == 1)
+		{
+			free(com[i]);
 			com[i] = gest_cmllas(com[i]);
+		}
 	}
 	gen_data->cmd[y].cmd = check_cmd(com[0], env);
 	process_args(s, gen_data, y, 0);
