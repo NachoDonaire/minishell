@@ -6,45 +6,46 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:09 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/28 19:41:21 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:21:28 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
+void	ft_reset_table3(int *t)
+{
+	t[0] = 0;
+	t[1] = 0;
+	t[2] = 1;
+	t[3] = 0;
+}
+
 void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
 {
-	int	i;
-	int	z;
-	int	w;
-	int	x;
-	int	q;
+	int		t[4];
+	int		x;
 	char	**wallace;
 
-	i = 0;
-	q = 0;
-	z = 1;
-	w = 0;
+	ft_reset_table3(t);
 	x = gen_data->n_built;
-	while (tmp[z])
+	while (tmp[t[2]])
 	{
-		wallace = dr_comillas(tmp[z]);
-		while (wallace[i])
+		wallace = dr_comillas(tmp[t[2]]);
+		while (wallace[t[0]])
 		{
-			while (wallace[i][q])
-				q++;
+			while (wallace[t[0]][t[1]])
+				t[1]++;
 			if (ref == 0)
-				gen_data->cmd[y].in[w] = malloc(sizeof(char) * (q + 1));
+				gen_data->cmd[y].in[t[3]] = malloc(sizeof(char) * (t[1] + 1));
 			else if (ref == 1)
-				gen_data->blt[x].in[w] = malloc(sizeof(char) * (q + 1));
-			q = 0;
-			i++;
-			w++;
+				gen_data->blt[x].in[t[3]] = malloc(sizeof(char) * (t[1] + 1));
+			t[1] = 0;
+			t[0]++;
+			t[3]++;
 		}
-		i = 0;
-		z++;
-		q = 0;
-	//	w++;
+		t[0] = 0;
+		t[2]++;
+		t[1] = 0;
 	}
 }
 
@@ -55,81 +56,20 @@ void	ft_reset_table2(int *table, t_general_data *gen_data)
 	table[2] = 0;
 	table[3] = 0;
 	table[4] = gen_data->n_built;
+	table[5] = 0;
 }
 
-void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
+void	ft_modify_table(int *t)
 {
-	int	t[5];
-	char	**wallace;
-	int	i;
-	int	w;
-
-	i = 0;
-	w = 0;
-	ft_reset_table2(t, gen_data);
-	while (tmp[t[1]])
-	{
-		wallace = dr_comillas(tmp[t[1]]);
-		while (wallace[i])
-		{
-			while (wallace[i][w])
-			{
-				if (ref == 0)
-					gen_data->cmd[y].in[t[3]][t[0]++] = wallace[i][w];
-				if (ref == 1)
-					gen_data->blt[t[4]].in[t[3]][t[0]++] = wallace[i][w];
-				w++;
-			}
-			if (ref == 0)
-				gen_data->cmd[y].in[t[3]][t[0]] = '\0';
-			else if (ref == 1)
-				gen_data->blt[t[4]].in[t[3]][t[0]] = '\0';
-			i++;
-			w = 0;
-			t[3]++;
-			t[0] = 0;
-		}
-		w = 0;
-		i = 0;
-		t[1]++;
-		ft_free_arg(wallace);
-	}
-	if (ref == 0)
-		gen_data->cmd[y].in[t[3]] = NULL;
-	else if (ref == 0)
-		gen_data->blt[gen_data->n_built].in[t[3]] = NULL;
+	t[5]++;
+	t[2] = 0;
+	t[3]++;
+	t[0] = 0;
 }
 
-void	gest_in_reds(t_general_data *gen_data, char *s, int y, int ref)
+void	ft_modify_table2(int *t)
 {
-	char	**tmp;
-	int		i;
-	int		w;
-
-	w = 0;
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == ' ' || s[i] == '<')
-			w++;
-		i++;
-	}
-	tmp = ft_split(s, '<');
-	if (ref == 0)
-		gen_data->cmd[y].in = malloc(sizeof(char *) * (w + 1));
-	else if (ref == 1)
-		gen_data->blt[gen_data->n_built].in = malloc(sizeof(char *) * (w + 1));
-	memory_for_in_red(gen_data, tmp, y, ref);
-	paste_tmp_in_red(gen_data, tmp, y, ref);
-	ft_free_arg(tmp);
-}
-
-void	no_red_in(t_general_data *gen_data, int y)
-{
-	gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
-	gen_data->blt[gen_data->n_built].in[0] = malloc(1);
-	gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
-	gen_data->cmd[y].in = malloc(sizeof(char) * 1);
-	gen_data->cmd[y].in[0] = malloc(1);
-	gen_data->cmd[y].fd_in = malloc(sizeof(int) * 1);
+	t[2] = 0;
+	t[5] = 0;
+	t[1]++;
 }

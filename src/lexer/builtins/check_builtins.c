@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:49 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/26 11:42:49 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:32:28 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,12 @@ void	check_builtins(char *s, t_general_data *gen_data, int y)
 	{
 		check_builtins2(s, gen_data, y);
 	}
+}
+
+void	ft_reset_cmd(t_general_data *gen_data, int y)
+{
+	gen_data->cmd[y].cmd = malloc(1);
+	gen_data->cmd[y].args = malloc(1);
+	gen_data->cmd[y].args[0] = malloc(1);
+	gen_data->cmd[y].args[0] = 0;
 }

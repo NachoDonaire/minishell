@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/01 21:30:58 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:31:14 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,6 @@ void	ft_programm(t_general_data *gen_data, char	**com, int y, char *s)
 	ft_free_arg(com);
 	process_args(s, gen_data, y, 0);
 }
-
-void	ft_reset_blt(t_general_data *gen_data)
-{
-	gen_data->blt[gen_data->n_built].blt = malloc(1);
-	gen_data->blt[gen_data->n_built].args = malloc(sizeof(char *) * 1);
-	gen_data->blt[gen_data->n_built].args[0] = malloc(1);
-	gen_data->blt[gen_data->n_built].args[0] = NULL;
-	gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
-	gen_data->blt[gen_data->n_built].out[0] = malloc(1);
-	gen_data->blt[gen_data->n_built].out[0] = NULL;
-	gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * 2);
-	gen_data->blt[gen_data->n_built].fd_out[0] = 1;
-	gen_data->blt[gen_data->n_built].fd_out[1] = -1;
-	gen_data->blt[gen_data->n_built].dred = malloc(1);
-	gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
-	gen_data->blt[gen_data->n_built].in[0] = malloc(1);
-	gen_data->blt[gen_data->n_built].in[0] = NULL;
-	gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
-	gen_data->blt[gen_data->n_built].fd_in[0] = -1;
-
-}
-
 
 void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 {
@@ -93,11 +71,13 @@ void	process_args(char *s, t_general_data *gen_data, int y, int ref)
 	if (finder(s, ">") == 1)
 	{
 		anthony = ft_split(s, '>');
+		ft_free_arg(wallace);
 		wallace = dr_comillas(anthony[0]);
 	}
 	else if (finder(s, "<") == 1)
 	{
 		anthony = ft_split(s, '<');
+		ft_free_arg(wallace);
 		wallace = dr_comillas(anthony[0]);
 	}
 	if (ref == 0)

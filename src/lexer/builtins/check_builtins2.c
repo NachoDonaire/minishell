@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:42:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/01 20:44:40 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:32:26 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,6 @@ void	paste_in_built(t_general_data *gen_data, char *s)
 		gen_data->blt[gen_data->n_built].blt[z++] = s[i++];
 	free(s);
 	gen_data->blt[gen_data->n_built].blt[z] = '\0';
-}
-
-void	ft_reset_cmd(t_general_data *gen_data, int y)
-{
-	gen_data->cmd[y].cmd = malloc(1);
-	gen_data->cmd[y].args = malloc(1);
-	gen_data->cmd[y].args[0] = malloc(1);
-	gen_data->cmd[y].args[0] = 0;
-/*	gen_data->cmd[y].out = malloc(1);
-	gen_data->cmd[y].in = malloc(1);
-	gen_data->cmd[y].out[0] = malloc(1);
-	gen_data->cmd[y].out[0] = 0;
-	gen_data->cmd[y].in[0] = malloc(1);
-	gen_data->cmd[y].in[0] = 0;
-	*/
 }
 
 int	args_with_reds(char *copy)
@@ -72,7 +57,7 @@ int	n_spaces(char *copy)
 
 char	*the_arg(char *s)
 {
-	int	i;
+	int		i;
 	char	*z;
 
 	i = 0;
@@ -107,8 +92,7 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 		gen_data->blt[gen_data->n_built].args = dr_comillas(cp);
 	}
 	free(cp);
-	//ft_free_arg(tmp);
-	//ft_reset_cmd(gen_data, y);
+	ft_free_arg(tmp);
 	gen_data->built = 1;
 	process_sing_red(gen_data, s, y, 1);
 	process_in_red(gen_data, s, y, 1);

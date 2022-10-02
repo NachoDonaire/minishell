@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 10:24:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 13:33:53 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/02 15:20:03 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,18 @@ int	find_in_red2(t_general_data *gen_data, int pos, int ref, int *table)
 	return (1);
 }
 
+void	ft_reset_table(int *table)
+{
+	table[2] = 0;
+	table[1] = 0;
+	table[0] = 0;
+}
+
 int	find_in_red(t_general_data *gen_data, char *s, int pos, int ref)
 {
 	int	table[3];
 
-	table[2] = 0;
-	table[1] = 0;
-	table[0] = 0;
+	ft_reset_table(table);
 	memory_indred(gen_data, s, pos, ref);
 	if (ref == 0)
 		gen_data->cmd[pos].in_dred[table[2]] = -1;

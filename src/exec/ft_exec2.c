@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/29 11:55:13 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:33:14 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,6 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 	}
 }
 
-void	ft_check_blt_args(t_general_data *gen_data, int n_built)
-{
-	if (ft_strncmp(gen_data->blt[n_built].blt, "pwd", 3) == 0 && gen_data->blt[n_built].args[1])
-	{
-		printf("pwd: too many arguments\n");
-		gen_data->good_status = 127;
-		exit (gen_data->good_status);
-	}
-}
-
 void	ft_child(t_general_data *gen_data, int position, int n_built)
 {
 	char	*s3[2];
@@ -83,7 +73,6 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	{
 		s3[1] = gen_data->blt[n_built].blt;
 		s3[1] = check_cmd(s3[1], gen_data->env);
-//		ft_check_blt_args(gen_data, n_built);
 		execve(s3[1], gen_data->blt[n_built].args, gen_data->env);
 	}
 }
@@ -102,7 +91,6 @@ void	ft_father(t_general_data *gen_data, int position, int n_built)
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
 		}
 	}
-//	dup_reds(gen_data, position, n_built);
 	gen_data->pipe_pos++;
 	gen_data->exec_pos++;
 }
