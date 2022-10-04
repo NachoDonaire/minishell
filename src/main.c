@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 15:13:45 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:46:33 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,19 @@ int	main(int argc, char **argv, char *env[])
 		if (gen_data.s && gen_data.s[0])
 		{
 			add_history(gen_data.s);
+			printf("hola");
 			n_pipes(&gen_data, gen_data.s);
 			if (ft_check_exit(gen_data.s) == 1)
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
+			printf("adios");
 			process_input(gen_data.s, &gen_data, gen_data.env);
+			printf("que");
 			ft_check_comand(&gen_data);
+			printf("tal");
 			copy_dup(&gen_data);
 			ft_free_all(&gen_data, gen_data.s);
+			printf("estas");
 		}
 		else if (!gen_data.s)
 			ft_exit(gen_data.s, gen_data.env);

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 23:36:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/04 21:57:17 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	ft_free_arg(com);
 	if (gen_data->n_pipes == 0)
 	{
+		/*free(gen_data->sort);
+		gen_data->sort = malloc(2);*/
 		gen_data->sort[0] = '1';
 		gen_data->sort[1] = '\0';
 		ft_reset_blt(gen_data);
