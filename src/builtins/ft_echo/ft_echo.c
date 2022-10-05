@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:31 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/05 12:14:51 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:51:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,13 @@ void	ft_print(int x, t_general_data *gen_data, int position)
 		{
 			if (s[x][y] != '$' && s[x][y] != '\'' && s[x][y] != '\"')
 			{
-				if (y - 1 >= 0 && s[x][y - 1] == '$')
+				if (s[x][y - 1] == '$')
 					ft_print_fdout(gen_data, s[x][y - 1]);
 				ft_print_fdout(gen_data, s[x][y]);
 			}
-			else if (s[x][y] == '$')
+			else if (s[x][y] == '$' && s[x][y - 1] != '\'')
 			{
-				if (y == 0)
-					ft_print_v(s, x, y, gen_data);
-				else if (y - 1 >= 0 && s[x][y - 1] != '\'')
-					ft_print_v(s, x, y, gen_data);
+				ft_print_v(s, x, y, gen_data);
 				break ;
 			}
 			y++;

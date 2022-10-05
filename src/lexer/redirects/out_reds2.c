@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 09:50:34 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 16:11:13 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:45:13 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,16 @@ int	find_red(t_general_data *gen_data, char *s, int pos, int ref)
 		table[1] = 0;
 	}
 	return (find_red2(gen_data, ref, table[0], pos));
+}
+
+void	no_red_out(t_general_data *gen_data, int y)
+{
+	gen_data->blt[gen_data->n_built].dred = 0;
+	gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
+	gen_data->blt[gen_data->n_built].out[0] = malloc(1);
+	gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * 1);
+	gen_data->cmd[y].dred = 0;
+	gen_data->cmd[y].out = malloc(sizeof(char *) * 1);
+	gen_data->cmd[y].out[0] = malloc(1);
+	gen_data->cmd[y].fd_out = malloc(sizeof(int) * 1);
 }

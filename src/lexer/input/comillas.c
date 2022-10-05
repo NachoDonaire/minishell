@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:04 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 16:00:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:30:12 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,68 +53,118 @@ char	*gest_cmllas(char *s)
 }
 /*mas alla del comando*/
 
-void	ft_reset_table_6(int *t)
+char	**dr_comillas(char *s)
 {
-	t[0] = 0;
-	t[1] = 0;
-	t[2] = 0;
-	t[3] = -1;
-	t[4] = 0;
-	t[5] = 1;
-	t[6] = 0;
-}
+	int		i;
+	int		y;
+	int		z;
+	int		spaces;
+	int		w;
+	int		cmllas;
+	int		aviso;
+	char	**wallace;
 
-void	dr_comillas_aviso(char *s, char **wallace, int *t)
-{
-	wallace[t[6]] = malloc(sizeof(char) * (t[3] + 1));
-	t[3] = t[3] - t[2] - t[0];
-	while (s[t[3]] == ' ' || s[t[3]] == '>')
-		t[3]++;
-	while (t[5] < t[2] || s[t[3]] == ' ' || s[t[3]] == '>')
+	spaces = 0;
+	w = 0;
+	aviso = 0;
+	i = 0;
+	cmllas = 0;
+	y = 1;
+	z = 0;
+	while (s[i])
 	{
-		if ((s[t[3]] == ' ' && t[3] != 0) || s[t[3]] == '>' )
+		if (s[i] == ' ')
+			y++;
+		i++;
+	}
+	wallace = malloc(sizeof(char *) * (y + 1));
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '"')
+			cmllas++;
+		i++;
+	}
+	i = 0;
+	y = 0;
+
+	while (s[i])
+	{
+		while (s[i])
 		{
-			while (s[t[3]] == ' ' || s[t[3]] == '>')
-				t[3]++;
-			if (s[t[3]] == '"' || s[t[3]] == '\0')
-				break ;
-			else
+			while ((s[i] == ' ' || s[i] == '>') && s[i])
 			{
-				wallace[t[6]][t[1]] = '\0';
-				t[6]++;
-				wallace[t[6]] = malloc(sizeof(char ) * (t[2] - t[5] + 1));
-				t[1] = 0;
+				spaces++;
+				i++;
 			}
+			if (s[i] == '"' || s[i] == '\0')
+				break ;
+			aviso++;
+			i++;
 		}
-		t[5]++;
-		wallace[t[6]][t[1]++] = s[t[3]++];
-	}
-	wallace[t[6]][t[1]] = '\0';
-	t[6]++;
-}
 
-void	dr_comillas_not_aviso(char *s, char **wallace, int *t)
-{
-	t[3]++;
-	while (s[t[3]])
-	{
-		if (s[t[3]] == '"')
-			break ;
-		t[3]++;
-		t[5]++;
-	}
-	wallace[t[6]] = malloc(sizeof(char ) * (t[5] + 1));
-	t[3] = t[3] - t[5];
-	while (s[t[3]])
-	{
-		if (s[t[3]] == '"')
+		if (aviso != 0)
 		{
-			t[3]++;
-			break ;
+			wallace[z] = malloc(sizeof(char) * (i + 1));
+			i = i - aviso - spaces;
+			while (s[i] == ' ' || s[i] == '>')
+				i++;
+			while (y < aviso || s[i] == ' ' || s[i] == '>')
+			{
+				if ((s[i] == ' ' && i != 0) || s[i] == '>' )
+				{
+					while (s[i] == ' ' || s[i] == '>')
+						i++;
+					if (s[i] == '"' || s[i] == '\0')
+						break ;
+					else
+					{
+						wallace[z][w] = '\0';
+						z++;
+						wallace[z] = malloc(sizeof(char ) * (aviso - y + 1));
+						w = 0;
+					}
+				}
+				y++;
+				wallace[z][w++] = s[i++];
+			}
+			wallace[z][w] = '\0';
+			z++;
 		}
-		wallace[t[6]][t[1]++] = s[t[3]++];
+		else if (aviso == 0)
+		{
+			i++;
+			while (s[i])
+			{
+				if (s[i] == '"')
+					break ;
+				i++;
+				y++;
+			}
+			wallace[z] = malloc(sizeof(char ) * (y + 1));
+			i = i - y;
+			while (s[i])
+			{
+				if (s[i] == '"')
+				{
+					i++;
+					break ;
+				}
+				wallace[z][w++] = s[i++];
+			}
+			wallace[z][w] = '\0';
+			z++;
+			y = 0;
+		}
+		while (s[i] == ' ')
+			i++;
+		aviso = 0;
+		w = 0;
+		y = 0;
+		spaces = 0;
+		cmllas--;
 	}
-	wallace[t[6]][t[1]] = '\0';
-	t[6]++;
-	t[5] = 0;
+	wallace[z] = malloc(1);
+	wallace[z] = 0;
+	return (wallace);
 }

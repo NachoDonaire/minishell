@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:06:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/04 21:02:48 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:33:03 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ void	ft_process_in_ref0(t_general_data *gen_data, char *s, int y, int ref)
 		gen_data->cmd[y].in = malloc(sizeof(char *) * 1);
 		gen_data->cmd[y].in[0] = malloc(sizeof(char) * 1);
 		gen_data->cmd[y].in[0] = NULL;
-		gen_data->cmd[y].fd_in = malloc(sizeof(int) * 2);
+		gen_data->cmd[y].fd_in = malloc(sizeof(int) * 1);
 		gen_data->cmd[y].fd_in[0] = -1;
-		gen_data->cmd[y].fd_in[0] = 0;
 	}
 }
 
@@ -39,7 +38,7 @@ void	ft_process_in_ref1(t_general_data *gen_data, char *s, int y, int ref)
 	}
 	else
 	{
-		gen_data->blt[gen_data->n_built].in = malloc(sizeof(char *) * 1);
+		gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
 		gen_data->blt[gen_data->n_built].in[0] = malloc(1);
 		gen_data->blt[gen_data->n_built].in[0] = NULL;
 		gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
@@ -71,18 +70,5 @@ void	memory_indred(t_general_data *gen_data, char *s, int pos, int ref)
 	if (ref == 0)
 		gen_data->cmd[pos].in_dred = malloc(sizeof(int) * (y + 1));
 	else if (ref == 1)
-	{
-		i = gen_data->n_built;
-		gen_data->blt[i].in_dred = malloc(sizeof(int) * (y + 1));
-	}
-}
-
-void	no_red_in(t_general_data *gen_data, int y)
-{
-	gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
-	gen_data->blt[gen_data->n_built].in[0] = malloc(1);
-	gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
-	gen_data->cmd[y].in = malloc(sizeof(char) * 1);
-	gen_data->cmd[y].in[0] = malloc(1);
-	gen_data->cmd[y].fd_in = malloc(sizeof(int) * 1);
+		gen_data->blt[gen_data->n_built].in_dred = malloc(sizeof(int) * (y + 1));
 }

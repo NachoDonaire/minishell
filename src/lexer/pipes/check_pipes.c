@@ -6,13 +6,13 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/05 20:26:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:34:52 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	ft_reset_table_3(int *table)
+void	ft_reset_table3(int *table)
 {
 	table[0] = 0;
 	table[1] = 0;
@@ -24,6 +24,8 @@ void	ft_handle_cmd_pipes2(t_general_data *gen_data, int *t, char **tmp)
 {
 	gen_data->built = 0;
 	check_builtins(tmp[t[1]], gen_data, t[2]);
+	//if (check_cmllas(tmp[t[1]]) == 1)
+	//	tmp[t[1]] = gest_cmllas(tmp[t[1]]);
 	if (gen_data->built != 1)
 	{
 		gen_data->sort[t[0]] = '1';
@@ -42,7 +44,7 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 	int		i;
 
 	i = 0;
-	ft_reset_table_3(table);
+	ft_reset_table3(table);
 	tmp = ft_split(s, '|');
 	while (tmp[table[1]])
 	{
@@ -54,7 +56,7 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 	}
 	gen_data->sort[table[0]] = '\0';
 	gen_data->n_cmd = table[2];
-	gen_data->pipe = malloc(sizeof(int *) * gen_data->n_cmd + 1);
+	gen_data->pipe = malloc(sizeof(int *) * gen_data->n_cmd);
 	while (i <= gen_data->n_cmd)
 		gen_data->pipe[i++] = malloc(sizeof(int) * 2);
 	ft_free_arg(tmp);

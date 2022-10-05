@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 15:15:21 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/09/29 11:56:35 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	ft_check_status(t_general_data *gen_data, int position)
 	int		x;
 
 	ft_change_good_status(gen_data->env, gen_data);
-	x = ft_strlen(gen_data->cmd[position].cmd);
-	copy = ft_substr(gen_data->cmd[position].cmd, 0, x);
+	copy = ft_substr(gen_data->cmd[position].cmd, 0, ft_strlen(gen_data->cmd[position].cmd));
 	tmp = ft_split(copy, '/');
 	free(copy);
 	x = ft_nb_arguments(tmp) - 1;
@@ -34,9 +33,7 @@ void	ft_check_status(t_general_data *gen_data, int position)
 	free(copy);
 	if (gen_data->blt[position].blt)
 	{
-		x = gen_data->n_pipes;
-		if (ft_strncmp(gen_data->blt[position].blt, "pwd", 3) == 0
-			&& gen_data->blt[position].args[1] && x > 0)
+		if (ft_strncmp(gen_data->blt[position].blt, "pwd", 3) == 0 && gen_data->blt[position].args[1] && gen_data->n_pipes > 0)
 			ft_change_bad_status(gen_data->env, gen_data);
 	}
 }
