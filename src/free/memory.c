@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/05 20:25:40 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/05 22:09:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ void	needed_free(t_general_data *gen_data, int y)
 	free(gen_data->blt);
 	free(gen_data->cmd);
 	free(gen_data->sort);
-	ft_free_arg((char**)gen_data->pipe);
+	if (gen_data->n_pipes > 0)
+		ft_free_arg((char**)gen_data->pipe);
 }
