@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 15:37:13 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:25:40 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	reserva(t_general_data *gen_data)
 {
 	gen_data->cmd = malloc(sizeof(t_cmd_data) * (gen_data->n_pipes + 1));
 	gen_data->blt = malloc(sizeof(t_builtin_data) * (gen_data->n_pipes + 1));
-	gen_data->sort = malloc(sizeof(char) * (gen_data->n_pipes + 1));
+	gen_data->sort = malloc(sizeof(char) * (gen_data->n_pipes + 2));
 }
 
 void	ft_free_built_0(t_general_data *gen_data)
@@ -103,4 +103,5 @@ void	needed_free(t_general_data *gen_data, int y)
 	free(gen_data->blt);
 	free(gen_data->cmd);
 	free(gen_data->sort);
+	ft_free_arg((char**)gen_data->pipe);
 }
