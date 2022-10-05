@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/01 19:23:34 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:46:33 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,7 @@ void	copy_dup(t_general_data	*gen_data)
 int	main(int argc, char **argv, char *env[])
 {
 	t_general_data	gen_data;
-/*	int	i;
-	int	y;
 
-	i = 0;
-	y = 0;
-*/
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -71,27 +66,19 @@ int	main(int argc, char **argv, char *env[])
 		if (gen_data.s && gen_data.s[0])
 		{
 			add_history(gen_data.s);
+			printf("hola");
 			n_pipes(&gen_data, gen_data.s);
 			if (ft_check_exit(gen_data.s) == 1)
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
+			printf("adios");
 			process_input(gen_data.s, &gen_data, gen_data.env);
-			write(1, "hola\n", 5);
-			/*while (y <= gen_data.n_built)
-			{
-				while (gen_data.blt[y].out[i])
-					printf("%s\n", gen_data.cmd[y].fd_in[i++]);
-				i = 0;
-				y++;
-			}
-			y = 0;
-			*/
+			printf("que");
 			ft_check_comand(&gen_data);
-			write(1, "que\n", 4);
+			printf("tal");
 			copy_dup(&gen_data);
 			ft_free_all(&gen_data, gen_data.s);
-			write(1, "tal\n", 4);
-			//ft_free_all(&gen_data, gen_data.s);
+			printf("estas");
 		}
 		else if (!gen_data.s)
 			ft_exit(gen_data.s, gen_data.env);

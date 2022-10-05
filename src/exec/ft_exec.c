@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/28 19:46:39 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:33:19 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,12 @@ void	dup_reds(t_general_data *gen_data, int position, int n_built)
 void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 {
 	int	i;
-//	int	w;
 
-//	w = 0;
 	i = 0;
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
 		while (gen_data->cmd[position].fd_in[i] > -2)
 		{
-			//while (gen_data->cmd[position].in_dred[w++] > 0)
-			//	i++;
 			dup2(gen_data->cmd[position].fd_in[i++], 0);
 		}
 	}
@@ -65,9 +61,20 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 	{
 		while (gen_data->blt[n_built].fd_in[i] > -2)
 		{
-		//	while (gen_data->blt[n_built].in_dred[i] > 0)
-		//		i++;
 			dup2(gen_data->blt[n_built].fd_in[i++], 0);
 		}	
+	}
+}
+
+void	ft_check_blt_args(t_general_data *gen_data, int n_built)
+{
+	int	x;
+
+	x = ft_strncmp(gen_data->blt[n_built].blt, "pwd", 3);
+	if (x == 0 && gen_data->blt[n_built].args[1])
+	{
+		printf("pwd: too many arguments\n");
+		gen_data->good_status = 127;
+		exit (gen_data->good_status);
 	}
 }

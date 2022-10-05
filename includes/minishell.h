@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 09:10:13 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:29:29 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ int		finder(char *s, char *find);
 int		check_cmllas(char *s);
 char	*gest_cmllas(char *s);
 char	**dr_comillas(char *s);
+void	ft_reset_table_6(int *t);
+void	dr_comillas_aviso(char *s, char **wallace, int *t);
+void	dr_comillas_not_aviso(char *s, char **wallace, int *t);
 
 /*en ft_process_input.c*/
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y);
@@ -152,6 +155,10 @@ void	ft_ref_one(t_general_data *gen_data, char *s, int y, int ref);
 void	ft_ref_zero(t_general_data *gen_data, char *s, int y, int ref);
 void	no_red_out(t_general_data *gen_data, int y);
 void	memory_dred(t_general_data *gen_data, char *s, int pos, int ref);
+void	ft_reset_table_5(int *t, t_general_data *gen_data);
+void	ft_modify_table_2(int *t);
+void	ft_modify_table_3(int *t);
+void	paste_tmp_red_ref(t_general_data *gen_data, int y, int ref, int *t);
 
 /*en in_reds.c*/
 int		find_in_red(t_general_data *gen_data, char *s, int pos, int ref);
@@ -161,6 +168,9 @@ void	paste_tmp_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
 void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref);
 void	no_red_in(t_general_data *gen_data, int y);
 void	memory_indred(t_general_data *gen_data, char *s, int pos, int ref);
+void	ft_reset_table2(int *table, t_general_data *gen_data);
+void	ft_modify_table(int *t);
+void	ft_modify_table2(int *t);
 
 /*en fd_reds*/
 void	fd_reds_out_b(t_general_data *gen_data);
@@ -169,6 +179,7 @@ void	fd_reds_out(t_general_data *gen_data, int z);
 void	fd_reds_in(t_general_data *gen_data, int z);
 int		ft_count_cmd_in(t_general_data *gen_data);
 int		ft_count_blt_out(t_general_data *gen_data);
+void	ft_reset_table_7(int *t, t_general_data *gen_data);
 
 /*exec cmd*/
 

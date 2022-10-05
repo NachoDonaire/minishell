@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:54:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 17:55:00 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:54:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ char	*pseudo_join(char *path, char *com)
 
 	y = 0;
 	i = 0;
-	sol = malloc(sizeof(char) * (lens(path) + lens(com) + 1));
 	if (!path)
 		return (com);
+	sol = malloc(sizeof(char) * (lens(path) + lens(com) + 2));
 	while (path[i])
 	{
 		sol[i] = path[i];

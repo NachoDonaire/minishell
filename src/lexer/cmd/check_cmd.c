@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/27 08:48:44 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:47:19 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,18 @@ char	*obtain_cmd(char **tmp, int i)
 
 char	*free_for_checkin_cmd(char **sol, char *k, int y, char *cmd)
 {
-	int		i;
 	char	*tmp;
 
-	i = 0;
 	if (!sol[y])
 	{
-		while (sol[i])
-			free(sol[i++]);
+		ft_free_arg(sol);
 		k = 0;
 	}
 	if (!k)
 	{
 		free(k);
 		tmp = ft_substr(cmd, 0, ft_strlen(cmd));
+		free(cmd);
 		return (tmp);
 	}
 	return (k);
