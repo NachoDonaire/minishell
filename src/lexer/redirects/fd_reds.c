@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/06 16:33:13 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:31:05 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	fd_reds_out_b(t_general_data *gen_data)
 	char	*s;
 
 	ft_reset_table_7(t, gen_data);
-	gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * (t[2] + 1));
+	gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * (t[2] + 2));
+	gen_data->blt[gen_data->n_built].fd_out[t[2] + 1] = 0;
 	t[2] = 0;
 	while (gen_data->blt[gen_data->n_built].out[t[2]])
 	{

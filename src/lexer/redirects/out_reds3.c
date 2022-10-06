@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:05:08 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/06 16:31:57 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:25:29 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	gest_reds(t_general_data *gen_data, char *s, int y, int ref)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == ' ' || s[i] == '>')
+		if (s[i] == '>')
 			z++;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/06 17:32:39 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:00:59 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ void	memory_for_red(t_general_data *gen_data, char **tmp, int y, int ref)
 
 	ft_reset_table_9(t);
 	x = gen_data->n_built;
-	/*if (ref == 0)
-	{
-		ft_free_arg(gen_data->cmd[y].out);
-	}
-	else if (ref == 1)
-	{
-		ft_free_arg(gen_data->blt[y].out);
-	}*/
 	while (tmp[t[2]])
 	{
 		wallace = dr_comillas(tmp[t[2]]);
@@ -44,15 +36,9 @@ void	memory_for_red(t_general_data *gen_data, char **tmp, int y, int ref)
 			while (wallace[t[0]][t[1]])
 				t[1]++;
 			if (ref == 0)
-			{
-				gen_data->cmd[y].out[t[3]] = malloc(sizeof(char) * (t[1]));
-				//printf("%d", t[3]);
-			}
+				gen_data->cmd[y].out[t[3]] = malloc(sizeof(char) * (t[1] + 1));
 			else if (ref == 1)
-			{
-				gen_data->blt[x].out[t[3]] = malloc(sizeof(char) * (t[1]));
-				//printf("%d", t[3]);
-			}
+				gen_data->blt[x].out[t[3]] = malloc(sizeof(char) * (t[1] + 1));
 			t[1] = 0;
 			t[0]++;
 			t[3]++;
