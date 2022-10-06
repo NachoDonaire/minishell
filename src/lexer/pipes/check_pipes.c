@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/05 20:26:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:54:49 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,14 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 	}
 	gen_data->sort[table[0]] = '\0';
 	gen_data->n_cmd = table[2];
-	gen_data->pipe = malloc(sizeof(int *) * gen_data->n_cmd + 1);
-	while (i <= gen_data->n_cmd)
-		gen_data->pipe[i++] = malloc(sizeof(int) * 2);
+	gen_data->pipe = malloc(sizeof(int *) * (gen_data->n_cmd + gen_data->n_built + 1));
+	while (i <= gen_data->n_cmd + gen_data->n_built)
+	{
+		gen_data->pipe[i] = malloc(sizeof(int) * 3);
+		gen_data->pipe[i][2] = 0;
+		i++;
+	}
+	gen_data->pipe[gen_data->n_cmd + gen_data->n_built] = 0;
 	ft_free_arg(tmp);
 }
 

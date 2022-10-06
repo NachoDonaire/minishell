@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:38 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/07 16:50:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:41:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_free_arg(char **arguments)
 
 	i = 0;
 	while (arguments[i])
-		free(arguments[i++]);
+	{
+		free(arguments[i]);
+		i++;
+	}
 	free(arguments);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:05:08 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/04 21:37:29 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:31:57 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ void	gest_reds(t_general_data *gen_data, char *s, int y, int ref)
 	}
 	if (ref == 0)
 	{
-		gen_data->cmd[y].out = malloc(sizeof(char *) * (z) + 1);
+		gen_data->cmd[y].out = malloc(sizeof(char *) * (z + 1));
+		gen_data->cmd[y].out[z] = 0;
 	}
 	else if (ref == 1)
 	{
-		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * (z) + 1);
+		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * (z + 1));
+		gen_data->blt[gen_data->n_built].out[z] = 0;
 	}
 	memory_for_red(gen_data, tmp, y, ref);
 	paste_tmp_red(gen_data, tmp, y, ref);

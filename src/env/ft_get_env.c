@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:56:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:53:38 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,26 @@ static void	ft_shlvl(char *s)
 	}
 }
 
+int	ft_size_env(char **envp)
+{
+	int	x;
+
+	x = 0;
+	while (envp[x])
+		x++;
+	return (x);
+}
+
 char	**get_env(char **envp)
 {
 	int		x;
 	int		y;
+	int		a;
 	char	**env;
 
 	y = 0;
-	env = malloc(sizeof(char *) * 1024);
+	a = ft_size_env(envp);
+	env = malloc(sizeof(char *) * (a + 2));
 	x = -1;
 	while (envp[++x])
 	{
@@ -49,7 +61,8 @@ char	**get_env(char **envp)
 		if (ft_strncmp(env[x], "SHLVL=", 6) == 0)
 			ft_shlvl(env[x]);
 	}
-	env[x] = ft_substr("?=0", 0, 4);
+	env[x] = ft_substr("?=0", 0, 3);
+	env[x + 1] = malloc(1);
 	env[x + 1] = NULL;
 	return (env);
 }
