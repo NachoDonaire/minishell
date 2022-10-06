@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:04 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 16:00:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/07 00:23:34 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ void	dr_comillas_aviso(char *s, char **wallace, int *t)
 		{
 			while (s[t[3]] == ' ' || s[t[3]] == '>')
 				t[3]++;
-			if (s[t[3]] == '"' || s[t[3]] == '\0')
+			if ((s[t[3]] == '"' || s[t[3]] == '\0') && s[t[3] + 1] != '"')
 				break ;
+			else if (s[t[3]] == '"' && s[t[3] + 1] == '"')
+				t[3] += 2;
 			else
 			{
 				wallace[t[6]][t[1]] = '\0';
@@ -107,11 +109,13 @@ void	dr_comillas_not_aviso(char *s, char **wallace, int *t)
 	t[3] = t[3] - t[5];
 	while (s[t[3]])
 	{
-		if (s[t[3]] == '"')
+		if (s[t[3]] == '"' && s[t[3] + 1] != '"')
 		{
 			t[3]++;
 			break ;
 		}
+		else if (s[t[3]] == '"' && s[t[3] + 1] == '"')
+			t[3] += 2;
 		wallace[t[6]][t[1]++] = s[t[3]++];
 	}
 	wallace[t[6]][t[1]] = '\0';
