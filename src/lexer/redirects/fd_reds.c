@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/06 18:31:05 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/07 18:47:57 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@ void	fd_reds_in(t_general_data *gen_data, int z)
 	i = 0;
 	while (gen_data->cmd[z].in[i])
 	{
-		gen_data->cmd[z].fd_in[y] = open(gen_data->cmd[z].in[i], O_RDONLY);
+		if (gen_data->cmd[z].in_dred[i] == 0)
+			gen_data->cmd[z].fd_in[y] = open(gen_data->cmd[z].in[i], O_RDONLY);
 		if (gen_data->cmd[z].fd_in[y] < 0)
 			write(2, "error\n", 7);
 		y++;

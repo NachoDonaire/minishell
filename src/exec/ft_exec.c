@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 16:33:19 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/07 18:47:59 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,42 @@ void	dup_reds(t_general_data *gen_data, int position, int n_built)
 
 void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 {
-	int	i;
+	int		i;
+	char	*s;
 
 	i = 0;
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
-		while (gen_data->cmd[position].fd_in[i] > -2)
+		while (gen_data->cmd[position].in[i])
 		{
-			dup2(gen_data->cmd[position].fd_in[i++], 0);
+			if (gen_data->cmd[position].in_dred[i] == 0)
+				dup2(gen_data->cmd[position].fd_in[i], 0);
+			else if (gen_data->cmd[position].in_dred[i] == 1)
+			{
+				s = readline("");
+				while (finder(s, gen_data->cmd[position].in[i]) == 0)
+					s = readline("");
+			}
+			if (s)
+				free(s);
+			i++;
 		}
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
 	{
-		while (gen_data->blt[n_built].fd_in[i] > -2)
+		while (gen_data->blt[n_built].in[i])
 		{
-			dup2(gen_data->blt[n_built].fd_in[i++], 0);
+			if (gen_data->blt[n_built].in_dred[i] == 0)
+				dup2(gen_data->blt[n_built].fd_in[i], 0);
+			else if (gen_data->blt[n_built].in_dred[i] == 1)
+			{
+				s = readline("");
+				while (finder(s, gen_data->blt[n_built].in[i]) == 0)
+					s = readline("");
+				if (s)
+					free(s);
+			}
+			i++;
 		}	
 	}
 }
