@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/13 13:21:44 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:26:10 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_print_quote(char *env, t_general_data *gen_data)
 	{
 		y = 0;
 		while (gen_data->blt->fd_out[y])
-			ft_putstr_fd(env[x], gen_data->blt->fd_out[y++]);
+			ft_putchar_fd(env[x], gen_data->blt->fd_out[y++]);
 		if (env[x] == '=')
 		{
 			y = 0;
@@ -74,11 +74,14 @@ static void	ft_print_export(t_general_data *gen_data)
 	x = 0;
 	copy = malloc(1024);
 	while (gen_data->env[x])
-		copy[x] = ft_substr(gen_data->env[x], 0, ft_strlen(gen_data->env[x++]));
+	{
+		copy[x] = ft_substr(gen_data->env[x], 0, ft_strlen(gen_data->env[x]));
+		x++;
+	}
 	copy[x] = NULL;
 	ft_order(copy);
-	x = 0;
-	while (copy[x])
+	x = -1;
+	while (copy[++x])
 	{
 		y = 0;
 		if (ft_strncmp(copy[x], "?=", 2) != 0)
@@ -87,7 +90,6 @@ static void	ft_print_export(t_general_data *gen_data)
 			while (gen_data->blt->fd_out[y])
 				ft_putstr_fd("\n", gen_data->blt->fd_out[y++]);
 		}
-		x++;
 	}
 	ft_free_arg(copy);
 }

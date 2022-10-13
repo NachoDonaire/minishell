@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/13 13:01:31 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:23:30 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	ft_error_cd(char *arguments, char **env, t_general_data *gen_data)
 	{
 		ft_putstr_fd("cd: ", 2);
 		ft_putstr_fd(arguments, 2);
-		ft_putchar_fd(": Permission denied\n", 2);
+		ft_putstr_fd(": Permission denied\n", 2);
 	}
 	else
 	{
