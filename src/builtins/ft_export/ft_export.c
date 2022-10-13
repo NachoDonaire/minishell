@@ -6,27 +6,39 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/05 17:55:02 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:21:44 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-static void	ft_print_quote(char *env)
+static void	ft_print_quote(char *env, t_general_data *gen_data)
 {
 	int	x;
+	int	y;
 
-	x = 0;
-	while (env[x])
+	x = -1;
+	while (env[++x])
 	{
-		printf("%c", env[x]);
+		y = 0;
+		while (gen_data->blt->fd_out[y])
+			ft_putstr_fd(env[x], gen_data->blt->fd_out[y++]);
 		if (env[x] == '=')
-			printf("'");
-		x++;
+		{
+			y = 0;
+			while (gen_data->blt->fd_out[y])
+				ft_putstr_fd("'", gen_data->blt->fd_out[y++]);
+		}
 	}
 	if (ft_equal(env) == 0)
-		printf("='");
-	printf("'");
+	{
+		y = 0;
+		while (gen_data->blt->fd_out[y])
+			ft_putstr_fd("='", gen_data->blt->fd_out[y++]);
+	}
+	y = 0;
+	while (gen_data->blt->fd_out[y])
+		ft_putstr_fd("'", gen_data->blt->fd_out[y++]);
 }
 
 static void	ft_order(char **copy)
@@ -56,24 +68,24 @@ static void	ft_order(char **copy)
 static void	ft_print_export(t_general_data *gen_data)
 {
 	int		x;
+	int		y;
 	char	**copy;
 
 	x = 0;
 	copy = malloc(1024);
 	while (gen_data->env[x])
-	{
-		copy[x] = ft_substr(gen_data->env[x], 0, ft_strlen(gen_data->env[x]));
-		x++;
-	}
+		copy[x] = ft_substr(gen_data->env[x], 0, ft_strlen(gen_data->env[x++]));
 	copy[x] = NULL;
 	ft_order(copy);
 	x = 0;
 	while (copy[x])
 	{
+		y = 0;
 		if (ft_strncmp(copy[x], "?=", 2) != 0)
 		{
-			ft_print_quote(copy[x]);
-			printf("\n");
+			ft_print_quote(copy[x], gen_data);
+			while (gen_data->blt->fd_out[y])
+				ft_putstr_fd("\n", gen_data->blt->fd_out[y++]);
 		}
 		x++;
 	}

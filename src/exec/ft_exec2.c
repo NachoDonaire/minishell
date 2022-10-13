@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 16:33:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:05:42 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 			gen_data->cmd[position].args, gen_data->env);
 	if (exec < 0)
 	{
-		printf("Minishell: command not found: %s\n",
-			gen_data->cmd[position].cmd);
+		ft_putstr_fd("Minishell: command not found: ", 2);
+		ft_putstr_fd(gen_data->cmd[position].cmd, 2);
+		ft_putstr_fd("\n", 2);
 		gen_data->good_status = 127;
 		exit (gen_data->good_status);
 	}
@@ -104,11 +105,17 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 	{
 		ft_child(gen_data, position, n_built);
 		if (gen_data->sort[gen_data->exec_pos] == '1')
-			printf("Minishell: command not found: %s\n",
-				gen_data->cmd[position].cmd);
+		{
+			ft_putstr_fd("Minishell: command not found: ", 2);
+			ft_putstr_fd(gen_data->cmd[position].cmd, 2);
+			ft_putstr_fd("\n", 2);
+		}
 		else if (gen_data->sort[gen_data->exec_pos] == '0')
-			printf("Minishell: command not found: %s\n",
-				gen_data->blt[n_built].blt);
+		{
+			ft_putstr_fd("Minishell: command not found: ", 2);
+			ft_putstr_fd(gen_data->blt[n_built].blt, 2);
+			ft_putstr_fd("\n", 2);
+		}
 		gen_data->good_status = 127;
 		exit (gen_data->good_status);
 	}

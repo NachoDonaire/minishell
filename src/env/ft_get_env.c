@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/06 15:53:38 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:12:35 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,27 @@ char	**get_env(char **envp)
 	return (env);
 }
 
-void	ft_env(char **env)
+void	ft_env(t_general_data *gen_data)
 {
 	int		x;
+	int		y;
 
 	x = 0;
-	while (env[x])
+	while (gen_data->env[x])
 	{
-		if (ft_strncmp(env[x], "?=", 2) != 0)
-			if (ft_equal(env[x]) != 0)
-				printf("%s\n", env[x]);
+		if (ft_strncmp(gen_data->env[x], "?=", 2) != 0)
+		{
+			if (ft_equal(gen_data->env[x]) != 0)
+			{
+				y = 0;
+				while (gen_data->blt->fd_out[y])
+				{
+					ft_putstr_fd(gen_data->env[x], gen_data->blt->fd_out[y]);
+					ft_putstr_fd("\n", gen_data->blt->fd_out[y]);
+					y++;
+				}
+			}
+		}
 		x++;
 	}
 }

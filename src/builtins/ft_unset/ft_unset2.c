@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 10:52:00 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:52:22 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:07:17 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_print_bad(t_general_data *gen_data, int p, int x)
 {
-	printf("unset: %s: ", gen_data->blt[p].args[x]);
-	printf("invalid parameter name\n");
+	ft_putstr_fd("unset: ", 2);
+	ft_putstr_fd(gen_data->blt[p].args[x], 2);
+	ft_putstr_fd(": invalid parameter name\n", 2);
 	ft_change_bad_status(gen_data->env, gen_data);
 }
 

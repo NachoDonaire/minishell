@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/14 10:39:34 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:01:31 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	ft_change_oldpwd(char **env, char *tmp, t_general_data *gen_data)
 	}
 	if (oldpwd == 0)
 	{
-		printf("minishell : cd: OLDPWD not set\n");
+		ft_putstr_fd("minishell : cd: OLDPWD not set\n", 2);
 		chdir(tmp);
 	}
 	else if (oldpwd == 1)
@@ -59,9 +59,17 @@ static void	ft_change_oldpwd(char **env, char *tmp, t_general_data *gen_data)
 static void	ft_error_cd(char *arguments, char **env, t_general_data *gen_data)
 {
 	if (access(arguments, F_OK) != -1)
-		printf("cd: %s: Permission denied\n", arguments);
+	{
+		ft_putstr_fd("cd: ", 2);
+		ft_putstr_fd(arguments, 2);
+		ft_putchar_fd(": Permission denied\n", 2);
+	}
 	else
-		printf("cd: no such file or directory: %s\n", arguments);
+	{
+		ft_putstr_fd("cd: no such file or directory: ", 2);
+		ft_putstr_fd(arguments, 2);
+		ft_putstr_fd("\n", 2);
+	}
 	ft_change_permission_status(env, gen_data);
 }
 
@@ -74,7 +82,7 @@ void	ft_cd(t_general_data *gen_data, int p)
 		tmp = getcwd(NULL, 0);
 		if (chdir(getenv("HOME")) != 0)
 		{
-			printf("minishell : cd: HOME not set\n");
+			ft_putstr_fd("minishell : cd: HOME not set\n", 2);
 			ft_change_permission_status(gen_data->env, gen_data);
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/07 18:47:59 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:03:18 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_check_blt_args(t_general_data *gen_data, int n_built)
 	x = ft_strncmp(gen_data->blt[n_built].blt, "pwd", 3);
 	if (x == 0 && gen_data->blt[n_built].args[1])
 	{
-		printf("pwd: too many arguments\n");
+		ft_putstr_fd("pwd: too many arguments\n", 2);
 		gen_data->good_status = 127;
 		exit (gen_data->good_status);
 	}
