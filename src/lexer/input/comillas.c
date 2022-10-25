@@ -76,9 +76,9 @@ void	dr_comillas_aviso(char *s, char **wallace, int *t)
 		{
 			while (s[t[3]] == ' ' || s[t[3]] == '>')
 				t[3]++;
-			if ((s[t[3]] == '"' || s[t[3]] == '\0') && s[t[3] + 1] != '"')
+			if ((s[t[3]] == '"' || s[t[3]] == '\0' || s[t[3]] == 39) && (s[t[3] + 1] != '"' && s[t[3] + 1] != 39))
 				break ;
-			else if (s[t[3]] == '"' && s[t[3] + 1] == '"')
+			else if ((s[t[3]] == '"' && s[t[3] + 1] == '"') || (s[t[3]] == 39 && s[t[3] + 1] == 39))
 				t[3] += 2;
 			else
 			{
@@ -100,7 +100,7 @@ void	dr_comillas_not_aviso(char *s, char **wallace, int *t)
 	t[3]++;
 	while (s[t[3]])
 	{
-		if (s[t[3]] == '"')
+		if (s[t[3]] == '"' || s[t[3]] == 39)
 			break ;
 		t[3]++;
 		t[5]++;
@@ -109,12 +109,12 @@ void	dr_comillas_not_aviso(char *s, char **wallace, int *t)
 	t[3] = t[3] - t[5];
 	while (s[t[3]])
 	{
-		if (s[t[3]] == '"' && s[t[3] + 1] != '"')
+		if (((s[t[3]] == '"' && (s[t[3] + 1] != '"')) || ((s[t[3] + 1] != 39)  && s[t[3]] == 39)))
 		{
 			t[3]++;
 			break ;
 		}
-		else if (s[t[3]] == '"' && s[t[3] + 1] == '"')
+		else if ((s[t[3]] == '"' && s[t[3] + 1] == '"') || (s[t[3]] == 39 && s[t[3] + 1] == 39))
 			t[3] += 2;
 		wallace[t[6]][t[1]++] = s[t[3]++];
 	}

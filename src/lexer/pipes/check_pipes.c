@@ -43,12 +43,17 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 
 	i = 0;
 	ft_reset_table_3(table);
-	tmp = ft_split(s, '|');
+	if (ft_strlen(s) == 1 && s[0] == '|')
+		tmp = ft_split(s, ' ');
+	else
+		tmp = ft_split(s, '|');
+	if (!env)
+		i = 0;
 	while (tmp[table[1]])
 	{
-		if (finder(tmp[table[1]], "&") == 1)
-			table[2] = gest_ampersand(tmp[table[1]], gen_data, env, table[2]);
-		else
+		//if (finder(tmp[table[1]], "&") == 1)
+		//	table[2] = gest_ampersand(tmp[table[1]], gen_data, env, table[2]);
+		//else
 			ft_handle_cmd_pipes2(gen_data, table, tmp);
 		table[1]++;
 	}

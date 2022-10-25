@@ -57,7 +57,11 @@ void	copy_dup(t_general_data	*gen_data)
 int	main(int argc, char **argv, char *env[])
 {
 	t_general_data	gen_data;
+/*	int	i;
+	int	y;
 
+	i = 0;
+	y = 0;*/
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -66,19 +70,27 @@ int	main(int argc, char **argv, char *env[])
 		if (gen_data.s && gen_data.s[0])
 		{
 			add_history(gen_data.s);
-			printf("hola");
+			//printf("hola");
 			n_pipes(&gen_data, gen_data.s);
 			if (ft_check_exit(gen_data.s) == 1)
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
-			printf("adios");
+			//printf("adios");
 			process_input(gen_data.s, &gen_data, gen_data.env);
-			printf("que");
+			/*while (i < gen_data.n_cmd)
+			{
+				while (gen_data.cmd[i].args[y])
+					printf("%s\n", gen_data.cmd[i].args[y++]);
+				y = 0;
+				i++;
+			}
+			i = 0;*/
+			//printf("que");
 			ft_check_comand(&gen_data);
-			printf("tal");
+			//printf("tal");
 			copy_dup(&gen_data);
 			ft_free_all(&gen_data, gen_data.s);
-			printf("estas");
+			//printf("estas");
 		}
 		else if (!gen_data.s)
 			ft_exit(gen_data.s, gen_data.env);

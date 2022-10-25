@@ -91,7 +91,7 @@ void	process_args(char *s, t_general_data *gen_data, int y, int ref)
 
 void	process_input(char *s, t_general_data *gen_data, char *env[])
 {
-	if (finder(s, "|") == 1 || finder(s, "&") == 1)
+	if (finder(s, "|") == 1)
 		process_string_w_pipes(gen_data, s, env);
 	else
 	{
