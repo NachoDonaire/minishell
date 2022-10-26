@@ -57,7 +57,7 @@ void	copy_dup(t_general_data	*gen_data)
 int	main(int argc, char **argv, char *env[])
 {
 	t_general_data	gen_data;
-/*	int	i;
+	/*int	i;
 	int	y;
 
 	i = 0;
@@ -77,14 +77,15 @@ int	main(int argc, char **argv, char *env[])
 			reserva(&gen_data);
 			//printf("adios");
 			process_input(gen_data.s, &gen_data, gen_data.env);
-			/*while (i < gen_data.n_cmd)
+		/*	while (i < gen_data.n_cmd)
 			{
 				while (gen_data.cmd[i].args[y])
 					printf("%s\n", gen_data.cmd[i].args[y++]);
 				y = 0;
 				i++;
 			}
-			i = 0;*/
+			i = 0;
+		*/	
 			//printf("que");
 			ft_check_comand(&gen_data);
 			//printf("tal");
