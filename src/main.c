@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/04 19:46:33 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/06 14:38:30 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	main(int argc, char **argv, char *env[])
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
 			//printf("adios");
+			gen_data.s = ft_expand(&gen_data);
+			printf("(salus)%s\n", gen_data.s);
 			process_input(gen_data.s, &gen_data, gen_data.env);
 		/*	while (i < gen_data.n_cmd)
 			{
