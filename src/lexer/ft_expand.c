@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:00:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/06 16:00:23 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/06 17:51:02 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ char	*ft_expand(t_general_data *gen_data)
 	x = 0;
 	free(gen_data->s);
 	copy = malloc (1);
+	copy = "";
 	while (tmp[x])
 	{
 		copy = ft_strjoin(copy, tmp[x]);
