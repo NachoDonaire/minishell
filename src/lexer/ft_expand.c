@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:00:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/06 15:58:03 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/06 16:00:23 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_last(char	*s, int x)
 {
-	while(s[x])
+	while (s[x])
 	{
 		if (s[x] == '\'' || s[x] == '\"')
 		{
@@ -28,7 +28,7 @@ int	ft_last(char	*s, int x)
 
 char	*ft_change(char *s)
 {
-	int x;
+	int		x;
 	char	*copy;
 
 	x = 0;
@@ -37,7 +37,7 @@ char	*ft_change(char *s)
 	{
 		if (s[x] == '\'' || s[x] == '\"')
 		{
-			break;
+			break ;
 		}
 		copy[x] = s[x];
 		x++;
@@ -85,8 +85,8 @@ char	*ft_process(char *s, t_general_data *gen_data)
 char	*ft_expand(t_general_data *gen_data)
 {
 	size_t		x;
-	char	**tmp;
-	char	*copy;
+	char		**tmp;
+	char		*copy;
 
 	x = 0;
 	while (gen_data->s[x])
@@ -117,5 +117,5 @@ char	*ft_expand(t_general_data *gen_data)
 	ft_free_arg(tmp);
 	gen_data->s = ft_substr(copy, 0, ft_strlen(copy));
 	free(copy);
-	return(gen_data->s);
+	return (gen_data->s);
 }
