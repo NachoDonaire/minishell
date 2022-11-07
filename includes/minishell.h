@@ -75,7 +75,7 @@ typedef struct s_general
 	int				good_status;
 	int				**pipe;
 	int				exec_pos;
-	int				pid;
+	int				*pid;
 	int				pipe_pos;
 	int				std_in;
 	int				std_out;

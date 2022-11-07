@@ -48,9 +48,12 @@ void	dup_reds(t_general_data *gen_data, int position, int n_built)
 void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 {
 	int		i;
-	char	*s;
+	int		pipedo[2];
+	char		*s;
+	int		piddy_gonzalez;
 
 	i = 0;
+	pipe(pipedo);
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
 		while (gen_data->cmd[position].in[i])
@@ -59,12 +62,30 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 				dup2(gen_data->cmd[position].fd_in[i], 0);
 			else if (gen_data->cmd[position].in_dred[i] == 1)
 			{
-				s = readline("");
-				while (finder(s, gen_data->cmd[position].in[i]) == 0)
-					s = readline("");
+				piddy_gonzalez = fork();
+				if (piddy_gonzalez == 0)
+				{
+					close(pipedo[0]);
+					s = get_next_line(1);
+					ft_putstr_fd(s, pipedo[1]);
+					ft_putstr_fd("\n", pipedo[1]);
+					while (finder(s, gen_data->cmd[position].in[i]) == 0)
+					{
+						ft_putstr_fd(s, pipedo[1]);
+						ft_putstr_fd("\n", pipedo[1]);
+						s = get_next_line(1);
+					}
+					free(s);
+					close(pipedo[1]);
+					exit(0);
+				}
+				else
+				{
+					waitpid(piddy_gonzalez, NULL, 0);
+					close(pipedo[1]);
+					dup2(pipedo[0], 0);
+				}
 			}
-			if (s)
-				free(s);
 			i++;
 		}
 	}
@@ -76,11 +97,29 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 				dup2(gen_data->blt[n_built].fd_in[i], 0);
 			else if (gen_data->blt[n_built].in_dred[i] == 1)
 			{
-				s = readline("");
-				while (finder(s, gen_data->blt[n_built].in[i]) == 0)
-					s = readline("");
-				if (s)
+				piddy_gonzalez = fork();
+				if (piddy_gonzalez == 0)
+				{
+					close(pipedo[0]);
+					s = get_next_line(1);
+					ft_putstr_fd(s, pipedo[1]);
+					ft_putstr_fd("\n", pipedo[1]);
+					while (finder(s, gen_data->blt[n_built].in[i]) == 0)
+					{
+						ft_putstr_fd(s, pipedo[1]);
+						ft_putstr_fd("\n", pipedo[1]);
+						s = get_next_line(1);
+					}
 					free(s);
+					close(pipedo[1]);
+					exit(0);
+				}
+				else
+				{
+					waitpid(piddy_gonzalez, NULL, 0);
+					close(pipedo[1]);
+					dup2(pipedo[0], 0);
+				}
 			}
 			i++;
 		}	

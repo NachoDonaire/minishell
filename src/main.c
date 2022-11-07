@@ -71,12 +71,14 @@ int	main(int argc, char **argv, char *env[])
 		{
 			add_history(gen_data.s);
 			//printf("hola");
+			//reserva(&gen_data);
 			n_pipes(&gen_data, gen_data.s);
+			gen_data.pid = malloc(sizeof(char ) * gen_data.n_pipes + 1);
 			if (ft_check_exit(gen_data.s) == 1)
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
 			//printf("adios");
-			gen_data.s = ft_expand(&gen_data);
+			//gen_data.s = ft_expand(&gen_data);
 			printf("(salus)%s\n", gen_data.s);
 			process_input(gen_data.s, &gen_data, gen_data.env);
 		/*	while (i < gen_data.n_cmd)

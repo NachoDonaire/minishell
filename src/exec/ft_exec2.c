@@ -85,11 +85,16 @@ void	ft_father(t_general_data *gen_data, int position, int n_built)
 	if (gen_data->n_pipes != 0 && gen_data->exec_pos != gen_data->n_pipes)
 	{
 		if (gen_data->pipe_pos == 0)
+		{
+			close(gen_data->pipe[gen_data->pipe_pos][0]);
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
+		}
 		else
 		{
 			close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
+			close(gen_data->pipe[gen_data->pipe_pos - 1][1]);
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
+			close(gen_data->pipe[gen_data->pipe_pos][0]);
 		}
 	}
 	gen_data->pipe_pos++;
@@ -100,8 +105,8 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 {
 	int	i;
 
-	gen_data->pid = fork();
-	if (gen_data->pid == 0)
+	gen_data->pid[position + n_built] = fork();
+	if (gen_data->pid[position + n_built] == 0)
 	{
 		ft_child(gen_data, position, n_built);
 		if (gen_data->sort[gen_data->exec_pos] == '1')
@@ -121,12 +126,12 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 	}
 	else
 	{
-		wait(NULL);
 		ft_father(gen_data, position, n_built);
 		i = gen_data->sort[gen_data->exec_pos - 1];
 		if (i == '1' && gen_data->sort[gen_data->exec_pos])
 			ft_exec(gen_data, position + 1, n_built);
 		else if (i == '0' && gen_data->sort[gen_data->exec_pos])
 			ft_exec(gen_data, position, n_built + 1);
+		wait(NULL);
 	}
 }
