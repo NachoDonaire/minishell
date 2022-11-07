@@ -26,7 +26,7 @@ char	**fill_wallace(char **wallace, char *s)
 		write(1, "ee", 2);
 	}*/
 	//else
-	wallace = malloc(sizeof(char *) * (y + 1));
+	wallace = malloc(sizeof(char *) * (y + 2 + (z / 2)));
 	return (wallace);
 }
 
