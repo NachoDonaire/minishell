@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:05:08 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 11:33:46 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/08 22:18:53 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_ref_one(t_general_data *gen_data, char *s, int y, int ref)
 	else
 	{
 		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
-		gen_data->blt[gen_data->n_built].out[0] = malloc(1);
+		//gen_data->blt[gen_data->n_built].out[0] = malloc(1);
 		gen_data->blt[gen_data->n_built].out[0] = NULL;
 		gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * 3);
 		gen_data->blt[gen_data->n_built].fd_out[0] = 1;
