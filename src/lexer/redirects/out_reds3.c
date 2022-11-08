@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:05:08 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/06 18:25:29 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:33:46 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	ft_ref_zero(t_general_data *gen_data, char *s, int y, int ref)
 	}
 	else
 	{
+		write(1, "aa", 2);
 		gen_data->cmd[y].out = malloc(sizeof(char *) * 1);
 		gen_data->cmd[y].out[0] = malloc(1);
 		gen_data->cmd[y].out[0] = NULL;

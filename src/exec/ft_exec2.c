@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/13 13:05:42 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:47:54 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_child_pipes(t_general_data *gen_data)
 	{
 		dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
 		close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
+	//	close(gen_data->pipe[gen_data->pipe_pos - 1][1]);
 	}
 }
 
@@ -80,21 +81,34 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 
 void	ft_father(t_general_data *gen_data, int position, int n_built)
 {
+	//int	std_out;
+	int	i;
+
+	i = 0;
+	//std_out = dup(gen_data->pipe[gen_data->pipe_pos][0]);
 	if (position == 2333 || n_built == 2333)
 		write(1, "aa", 2);
-	if (gen_data->n_pipes != 0 && gen_data->exec_pos != gen_data->n_pipes)
+	if (gen_data->n_pipes != 0) //&& gen_data->exec_pos != gen_data->n_pipes)
 	{
 		if (gen_data->pipe_pos == 0)
 		{
-			close(gen_data->pipe[gen_data->pipe_pos][0]);
+			//dup2(0, std_out);
+		//	close(gen_data->pipe[gen_data->pipe_pos][0]);
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
 		}
-		else
+		else if (gen_data->exec_pos == gen_data->n_pipes)
 		{
-			close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
+			while (i <= gen_data->n_pipes)
+			{
+				if (i != gen_data->n_pipes)
+					close(gen_data->pipe[i][0]);
+				close(gen_data->pipe[i++][1]);
+			}	
+			/*close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
 			close(gen_data->pipe[gen_data->pipe_pos - 1][1]);
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
 			close(gen_data->pipe[gen_data->pipe_pos][0]);
+			*/
 		}
 	}
 	gen_data->pipe_pos++;
@@ -105,8 +119,8 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 {
 	int	i;
 
-	gen_data->pid[position + n_built] = fork();
-	if (gen_data->pid[position + n_built] == 0)
+	gen_data->pid = fork();
+	if (gen_data->pid == 0)
 	{
 		ft_child(gen_data, position, n_built);
 		if (gen_data->sort[gen_data->exec_pos] == '1')

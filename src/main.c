@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 09:08:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:47:56 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	needed_free_cmd(t_general_data *gen_data)
 		free(gen_data->cmd[i++].cmd);
 }
 
-static void	ft_iniciate(t_general_data *gen_data)
+void	ft_iniciate(t_general_data *gen_data) // static
 {
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
@@ -37,11 +37,9 @@ static void	ft_iniciate(t_general_data *gen_data)
 	gen_data->count_wait = 0;
 }
 
-static void	ft_free_all(t_general_data *gen_data, char *s)
+void	ft_free_all(t_general_data *gen_data, char *s) //static
 {
 	free(s);
-	if (!s)
-		write(1, "aa", 2);
 	needed_free(gen_data, gen_data->n_cmd);
 }
 
@@ -67,7 +65,7 @@ int	main(int argc, char **argv, char *env[])
 		{
 			add_history(gen_data.s);
 			n_pipes(&gen_data, gen_data.s);
-			gen_data.pid = malloc(sizeof(char ) * gen_data.n_pipes + 1);
+		//	gen_data.pid = malloc(sizeof(char ) * gen_data.n_pipes + 1);
 			if (ft_check_exit(gen_data.s) == 1)
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);

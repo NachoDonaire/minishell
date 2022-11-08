@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 09:04:28 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:36:27 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_free_built_0(t_general_data *gen_data)
 			ft_free_arg(gen_data->blt[i].in);
 		if (gen_data->blt[i].dred)
 			free(gen_data->blt[i].dred);
+	//	if (gen_data->blt[i].in_dred)
+	//		free(gen_data->blt[i].in_dred);
 		return ;
 	}
 }
@@ -67,6 +69,8 @@ void	ft_free_built(t_general_data *gen_data)
 			ft_free_arg(gen_data->blt[i].in);
 		if (gen_data->blt[i].dred)
 			free(gen_data->blt[i].dred);
+	//	if (gen_data->blt[i].in_dred)
+	//		free(gen_data->blt[i].in_dred);
 		i++;
 	}
 }
@@ -76,6 +80,7 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	int	i;
 
 	i = 0;
+	printf("-----%d-----", y);
 	while (i < y)
 	{
 		if (gen_data->cmd[i].cmd)
@@ -92,6 +97,8 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 			ft_free_arg(gen_data->cmd[i].in);
 		if (gen_data->cmd[i].dred)
 			free(gen_data->cmd[i].dred);
+		if (gen_data->cmd[i].in_dred)
+			free(gen_data->cmd[i].in_dred);
 		i++;
 	}
 }
@@ -103,6 +110,7 @@ void	needed_free(t_general_data *gen_data, int y)
 	free(gen_data->blt);
 	free(gen_data->cmd);
 	free(gen_data->sort);
+	//free(gen_data->pid);
 	if (gen_data->n_pipes > 0)
 		ft_free_arg((char **)gen_data->pipe);
 }

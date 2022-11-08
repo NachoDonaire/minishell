@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 09:06:00 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:36:00 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_general
 	int				good_status;
 	int				**pipe;
 	int				exec_pos;
-	int				*pid;
+	int				pid;
 	int				pipe_pos;
 	int				std_in;
 	int				std_out;
