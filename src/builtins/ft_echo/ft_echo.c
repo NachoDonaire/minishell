@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:31 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/05 12:14:51 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:08:16 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_quote(char *s)
 {
-	int x;
+	int	x;
 	int	y;
 
 	y = 0;

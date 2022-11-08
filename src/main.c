@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 09:05:52 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:08:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,7 @@ void	copy_dup(t_general_data	*gen_data)
 int	main(int argc, char **argv, char *env[])
 {
 	t_general_data	gen_data;
-	/*int	i;
-	int	y;
 
-	i = 0;
-	y = 0;*/
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
