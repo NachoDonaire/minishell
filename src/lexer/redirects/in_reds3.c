@@ -22,7 +22,7 @@ void	ft_process_in_ref0(t_general_data *gen_data, char *s, int y, int ref)
 	else
 	{
 		gen_data->cmd[y].in = malloc(sizeof(char *) * 1);
-		gen_data->cmd[y].in[0] = malloc(sizeof(char) * 1);
+	//	gen_data->cmd[y].in[0] = malloc(sizeof(char) * 1);
 		gen_data->cmd[y].in[0] = NULL;
 		gen_data->cmd[y].fd_in = malloc(sizeof(int) * 2);
 		gen_data->cmd[y].fd_in[0] = -1;

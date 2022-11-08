@@ -70,11 +70,11 @@ int	main(int argc, char **argv, char *env[])
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
 			gen_data.s = ft_expand(&gen_data);
-			printf("(salus)%s\n", gen_data.s);
+			//printf("(salus)%s\n", gen_data.s);
 			process_input(gen_data.s, &gen_data, gen_data.env);
 			ft_check_comand(&gen_data);
 			copy_dup(&gen_data);
-			ft_free_all(&gen_data, gen_data.s);
+			//ft_free_all(&gen_data, gen_data.s);
 		}
 		else if (!gen_data.s)
 			ft_exit(gen_data.s, gen_data.env);

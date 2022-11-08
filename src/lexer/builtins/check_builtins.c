@@ -26,6 +26,6 @@ void	ft_reset_cmd(t_general_data *gen_data, int y)
 {
 	gen_data->cmd[y].cmd = malloc(1);
 	gen_data->cmd[y].args = malloc(sizeof(char *) * 1);
-	gen_data->cmd[y].args[0] = malloc(1);
-	gen_data->cmd[y].args[0] = 0;
+//	gen_data->cmd[y].args[0] = malloc(1);
+	gen_data->cmd[y].args[0] = NULL;
 }
