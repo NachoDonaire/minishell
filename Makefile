@@ -7,7 +7,7 @@ SRCS	=	src/main.c src/utils/utils.c src/utils/utils2.c src/free/memory.c src/sta
 			src/exec/ft_check_commands.c src/exec/ft_check_builtins.c src/exec/ft_exec.c src/exec/ft_path.c src/funciones_libft/ft_itoa.c src/exec/ft_exec2.c \
 			src/signal/ft_signal.c src/exit/ft_exit.c src/lexer/input/ft_process_input.c src/lexer/redirects/fd_reds.c \
 			src/gnl/get_next_line_utils.c src/gnl/get_next_line.c src/lexer/redirects/fd_reds2.c  src/lexer/redirects/out_reds4.c \
-			src/lexer/redirects/d_red.c src/lexer/builtins/check_builtins2.c src/lexer/input/dr_comillas.c src/lexer/redirects/in_reds4.c src/lexer/ft_expand.c
+			src/lexer/redirects/d_red.c src/lexer/builtins/check_builtins2.c src/lexer/input/dr_comillas.c src/lexer/redirects/in_reds4.c src/lexer/expand/ft_expand.c
 
 
 OBJS	=	${SRCS:.c=.o}

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/06 13:54:49 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:02:29 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 	int		table[4];
 	char	**tmp;
 	int		i;
+	int		x;
 
 	i = 0;
 	ft_reset_table_3(table);
@@ -51,15 +52,13 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 		i = 0;
 	while (tmp[table[1]])
 	{
-		//if (finder(tmp[table[1]], "&") == 1)
-		//	table[2] = gest_ampersand(tmp[table[1]], gen_data, env, table[2]);
-		//else
-			ft_handle_cmd_pipes2(gen_data, table, tmp);
+		ft_handle_cmd_pipes2(gen_data, table, tmp);
 		table[1]++;
 	}
 	gen_data->sort[table[0]] = '\0';
 	gen_data->n_cmd = table[2];
-	gen_data->pipe = malloc(sizeof(int *) * (gen_data->n_cmd + gen_data->n_built + 1));
+	x = gen_data->n_cmd + gen_data->n_built;
+	gen_data->pipe = malloc(sizeof(int *) * (x + 1));
 	while (i <= gen_data->n_cmd + gen_data->n_built)
 	{
 		gen_data->pipe[i] = malloc(sizeof(int) * 3);

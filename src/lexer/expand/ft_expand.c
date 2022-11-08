@@ -6,11 +6,11 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:00:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/06 17:51:02 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:00:34 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	ft_last(char	*s, int x)
 {

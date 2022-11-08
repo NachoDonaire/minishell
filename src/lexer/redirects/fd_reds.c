@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/07 18:47:57 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:01:54 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	fd_reds_in_b(t_general_data *gen_data)
 		{
 			z = open(s, O_RDWR);
 			gen_data->blt[gen_data->n_built].fd_in[t[0]] = z;
-			if (gen_data->blt[gen_data->n_built].fd_in[t[0]] < 0) 
+			if (gen_data->blt[gen_data->n_built].fd_in[t[0]] < 0)
 				write(2, "error\n", 7);
 			t[0]++;
 		}

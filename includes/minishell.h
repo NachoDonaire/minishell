@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/06 15:19:42 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:06:00 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,6 +273,6 @@ void	already_red(t_general_data *gen_data, int position, int n_built);
 char	*double_red(t_general_data *gen_data, int position, int n_built);
 
 char	*ft_expand(t_general_data *gen_data);
-int	ft_quote(char *s);
+int		ft_quote(char *s);
 
 #endif

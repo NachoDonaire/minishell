@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/06 14:38:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:05:52 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,32 +70,17 @@ int	main(int argc, char **argv, char *env[])
 		if (gen_data.s && gen_data.s[0])
 		{
 			add_history(gen_data.s);
-			//printf("hola");
-			//reserva(&gen_data);
 			n_pipes(&gen_data, gen_data.s);
 			gen_data.pid = malloc(sizeof(char ) * gen_data.n_pipes + 1);
 			if (ft_check_exit(gen_data.s) == 1)
 				ft_exit(gen_data.s, gen_data.env);
 			reserva(&gen_data);
-			//printf("adios");
-			//gen_data.s = ft_expand(&gen_data);
+			gen_data.s = ft_expand(&gen_data);
 			printf("(salus)%s\n", gen_data.s);
 			process_input(gen_data.s, &gen_data, gen_data.env);
-		/*	while (i < gen_data.n_cmd)
-			{
-				while (gen_data.cmd[i].args[y])
-					printf("%s\n", gen_data.cmd[i].args[y++]);
-				y = 0;
-				i++;
-			}
-			i = 0;
-		*/	
-			//printf("que");
 			ft_check_comand(&gen_data);
-			//printf("tal");
 			copy_dup(&gen_data);
 			ft_free_all(&gen_data, gen_data.s);
-			//printf("estas");
 		}
 		else if (!gen_data.s)
 			ft_exit(gen_data.s, gen_data.env);

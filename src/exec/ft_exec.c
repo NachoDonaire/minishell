@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/13 13:03:18 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:04:56 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 {
 	int		i;
 	int		pipedo[2];
-	char		*s;
+	char	*s;
 	int		piddy_gonzalez;
 
 	i = 0;
