@@ -31,19 +31,19 @@ char	*obtain_cmd(char **tmp, int i)
 
 char	*free_for_checkin_cmd(char **sol, char *k, int y, char *cmd)
 {
-	char	*tmp;
-
 	if (!sol[y])
 	{
+		k = malloc(sizeof(char) * (lens(cmd) + 1));
+		k = ft_substr(cmd, 0, lens(cmd));
 		ft_free_arg(sol);
-		k = 0;
+		return (k);
 	}
 	if (!k)
 	{
-		free(k);
-		tmp = ft_substr(cmd, 0, ft_strlen(cmd));
-		ft_free_arg(sol);
-		return (tmp);
+//		free(k);
+		//tmp = ft_substr(cmd, 0, ft_strlen(cmd));
+	//	ft_free_arg(sol);
+		return (cmd);
 	}
 	ft_free_arg(sol);
 	return (k);
