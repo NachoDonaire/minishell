@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 12:47:53 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:22:40 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	ft_check_status(t_general_data *gen_data, int position)
 
 void	ft_change_bad_status(char **env, t_general_data *gen_data)
 {
-	int	x;
+	int		x;
+	char	*y;
 
 	gen_data->good_status = 127;
 	x = 0;
@@ -70,7 +71,9 @@ void	ft_change_bad_status(char **env, t_general_data *gen_data)
 		if (ft_strncmp(env[x], "?=", 2) == 0)
 		{
 			free(env[x]);
-			env[x] = ft_strjoin("?=", ft_itoa(gen_data->good_status));
+			y = ft_itoa(gen_data->good_status);
+			env[x] = ft_strjoin("?=", y);
+			free(y);
 		}
 		x++;
 	}
@@ -78,7 +81,8 @@ void	ft_change_bad_status(char **env, t_general_data *gen_data)
 
 void	ft_change_permission_status(char **env, t_general_data *gen_data)
 {
-	int	x;
+	int		x;
+	char	*y;
 
 	gen_data->good_status = 126;
 	x = 0;
@@ -87,7 +91,9 @@ void	ft_change_permission_status(char **env, t_general_data *gen_data)
 		if (ft_strncmp(env[x], "?=", 2) == 0)
 		{
 			free(env[x]);
-			env[x] = ft_strjoin("?=", ft_itoa(gen_data->good_status));
+			y = ft_itoa(gen_data->good_status);
+			env[x] = ft_strjoin("?=", y);
+			free(y);
 		}
 		x++;
 	}
@@ -95,7 +101,8 @@ void	ft_change_permission_status(char **env, t_general_data *gen_data)
 
 void	ft_change_good_status(char **env, t_general_data *gen_data)
 {
-	int	x;
+	int		x;
+	char	*y;
 
 	gen_data->good_status = 0;
 	x = 0;
@@ -104,7 +111,9 @@ void	ft_change_good_status(char **env, t_general_data *gen_data)
 		if (ft_strncmp(env[x], "?=", 2) == 0)
 		{
 			free(env[x]);
-			env[x] = ft_strjoin("?=", ft_itoa(gen_data->good_status));
+			y = ft_itoa(gen_data->good_status);
+			env[x] = ft_strjoin("?=", y);
+			free(y);
 		}
 		x++;
 	}
