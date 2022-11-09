@@ -15,9 +15,11 @@
 void	ft_reset_blt(t_general_data *gen_data)
 {
 	gen_data->blt[gen_data->n_built].blt = malloc(sizeof(char) * 1);
+	gen_data->blt[gen_data->n_built].blt[0] = '\0';;
+
 	gen_data->blt[gen_data->n_built].args = malloc(sizeof(char *) * 1);
 //	gen_data->blt[gen_data->n_built].args[0] = malloc(sizeof(char) * 1);
-	gen_data->blt[gen_data->n_built].args[0] = 0;
+	gen_data->blt[gen_data->n_built].args[0] = NULL;
 	gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
 //	gen_data->blt[gen_data->n_built].out[0] = malloc(sizeof(char) * 1);
 	gen_data->blt[gen_data->n_built].out[0] = NULL;

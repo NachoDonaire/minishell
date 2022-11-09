@@ -52,7 +52,7 @@ void	ft_free_built(t_general_data *gen_data)
 	int	i;
 
 	i = 0;
-	ft_free_built_0(gen_data);
+	//ft_free_built_0(gen_data);
 	while (i < gen_data->n_built)
 	{
 		if (gen_data->blt[i].blt)
@@ -106,11 +106,11 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 void	needed_free(t_general_data *gen_data, int y)
 {
 	ft_free_built(gen_data);
+	write(1, "zajo", 4);
 	ft_free_cmd(gen_data, y);
 	free(gen_data->blt);
 	free(gen_data->cmd);
 	free(gen_data->sort);
-	//free(gen_data->pid);
 	if (gen_data->n_pipes > 0)
 		ft_free_arg((char **)gen_data->pipe);
 }
