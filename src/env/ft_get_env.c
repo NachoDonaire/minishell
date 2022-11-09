@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 22:18:24 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:04:18 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char	**get_env(char **envp)
 			ft_shlvl(env[x]);
 	}
 	env[x] = ft_substr("?=0", 0, 3);
-	//env[x + 1] = malloc(1);
 	env[x + 1] = NULL;
 	return (env);
 }

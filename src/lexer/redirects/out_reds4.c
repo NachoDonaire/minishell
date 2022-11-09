@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:10:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 22:18:59 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:04:53 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ void	no_red_out(t_general_data *gen_data, int y)
 {
 	gen_data->blt[gen_data->n_built].dred = 0;
 	gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
-	//gen_data->blt[gen_data->n_built].out[0] = malloc(1);
 	gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * 1);
 	gen_data->cmd[y].dred = 0;
 	gen_data->cmd[y].out = malloc(sizeof(char *) * 1);
-	//gen_data->cmd[y].out[0] = malloc(1);
 	gen_data->cmd[y].fd_out = malloc(sizeof(int) * 1);
 }
 

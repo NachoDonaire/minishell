@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:05:08 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 22:18:53 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:04:48 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	ft_ref_zero(t_general_data *gen_data, char *s, int y, int ref)
 
 		write(1, "aa", 2);
 		gen_data->cmd[y].out = malloc(sizeof(char *) * 1);
-		//gen_data->cmd[y].out[0] = malloc(1);
 		gen_data->cmd[y].out[0] = NULL;
 		gen_data->cmd[y].fd_out = malloc(sizeof(int) * 2);
 		gen_data->cmd[y].fd_out[0] = 1;
@@ -72,7 +71,6 @@ void	ft_ref_one(t_general_data *gen_data, char *s, int y, int ref)
 	else
 	{
 		gen_data->blt[gen_data->n_built].out = malloc(sizeof(char *) * 1);
-		//gen_data->blt[gen_data->n_built].out[0] = malloc(1);
 		gen_data->blt[gen_data->n_built].out[0] = NULL;
 		gen_data->blt[gen_data->n_built].fd_out = malloc(sizeof(int) * 3);
 		gen_data->blt[gen_data->n_built].fd_out[0] = 1;

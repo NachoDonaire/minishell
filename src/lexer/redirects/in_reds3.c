@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:06:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 22:18:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:04:40 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_process_in_ref1(t_general_data *gen_data, char *s, int y, int ref)
 	else
 	{
 		gen_data->blt[gen_data->n_built].in = malloc(sizeof(char *) * 1);
-		//gen_data->blt[gen_data->n_built].in[0] = malloc(1);
 		gen_data->blt[gen_data->n_built].in[0] = NULL;
 		gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 2);
 		gen_data->blt[gen_data->n_built].fd_in[0] = -1;
@@ -81,9 +80,7 @@ void	memory_indred(t_general_data *gen_data, char *s, int pos, int ref)
 void	no_red_in(t_general_data *gen_data, int y)
 {
 	gen_data->blt[gen_data->n_built].in = malloc(sizeof(char) * 1);
-	//gen_data->blt[gen_data->n_built].in[0] = malloc(1);
 	gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
 	gen_data->cmd[y].in = malloc(sizeof(char) * 1);
-	//gen_data->cmd[y].in[0] = malloc(1);
 	gen_data->cmd[y].fd_in = malloc(sizeof(int) * 1);
 }
