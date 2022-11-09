@@ -65,7 +65,7 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 		gen_data->pipe[i][2] = 0;
 		i++;
 	}
-	gen_data->pipe[gen_data->n_cmd + gen_data->n_built] = 0;
+	gen_data->pipe[gen_data->n_cmd + gen_data->n_built + 1] = 0;
 	ft_free_arg(tmp);
 }
 

@@ -48,7 +48,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	{
 		gen_data->sort[0] = '1';
 		gen_data->sort[1] = '\0';
-		ft_reset_blt(gen_data);
+//		ft_reset_blt(gen_data);
 	}
 }
 
