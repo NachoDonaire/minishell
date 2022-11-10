@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/13 13:26:10 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:14:03 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ static void	ft_print_quote(char *env, t_general_data *gen_data)
 		{
 			y = 0;
 			while (gen_data->blt->fd_out[y])
-				ft_putstr_fd("'", gen_data->blt->fd_out[y++]);
+				ft_putstr_fd("\"", gen_data->blt->fd_out[y++]);
 		}
 	}
 	if (ft_equal(env) == 0)
 	{
 		y = 0;
 		while (gen_data->blt->fd_out[y])
-			ft_putstr_fd("='", gen_data->blt->fd_out[y++]);
+			ft_putstr_fd("=\"", gen_data->blt->fd_out[y++]);
 	}
 	y = 0;
 	while (gen_data->blt->fd_out[y])
-		ft_putstr_fd("'", gen_data->blt->fd_out[y++]);
+		ft_putstr_fd("\"", gen_data->blt->fd_out[y++]);
 }
 
 static void	ft_order(char **copy)
@@ -86,6 +86,9 @@ static void	ft_print_export(t_general_data *gen_data)
 		y = 0;
 		if (ft_strncmp(copy[x], "?=", 2) != 0)
 		{
+			while (gen_data->blt->fd_out[y])
+				ft_putstr_fd("declare -x ", gen_data->blt->fd_out[y++]);
+			y = 0;
 			ft_print_quote(copy[x], gen_data);
 			while (gen_data->blt->fd_out[y])
 				ft_putstr_fd("\n", gen_data->blt->fd_out[y++]);
@@ -100,7 +103,7 @@ static void	ft_export_arguments(t_general_data *gen_data, int position)
 	char	*variable;
 	char	*value;
 
-	x = -1;
+	x = 0;
 	while (gen_data->blt[position].args[++x])
 	{
 		variable = ft_variables(gen_data->blt[position].args[x]);
@@ -114,7 +117,7 @@ static void	ft_export_arguments(t_general_data *gen_data, int position)
 
 void	ft_export(t_general_data *gen_data, int position)
 {
-	if (gen_data->blt[position].args[0])
+	if (gen_data->blt[position].args[1])
 		ft_export_arguments(gen_data, position);
 	else
 		ft_print_export(gen_data);

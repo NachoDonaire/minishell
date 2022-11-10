@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:03 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/13 13:02:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:38:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_pwd(t_general_data *gen_data)
 	int		x;
 
 	x = 0;
-	if (gen_data->blt[gen_data->exec_pos].args[0])
+	if (gen_data->blt[gen_data->exec_pos].args[1])
 	{
 		ft_putstr_fd("pwd: too many arguments\n", 2);
 		ft_change_bad_status(gen_data->env, gen_data);

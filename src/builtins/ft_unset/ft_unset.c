@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/09/08 10:52:17 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:00:42 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ static void	ft_find_env(char *argument, char **env)
 	while (env[++y])
 	{
 		tmp = ft_strlen(argument);
-		if (ft_strncmp(argument, env[y], tmp) == 0)
+		if (ft_strncmp(argument, env[y], tmp - 1) == 0)
 		{
+			printf("%d", tmp);
 			ft_eliminate(env, y);
 			break ;
 		}
@@ -61,7 +62,7 @@ void	ft_unset(t_general_data *gen_data, int p)
 	int		x;
 	int		z;
 
-	x = -1;
+	x = 0;
 	while (gen_data->blt[p].args[++x])
 	{
 		z = ft_strlen(gen_data->blt[p].args[x]) - 1;

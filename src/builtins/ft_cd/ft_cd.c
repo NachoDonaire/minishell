@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 11:57:09 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:39:28 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_cd(t_general_data *gen_data, int p)
 {
 	char	*tmp;
 
-	if (!gen_data->blt[p].args[0])
+	if (!gen_data->blt[p].args[1])
 	{
 		tmp = getcwd(NULL, 0);
 		if (chdir(getenv("HOME")) != 0)
@@ -93,8 +93,8 @@ void	ft_cd(t_general_data *gen_data, int p)
 	else
 	{
 		tmp = getcwd(NULL, 0);
-		if (chdir(gen_data->blt[p].args[0]) != 0)
-			ft_error_cd(gen_data->blt[p].args[0], gen_data->env, gen_data);
+		if (chdir(gen_data->blt[p].args[1]) != 0)
+			ft_error_cd(gen_data->blt[p].args[1], gen_data->env, gen_data);
 		else
 			ft_change_oldpwd(gen_data->env, tmp, gen_data);
 		free(tmp);
