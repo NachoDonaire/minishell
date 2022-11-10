@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:00:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 17:30:23 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:28:48 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ char	*ft_process(char *s, t_general_data *gen_data)
 	int		z;
 
 	x = 0;
-	if (s[x] == '\'')
+	if ((s[x] == '\'' && s[ft_strlen(s) - 1] == '\'')
+		|| (s[x] == '"' && s[ft_strlen(s) - 1] == '\''))
 		return (s);
 	while (s[x] == '\'' || s[x] == '\"')
 		x++;
@@ -64,9 +65,9 @@ char	*ft_process(char *s, t_general_data *gen_data)
 	copy = ft_change(copy);
 	tmp = ft_strjoin(copy, "=");
 	free(copy);
-	a = 0;
+	a = -1;
 	z = ft_strlen(tmp);
-	while (gen_data->env[a])
+	while (gen_data->env[++a])
 	{
 		if (ft_strncmp(gen_data->env[a], tmp, z) == 0)
 		{
@@ -75,9 +76,22 @@ char	*ft_process(char *s, t_general_data *gen_data)
 			tmp = ft_substr(copy, 1, ft_strlen(copy));
 			copy = ft_substr(tmp, 0, ft_strlen(tmp));
 			free(tmp);
+			if (s[ft_strlen(s) - 1] == '"')
+			{
+				if (s[ft_strlen(s) - 2] == '\'')
+				{
+					tmp = ft_strjoin("'", copy);
+					free(copy);
+					copy = ft_strjoin(tmp, "'");
+					free(tmp);
+					return (copy);
+				}
+				tmp = ft_strjoin(copy, "\"");
+				free(copy);
+				return (tmp);
+			}
 			return (copy);
 		}
-		a++;
 	}
 	return (s);
 }
