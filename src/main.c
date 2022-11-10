@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/09 10:04:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:16:49 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_iniciate(t_general_data *gen_data) // static
 void	ft_free_all(t_general_data *gen_data, char *s) //static
 {
 	free(s);
-	needed_free(gen_data, gen_data->n_cmd);
+	needed_free(gen_data, gen_data->n_cmd - gen_data->n_built);
 }
 
 void	copy_dup(t_general_data	*gen_data)
@@ -67,12 +67,15 @@ int	main(int argc, char **argv, char *env[])
 			n_pipes(&gen_data, gen_data.s);
 			if (ft_check_exit(gen_data.s) == 1)
 				ft_exit(gen_data.s, gen_data.env);
-			reserva(&gen_data);
-			gen_data.s = ft_expand(&gen_data);
-			process_input(gen_data.s, &gen_data, gen_data.env);
-			ft_check_comand(&gen_data);
-			copy_dup(&gen_data);
-			ft_free_all(&gen_data, gen_data.s);
+			if (syntax_error(gen_data.s) == 0)
+			{
+				reserva(&gen_data);
+				gen_data.s = ft_expand(&gen_data);
+				process_input(gen_data.s, &gen_data, gen_data.env);
+				ft_check_comand(&gen_data);
+				copy_dup(&gen_data);
+				ft_free_all(&gen_data, gen_data.s);
+			}
 		}
 		else if (!gen_data.s)
 			ft_exit(gen_data.s, gen_data.env);

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/09 13:21:24 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/10 13:01:57 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,60 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 			ft_free_arg(gen_data->cmd[i].out);
 		if (gen_data->cmd[i].in)
 			ft_free_arg(gen_data->cmd[i].in);
-		if (gen_data->cmd[i].dred)
-			free(gen_data->cmd[i].dred);
+	//	if (gen_data->cmd[i].dred)
+	//		free(gen_data->cmd[i].dred);
 		if (gen_data->cmd[i].in_dred)
 			free(gen_data->cmd[i].in_dred);
 		i++;
 	}
 }
 
+void	close_fds(t_general_data *gen_data)
+{
+	int	i;
+	int	y;
+
+	y = 0;
+	i = 0;
+	while (i < gen_data->n_built)
+	{
+		while (gen_data->blt[i].fd_in[y] > 2)
+			close(gen_data->blt[i].fd_in[y++]);
+		y = 0;
+		i++;
+	}
+	i = 0;
+	while (i < gen_data->n_built)
+	{
+		while (gen_data->blt[i].fd_out[y] > 2)
+			close(gen_data->blt[i].fd_out[y++]);
+		y = 0;
+		i++;
+	}
+	i = 0;
+	while (i < gen_data->n_cmd - gen_data->n_built)
+	{
+		while (gen_data->cmd[i].fd_in[y] > 2)
+			close(gen_data->cmd[i].fd_in[y++]);
+		y = 0;
+		i++;
+	}
+	i = 0;
+	while (i < gen_data->n_cmd -  gen_data->n_built)
+	{
+		while (gen_data->cmd[i].fd_out[y] > 2)
+			close(gen_data->cmd[i].fd_out[y++]);
+		y = 0;
+		i++;
+	}
+}
+
 void	needed_free(t_general_data *gen_data, int y)
 {
+	close_fds(gen_data);
+	close(gen_data->std_in);
+	close(gen_data->std_out);
 	ft_free_built(gen_data);
-	write(1, "zajo", 4);
 	ft_free_cmd(gen_data, y);
 	free(gen_data->blt);
 	free(gen_data->cmd);

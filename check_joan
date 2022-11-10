@@ -1,0 +1,4 @@
+echo "primer test"
+ls -la
+
+cat | cat | ls

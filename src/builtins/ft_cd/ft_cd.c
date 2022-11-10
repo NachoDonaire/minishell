@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/13 13:23:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:57:09 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ static void	ft_change_oldpwd(char **env, char *tmp, t_general_data *gen_data)
 	int		oldpwd;
 	char	*buf;
 
-	x = 0;
+	x = -1;
 	oldpwd = 0;
 	buf = getcwd(NULL, 0);
 	while (env[++x])
 	{
 		if (ft_strncmp(env[x], "OLDPWD=", 7) == 0)
 		{
+			//printf("--%s--", tmp);
 			free(env[x]);
 			env[x] = ft_strjoin("OLDPWD=", tmp);
 			oldpwd = 1;

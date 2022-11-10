@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 12:36:00 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/10 09:48:52 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ void	freeear(char **sol, char *k, t_general_data *gen_data);
 /*en utils2.c*/
 int		extreme_finder(char *s, char *find);
 int		finder(char *s, char *find);
+
+/*en syntax_error, en lexer/input*/
+int	syntax_error(char *s);
 
 /*en commillas.c, gesteo de las comillas en el comando(por el momento)*/
 int		check_cmllas(char *s);
