@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/06 18:00:59 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:25:22 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	memory_for_red(t_general_data *gen_data, char **tmp, int y, int ref)
 			t[0]++;
 			t[3]++;
 		}
+		ft_free_arg(wallace);
 		t[0] = 0;
 		t[2]++;
 		t[1] = 0;

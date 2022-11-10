@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax_error.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/10 14:30:51 by sasalama          #+#    #+#             */
+/*   Updated: 2022/11/10 14:43:05 by sasalama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../includes/minishell.h"
 
 int	check_millas(char *s)
@@ -13,7 +25,7 @@ int	check_millas(char *s)
 	{
 		if (s[i] == '"')
 			cd++;
-		else if  (s[i] == 39)
+		else if (s[i] == 39)
 			cs++;
 		i++;
 	}
@@ -74,6 +86,7 @@ int	check_double(char *s)
 	return (0);
 }
 */
+
 int	pipes_count(char *s)
 {
 	int	i;
@@ -106,15 +119,22 @@ int	check_single(char *s, int a, int n_pipes)
 		{
 			i++;
 			if (joined[i] == '|')
+			{
+				free(joined);
 				return (1);
+			}
 			i++;
 			while (joined[i] && joined[i] == ' ')
 				i++;
 			if (joined[i] == '|' || joined[i] == '<' || joined[i] == '>')
+			{
+				free(joined);
 				return (1);
+			}
 		}
 		i++;
 	}
+	free(joined);
 	return (0);
 }
 
@@ -133,16 +153,23 @@ int	check_double(char *s, int a, int n_pipes)
 		if (joined[i] == '>')
 		{
 			i++;
-			if (joined[i] == '|' ||  joined[i] == '<')
+			if (joined[i] == '|' || joined[i] == '<')
+			{
+				free(joined);
 				return (1);
+			}
 			i++;
 			while (joined[i] && joined[i] == ' ')
 				i++;
 			if (joined[i] == '|' || joined[i] == '<' || joined[i] == '>')
+			{
+				free(joined);
 				return (1);
+			}
 		}
 		i++;
 	}
+	free(joined);
 	return (0);
 }
 
@@ -189,8 +216,12 @@ int	mini_check_dots(char *tommy, int a, int n_pipes)
 	{
 		i++;
 		if (s[i] == ' ' || !s[i])
+		{
+			free(s);
 			return (1);
+		}
 	}
+	free(s);
 	return (0);
 }
 
@@ -207,9 +238,13 @@ int	check_dots(char *s)
 	while (tommy[i])
 	{
 		if (mini_check_dots(tommy[i], i, n_pipes) == 1)
+		{
+			ft_free_arg(tommy);
 			return (1);
+		}
 		i++;
 	}
+	ft_free_arg(tommy);
 	return (0);
 }
 
@@ -218,21 +253,25 @@ int	syntax_error(char *s)
 	if (check_millas(s) == 1)
 	{
 		perror("Minishell: Syntax error");
+		free(s);
 		return (1);
 	}
 	if (check_pipes(s) == 1)
 	{
 		perror("Minishell: Syntax error");
+		free(s);
 		return (1);
 	}
 	if (check_reds(s) == 1)
 	{
 		perror("Minishell: Syntax error");
+		free(s);
 		return (1);
 	}
 	if (check_dots(s) == 1)
 	{
 		perror("Minishell: Syntax error");
+		free(s);
 		return (1);
 	}
 	return (0);

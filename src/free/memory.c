@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 13:01:57 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:39:10 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 			ft_free_arg(gen_data->cmd[i].out);
 		if (gen_data->cmd[i].in)
 			ft_free_arg(gen_data->cmd[i].in);
-	//	if (gen_data->cmd[i].dred)
-	//		free(gen_data->cmd[i].dred);
+		if (gen_data->cmd[i].dred)
+			free(gen_data->cmd[i].dred);
 		if (gen_data->cmd[i].in_dred)
 			free(gen_data->cmd[i].in_dred);
 		i++;
