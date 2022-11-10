@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:42:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 12:02:13 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:52:27 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,12 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 	int		z;
 
 	tmp = dr_comillas(s);
+	//printf("%s", tmp[1]);
 	paste_in_built(gen_data, ft_substr(tmp[0], 0, ft_strlen(tmp[0])));
 	x = ft_strlen(gen_data->blt[gen_data->n_built].blt) + n_spaces(s);
 	z = args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt);
 	cp = ft_substr(s, x, z);
-	gen_data->blt[gen_data->n_built].args = ft_split(cp, ' ');
+	gen_data->blt[gen_data->n_built].args = dr_comillas(s);
 	if (gen_data->n_pipes > 0)
 	{
 		free(cp);
