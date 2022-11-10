@@ -119,8 +119,10 @@ void	fd_reds_in(t_general_data *gen_data, int z)
 	{
 		if (gen_data->cmd[z].in_dred[i] == 0)
 			gen_data->cmd[z].fd_in[y] = open(gen_data->cmd[z].in[i], O_RDONLY);
-		if (gen_data->cmd[z].fd_in[y] < 0 && gen_data->cmd[z].in_dred[i] != 0)
+		if (gen_data->cmd[z].fd_in[y] < 0 && gen_data->cmd[z].in_dred[i] == 0)
+		{
 			write(2, "error\n", 7);
+		}
 		y++;
 		i++;
 	}

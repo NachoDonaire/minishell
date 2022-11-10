@@ -84,14 +84,13 @@ void	ft_father(t_general_data *gen_data, int position, int n_built)
 	int	i;
 
 	i = 0;
-	if (position == 2333 || n_built == 2333)
-		write(1, "aa", 2);
+	(void)position;
+	(void)n_built;
 	if (gen_data->n_pipes != 0) //&& gen_data->exec_pos != gen_data->n_pipes)
 	{
 		if (gen_data->pipe_pos != gen_data->n_pipes)
 		{
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
-		//	close(gen_data->pipe[gen_data->pipe_pos][0]);
 		}
 		else if (gen_data->exec_pos == gen_data->n_pipes)
 		{

@@ -66,14 +66,23 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 				if (piddy_gonzalez == 0)
 				{
 					close(pipedo[0]);
-					s = get_next_line(1);
-					ft_putstr_fd(s, pipedo[1]);
-					ft_putstr_fd("\n", pipedo[1]);
-					while (finder(s, gen_data->cmd[position].in[i]) == 0)
+					//write(1, "> ", 2);
+					s = readline("> ");
+					if (ft_strncmp(s, gen_data->cmd[position].in[i], lens(gen_data->cmd[position].in[i])) != 0)
 					{
 						ft_putstr_fd(s, pipedo[1]);
 						ft_putstr_fd("\n", pipedo[1]);
-						s = get_next_line(1);
+					}
+					while (ft_strncmp(s, gen_data->cmd[position].in[i], lens(gen_data->cmd[position].in[i])) != 0)
+					{
+						{
+							ft_putstr_fd(s, pipedo[1]);
+							ft_putstr_fd("\n", pipedo[1]);
+						}
+					//	write(1, "> ", 2);
+						//s = get_next_line(1);
+						s = readline("> ");
+								break ;
 					}
 					free(s);
 					close(pipedo[1]);
@@ -101,14 +110,17 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 				if (piddy_gonzalez == 0)
 				{
 					close(pipedo[0]);
-					s = get_next_line(1);
-					ft_putstr_fd(s, pipedo[1]);
-					ft_putstr_fd("\n", pipedo[1]);
-					while (finder(s, gen_data->blt[n_built].in[i]) == 0)
+					s = readline("> ");
+					if (ft_strncmp(s, gen_data->blt[n_built].in[i], lens(gen_data->blt[n_built].in[i])) != 0)
 					{
 						ft_putstr_fd(s, pipedo[1]);
 						ft_putstr_fd("\n", pipedo[1]);
-						s = get_next_line(1);
+					}
+					while (ft_strncmp(s, gen_data->blt[n_built].in[i], lens(gen_data->blt[n_built].in[i]) != 0))
+					{
+						ft_putstr_fd(s, pipedo[1]);
+						ft_putstr_fd("\n", pipedo[1]);
+						s = readline("> ");
 					}
 					free(s);
 					close(pipedo[1]);
