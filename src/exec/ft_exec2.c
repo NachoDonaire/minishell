@@ -42,6 +42,8 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 
 	exec = 0;
 	dup_reds(gen_data, position, n_built);
+	if (gen_data->cmd[position].can_exec == 0)
+		exit (1);
 	exec = execve(gen_data->cmd[position].cmd,
 			gen_data->cmd[position].args, gen_data->env);
 	if (exec < 0)
@@ -69,12 +71,16 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
 		s3[0] = gen_data->cmd[position].cmd;
+		if (gen_data->cmd[position].can_exec == 0)
+			exit (1);
 		execve(s3[0], gen_data->cmd[position].args, gen_data->env);
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
 	{
 		s3[1] = gen_data->blt[n_built].blt;
 		s3[1] = check_cmd(s3[1], gen_data->env);
+		if (gen_data->blt[n_built].can_exec == 0)
+			exit (1);
 		execve(s3[1], gen_data->blt[n_built].args, gen_data->env);
 	}
 }

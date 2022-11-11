@@ -45,6 +45,7 @@ typedef struct s_builtin
 	int		*dred;
 	int		*in_dred;
 	int		nb_arguments;
+	int		can_exec;
 }	t_builtin_data;
 
 /* estructura del comando provisional*/
@@ -58,6 +59,7 @@ typedef struct s_comand
 	int		*fd_in;
 	int		*in_dred;
 	int		*dred;
+	int		can_exec;
 }	t_cmd_data;
 
 /*estructura general proxisional*/

@@ -67,7 +67,10 @@ void	fd_reds_in_b(t_general_data *gen_data)
 			z = open(s, O_RDWR);
 			gen_data->blt[gen_data->n_built].fd_in[t[0]] = z;
 			if (gen_data->blt[gen_data->n_built].fd_in[t[0]] < 0)
-				write(2, "error\n", 7);
+			{
+				gen_data->blt[gen_data->n_built].can_exec = 0;
+				perror("file not found");
+			}
 			t[0]++;
 		}
 		if (gen_data->blt[gen_data->n_built].in_dred[z] < 0)
@@ -121,7 +124,8 @@ void	fd_reds_in(t_general_data *gen_data, int z)
 			gen_data->cmd[z].fd_in[y] = open(gen_data->cmd[z].in[i], O_RDONLY);
 		if (gen_data->cmd[z].fd_in[y] < 0 && gen_data->cmd[z].in_dred[i] == 0)
 		{
-			write(2, "error\n", 7);
+			//gen_data->cmd[z].can_exec = 0;
+			perror("file not found");
 		}
 		y++;
 		i++;

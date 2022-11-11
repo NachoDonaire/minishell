@@ -97,6 +97,7 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 	free(cp);
 	ft_free_arg(tmp);
 	gen_data->built = 1;
+	gen_data->blt[gen_data->n_built].can_exec = 1;
 	process_sing_red(gen_data, s, y, 1);
 	process_in_red(gen_data, s, y, 1);
 	gen_data->n_built++;
