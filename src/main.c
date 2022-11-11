@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 18:31:40 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/11 16:27:21 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_iniciate(t_general_data *gen_data) // static
 	gen_data->count_wait = 0;
 }
 
-void	ft_free_all(t_general_data *gen_data, char *s) //static
+void	ft_free_all(t_general_data *gen_data, char *s)
 {
 	free(s);
 	needed_free(gen_data, gen_data->n_cmd - gen_data->n_built);
