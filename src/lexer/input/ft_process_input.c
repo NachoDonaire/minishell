@@ -26,6 +26,9 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	char	**com;
 	int		i;
 
+	gen_data->cmd[y].can_exec = 1;
+	process_sing_red(gen_data, s, y, 0);
+	process_in_red(gen_data, s, y, 0);
 	com = dr_comillas(s);
 	if (finder(com[0], "./") == 1)
 	{
@@ -54,9 +57,12 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 
 void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 {
-	gen_data->cmd[y].can_exec = 1;
-	process_sing_red(gen_data, s, y, 0);
-	process_in_red(gen_data, s, y, 0);
+	if (gen_data->n_pipes > 0)
+	{
+		gen_data->cmd[y].can_exec = 1;
+		process_sing_red(gen_data, s, y, 0);
+		process_in_red(gen_data, s, y, 0);
+	}
 	gen_data->built = 0;
 	if (gen_data->n_pipes == 0)
 	{

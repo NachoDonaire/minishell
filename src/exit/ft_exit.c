@@ -14,7 +14,12 @@
 
 int	ft_check_exit(char *s)
 {
-	if (ft_strncmp(s, "exit", 5) == 0)
+	int	i;
+
+	i = 0;
+	while (s[i] == ' ')
+		i++;
+	if (ft_strncmp(&s[i], "exit", 4) == 0)
 		return (1);
 	return (0);
 }
@@ -22,7 +27,7 @@ int	ft_check_exit(char *s)
 void	ft_exit(char *texto, char **tmp)
 {
 	if (texto)
-		printf("%s\n", texto);
+		printf("exit\n");
 	else
 		printf("exit\n");
 	free(texto);

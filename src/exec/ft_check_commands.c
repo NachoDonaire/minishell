@@ -62,6 +62,8 @@ void	ft_check_comand(t_general_data *gen_data)
 	n_blt = 0;
 	if (gen_data->n_pipes == 0 && gen_data->built != 0)
 	{
+		if (gen_data->blt[n_blt].can_exec == 0)
+			return ;
 		ft_built(gen_data, n_blt);
 		n_blt++;
 	}
