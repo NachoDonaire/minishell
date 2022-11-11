@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:00:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/11 10:58:40 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:09:31 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ char	*ft_change(char *s)
 
 char	*ft_process(char *s, t_general_data *gen_data)
 {
-	int		x;
-	char	*copy;
-	char	*tmp;
-	int		a;
-	int		z;
+	int			x;
+	char		*copy;
+	char		*tmp;
+	char		*pc;
+	size_t		a;
+	size_t		z;
+	size_t		y;
 
 	x = 0;
 	if ((s[x] == '\'' && s[ft_strlen(s) - 1] == '\'')
@@ -93,6 +95,43 @@ char	*ft_process(char *s, t_general_data *gen_data)
 			return (copy);
 		}
 	}
+	a = 0;
+	copy = malloc(1024);
+	while (s[a] && s[a] != '$')
+	{
+		copy[a] = s[a];
+		a++;
+	}
+	copy[a] = '\0';
+	y = a;
+	a++;
+	tmp = ft_substr(&s[a], 0, ft_strlen(s));
+	z = ft_strlen(tmp) - 1;
+	while (tmp[z] == '\'' || tmp[z] == '"')
+		z--;
+	z++;
+	pc = ft_substr(tmp, 0, z);
+	pc = ft_strjoin(pc, "=");
+	free(tmp);
+	z = 0;
+	while (gen_data->env[z])
+	{
+		if (ft_strncmp(gen_data->env[z], pc, ft_strlen(pc)) == 0)
+		{
+			free(pc);
+			tmp = ft_strchr(gen_data->env[z], '=');
+			pc = ft_substr(tmp, 1, ft_strlen(tmp));
+			tmp = ft_substr(pc, 0, ft_strlen(pc));
+			free(pc);
+			z = 0;
+			a = ft_strlen(copy);
+			pc = ft_strjoin(copy, tmp);
+			free(tmp);
+			tmp = ft_strjoin(pc, &s[y + 1]);
+			return (tmp);
+		}
+		z++;
+	}
 	free(tmp);
 	s = ft_substr("\b", 0, 1);
 	return (s);
@@ -117,7 +156,7 @@ char	*ft_expand(t_general_data *gen_data)
 	tmp = ft_split(gen_data->s, ' ');
 	while (tmp[x])
 	{
-		if (finder(tmp[x], "$"))
+		if (finder(tmp[x], "$") && finder(tmp[x - 1], "'") == 0)
 			tmp[x] = ft_process(tmp[x], gen_data);
 		x++;
 	}
