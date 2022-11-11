@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 19:14:03 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:05:30 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,20 +99,15 @@ static void	ft_print_export(t_general_data *gen_data)
 
 static void	ft_export_arguments(t_general_data *gen_data, int position)
 {
-	int		x;
 	char	*variable;
 	char	*value;
 
-	x = 0;
-	while (gen_data->blt[position].args[++x])
-	{
-		variable = ft_variables(gen_data->blt[position].args[x]);
-		value = ft_value(gen_data->blt[position].args[x]);
-		if (ft_find_variable(variable, gen_data->env) == 0)
-			ft_create_variable(variable, value, gen_data->env);
-		else
-			ft_replace_variable(variable, value, gen_data->env);
-	}
+	variable = gen_data->blt[position].args[1];
+	value = gen_data->blt[position].args[2];
+	if (ft_find_variable(variable, gen_data->env) == 0)
+		ft_create_variable(variable, value, gen_data->env);
+	else
+		ft_replace_variable(variable, value, gen_data->env);
 }
 
 void	ft_export(t_general_data *gen_data, int position)
