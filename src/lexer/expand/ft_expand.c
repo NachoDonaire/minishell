@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:00:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/11 13:09:31 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:42:53 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,16 @@ char	*ft_process(char *s, t_general_data *gen_data)
 			z = 0;
 			a = ft_strlen(copy);
 			pc = ft_strjoin(copy, tmp);
+			free(copy);
 			free(tmp);
 			tmp = ft_strjoin(pc, &s[y + 1]);
+			free(pc);
 			return (tmp);
 		}
 		z++;
 	}
 	free(tmp);
+	free(copy);
 	s = ft_substr("\b", 0, 1);
 	return (s);
 }
