@@ -39,7 +39,7 @@ char	*copy_var(char *s)
 	char	*jefferson;
 
 	i = 0;
-	while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/')
+	while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '$')
 		i++;
 	jefferson = malloc(sizeof(char ) * (i + 1));
 	i = 0;
@@ -50,7 +50,7 @@ char	*copy_var(char *s)
 		jefferson[i] = '\0';
 		return (jefferson);
 	}
-	while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '=')
+	while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '=' && s[i] != '$')
 	{
 		jefferson[i] = s[i];
 		i++;
@@ -152,20 +152,33 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 	i = 0;
 	y = 0;
 	c = copy_var(&s[i + 1]);
+	//printf("--%s--", c);
 	if (ref == 0)
 	{
 		c = variable(env, c);
 		while (c[y])
 			of[w++] = c[y++];
+		i++;
+		if (s[i] >= '0' && s[i] <= '9')
+			return (w);
+		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
+			i++;
+		if (s[i] == '$')
+			return (dollar(&s[i], of, env, ref, w));
 	}
 	else
 	{
-		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] && s[i] != '/' && s[i] != '=')
+		if (s[i] == '$')
+			i++;
+		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
 		{
 			of[w++] = s[i++];
 		}
-		if (s[i + 1] == '$')
-			return (dollar(&s[i + 1], of, env, ref, w));
+		if (s[i] == '$')
+		{
+			write(1, "aa", 2);
+			return (dollar(&s[i], of, env, ref, w));
+		}
 	}
 	return (w);
 }
@@ -179,8 +192,18 @@ int	tiberio(t_general_data *gen_data, char *of, int i, int w)
 		//	i++;
 			w = dollar(&gen_data->s[i], of, gen_data->env, 0, w);
 			while (gen_data->s[i] != ' ' && gen_data->s[i] != 39 && gen_data->s[i] != '"' && gen_data->s[i] && gen_data->s[i] != '/' && gen_data->s[i] != '=')
-
+			{
+				if (gen_data->s[i] == '$')
+				{
+					i++;
+					if (gen_data->s[i] >= '0' && gen_data->s[i] <= '9')
+						return (tiberio(gen_data, of, i + 1, w));
+				} 
 				i++;
+			}
+			//if (gen_data->s[i] == '$')
+			//	i++;
+			
 			//if (gen_data->s[i])
 			//	of[w++] = gen_data->s[i++];
 			//printf("//%c//", gen_data->s[i]);
