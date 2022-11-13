@@ -24,7 +24,7 @@ void	ft_programm(t_general_data *gen_data, char	**com, int y, char *s)
 void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 {
 	char	**com;
-	int		i;
+	//int		i;
 
 	gen_data->cmd[y].can_exec = 1;
 	process_sing_red(gen_data, s, y, 0);
@@ -35,15 +35,15 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 		ft_programm(gen_data, com, y, s);
 		return ;
 	}
-	i = -1;
-	while (com[++i])
+	//i = -1;
+	/*while (com[++i])
 	{
 		if (check_cmllas(com[i]) == 1)
 		{
 			free(com[i]);
 			com[i] = gest_cmllas(com[i]);
 		}
-	}
+	}*/
 	gen_data->cmd[y].cmd = check_cmd(com[0], env);
 	process_args(s, gen_data, y, 0);
 	ft_free_arg(com);
@@ -78,6 +78,7 @@ void	process_args(char *s, t_general_data *gen_data, int y, int ref)
 	char	**anthony;
 
 	wallace = dr_comillas(s);
+	//wallace = ft_split(s, ' ');
 	if (finder(s, ">") == 1)
 	{
 		anthony = ft_split(s, '>');
@@ -110,6 +111,6 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 	}
 	if (gen_data->built == 1 && gen_data->n_pipes == 0)
 	{
-		//ft_reset_cmd(gen_data, 0);
+		ft_reset_cmd(gen_data, 0);
 	}
 }

@@ -88,6 +88,12 @@ typedef struct s_general
 
 void	rl_replace_line(const char *text, int clear_undo);
 
+/*en teophilus, lexer/expand*/
+int     comillas_dobles(char *s, char *of, char **env, int ref, int w);
+int     comillas_simples(char *s, char *of, char **env, int ref, int w);
+int     dollar(char *s, char *of, char **env, int ref, int w);
+char	*teophilus(t_general_data *gen_data);
+
 /*en utils.c*/
 char	*find_path(char *const env[]);
 char	*pseudo_join(char *path, char *com);

@@ -55,7 +55,10 @@ void	copy_dup(t_general_data	*gen_data)
 int	main(int argc, char **argv, char *env[])
 {
 	t_general_data	gen_data;
+	int	i;
 
+	i = 0;
+	(void)i;
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -70,11 +73,17 @@ int	main(int argc, char **argv, char *env[])
 			if (syntax_error(gen_data.s) == 0)
 			{
 				reserva(&gen_data);
-				gen_data.s = ft_expand(&gen_data);
+				gen_data.s = teophilus(&gen_data);
+			//printf("--%s--\n", gen_data.s);
+				//free(gen_data.s);
 				process_input(gen_data.s, &gen_data, gen_data.env);
+			//write(1, "AA", 2);
+			//	while (gen_data.blt[0].args[i])
+			//		printf("((%s))\n", gen_data.blt[0].args[i++]);
+				i = 0;
 				ft_check_comand(&gen_data);
 				copy_dup(&gen_data);
-				ft_free_all(&gen_data, gen_data.s);
+				//ft_free_all(&gen_data, gen_data.s);
 			}
 		}
 		else if (!gen_data.s)

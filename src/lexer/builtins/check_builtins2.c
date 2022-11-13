@@ -73,19 +73,32 @@ char	*the_arg(char *s)
 	return (z);
 }
 
+int	starty(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] == ' ' && s[i])
+		i++;
+	while (s[i] && s[i] != ' ')
+		i++;
+	return (i);
+}
+
 void	check_builtins2(char *s, t_general_data *gen_data, int y)
 {
 	char	**tmp;
 	char	*cp;
-	int		x;
-	int		z;
+	//int		x;
+	//int		z;
 
 	tmp = dr_comillas(s);
-	//printf("%s", tmp[1]);
-	paste_in_built(gen_data, ft_substr(tmp[0], 0, ft_strlen(tmp[0])));
-	x = ft_strlen(gen_data->blt[gen_data->n_built].blt) + n_spaces(s);
-	z = args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt);
-	cp = ft_substr(s, x, z);
+	printf("%s", tmp[0]);
+	//paste_in_built(gen_data, ft_substr(tmp[0], 0, ft_strlen(tmp[0])));
+	gen_data->blt[gen_data->n_built].blt = ft_substr(tmp[0], 0, lens(tmp[0]));
+	//x = ft_strlen(gen_data->blt[gen_data->n_built].blt) + n_spaces(s);
+	//z = args_with_reds(s) - ft_strlen(gen_data->blt[gen_data->n_built].blt);
+	cp = ft_substr(s, starty(s), lens(s));
 	gen_data->blt[gen_data->n_built].args = dr_comillas(s);
 	if (gen_data->n_pipes > 0)
 	{
@@ -94,8 +107,8 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 		ft_free_arg(gen_data->blt[gen_data->n_built].args);
 		gen_data->blt[gen_data->n_built].args = dr_comillas(cp);
 	}
-	free(cp);
-	ft_free_arg(tmp);
+	//free(cp);
+	//ft_free_arg(tmp);
 	gen_data->built = 1;
 	gen_data->blt[gen_data->n_built].can_exec = 1;
 	process_sing_red(gen_data, s, y, 1);
