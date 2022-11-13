@@ -169,7 +169,7 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 	else
 	{
 		if (s[i] == '$')
-			i++;
+			of[w++] = s[i++];
 		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
 		{
 			of[w++] = s[i++];
