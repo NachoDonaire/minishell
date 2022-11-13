@@ -43,7 +43,14 @@ char	*copy_var(char *s)
 		i++;
 	jefferson = malloc(sizeof(char ) * (i + 1));
 	i = 0;
-	while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/')
+	if (s[i] >= '0' && s[i] <= '9')
+	{
+		jefferson[i] = s[i];
+		i++;
+		jefferson[i] = '\0';
+		return (jefferson);
+	}
+	while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '=')
 	{
 		jefferson[i] = s[i];
 		i++;
@@ -70,8 +77,15 @@ int	comillas_dobles(char *s, char *of, char **env, int ref, int w)
 		{
 //			i++;
 			w = dollar(&s[i], of, env, ref, w);
-			while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/')
+			while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '=')
+			{
+				if (s[i] >= '0' && s[i] <= '9')
+				{
+					i++;
+					break ;
+				}
 				i++;
+			}
 			if (s[i] == '"')
 			{
 				of[w++] = s[i];
@@ -105,8 +119,15 @@ int	comillas_simples(char *s, char *of, char **env, int ref, int w)
 		{
 			//i++;
 			w = dollar(&s[i], of, env, ref, w);
-			while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/')
+			while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '=')
+			{
+				if (s[i] >= '0' && s[i] <= '9')
+				{
+					i++;
+					break ;
+				}
 				i++;
+			}
 			if (s[i] == 39)
 			{
 				of[w++] = s[i++];
@@ -144,10 +165,7 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 			of[w++] = s[i++];
 		}
 		if (s[i + 1] == '$')
-		{
-			write(1, "AA", 2);
 			return (dollar(&s[i + 1], of, env, ref, w));
-		}
 	}
 	return (w);
 }
