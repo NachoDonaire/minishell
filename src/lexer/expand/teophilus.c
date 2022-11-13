@@ -139,7 +139,7 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 	}
 	else
 	{
-		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] && s[i] != '/')
+		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] && s[i] != '/' && s[i] != '=')
 		{
 			of[w++] = s[i++];
 		}
@@ -160,7 +160,8 @@ int	tiberio(t_general_data *gen_data, char *of, int i, int w)
 		{
 		//	i++;
 			w = dollar(&gen_data->s[i], of, gen_data->env, 0, w);
-			while (gen_data->s[i] != ' ' && gen_data->s[i] != 39 && gen_data->s[i] != '"' && gen_data->s[i] && gen_data->s[i] != '/')
+			while (gen_data->s[i] != ' ' && gen_data->s[i] != 39 && gen_data->s[i] != '"' && gen_data->s[i] && gen_data->s[i] != '/' && gen_data->s[i] != '=')
+
 				i++;
 			//if (gen_data->s[i])
 			//	of[w++] = gen_data->s[i++];
