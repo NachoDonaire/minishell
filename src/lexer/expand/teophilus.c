@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   teophilus.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
+/*   Updated: 2022/11/14 09:08:40 by sasalama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../includes/minishell.h"
 
 char	*variable(char **env, char *c)
 {
-	int	i;
-	int	y;
-	int	z;
+	int		i;
+	int		y;
+	int		z;
 	char	*jutels;
 
 	y = 0;
@@ -35,11 +47,12 @@ char	*variable(char **env, char *c)
 
 char	*copy_var(char *s)
 {
-	int	i;
+	int		i;
 	char	*jefferson;
 
 	i = 0;
-	while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '$')
+	while (s[i] != ' ' && s[i] != '"'
+		&& s[i] != 39 && s[i] != '/' && s[i] != '$')
 		i++;
 	jefferson = malloc(sizeof(char ) * (i + 1));
 	i = 0;
@@ -50,14 +63,13 @@ char	*copy_var(char *s)
 		jefferson[i] = '\0';
 		return (jefferson);
 	}
-	while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '=' && s[i] != '$')
+	while (s[i] != ' ' && s[i] != '"' && s[i] != 39
+		&& s[i] != '/' && s[i] != '=' && s[i] != '$')
 	{
 		jefferson[i] = s[i];
 		i++;
 	}
 	jefferson[i] = '\0';
-	
-//	printf("--%s--", jefferson);
 	return (jefferson);
 }
 
@@ -69,15 +81,12 @@ int	comillas_dobles(char *s, char *of, char **env, int ref, int w)
 	while (s[i] && s[i] != '"')
 	{
 		if (s[i] == 39)
-		{
 			w = comillas_simples(&s[i], of, env, ref, w);
-//			i++;
-		}
 		else if (s[i] == '$')
 		{
-//			i++;
 			w = dollar(&s[i], of, env, ref, w);
-			while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '=')
+			while (s[i] != ' ' && s[i] != '"'
+				&& s[i] != 39 && s[i] != '/' && s[i] != '=')
 			{
 				if (s[i] >= '0' && s[i] <= '9')
 				{
@@ -106,20 +115,15 @@ int	comillas_simples(char *s, char *of, char **env, int ref, int w)
 	int	i;
 
 	i = 0;
-	//printf("--%c--", s[i]);
-		//printf("//%c//", s[i]);
 	while (s[i] && s[i] != 39)
 	{
 		if (s[i] == '"')
-		{
 			w = comillas_dobles(&s[i], of, env, ref, w);
-	//		i++;
-		}
 		else if (s[i] == '$')
 		{
-			//i++;
 			w = dollar(&s[i], of, env, ref, w);
-			while (s[i] != ' ' && s[i] != '"' && s[i] != 39 && s[i] != '/' && s[i] != '=')
+			while (s[i] != ' ' && s[i] != '"'
+				&& s[i] != 39 && s[i] != '/' && s[i] != '=')
 			{
 				if (s[i] >= '0' && s[i] <= '9')
 				{
@@ -145,14 +149,13 @@ int	comillas_simples(char *s, char *of, char **env, int ref, int w)
 
 int	dollar(char *s, char *of, char **env, int ref, int w)
 {
-	int	i;
-	int	y;
+	int		i;
+	int		y;
 	char	*c;
 
 	i = 0;
 	y = 0;
 	c = copy_var(&s[i + 1]);
-	//printf("--%s--", c);
 	if (ref == 0)
 	{
 		c = variable(env, c);
@@ -161,7 +164,8 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 		i++;
 		if (s[i] >= '0' && s[i] <= '9')
 			return (w);
-		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
+		while (s[i] != ' ' && s[i] != 39 && s[i] != '"'
+			&& s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
 			i++;
 		if (s[i] == '$')
 			return (dollar(&s[i], of, env, ref, w));
@@ -170,7 +174,8 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 	{
 		if (s[i] == '$')
 			of[w++] = s[i++];
-		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
+		while (s[i] != ' ' && s[i] != 39 && s[i] != '"'
+			&& s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
 		{
 			of[w++] = s[i++];
 		}
@@ -189,24 +194,19 @@ int	tiberio(t_general_data *gen_data, char *of, int i, int w)
 	{
 		if (gen_data->s[i] == '$')
 		{
-		//	i++;
 			w = dollar(&gen_data->s[i], of, gen_data->env, 0, w);
-			while (gen_data->s[i] != ' ' && gen_data->s[i] != 39 && gen_data->s[i] != '"' && gen_data->s[i] && gen_data->s[i] != '/' && gen_data->s[i] != '=')
+			while (gen_data->s[i] != ' ' && gen_data->s[i] != 39
+				&& gen_data->s[i] != '"' && gen_data->s[i]
+				&& gen_data->s[i] != '/' && gen_data->s[i] != '=')
 			{
 				if (gen_data->s[i] == '$')
 				{
 					i++;
 					if (gen_data->s[i] >= '0' && gen_data->s[i] <= '9')
 						return (tiberio(gen_data, of, i + 1, w));
-				} 
+				}
 				i++;
 			}
-			//if (gen_data->s[i] == '$')
-			//	i++;
-			
-			//if (gen_data->s[i])
-			//	of[w++] = gen_data->s[i++];
-			//printf("//%c//", gen_data->s[i]);
 			return (tiberio(gen_data, of, i, w));
 		}
 		else if (gen_data->s[i] == 39)
@@ -228,19 +228,17 @@ int	tiberio(t_general_data *gen_data, char *of, int i, int w)
 			return (tiberio(gen_data, of, i, w));
 
 		}
-		//printf("//%c//", gen_data->s[i]);
 		of[w++] = gen_data->s[i++];
 		return (tiberio(gen_data, of, i, w));
 	}
 	return (w);
 }
 
-
 char	*teophilus(t_general_data *gen_data)
 {
-	int	i;
+	int		i;
 	char	*of;
-	int	w;
+	int		w;
 
 	i = 0;
 	w = 0;
@@ -250,14 +248,3 @@ char	*teophilus(t_general_data *gen_data)
 	free(gen_data->s);
 	return (of);
 }
-/*
-int	main(int arg, char **argv, char **env)
-{
-	t_general_data g;
-	int	i;
-
-	g.s = argv[1];
-	g.env = env;
-	printf("%s", teophilus(&g));
-	return (0);
-}*/

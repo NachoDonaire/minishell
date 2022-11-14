@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 14:30:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 14:43:05 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 09:04:11 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,31 +61,6 @@ int	check_pipes(char *s)
 	}
 	return (0);
 }
-/*
-int	check_double(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '>')
-		{
-			i++;
-			if (s[i] == '<')
-				return (1);
-			else if  (s[i] == '>')
-			{
-				i++;
-				if (s[i] == '<' || s[i] == '>')
-					return (1);
-			}
-		}
-		i++;
-	}
-	return (0);
-}
-*/
 
 int	pipes_count(char *s)
 {
@@ -225,7 +200,6 @@ int	mini_check_dots(char *tommy, int a, int n_pipes)
 	return (0);
 }
 
-
 int	check_dots(char *s)
 {
 	int		i;
@@ -276,11 +250,3 @@ int	syntax_error(char *s)
 	}
 	return (0);
 }
-/*
-int	main(int arg, char **args)
-{
-	if (arg != 2)
-		return (0);
-	syntax_error(args[1]);
-	return (0);
-}*/

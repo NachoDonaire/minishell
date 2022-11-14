@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dr_comillas.c                                      :+:      :+:    :+:   */
+/*   el_dr.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 09:00:01 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/09 10:04:32 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 09:09:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	memory_for_wallace(char *s, char **wallace, int i, int w, int y)
 	}
 	else
 	{
-		while (s[i] != ' ' && s[i] != '<' && s[i] != '>'  && s[i])
+		while (s[i] != ' ' && s[i] != '<'
+			&& s[i] != '>' && s[i])
 		{
 			i++;
 			y++;
@@ -81,14 +82,8 @@ int	gest_comillas(char *s, char **wallace, int i, int w, int y)
 	{
 		i++;
 		while (s[i] != 39 && s[i])
-		{
-			//while (s[i] == '"')
-			//	i++;
 			wallace[w][y++] = s[i++];
-		}
 		wallace[w][y] = '\0';
-		//if (s[i] == ' ')
-		//	wallace[w][y++] = s[i];
 		i++;
 		if (s[i] != ' ' && s[i])
 			return (gest_comillas(s, wallace, i, w, y));
@@ -97,15 +92,8 @@ int	gest_comillas(char *s, char **wallace, int i, int w, int y)
 	{
 		i++;
 		while (s[i] != '"' && s[i])
-		{
-			//while (s[i] == 39)
-			//	i++;
-			//write(1, &s[i], 1);
 			wallace[w][y++] = s[i++];
-		}
 		wallace[w][y] = '\0';
-		//if (s[i] == ' ')
-			//wallace[w][y++] = s[i];
 		i++;
 		if (s[i] != ' ' && s[i])
 			return (gest_comillas(s, wallace, i, w, y));
@@ -123,12 +111,9 @@ int	dr_no_comillas(char *s, char **wallace, int i, int w, int y)
 			return (gest_comillas(s, wallace, i, w, y));
 		else if (s[i] == 39)
 			return (gest_comillas(s, wallace, i, w, y));
-		//while (s[i] == '"' || s[i] == 39)
-		//	i++;
 		wallace[w][y++] = s[i++];
 	}
 	wallace[w][y] = '\0';
-	//printf("··%s··", wallace[w]);
 	return (i);
 }
 
@@ -140,7 +125,7 @@ char	**dr_comillas(char *s)
 
 	w = 0;
 	i = 0;
-	wallace = NULL;
+	wallace = 0;
 	wallace = fill_wallace(wallace, s);
 	while (s[i] && s[i] != '<' && s[i] != '>')
 	{
@@ -161,6 +146,6 @@ char	**dr_comillas(char *s)
 		if (s[i] == '\0')
 			break ;
 	}
-	wallace[w] = NULL;
+	wallace[w] = 0;
 	return (wallace);
 }

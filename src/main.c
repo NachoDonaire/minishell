@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/11 16:27:21 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 09:03:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	needed_free_cmd(t_general_data *gen_data)
 		free(gen_data->cmd[i++].cmd);
 }
 
-void	ft_iniciate(t_general_data *gen_data) // static
+void	ft_iniciate(t_general_data *gen_data)
 {
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
@@ -55,10 +55,7 @@ void	copy_dup(t_general_data	*gen_data)
 int	main(int argc, char **argv, char *env[])
 {
 	t_general_data	gen_data;
-	int	i;
 
-	i = 0;
-	(void)i;
 	gen_data.env = get_env(env);
 	while (argc && argv)
 	{
@@ -74,13 +71,7 @@ int	main(int argc, char **argv, char *env[])
 			{
 				reserva(&gen_data);
 				gen_data.s = teophilus(&gen_data);
-			//printf("--%s--\n", gen_data.s);
-				//free(gen_data.s);
 				process_input(gen_data.s, &gen_data, gen_data.env);
-			//write(1, "AA", 2);
-			//	while (gen_data.blt[0].args[i])
-			//		printf("((%s))\n", gen_data.blt[0].args[i++]);
-				i = 0;
 				ft_check_comand(&gen_data);
 				copy_dup(&gen_data);
 				//ft_free_all(&gen_data, gen_data.s);

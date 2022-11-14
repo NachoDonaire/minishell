@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dr_comillas.c                                      :+:      :+:    :+:   */
+/*   dr_er_comi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 09:00:01 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/09 10:04:32 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 09:05:13 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ char	**dr_comillas(char *s)
 
 	w = 0;
 	i = 0;
-	wallace = NULL;
+	wallace = 0;
 	wallace = fill_wallace(wallace, s);
 	while (s[i] && s[i] != '<' && s[i] != '>')
 	{
@@ -142,6 +142,6 @@ char	**dr_comillas(char *s)
 		if (s[i] == '\0')
 			break ;
 	}
-	wallace[w] = NULL;
+	wallace[w] = 0;
 	return (wallace);
 }
