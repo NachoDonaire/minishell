@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 09:08:40 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:07:41 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ char	*variable(char **env, char *c)
 	while (env[i] && ft_strncmp(c, env[i], lens(c)) != 0)
 		i++;
 	if (!env[i])
-	{
 		return ("");
-	}
 	while (env[i][y])
 	{
 		if (env[i][y] == '=')
@@ -146,7 +144,6 @@ int	comillas_simples(char *s, char *of, char **env, int ref, int w)
 	return (w);
 }
 
-
 int	dollar(char *s, char *of, char **env, int ref, int w)
 {
 	int		i;
@@ -176,14 +173,9 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 			of[w++] = s[i++];
 		while (s[i] != ' ' && s[i] != 39 && s[i] != '"'
 			&& s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
-		{
 			of[w++] = s[i++];
-		}
 		if (s[i] == '$')
-		{
-			write(1, "aa", 2);
 			return (dollar(&s[i], of, env, ref, w));
-		}
 	}
 	return (w);
 }
