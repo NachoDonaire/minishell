@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:05:19 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/06 15:29:04 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:25:31 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_check_exit(char *s)
 	i = 0;
 	while (s[i] == ' ')
 		i++;
+	if (ft_strncmp(&s[i], "exit", 4) == 0 && s[i + 4] && s[i + 4] != ' ')
+		return (0);
 	if (ft_strncmp(&s[i], "exit", 4) == 0)
 		return (1);
 	return (0);
