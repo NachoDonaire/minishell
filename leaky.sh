@@ -1,5 +1,5 @@
 #! /bin/bash
 while true
 do
-	leaks --atExit -- ./minishell
+	leaks minishell
 done
