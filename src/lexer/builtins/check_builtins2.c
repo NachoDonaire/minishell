@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:42:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 09:09:38 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:12:47 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,15 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 
 	tmp = dr_comillas(s);
 	gen_data->blt[gen_data->n_built].blt = ft_substr(tmp[0], 0, lens(tmp[0]));
-	cp = ft_substr(s, starty(s), lens(s));
+	ft_free_arg(tmp);
+	cp = 0;
 	gen_data->blt[gen_data->n_built].args = dr_comillas(s);
 	if (gen_data->n_pipes > 0)
 	{
-		free(cp);
 		cp = the_arg(s);
 		ft_free_arg(gen_data->blt[gen_data->n_built].args);
 		gen_data->blt[gen_data->n_built].args = dr_comillas(cp);
 	}
-	//free(cp);
-	//ft_free_arg(tmp);
 	gen_data->built = 1;
 	gen_data->blt[gen_data->n_built].can_exec = 1;
 	process_sing_red(gen_data, s, y, 1);

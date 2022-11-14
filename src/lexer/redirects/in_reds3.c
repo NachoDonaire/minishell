@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 11:06:16 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 14:46:23 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:09:16 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_process_in_ref0(t_general_data *gen_data, char *s, int y, int ref)
 		gen_data->cmd[y].fd_in = malloc(sizeof(int) * 2);
 		gen_data->cmd[y].fd_in[0] = -1;
 		gen_data->cmd[y].fd_in[1] = 0;
-
 	}
 }
 

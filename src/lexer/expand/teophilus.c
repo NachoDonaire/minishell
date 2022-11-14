@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 10:07:41 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:10:43 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	comillas_dobles(char *s, char *of, char **env, int ref, int w)
 	of[w++] = s[i++];
 	return (w);
 }
-
 
 int	comillas_simples(char *s, char *of, char **env, int ref, int w)
 {
