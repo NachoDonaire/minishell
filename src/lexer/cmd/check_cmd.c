@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 10:11:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:19:55 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*check_cmd(char *cmd, char *env[])
 	int		x;
 
 	x = 0;
+	path = NULL;
 	while (env[x])
 	{
 		if (ft_strncmp(env[x], "PATH=", 5) == 0)
@@ -60,7 +61,15 @@ char	*check_cmd(char *cmd, char *env[])
 		x++;
 	}
 	i = 0;
-	sol = ft_split(&path[5], ':');
+	if (path)
+	{
+		sol = ft_split(&path[5], ':');
+	}
+	else
+	{
+		k = ft_substr(cmd, 0, ft_strlen(cmd));
+		return (k);
+	}
 	k = pseudo_join(sol[i], cmd);
 	while (sol[i] && access(k, F_OK) < 0)
 	{

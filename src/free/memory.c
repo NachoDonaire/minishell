@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 14:39:10 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:41:28 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	int	i;
 
 	i = 0;
-	printf("-----%d-----", y);
+//	printf("-----%d-----", y);
 	while (i < y)
 	{
 		if (gen_data->cmd[i].cmd)

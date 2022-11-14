@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 10:10:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:42:46 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*variable(char **env, char *c)
 
 	y = 0;
 	i = 0;
+	c = ft_strjoin(c, "=");
 	while (env[i] && ft_strncmp(c, env[i], lens(c)) != 0)
 		i++;
 	if (!env[i])
@@ -152,6 +153,12 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 	i = 0;
 	y = 0;
 	c = copy_var(&s[i + 1]);
+	if (!c[0])
+	{
+		while (s[i] == '$' &&  s[i])
+			of[w++] = s[i++];
+		return (w);
+	}
 	if (ref == 0)
 	{
 		c = variable(env, c);

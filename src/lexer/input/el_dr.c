@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 09:00:01 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 09:09:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:01:56 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,17 @@ int	gest_comillas(char *s, char **wallace, int i, int w, int y)
 		i++;
 		if (s[i] != ' ' && s[i])
 			return (gest_comillas(s, wallace, i, w, y));
+	}
+	else if (s[i] != ' ' && s[i])
+	{
+		while (s[i] != ' ' && s[i])
+		{
+			if (s[i] == '"' || s[i] == 39)
+				return (gest_comillas(s, wallace, i, w, y));
+			wallace[w][y++] = s[i++];
+		}
+		if (!s[i])
+			wallace[w][y] = '\0';
 	}
 	return (i);
 }

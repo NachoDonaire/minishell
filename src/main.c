@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 10:14:17 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:41:31 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,18 @@ void	copy_dup(t_general_data	*gen_data)
 	}
 }
 
+int	check_spaces(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] == ' ' && s[i])
+		i++;
+	if (i == ft_strlen(s))
+		return (0);
+	return (1);
+}
+
 int	main(int argc, char **argv, char *env[])
 {
 	t_general_data	gen_data;
@@ -61,7 +73,7 @@ int	main(int argc, char **argv, char *env[])
 	{
 		ft_iniciate(&gen_data);
 		gen_data.s = readline("Minishell> ");
-		if (gen_data.s && gen_data.s[0])
+		if (gen_data.s && gen_data.s[0] && check_spaces(gen_data.s) == 1)
 		{
 			add_history(gen_data.s);
 			n_pipes(&gen_data, gen_data.s);

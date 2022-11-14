@@ -20,7 +20,7 @@ all:	${NAME}
 
 $(NAME):	${OBJS}
 	@echo "\nCompiling minishell, please be patient..."
-	@${CC} ${CFLAGS}  -o ${NAME} ${OBJS} -lreadline -L ~/.brew/Cellar/readline/8.2.1/lib -I ~/.brew/Cellar/readline/8.2.1/include
+	@${CC} ${CFLAGS}  -o ${NAME} ${OBJS} -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib -I ~/.brew/Cellar/readline/8.1.2/include
 	@echo "Done!"
 
 %.o: %.c

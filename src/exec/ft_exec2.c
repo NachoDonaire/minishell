@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 13:26:04 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:34:51 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 {
 	int	exec;
 
+	//exit (0);
 	exec = 0;
 	dup_reds(gen_data, position, n_built);
 	if (gen_data->cmd[position].can_exec == 0)
@@ -50,6 +51,7 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 	{
 		ft_putstr_fd("Minishell: command not found: ", 2);
 		ft_putstr_fd(gen_data->cmd[position].cmd, 2);
+	
 		ft_putstr_fd("\n", 2);
 		gen_data->good_status = 127;
 		exit (gen_data->good_status);
@@ -64,9 +66,14 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	signal(SIGQUIT, SIG_DFL);
 	dup_in_reds(gen_data, position, n_built);
 	if (gen_data->n_pipes == 0)
+	{
 		ft_child_not_pipes(gen_data, position, n_built);
+		return ;
+	}
 	else
+	{
 		ft_child_pipes(gen_data);
+	}
 	dup_reds(gen_data, position, n_built);
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
