@@ -50,7 +50,7 @@ char	*copy_var(char *s)
 	char	*jefferson;
 
 	i = 0;
-	while (s[i] != ' ' && s[i] != '"'
+	while (s[i] != ' ' && s[i] != '"' && s[i] != '='
 		&& s[i] != 39 && s[i] != '/' && s[i] != '$')
 		i++;
 	jefferson = malloc(sizeof(char ) * (i + 1));

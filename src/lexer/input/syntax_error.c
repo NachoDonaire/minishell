@@ -12,6 +12,27 @@
 
 #include "../../../includes/minishell.h"
 
+int	double_quotes(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != '"')
+		i++;
+	return (i);
+}
+
+int	single_quotes(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != 39)
+		i++;
+	return (i);
+}
+
+
 int	check_millas(char *s)
 {
 	int	i;
@@ -24,12 +45,18 @@ int	check_millas(char *s)
 	while (s[i])
 	{
 		if (s[i] == '"')
-			cd++;
+		{
+			cd += 2;
+			i += double_quotes(&s[i + 1]);
+		}
 		else if (s[i] == 39)
-			cs++;
+		{
+			cs += 2;
+			i += single_quotes(&s[i + 1]);
+		}
 		i++;
 	}
-	if (cd % 2 != 0 || cs % 2 != 0)
+	if (cs % 2 != 0 || cd % 2 != 0)
 		return (1);
 	return (0);
 }
