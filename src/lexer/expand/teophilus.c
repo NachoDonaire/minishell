@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 16:20:41 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:23:24 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	*variable(t_general_data *gen_data, char *c)
 			}
 			if (x == ft_nb_arguments(gen_data->secret_env))
 				return ("");
-			while (gen_data->secret_env[x][y] && gen_data->secret_env[x][y] != '=')
+			while (gen_data->secret_env[x][y]
+				&& gen_data->secret_env[x][y] != '=')
 				y++;
 			jutels = ft_substr(&gen_data->secret_env[x][y + 1], 0, ft_strlen(&gen_data->secret_env[x][y + 1]));
 			return (jutels);
@@ -53,7 +54,8 @@ char	*variable(t_general_data *gen_data, char *c)
 			}
 			if (x == ft_nb_arguments(gen_data->secret_env))
 				return ("");
-			while (gen_data->secret_env[x][y] && gen_data->secret_env[x][y] != '=')
+			while (gen_data->secret_env[x][y]
+				&& gen_data->secret_env[x][y] != '=')
 				y++;
 			jutels = ft_substr(&gen_data->secret_env[x][y + 1], 0, ft_strlen(&gen_data->secret_env[x][y + 1]));
 			return (jutels);
@@ -68,7 +70,8 @@ char	*variable(t_general_data *gen_data, char *c)
 			}
 			if (x == ft_nb_arguments(gen_data->secret_env))
 				return ("");
-			while (gen_data->secret_env[x][y] && gen_data->secret_env[x][y] != '=')
+			while (gen_data->secret_env[x][y]
+				&& gen_data->secret_env[x][y] != '=')
 				y++;
 			jutels = ft_substr(&gen_data->secret_env[x][y + 1], 0, ft_strlen(&gen_data->secret_env[x][y + 1]));
 			return (jutels);
