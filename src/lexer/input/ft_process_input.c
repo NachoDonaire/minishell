@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 13:21:20 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:09:50 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_programm(t_general_data *gen_data, char	**com, int y, char *s)
 	process_args(s, gen_data, y, 0);
 }
 
-void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
+void	ft_not_built(char *s, t_general_data *gen_data, int y)
 {
 	char	**com;
 
@@ -34,7 +34,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 		ft_programm(gen_data, com, y, s);
 		return ;
 	}
-	gen_data->cmd[y].cmd = check_cmd(com[0], env);
+	gen_data->cmd[y].cmd = check_cmd(com[0], gen_data);
 	process_args(s, gen_data, y, 0);
 	ft_free_arg(com);
 	if (gen_data->n_pipes == 0)
@@ -45,7 +45,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, char *env[], int y)
 	}
 }
 
-void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
+void	process_string(char *s, t_general_data *gen_data, int y)
 {
 	if (gen_data->n_pipes > 0)
 	{
@@ -59,7 +59,7 @@ void	process_string(char *s, t_general_data *gen_data, char *env[], int y)
 		check_builtins(s, gen_data, y);
 	}
 	if (gen_data->built == 0)
-		ft_not_built(s, gen_data, env, y);
+		ft_not_built(s, gen_data, y);
 }
 
 void	process_args(char *s, t_general_data *gen_data, int y, int ref)
@@ -92,7 +92,7 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 		process_string_w_pipes(gen_data, s, env);
 	else
 	{
-		process_string(s, gen_data, env, 0);
+		process_string(s, gen_data, 0);
 		if (gen_data->built == 1)
 			gen_data->sort[0] = '0';
 		else if (gen_data->built == 0)

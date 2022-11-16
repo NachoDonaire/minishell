@@ -6,40 +6,89 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 14:42:46 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/16 12:11:37 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-char	*variable(char **env, char *c)
+char	*variable(t_general_data *gen_data, char *c)
 {
 	int		i;
 	int		y;
 	int		z;
 	char	*jutels;
+	int		x;
 
 	y = 0;
 	i = 0;
 	c = ft_strjoin(c, "=");
-	while (env[i] && ft_strncmp(c, env[i], lens(c)) != 0)
+	while (gen_data->env[i] && ft_strncmp(c, gen_data->env[i], lens(c)) != 0)
 		i++;
-	if (!env[i])
-		return ("");
-	while (env[i][y])
+	if (!gen_data->env[i])
 	{
-		if (env[i][y] == '=')
+		x = 0;
+		if (ft_strncmp(c, "PWD=", 4) == 0)
+		{
+			while (gen_data->secret_env[x])
+			{
+				if (ft_strncmp(gen_data->secret_env[x], "PWD=", 4) == 0)
+					break ;
+				x++;
+			}
+			if (x == ft_nb_arguments(gen_data->secret_env))
+				return ("");
+			while (gen_data->secret_env[x][y] && gen_data->secret_env[x][y] != '=')
+				y++;
+			jutels = ft_substr(&gen_data->secret_env[x][y + 1], 0, ft_strlen(&gen_data->secret_env[x][y + 1]));
+			return (jutels);
+		}
+		if (ft_strncmp(c, "OLDPWD=", 7) == 0)
+		{
+			while (gen_data->secret_env[x])
+			{
+				if (ft_strncmp(gen_data->secret_env[x], "OLDPWD=", 7) == 0)
+					break ;
+				x++;
+			}
+			if (x == ft_nb_arguments(gen_data->secret_env))
+				return ("");
+			while (gen_data->secret_env[x][y] && gen_data->secret_env[x][y] != '=')
+				y++;
+			jutels = ft_substr(&gen_data->secret_env[x][y + 1], 0, ft_strlen(&gen_data->secret_env[x][y + 1]));
+			return (jutels);
+		}
+		if (ft_strncmp(c, "PATH=", 5) == 0)
+		{
+			while (gen_data->secret_env[x])
+			{
+				if (ft_strncmp(gen_data->secret_env[x], "PATH=", 5) == 0)
+					break ;
+				x++;
+			}
+			if (x == ft_nb_arguments(gen_data->secret_env))
+				return ("");
+			while (gen_data->secret_env[x][y] && gen_data->secret_env[x][y] != '=')
+				y++;
+			jutels = ft_substr(&gen_data->secret_env[x][y + 1], 0, ft_strlen(&gen_data->secret_env[x][y + 1]));
+			return (jutels);
+		}
+		return ("");
+	}
+	while (gen_data->env[i][y])
+	{
+		if (gen_data->env[i][y] == '=')
 			break ;
 		y++;
 	}
 	z = y;
 	y++;
-	while (env[i][z])
+	while (gen_data->env[i][z])
 		z++;
 	jutels = malloc(sizeof(char ) * ((z - y) + 1));
 	z = 0;
-	while (env[i][y])
-		jutels[z++] = env[i][y++];
+	while (gen_data->env[i][y])
+		jutels[z++] = gen_data->env[i][y++];
 	jutels[z] = '\0';
 	return (jutels);
 }
@@ -72,7 +121,7 @@ char	*copy_var(char *s)
 	return (jefferson);
 }
 
-int	comillas_dobles(char *s, char *of, char **env, int ref, int w)
+int	comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w)
 {
 	int	i;
 
@@ -80,10 +129,10 @@ int	comillas_dobles(char *s, char *of, char **env, int ref, int w)
 	while (s[i] && s[i] != '"')
 	{
 		if (s[i] == 39)
-			w = comillas_simples(&s[i], of, env, ref, w);
+			w = comillas_simples(&s[i], of, gen_data, ref, w);
 		else if (s[i] == '$')
 		{
-			w = dollar(&s[i], of, env, ref, w);
+			w = dollar(&s[i], of, gen_data, ref, w);
 			while (s[i] != ' ' && s[i] != '"'
 				&& s[i] != 39 && s[i] != '/' && s[i] != '=')
 			{
@@ -108,7 +157,7 @@ int	comillas_dobles(char *s, char *of, char **env, int ref, int w)
 	return (w);
 }
 
-int	comillas_simples(char *s, char *of, char **env, int ref, int w)
+int	comillas_simples(char *s, char *of, t_general_data *gen_data, int ref, int w)
 {
 	int	i;
 
@@ -116,10 +165,10 @@ int	comillas_simples(char *s, char *of, char **env, int ref, int w)
 	while (s[i] && s[i] != 39)
 	{
 		if (s[i] == '"')
-			w = comillas_dobles(&s[i], of, env, ref, w);
+			w = comillas_dobles(&s[i], of, gen_data, ref, w);
 		else if (s[i] == '$')
 		{
-			w = dollar(&s[i], of, env, ref, w);
+			w = dollar(&s[i], of, gen_data, ref, w);
 			while (s[i] != ' ' && s[i] != '"'
 				&& s[i] != 39 && s[i] != '/' && s[i] != '=')
 			{
@@ -144,7 +193,7 @@ int	comillas_simples(char *s, char *of, char **env, int ref, int w)
 	return (w);
 }
 
-int	dollar(char *s, char *of, char **env, int ref, int w)
+int	dollar(char *s, char *of, t_general_data *gen_data, int ref, int w)
 {
 	int		i;
 	int		y;
@@ -161,7 +210,7 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 	}
 	if (ref == 0)
 	{
-		c = variable(env, c);
+		c = variable(gen_data, c);
 		while (c[y])
 			of[w++] = c[y++];
 		i++;
@@ -171,7 +220,7 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 			&& s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
 			i++;
 		if (s[i] == '$')
-			return (dollar(&s[i], of, env, ref, w));
+			return (dollar(&s[i], of, gen_data, ref, w));
 	}
 	else
 	{
@@ -181,7 +230,7 @@ int	dollar(char *s, char *of, char **env, int ref, int w)
 			&& s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
 			of[w++] = s[i++];
 		if (s[i] == '$')
-			return (dollar(&s[i], of, env, ref, w));
+			return (dollar(&s[i], of, gen_data, ref, w));
 	}
 	return (w);
 }
@@ -192,7 +241,7 @@ int	tiberio(t_general_data *gen_data, char *of, int i, int w)
 	{
 		if (gen_data->s[i] == '$')
 		{
-			w = dollar(&gen_data->s[i], of, gen_data->env, 0, w);
+			w = dollar(&gen_data->s[i], of, gen_data, 0, w);
 			while (gen_data->s[i] != ' ' && gen_data->s[i] != 39
 				&& gen_data->s[i] != '"' && gen_data->s[i]
 				&& gen_data->s[i] != '/' && gen_data->s[i] != '=')
@@ -210,7 +259,7 @@ int	tiberio(t_general_data *gen_data, char *of, int i, int w)
 		else if (gen_data->s[i] == 39)
 		{
 			of[w++] = gen_data->s[i++];
-			w = comillas_simples(&gen_data->s[i], of, gen_data->env, 1, w);
+			w = comillas_simples(&gen_data->s[i], of, gen_data, 1, w);
 			while (gen_data->s[i] != 39)
 				i++;
 			i++;
@@ -219,7 +268,7 @@ int	tiberio(t_general_data *gen_data, char *of, int i, int w)
 		else if (gen_data->s[i] == '"')
 		{
 			of[w++] = gen_data->s[i++];
-			w = comillas_dobles(&gen_data->s[i], of, gen_data->env, 0, w);
+			w = comillas_dobles(&gen_data->s[i], of, gen_data, 0, w);
 			while (gen_data->s[i] != '"')
 				i++;
 			i++;

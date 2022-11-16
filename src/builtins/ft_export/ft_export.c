@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 10:23:48 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:55:33 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	ft_export_arguments(t_general_data *gen_data, int position)
 		if (ft_find_variable(variable, gen_data->env) == 0)
 			ft_create_variable(variable, value, gen_data->env);
 		else
-			ft_replace_variable(variable, value, gen_data->env);
+			ft_replace_variable(variable, value, gen_data);
 	}
 }
 

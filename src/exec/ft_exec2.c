@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/15 12:57:19 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:50:25 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
 	{
 		s3[1] = gen_data->blt[n_built].blt;
-		s3[1] = check_cmd(s3[1], gen_data->env);
+		s3[1] = check_cmd(s3[1], gen_data);
 		if (gen_data->blt[n_built].can_exec == 0)
 			exit (1);
 		execve(s3[1], gen_data->blt[n_built].args, gen_data->env);

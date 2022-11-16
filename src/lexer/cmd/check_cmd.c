@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 13:19:55 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:51:57 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*free_for_checkin_cmd(char **sol, char *k, int y, char *cmd)
 	return (k);
 }
 
-char	*check_cmd(char *cmd, char *env[])
+char	*check_cmd(char *cmd, t_general_data *gen_data)
 {
 	char	*path;
 	char	*k;
@@ -54,11 +54,21 @@ char	*check_cmd(char *cmd, char *env[])
 
 	x = 0;
 	path = NULL;
-	while (env[x])
+	while (gen_data->env[x])
 	{
-		if (ft_strncmp(env[x], "PATH=", 5) == 0)
-			path = ft_substr(env[x], 0, ft_strlen(env[x]));
+		if (ft_strncmp(gen_data->env[x], "PATH=", 5) == 0)
+			path = ft_substr(gen_data->env[x], 0, ft_strlen(gen_data->env[x]));
 		x++;
+	}
+	if (!path)
+	{
+		x = 0;
+		while (gen_data->secret_env[x])
+		{
+			if (ft_strncmp(gen_data->secret_env[x], "PATH=", 5) == 0)
+				path = ft_substr(gen_data->secret_env[x], 0, ft_strlen(gen_data->secret_env[x]));
+			x++;
+		}
 	}
 	i = 0;
 	if (path)

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 19:00:42 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 12:21:34 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,51 @@ int	ft_equal(char *s)
 	return (0);
 }
 
-static void	ft_find_env(char *argument, char **env)
+static void	ft_eliminate2(char **env, int position)
 {
-	int	tmp;
-	int	y;
+	int	x;
+
+	printf("hola");
+	x = position;
+	while (env[x + 1])
+	{
+		env[x] = env[x + 1];
+		x++;
+	}
+	env[x] = NULL;
+}
+
+static void	ft_find_env(t_general_data *gen_data, int p, int x)
+{
+	int		tmp;
+	int		y;
+	char	*copy;
 
 	y = -1;
-	while (env[++y])
+	while (gen_data->env[++y])
 	{
-		tmp = ft_strlen(argument);
-		if (ft_strncmp(argument, env[y], tmp - 1) == 0)
+		copy = gen_data->env[y];
+		tmp = ft_strlen(gen_data->blt[p].args[x]);
+		if (ft_strncmp(gen_data->blt[p].args[x], copy, tmp - 1) == 0)
 		{
-			printf("%d", tmp);
-			ft_eliminate(env, y);
+			ft_eliminate(gen_data->env, y);
+			if (ft_strncmp(gen_data->blt[p].args[x], "PWD=", 4) == 0 || ft_strncmp(gen_data->blt[p].args[x], "OLDPWD=", 7) == 0)
+				ft_eliminate2(gen_data->secret_env, y);
 			break ;
+		}
+	}
+	if (ft_strncmp(gen_data->blt[p].args[x], "PATH=", 5) == 0)
+	{
+		y = -1;
+		while (gen_data->secret_env[++y])
+		{
+			copy = gen_data->secret_env[y];
+			tmp = ft_strlen(gen_data->blt[p].args[x]);
+			if (ft_strncmp(gen_data->blt[p].args[x], copy, tmp - 1) == 0)
+			{
+				ft_eliminate(gen_data->secret_env, y);
+				break ;
+			}
 		}
 	}
 }
@@ -75,7 +106,7 @@ void	ft_unset(t_general_data *gen_data, int p)
 		}
 		if (gen_data->blt[p].args[x][z] == '=' &&
 			gen_data->blt[p].args[x][z + 1] == '\0')
-			ft_find_env(gen_data->blt[p].args[x], gen_data->env);
+			ft_find_env(gen_data, p, x);
 		else
 		{
 			ft_print_bad(gen_data, p, x);

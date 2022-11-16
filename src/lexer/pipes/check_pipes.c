@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 14:16:50 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:10:47 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_handle_cmd_pipes2(t_general_data *gen_data, int *t, char **tmp)
 	if (gen_data->built != 1)
 	{
 		gen_data->sort[t[0]] = '1';
-		process_string(tmp[t[1]], gen_data, gen_data->env, t[2]);
+		process_string(tmp[t[1]], gen_data, t[2]);
 		t[2]++;
 	}
 	else if (gen_data->built == 1)
@@ -69,7 +69,7 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 	ft_free_arg(tmp);
 }
 
-int	gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y)
+int	gest_ampersand(char *s, t_general_data *gen_data, int y)
 {
 	char	**tmp;
 	int		i;
@@ -83,7 +83,7 @@ int	gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y)
 		if (check_cmllas(tmp[i]) == 1)
 			tmp[i] = gest_cmllas(tmp[i]);
 		if (gen_data->built != 1)
-			process_string(tmp[i], gen_data, env, y);
+			process_string(tmp[i], gen_data, y);
 		i++;
 		y++;
 	}

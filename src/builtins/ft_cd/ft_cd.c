@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 18:39:28 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:58:09 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,50 @@ static void	ft_change_pwd(char **env, char *buf)
 static void	ft_change_oldpwd(char **env, char *tmp, t_general_data *gen_data)
 {
 	int		x;
-	int		oldpwd;
 	char	*buf;
+	int		y;
 
 	x = -1;
-	oldpwd = 0;
+	y = 0;
 	buf = getcwd(NULL, 0);
 	while (env[++x])
 	{
 		if (ft_strncmp(env[x], "OLDPWD=", 7) == 0)
 		{
-			//printf("--%s--", tmp);
 			free(env[x]);
 			env[x] = ft_strjoin("OLDPWD=", tmp);
-			oldpwd = 1;
+			y = 1;
 		}
 	}
-	if (oldpwd == 0)
+	x = -1;
+	while (gen_data->secret_env[++x])
 	{
-		ft_putstr_fd("minishell : cd: OLDPWD not set\n", 2);
-		chdir(tmp);
+		if (ft_strncmp(gen_data->secret_env[x], "OLDPWD=", 7) == 0)
+		{
+			free(gen_data->secret_env[x]);
+			gen_data->secret_env[x] = ft_strjoin("OLDPWD=", tmp);
+		}
 	}
-	else if (oldpwd == 1)
-		ft_change_pwd(env, buf);
+	if (x == ft_nb_arguments(gen_data->secret_env))
+	{
+		x = ft_nb_arguments(gen_data->secret_env);
+		gen_data->secret_env[x] = ft_strjoin("OLDPWD=", tmp);
+		x++;
+		gen_data->secret_env[x] = 0;
+		y = 1;
+	}
+	if (y == 0)
+	{
+		x = ft_nb_arguments(gen_data->env);
+		gen_data->env[x] = ft_strjoin("OLDPWD=", tmp);
+		x++;
+		gen_data->env[x] = 0;
+		x = ft_nb_arguments(gen_data->secret_env);
+		gen_data->secret_env[x] = ft_strjoin("OLDPWD=", tmp);
+		x++;
+		gen_data->secret_env[x] = 0;
+	}
+	ft_change_pwd(env, buf);
 	free(buf);
 	ft_change_good_status(env, gen_data);
 }
@@ -72,6 +93,50 @@ static void	ft_error_cd(char *arguments, char **env, t_general_data *gen_data)
 		ft_putstr_fd("\n", 2);
 	}
 	ft_change_permission_status(env, gen_data);
+}
+
+void	ft_reset_pwd(t_general_data *gen_data)
+{
+	int		y;
+	char	*buf;
+
+	y = 0;
+	buf = getcwd(NULL, 0);
+	while (gen_data->env[y])
+	{
+		if (ft_strncmp(gen_data->env[y], "PWD=", 4) == 0)
+		{
+			free(gen_data->env[y]);
+			gen_data->env[y] = ft_strjoin("PWD=", buf);
+			free(buf);
+			break ;
+		}
+		y++;
+	}
+	if (y == ft_nb_arguments(gen_data->env))
+	{
+		gen_data->env[y] = ft_strjoin("PWD=", buf);
+		free(buf);
+		y++;
+		gen_data->env[y] = 0;
+	}
+	y = 0;
+	buf = getcwd(NULL, 0);
+	while (gen_data->secret_env[y])
+	{
+		if (ft_strncmp(gen_data->secret_env[y], "PWD=", 4) == 0)
+		{
+			free(gen_data->secret_env[y]);
+			gen_data->secret_env[y] = ft_strjoin("PWD=", buf);
+			free(buf);
+			break ;
+		}
+		y++;
+	}
+	gen_data->secret_env[y] = ft_strjoin("PWD=", buf);
+	free(buf);
+	y++;
+	gen_data->secret_env[y] = 0;
 }
 
 void	ft_cd(t_general_data *gen_data, int p)
@@ -99,4 +164,5 @@ void	ft_cd(t_general_data *gen_data, int p)
 			ft_change_oldpwd(gen_data->env, tmp, gen_data);
 		free(tmp);
 	}
+	ft_reset_pwd(gen_data);
 }

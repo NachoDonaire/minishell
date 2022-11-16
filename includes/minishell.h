@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/10 09:48:52 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:26:02 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_comand
 typedef struct s_general
 {
 	char			**env;
+	char			**secret_env;
 	int				red;
 	t_cmd_data		*cmd;
 	t_builtin_data	*blt;
@@ -89,9 +90,9 @@ typedef struct s_general
 void	rl_replace_line(const char *text, int clear_undo);
 
 /*en teophilus, lexer/expand*/
-int     comillas_dobles(char *s, char *of, char **env, int ref, int w);
-int     comillas_simples(char *s, char *of, char **env, int ref, int w);
-int     dollar(char *s, char *of, char **env, int ref, int w);
+int     comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w);
+int     comillas_simples(char *s, char *of, t_general_data *gen_data, int ref, int w);
+int     dollar(char *s, char *of, t_general_data *gen_data, int ref, int w);
 char	*teophilus(t_general_data *gen_data);
 
 /*en utils.c*/
@@ -118,7 +119,7 @@ void	dr_comillas_aviso(char *s, char **wallace, int *t);
 void	dr_comillas_not_aviso(char *s, char **wallace, int *t);
 
 /*en ft_process_input.c*/
-void	process_string(char *s, t_general_data *gen_data, char *env[], int y);
+void	process_string(char *s, t_general_data *gen_data, int y);
 void	process_args(char *s, t_general_data *gen_data, int y, int ref);
 void	process_input(char *s, t_general_data *gen_data, char *env[]);
 void	ft_reset_blt(t_general_data *gen_data);
@@ -147,12 +148,12 @@ char	*cncat(char *s1, char *s2);
 /*en check_cmd.c*/
 char	*obtain_cmd(char **tmp, int i);
 char	*free_for_checkin_cmd(char **sol, char *k, int y, char *cmd);
-char	*check_cmd(char *cmd, char *env[]);
+char	*check_cmd(char *cmd, t_general_data *gen_data);
 
 /*en check_pipes.c*/
 void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[]);
 void	process_string_w_pipes(t_general_data *gen_data, char *s, char *env[]);
-int		gest_ampersand(char *s, t_general_data *gen_data, char *env[], int y);
+int		gest_ampersand(char *s, t_general_data *gen_data, int y);
 void	free_tmp(char **tmp);
 
 /*en out_reds.c*/
@@ -230,7 +231,7 @@ void	ft_print_fdout2(t_general_data *gen_data, char *s);
 
 int		ft_find_variable(char *v, char **env);
 void	ft_create_variable(char *variable, char *value, char **env);
-void	ft_replace_variable(char *variable, char *value, char **env);
+void	ft_replace_variable(char *variable, char *value, t_general_data *gen_data);
 char	*ft_variables(char *v);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_value(char *v);
