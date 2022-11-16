@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 16:16:37 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:40:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ void	ft_print_fdout2(t_general_data *gen_data, char *s);
 
 int		ft_find_variable(char *v, char **env);
 void	ft_create_variable(char *variable, char *value, char **env);
-void	ft_replace_variable(char *variable, char *value, t_general_data *gen_data);
+void	ft_replace_v2(char *variable, char *value, t_general_data *gen_data);
 char	*ft_variables(char *v);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_value(char *v);

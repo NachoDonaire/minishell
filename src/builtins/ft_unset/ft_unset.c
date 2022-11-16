@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 12:21:34 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:33:24 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ static void	ft_find_env(t_general_data *gen_data, int p, int x)
 		if (ft_strncmp(gen_data->blt[p].args[x], copy, tmp - 1) == 0)
 		{
 			ft_eliminate(gen_data->env, y);
-			if (ft_strncmp(gen_data->blt[p].args[x], "PWD=", 4) == 0 || ft_strncmp(gen_data->blt[p].args[x], "OLDPWD=", 7) == 0)
+			if (ft_strncmp(gen_data->blt[p].args[x], "PWD=", 4) == 0
+				|| ft_strncmp(gen_data->blt[p].args[x], "OLDPWD=", 7) == 0)
 				ft_eliminate2(gen_data->secret_env, y);
 			break ;
 		}

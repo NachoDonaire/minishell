@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:49 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/15 12:08:53 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:40:43 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	check_builtins(char *c, t_general_data *gen_data, int y)
 {
-	int	i;
-	char *s;
+	int		i;
+	char	*s;
 
 	s = ft_substr(c, 0, ft_strlen(c));
 	i = 0;
 	while (c[i])
 	{
-		if (c[i] >= 'A' &&  c[i] <= 'Z')
+		if (c[i] >= 'A' && c[i] <= 'Z')
 			s[i] = c[i] + 32;
 		i++;
 	}

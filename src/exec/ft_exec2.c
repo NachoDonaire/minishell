@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/15 09:50:25 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:32:19 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_child_pipes(t_general_data *gen_data)
 	{
 		dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
 		close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
-	//	close(gen_data->pipe[gen_data->pipe_pos - 1][1]);
 	}
 }
 
@@ -40,7 +39,6 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 {
 	int	exec;
 
-	//exit (0);
 	exec = 0;
 	dup_reds(gen_data, position, n_built);
 	if (gen_data->cmd[position].can_exec == 0)
@@ -51,7 +49,6 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 	{
 		ft_putstr_fd("Minishell: command not found: ", 2);
 		ft_putstr_fd(gen_data->cmd[position].cmd, 2);
-	
 		ft_putstr_fd("\n", 2);
 		gen_data->good_status = 127;
 		exit (gen_data->good_status);
@@ -71,9 +68,7 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 		return ;
 	}
 	else
-	{
 		ft_child_pipes(gen_data);
-	}
 	dup_reds(gen_data, position, n_built);
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
@@ -99,7 +94,7 @@ void	ft_father(t_general_data *gen_data, int position, int n_built)
 	i = 0;
 	(void)position;
 	(void)n_built;
-	if (gen_data->n_pipes != 0) //&& gen_data->exec_pos != gen_data->n_pipes)
+	if (gen_data->n_pipes != 0)
 	{
 		if (gen_data->pipe_pos != gen_data->n_pipes)
 		{
@@ -109,7 +104,7 @@ void	ft_father(t_general_data *gen_data, int position, int n_built)
 		{
 			while (i <= gen_data->n_pipes)
 			{
-					close(gen_data->pipe[i][0]);
+				close(gen_data->pipe[i][0]);
 				close(gen_data->pipe[i++][1]);
 			}	
 		}

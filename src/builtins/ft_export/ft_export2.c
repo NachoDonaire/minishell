@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:57 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/15 09:55:13 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:39:43 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,17 @@ void	ft_create_variable(char *variable, char *value, char **env)
 	}
 }
 
-void	ft_replace_variable(char *variable, char *value, t_general_data *gen_data)
+void	ft_replace_v2(char *variable, char *value, t_general_data *gen_data)
 {
 	int		x;
+	int		y;
 	char	*copy;
 
 	x = 0;
 	while (gen_data->env[x])
 	{
-		if (ft_strncmp(gen_data->env[x], variable, ft_strlen(variable) - 1) == 0)
+		y = ft_strlen(variable) - 1;
+		if (ft_strncmp(gen_data->env[x], variable, y) == 0)
 		{
 			if (!value)
 				break ;

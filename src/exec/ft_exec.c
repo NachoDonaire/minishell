@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 09:04:56 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:38:12 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 	int		pipedo[2];
 	char	*s;
 	int		piddy_gonzalez;
+	int		x;
 
 	i = 0;
 	pipe(pipedo);
@@ -66,23 +67,22 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 				if (piddy_gonzalez == 0)
 				{
 					close(pipedo[0]);
-					//write(1, "> ", 2);
 					s = readline("> ");
-					if (ft_strncmp(s, gen_data->cmd[position].in[i], lens(gen_data->cmd[position].in[i])) != 0)
+					x = lens(gen_data->cmd[position].in[i]);
+					if (ft_strncmp(s, gen_data->cmd[position].in[i], x) != 0)
 					{
 						ft_putstr_fd(s, pipedo[1]);
 						ft_putstr_fd("\n", pipedo[1]);
 					}
-					while (ft_strncmp(s, gen_data->cmd[position].in[i], lens(gen_data->cmd[position].in[i])) != 0)
+					x = lens(gen_data->cmd[position].in[i]);
+					while (ft_strncmp(s, gen_data->cmd[position].in[i], x) != 0)
 					{
 						{
 							ft_putstr_fd(s, pipedo[1]);
 							ft_putstr_fd("\n", pipedo[1]);
 						}
-					//	write(1, "> ", 2);
-						//s = get_next_line(1);
 						s = readline("> ");
-								break ;
+						break ;
 					}
 					free(s);
 					close(pipedo[1]);
@@ -111,12 +111,14 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 				{
 					close(pipedo[0]);
 					s = readline("> ");
-					if (ft_strncmp(s, gen_data->blt[n_built].in[i], lens(gen_data->blt[n_built].in[i])) != 0)
+					x = lens(gen_data->blt[n_built].in[i]);
+					if (ft_strncmp(s, gen_data->blt[n_built].in[i], x) != 0)
 					{
 						ft_putstr_fd(s, pipedo[1]);
 						ft_putstr_fd("\n", pipedo[1]);
 					}
-					while (ft_strncmp(s, gen_data->blt[n_built].in[i], lens(gen_data->blt[n_built].in[i]) != 0))
+					x = lens(gen_data->blt[n_built].in[i]);
+					while (ft_strncmp(s, gen_data->blt[n_built].in[i], x) != 0)
 					{
 						ft_putstr_fd(s, pipedo[1]);
 						ft_putstr_fd("\n", pipedo[1]);

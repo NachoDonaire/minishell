@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 14:41:33 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:35:40 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_check_status(t_general_data *gen_data, int position)
 		free(path);
 		free(copy);
 	}
-	if (gen_data->n_built != 0)
+	else if (gen_data->n_pipes != 0)
 	{
 		x = gen_data->n_pipes;
 		if (ft_strncmp(gen_data->blt[position].blt, "pwd", 3) == 0
