@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 12:11:37 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:07:41 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*variable(t_general_data *gen_data, char *c)
 	int		y;
 	int		z;
 	char	*jutels;
-	int		x;
+	//int		x;
 
 	y = 0;
 	i = 0;
@@ -27,7 +27,7 @@ char	*variable(t_general_data *gen_data, char *c)
 		i++;
 	if (!gen_data->env[i])
 	{
-		x = 0;
+		/*x = 0;
 		if (ft_strncmp(c, "PWD=", 4) == 0)
 		{
 			while (gen_data->secret_env[x])
@@ -43,7 +43,7 @@ char	*variable(t_general_data *gen_data, char *c)
 			jutels = ft_substr(&gen_data->secret_env[x][y + 1], 0, ft_strlen(&gen_data->secret_env[x][y + 1]));
 			return (jutels);
 		}
-		if (ft_strncmp(c, "OLDPWD=", 7) == 0)
+		else if (ft_strncmp(c, "OLDPWD=", 7) == 0)
 		{
 			while (gen_data->secret_env[x])
 			{
@@ -58,7 +58,7 @@ char	*variable(t_general_data *gen_data, char *c)
 			jutels = ft_substr(&gen_data->secret_env[x][y + 1], 0, ft_strlen(&gen_data->secret_env[x][y + 1]));
 			return (jutels);
 		}
-		if (ft_strncmp(c, "PATH=", 5) == 0)
+		else if (ft_strncmp(c, "PATH=", 5) == 0)
 		{
 			while (gen_data->secret_env[x])
 			{
@@ -72,7 +72,7 @@ char	*variable(t_general_data *gen_data, char *c)
 				y++;
 			jutels = ft_substr(&gen_data->secret_env[x][y + 1], 0, ft_strlen(&gen_data->secret_env[x][y + 1]));
 			return (jutels);
-		}
+		}*/
 		return ("");
 	}
 	while (gen_data->env[i][y])
