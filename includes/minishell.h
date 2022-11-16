@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 11:26:02 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:16:37 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_general
 {
 	char			**env;
 	char			**secret_env;
+	int				path;
 	int				red;
 	t_cmd_data		*cmd;
 	t_builtin_data	*blt;

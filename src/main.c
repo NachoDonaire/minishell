@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 12:08:11 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:17:09 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,14 @@ void	ft_check_secret_env(t_general_data *gen_data)
 	char	*s;
 
 	x = 0;
+	gen_data->path = 1;
 	while (gen_data->secret_env[x])
 	{
 		if (ft_strncmp(gen_data->secret_env[x], "PATH=", 5) == 0)
+		{
+			gen_data->path = 0;
 			return ;
+		}
 		x++;
 	}
 	s = ft_substr("PATH=/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.", 0, 48);
