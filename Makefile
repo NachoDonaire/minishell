@@ -8,7 +8,7 @@ SRCS	=	src/main.c src/utils/utils.c src/utils/utils2.c src/free/memory.c src/sta
 			src/signal/ft_signal.c src/exit/ft_exit.c src/lexer/input/ft_process_input.c src/lexer/redirects/fd_reds.c \
 			src/gnl/get_next_line_utils.c src/gnl/get_next_line.c src/lexer/redirects/fd_reds2.c  src/lexer/redirects/out_reds4.c \
 			src/lexer/redirects/d_red.c src/lexer/builtins/check_builtins2.c src/lexer/input/el_dr.c src/lexer/redirects/in_reds4.c \
-			src/lexer/input/syntax_error.c src/lexer/expand/teophilus.c
+			src/lexer/input/syntax_error.c src/lexer/expand/teophilus.c src/lexer/input/syntax_error2.c src/lexer/input/syntax_error3.c
 
 
 OBJS	=	${SRCS:.c=.o}
