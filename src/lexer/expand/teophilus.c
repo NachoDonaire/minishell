@@ -244,21 +244,24 @@ int	tiberio(t_general_data *gen_data, char *of, int i, int w)
 	{
 		if (gen_data->s[i] == '$')
 		{
-			w = dollar(&gen_data->s[i], of, gen_data, 0, w);
-			while (gen_data->s[i] != ' ' && gen_data->s[i] != 39
-				&& gen_data->s[i] != '"' && gen_data->s[i]
-				&& gen_data->s[i] != '/' && gen_data->s[i] != '=')
+			if (gen_data->s[i + 1] != '"' && gen_data->s[i + 1] != 39)
 			{
-				if (gen_data->s[i] == '$')
-				{
-					i++;
-					if (gen_data->s[i] >= '0' && gen_data->s[i] <= '9')
-						return (tiberio(gen_data, of, i + 1, w));
-				}
-				i++;
+				w = dollar(&gen_data->s[i], of, gen_data, 0, w);
+					while (gen_data->s[i] != ' ' && gen_data->s[i] != 39 && gen_data->s[i] != '"' && gen_data->s[i]	&& gen_data->s[i] != '/' && gen_data->s[i] != '=')
+					{
+						if (gen_data->s[i] == '$')
+						{
+							i++;
+							if (gen_data->s[i] >= '0' && gen_data->s[i] <= '9')
+								return (tiberio(gen_data, of, i + 1, w));
+						}
+						i++;
+					}
+				return (tiberio(gen_data, of, i, w));
 			}
-			return (tiberio(gen_data, of, i, w));
-		}
+			else
+				return (tiberio(gen_data, of, i + 1, w));
+		}	
 		else if (gen_data->s[i] == 39)
 		{
 			of[w++] = gen_data->s[i++];
