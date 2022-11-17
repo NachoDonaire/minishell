@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 14:30:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 09:57:04 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:21:51 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,43 +36,25 @@ int	single_quotes(char *s)
 int	check_millas(char *s)
 {
 	int	i;
-	int	cd;
-	int	cs;
+	int	quote;
 
 	i = 0;
-	cd = 0;
-	cs = 0;
+	quote = 0;
 	while (s[i])
 	{
-		if (s[i] == '"')
-		{
-			cd += 2;
-			//cd++;
-			//i++;
-			i += double_quotes(&s[i + 1]);
-			/*while (s[i] == '"' && s[i]) 
-			{
-				i++;
-				cd++;
-			}*/
-		}
-		else if (s[i] == 39)
-		{
-			cs += 2;
-			//cs++;
-			//i++;
-			i += single_quotes(&s[i + 1]);
-			/*while (s[i] == 39 && s[i])
-			{
-				i++;
-				cs++;
-			}*/
-		}
+		if (quote == 0 && s[i] == '\"')
+			quote = 1;
+		else if (quote == 0 && s[i] == 39)
+			quote = 2;
+		else if (quote == 1 && s[i] == '\"')
+			quote = 0;
+		else if (quote == 2 && s[i] == 39)
+			quote = 0;
 		i++;
 	}
-	if (cs % 2 != 0 || cd % 2 != 0)
-		return (1);
-	return (0);
+	if (quote == 0)
+		return (0);
+	return (1);
 }
 
 int	check_pipes(char *s)
