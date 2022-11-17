@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 11:46:21 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:41:16 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ void	ft_reset_table_7(int *t, t_general_data *gen_data);
 /*exec cmd*/
 
 void	ft_exec2(t_general_data *gen_data, int position, int n_built);
+void	ft_status_error(t_general_data *gen_data, int position, int n_built);
 
 /*exec builtins*/
 
