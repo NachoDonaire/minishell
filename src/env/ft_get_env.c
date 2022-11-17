@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:46:13 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/09 10:04:18 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:19:55 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,26 @@ void	ft_env(t_general_data *gen_data)
 		}
 		x++;
 	}
+}
+
+void	ft_check_secret_env(t_general_data *gen_data)
+{
+	int		x;
+	char	*s;
+
+	x = 0;
+	gen_data->path = 1;
+	while (gen_data->s_env[x])
+	{
+		if (ft_strncmp(gen_data->s_env[x], "PATH=", 5) == 0)
+		{
+			gen_data->path = 0;
+			return ;
+		}
+		x++;
+	}
+	s = ft_substr("PATH=/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.", 0, 48);
+	gen_data->s_env[x] = s;
+	x++;
+	gen_data->s_env[x] = 0;
 }

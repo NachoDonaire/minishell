@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 21:04:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:24:49 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int		extreme_finder(char *s, char *find);
 int		finder(char *s, char *find);
 
 /*en syntax_error, en lexer/input*/
-int	syntax_error(char *s);
+int		syntax_error(char *s);
 
 /*en commillas.c, gesteo de las comillas en el comando(por el momento)*/
 int		check_cmllas(char *s);
@@ -217,6 +217,9 @@ void	ft_export(t_general_data *gen_data, int position);
 
 /*env*/
 char	**get_env(char **envp);
+void	ft_check_secret_env(t_general_data *gen_data);
+char	**check_env(char **env, char **envp);
+void	ft_envs(t_general_data	*gen_data, char **env);
 
 /*echo*/
 void	ft_print_v(char **nb_arguments, int x, int y, t_general_data *gen_data);
@@ -275,6 +278,9 @@ char	*ft_itoa(int n);
 /*en memory.c*/
 void	reserva(t_general_data *gen_data);
 void	needed_free(t_general_data *gen_data, int y);
+void	needed_free_cmd(t_general_data *gen_data);
+void	ft_free_all(t_general_data *gen_data, char *s);
+void	close_fds(t_general_data *gen_data);
 
 /*signal*/
 void	handle_sigint(int sig);
