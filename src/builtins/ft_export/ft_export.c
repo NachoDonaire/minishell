@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 16:39:39 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:42:41 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,10 @@ static void	ft_print_export(t_general_data *gen_data)
 	int		y;
 	char	**copy;
 
-	x = 0;
+	x = -1;
 	copy = malloc(1024);
-	while (gen_data->env[x])
-	{
+	while (gen_data->env[++x])
 		copy[x] = ft_substr(gen_data->env[x], 0, ft_strlen(gen_data->env[x]));
-		x++;
-	}
 	copy[x] = NULL;
 	ft_order(copy);
 	x = -1;

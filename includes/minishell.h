@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 20:41:16 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:04:47 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,5 +301,12 @@ int		single_quotes(char *s);
 int		check_millas(char *s);
 int		check_pipes(char *s);
 int		pipes_count(char *s);
+
+/*ft_cd.c*/
+void	ft_change_pwd(char **env);
+void	ft_change_oldpwd_2(char *tmp, t_general_data *gen_data, int x, int y);
+void	ft_change_oldpwd(char *tmp, t_general_data *gen_data);
+void	ft_error_cd(char *arguments, char **env, t_general_data *gen_data);
+void	ft_reset_pwd_2(t_general_data *gen_data, char *buf, int y);
 
 #endif

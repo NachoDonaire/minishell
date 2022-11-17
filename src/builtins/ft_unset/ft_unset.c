@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 11:59:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:44:34 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,28 @@ int	ft_equal(char *s)
 	return (0);
 }
 
+void	ft_check_path(t_general_data *gen_data, int p, int x)
+{
+	int		tmp;
+	int		y;
+	char	*copy;
+
+	if (ft_strncmp(gen_data->blt[p].args[x], "PATH=", 5) == 0)
+	{
+		y = -1;
+		while (gen_data->s_env[++y])
+		{
+			copy = gen_data->s_env[y];
+			tmp = ft_strlen(gen_data->blt[p].args[x]);
+			if (ft_strncmp(gen_data->blt[p].args[x], copy, tmp - 1) == 0)
+			{
+				ft_eliminate(gen_data->s_env, y);
+				break ;
+			}
+		}
+	}
+}
+
 static void	ft_find_env(t_general_data *gen_data, int p, int x)
 {
 	int		tmp;
@@ -59,20 +81,7 @@ static void	ft_find_env(t_general_data *gen_data, int p, int x)
 			break ;
 		}
 	}
-	if (ft_strncmp(gen_data->blt[p].args[x], "PATH=", 5) == 0)
-	{
-		y = -1;
-		while (gen_data->s_env[++y])
-		{
-			copy = gen_data->s_env[y];
-			tmp = ft_strlen(gen_data->blt[p].args[x]);
-			if (ft_strncmp(gen_data->blt[p].args[x], copy, tmp - 1) == 0)
-			{
-				ft_eliminate(gen_data->s_env, y);
-				break ;
-			}
-		}
-	}
+	ft_check_path(gen_data, p, x);
 }
 
 void	ft_unset(t_general_data *gen_data, int p)
