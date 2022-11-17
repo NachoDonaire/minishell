@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/15 09:51:57 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 10:04:20 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ char	*free_for_checkin_cmd(char **sol, char *k, int y, char *cmd)
 
 char	*check_cmd(char *cmd, t_general_data *gen_data)
 {
-	char	*path;
-	char	*k;
-	char	**sol;
-	int		i;
-	int		x;
+	char		*path;
+	char		*k;
+	char		**sol;
+	size_t		i;
+	int			x;
 
 	x = 0;
 	path = NULL;
@@ -63,18 +63,19 @@ char	*check_cmd(char *cmd, t_general_data *gen_data)
 	if (!path)
 	{
 		x = 0;
-		while (gen_data->secret_env[x])
+		while (gen_data->s_env[x])
 		{
-			if (ft_strncmp(gen_data->secret_env[x], "PATH=", 5) == 0)
-				path = ft_substr(gen_data->secret_env[x], 0, ft_strlen(gen_data->secret_env[x]));
+			if (ft_strncmp(gen_data->s_env[x], "PATH=", 5) == 0)
+			{
+				i = ft_strlen(gen_data->s_env[x]);
+				path = ft_substr(gen_data->s_env[x], 0, i);
+			}
 			x++;
 		}
 	}
 	i = 0;
 	if (path)
-	{
 		sol = ft_split(&path[5], ':');
-	}
 	else
 	{
 		k = ft_substr(cmd, 0, ft_strlen(cmd));

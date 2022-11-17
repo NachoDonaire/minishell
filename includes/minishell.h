@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 09:25:36 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 10:03:07 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_comand
 typedef struct s_general
 {
 	char			**env;
-	char			**secret_env;
+	char			**s_env;
 	int				path;
 	int				red;
 	t_cmd_data		*cmd;

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 11:58:09 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 10:03:07 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ static void	ft_change_oldpwd(char **env, char *tmp, t_general_data *gen_data)
 		}
 	}
 	x = -1;
-	while (gen_data->secret_env[++x])
+	while (gen_data->s_env[++x])
 	{
-		if (ft_strncmp(gen_data->secret_env[x], "OLDPWD=", 7) == 0)
+		if (ft_strncmp(gen_data->s_env[x], "OLDPWD=", 7) == 0)
 		{
-			free(gen_data->secret_env[x]);
-			gen_data->secret_env[x] = ft_strjoin("OLDPWD=", tmp);
+			free(gen_data->s_env[x]);
+			gen_data->s_env[x] = ft_strjoin("OLDPWD=", tmp);
 		}
 	}
-	if (x == ft_nb_arguments(gen_data->secret_env))
+	if (x == ft_nb_arguments(gen_data->s_env))
 	{
-		x = ft_nb_arguments(gen_data->secret_env);
-		gen_data->secret_env[x] = ft_strjoin("OLDPWD=", tmp);
+		x = ft_nb_arguments(gen_data->s_env);
+		gen_data->s_env[x] = ft_strjoin("OLDPWD=", tmp);
 		x++;
-		gen_data->secret_env[x] = 0;
+		gen_data->s_env[x] = 0;
 		y = 1;
 	}
 	if (y == 0)
@@ -68,10 +68,10 @@ static void	ft_change_oldpwd(char **env, char *tmp, t_general_data *gen_data)
 		gen_data->env[x] = ft_strjoin("OLDPWD=", tmp);
 		x++;
 		gen_data->env[x] = 0;
-		x = ft_nb_arguments(gen_data->secret_env);
-		gen_data->secret_env[x] = ft_strjoin("OLDPWD=", tmp);
+		x = ft_nb_arguments(gen_data->s_env);
+		gen_data->s_env[x] = ft_strjoin("OLDPWD=", tmp);
 		x++;
-		gen_data->secret_env[x] = 0;
+		gen_data->s_env[x] = 0;
 	}
 	ft_change_pwd(env, buf);
 	free(buf);
@@ -122,21 +122,21 @@ void	ft_reset_pwd(t_general_data *gen_data)
 	}
 	y = 0;
 	buf = getcwd(NULL, 0);
-	while (gen_data->secret_env[y])
+	while (gen_data->s_env[y])
 	{
-		if (ft_strncmp(gen_data->secret_env[y], "PWD=", 4) == 0)
+		if (ft_strncmp(gen_data->s_env[y], "PWD=", 4) == 0)
 		{
-			free(gen_data->secret_env[y]);
-			gen_data->secret_env[y] = ft_strjoin("PWD=", buf);
+			free(gen_data->s_env[y]);
+			gen_data->s_env[y] = ft_strjoin("PWD=", buf);
 			free(buf);
 			break ;
 		}
 		y++;
 	}
-	gen_data->secret_env[y] = ft_strjoin("PWD=", buf);
+	gen_data->s_env[y] = ft_strjoin("PWD=", buf);
 	free(buf);
 	y++;
-	gen_data->secret_env[y] = 0;
+	gen_data->s_env[y] = 0;
 }
 
 void	ft_cd(t_general_data *gen_data, int p)

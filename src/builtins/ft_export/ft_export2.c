@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:57 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 16:39:43 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 10:03:07 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ void	ft_replace_v2(char *variable, char *value, t_general_data *gen_data)
 			gen_data->env[x] = copy;
 			if (ft_strncmp(copy, "PWD", 3) == 0)
 			{
-				free(gen_data->secret_env[x]);
-				gen_data->secret_env[x] = copy;
+				free(gen_data->s_env[x]);
+				gen_data->s_env[x] = copy;
 			}
 			break ;
 		}
