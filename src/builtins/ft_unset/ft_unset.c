@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 10:03:07 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:59:01 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,6 @@ int	ft_equal(char *s)
 	return (0);
 }
 
-static void	ft_eliminate2(char **env, int position)
-{
-	int	x;
-
-	printf("hola");
-	x = position;
-	while (env[x + 1])
-	{
-		env[x] = env[x + 1];
-		x++;
-	}
-	env[x] = NULL;
-}
-
 static void	ft_find_env(t_general_data *gen_data, int p, int x)
 {
 	int		tmp;
@@ -69,7 +55,7 @@ static void	ft_find_env(t_general_data *gen_data, int p, int x)
 			ft_eliminate(gen_data->env, y);
 			if (ft_strncmp(gen_data->blt[p].args[x], "PWD=", 4) == 0
 				|| ft_strncmp(gen_data->blt[p].args[x], "OLDPWD=", 7) == 0)
-				ft_eliminate2(gen_data->s_env, y);
+				ft_eliminate(gen_data->s_env, y);
 			break ;
 		}
 	}

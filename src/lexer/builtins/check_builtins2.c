@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:42:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 10:12:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:45:19 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,6 @@ int	args_with_reds(char *copy)
 			break ;
 		i++;
 	}
-	return (i);
-}
-
-int	n_spaces(char *copy)
-{
-	int	i;
-
-	i = 0;
-	while (copy[i] == ' ')
-		i++;
 	return (i);
 }
 

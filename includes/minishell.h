@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 10:03:07 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:46:21 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void	check_builtins(char *s, t_general_data *gen_data, int y);
 int		args_with_reds(char *copy);
 void	check_builtins2(char *s, t_general_data *gen_data, int y);
 void	ft_reset_cmd(t_general_data *gen_data, int y);
+int		n_spaces(char *copy);
 
 /*ft_strjoin*/
 char	*copy(char *s1, char *s2, char *x);

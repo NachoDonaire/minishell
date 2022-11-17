@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 16:38:12 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:52:12 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 	int		piddy_gonzalez;
 	int		x;
 
-	i = 0;
+	i = -1;
 	pipe(pipedo);
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
-		while (gen_data->cmd[position].in[i])
+		while (gen_data->cmd[position].in[++i])
 		{
 			if (gen_data->cmd[position].in_dred[i] == 0)
 				dup2(gen_data->cmd[position].fd_in[i], 0);
@@ -95,12 +95,11 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 					dup2(pipedo[0], 0);
 				}
 			}
-			i++;
 		}
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
 	{
-		while (gen_data->blt[n_built].in[i])
+		while (gen_data->blt[n_built].in[++i])
 		{
 			if (gen_data->blt[n_built].in_dred[i] == 0)
 				dup2(gen_data->blt[n_built].fd_in[i], 0);
@@ -135,7 +134,6 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 					dup2(pipedo[0], 0);
 				}
 			}
-			i++;
 		}	
 	}
 }

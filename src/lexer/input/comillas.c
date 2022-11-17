@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:04 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 09:04:07 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:43:57 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,67 +62,4 @@ void	ft_reset_table_6(int *t)
 	t[4] = 0;
 	t[5] = 1;
 	t[6] = 0;
-}
-
-void	dr_comillas_aviso(char *s, char **wallace, int *t)
-{
-	wallace[t[6]] = malloc(sizeof(char) * (t[3] + 1));
-	t[3] = t[3] - t[2] - t[0];
-	while (s[t[3]] == ' ' || s[t[3]] == '>')
-		t[3]++;
-	while (t[5] < t[2] || s[t[3]] == ' ' || s[t[3]] == '>')
-	{
-		if ((s[t[3]] == ' ' && t[3] != 0) || s[t[3]] == '>' )
-		{
-			while (s[t[3]] == ' ' || s[t[3]] == '>')
-				t[3]++;
-			if ((s[t[3]] == '"' || s[t[3]] == '\0' || s[t[3]] == 39)
-				&& (s[t[3] + 1] != '"' && s[t[3] + 1] != 39))
-				break ;
-			else if ((s[t[3]] == '"' && s[t[3] + 1] == '"')
-				|| (s[t[3]] == 39 && s[t[3] + 1] == 39))
-				t[3] += 2;
-			else
-			{
-				wallace[t[6]][t[1]] = '\0';
-				t[6]++;
-				wallace[t[6]] = malloc(sizeof(char ) * (t[2] - t[5] + 1));
-				t[1] = 0;
-			}
-		}
-		t[5]++;
-		wallace[t[6]][t[1]++] = s[t[3]++];
-	}
-	wallace[t[6]][t[1]] = '\0';
-	t[6]++;
-}
-
-void	dr_comillas_not_aviso(char *s, char **wallace, int *t)
-{
-	t[3]++;
-	while (s[t[3]])
-	{
-		if (s[t[3]] == '"' || s[t[3]] == 39)
-			break ;
-		t[3]++;
-		t[5]++;
-	}
-	wallace[t[6]] = malloc(sizeof(char ) * (t[5] + 1));
-	t[3] = t[3] - t[5];
-	while (s[t[3]])
-	{
-		if (((s[t[3]] == '"' && (s[t[3] + 1] != '"'))
-				|| ((s[t[3] + 1] != 39) && s[t[3]] == 39)))
-		{
-			t[3]++;
-			break ;
-		}
-		else if ((s[t[3]] == '"' && s[t[3] + 1] == '"')
-			|| (s[t[3]] == 39 && s[t[3] + 1] == 39))
-			t[3] += 2;
-		wallace[t[6]][t[1]++] = s[t[3]++];
-	}
-	wallace[t[6]][t[1]] = '\0';
-	t[6]++;
-	t[5] = 0;
 }

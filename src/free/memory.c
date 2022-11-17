@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 14:41:28 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:49:07 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_free_built_0(t_general_data *gen_data)
 	i = 0;
 	if (gen_data->n_built == 0)
 	{
-		//ft_reset_blt(gen_data);
 		if (gen_data->blt[i].blt)
 			free(gen_data->blt[i].blt);
 		if (gen_data->blt[i].args[0])
@@ -52,7 +51,6 @@ void	ft_free_built(t_general_data *gen_data)
 	int	i;
 
 	i = 0;
-	//ft_free_built_0(gen_data);
 	while (i < gen_data->n_built)
 	{
 		if (gen_data->blt[i].blt)
@@ -80,7 +78,6 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	int	i;
 
 	i = 0;
-//	printf("-----%d-----", y);
 	while (i < y)
 	{
 		if (gen_data->cmd[i].cmd)
@@ -108,38 +105,33 @@ void	close_fds(t_general_data *gen_data)
 	int	i;
 	int	y;
 
-	y = 0;
-	i = 0;
-	while (i < gen_data->n_built)
+	i = -1;
+	while (++i < gen_data->n_built)
 	{
+		y = 0;
 		while (gen_data->blt[i].fd_in[y] > 2)
 			close(gen_data->blt[i].fd_in[y++]);
-		y = 0;
-		i++;
 	}
-	i = 0;
-	while (i < gen_data->n_built)
+	i = -1;
+	while (++i < gen_data->n_built)
 	{
+		y = 0;
 		while (gen_data->blt[i].fd_out[y] > 2)
 			close(gen_data->blt[i].fd_out[y++]);
-		y = 0;
-		i++;
 	}
-	i = 0;
-	while (i < gen_data->n_cmd - gen_data->n_built)
+	i = -1;
+	while (++i < gen_data->n_cmd - gen_data->n_built)
 	{
+		y = 0;
 		while (gen_data->cmd[i].fd_in[y] > 2)
 			close(gen_data->cmd[i].fd_in[y++]);
-		y = 0;
-		i++;
 	}
-	i = 0;
-	while (i < gen_data->n_cmd -  gen_data->n_built)
+	i = -1;
+	while (++i < gen_data->n_cmd - gen_data->n_built)
 	{
+		y = 0;
 		while (gen_data->cmd[i].fd_out[y] > 2)
 			close(gen_data->cmd[i].fd_out[y++]);
-		y = 0;
-		i++;
 	}
 }
 

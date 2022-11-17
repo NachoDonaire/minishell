@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:38 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 14:41:35 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:50:38 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,11 @@ void	ft_path(char *command, char *envp[], char **fd_path)
 	int		i;
 
 	i = 0;
+	path = NULL;
 	paths = ft_split(ft_strchr(is_path(envp), '/'), ':');
 	*fd_path = NULL;
 	if (!paths)
-	{
-		path = NULL;
 		return ;
-	}
 	while (paths[i])
 	{
 		path = ft_strjoin(paths[i], "/");
