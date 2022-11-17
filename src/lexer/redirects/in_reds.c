@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:09 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 12:01:43 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:51:03 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_reset_table3(int *t)
 {
 	t[0] = 0;
 	t[1] = 0;
-	t[2] = 1;
+	t[2] = 0;
 	t[3] = 0;
 }
 
@@ -28,7 +28,7 @@ void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
 
 	ft_reset_table3(t);
 	x = gen_data->n_built;
-	while (tmp[t[2]])
+	while (tmp[++t[2]])
 	{
 		wallace = dr_comillas(tmp[t[2]]);
 		while (wallace[t[0]])
@@ -45,7 +45,6 @@ void	memory_for_in_red(t_general_data *gen_data, char **tmp, int y, int ref)
 		}
 		ft_free_arg(wallace);
 		t[0] = 0;
-		t[2]++;
 		t[1] = 0;
 	}
 }

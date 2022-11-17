@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 10:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 11:08:52 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:53:43 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	fd_reds_out_b(t_general_data *gen_data)
 
 void	fd_reds_in_b(t_general_data *gen_data)
 {
-	int		t[3];
-	int		z;
+	int		t[4];
 	char	*s;
 
 	t[0] = 0;
@@ -62,18 +61,17 @@ void	fd_reds_in_b(t_general_data *gen_data)
 	while (gen_data->blt[gen_data->n_built].in[t[2]])
 	{
 		s = gen_data->blt[gen_data->n_built].in[t[2]++];
-		if (gen_data->blt[gen_data->n_built].in_dred[t[0]] == 0)
+		if (gen_data->blt[gen_data->n_built].in_dred[t[0]++] == 0)
 		{
-			z = open(s, O_RDWR);
-			gen_data->blt[gen_data->n_built].fd_in[t[0]] = z;
+			t[3] = open(s, O_RDWR);
+			gen_data->blt[gen_data->n_built].fd_in[t[0]] = t[3];
 			if (gen_data->blt[gen_data->n_built].fd_in[t[0]] < 0)
 			{
 				gen_data->blt[gen_data->n_built].can_exec = 0;
 				perror("file not found");
 			}
-			t[0]++;
 		}
-		if (gen_data->blt[gen_data->n_built].in_dred[z] < 0)
+		if (gen_data->blt[gen_data->n_built].in_dred[t[3]] < 0)
 			break ;
 	}
 	gen_data->blt[gen_data->n_built].fd_in[t[0]] = -2;

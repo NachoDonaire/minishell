@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 10:10:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:57:28 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_reset_table_3(int *table)
 {
 	table[0] = 0;
-	table[1] = 0;
+	table[1] = -1;
 	table[2] = 0;
 	table[3] = 0;
 }
@@ -42,30 +42,25 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 	int		i;
 	int		x;
 
-	i = 0;
+	i = -1;
 	ft_reset_table_3(table);
 	if (ft_strlen(s) == 1 && s[0] == '|')
 		tmp = ft_split(s, ' ');
 	else
 		tmp = ft_split(s, '|');
-	if (!env)
-		i = 0;
-	while (tmp[table[1]])
-	{
+	(void)env;
+	while (tmp[++table[1]])
 		ft_handle_cmd_pipes2(gen_data, table, tmp);
-		table[1]++;
-	}
 	gen_data->sort[table[0]] = '\0';
 	gen_data->n_cmd = table[2];
 	x = gen_data->n_cmd + gen_data->n_built;
 	gen_data->pipe = malloc(sizeof(int *) * (x + 1));
-	while (i < gen_data->n_cmd + gen_data->n_built)
+	while (++i < x)
 	{
 		gen_data->pipe[i] = malloc(sizeof(int) * 3);
 		gen_data->pipe[i][2] = 0;
-		i++;
 	}
-	gen_data->pipe[gen_data->n_cmd + gen_data->n_built] = NULL;
+	gen_data->pipe[x] = NULL;
 	ft_free_arg(tmp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 16:40:01 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 09:25:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,5 +287,17 @@ char	*double_red(t_general_data *gen_data, int position, int n_built);
 
 char	*ft_expand(t_general_data *gen_data);
 int		ft_quote(char *s);
+
+/*syntax_error.c*/
+int		ft_space(char *joined, int i);
+int		ft_free_joined(char *joined);
+int		check_single(char *s, int a, int n_pipes);
+int		check_double(char *s, int a, int n_pipes);
+int		check_reds(char *s);
+int		double_quotes(char *s);
+int		single_quotes(char *s);
+int		check_millas(char *s);
+int		check_pipes(char *s);
+int		pipes_count(char *s);
 
 #endif
