@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:27:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 11:28:06 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:30:04 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	single_quotes(char *s)
 		i++;
 	return (i);
 }
-
 
 int	check_millas(char *s)
 {

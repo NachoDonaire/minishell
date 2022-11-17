@@ -6,12 +6,11 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 14:30:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 11:29:20 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:30:13 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
-
 
 int	mini_check_dots(char *tommy, int a, int n_pipes)
 {
