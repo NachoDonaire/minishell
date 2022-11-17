@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 14:30:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/16 16:42:07 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/17 09:57:04 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	single_quotes(char *s)
 	return (i);
 }
 
+
 int	check_millas(char *s)
 {
 	int	i;
@@ -45,25 +46,27 @@ int	check_millas(char *s)
 	{
 		if (s[i] == '"')
 		{
-			cd++;
-			i++;
-			i += double_quotes(&s[i]);
-			while (s[i] == '"' && s[i])
+			cd += 2;
+			//cd++;
+			//i++;
+			i += double_quotes(&s[i + 1]);
+			/*while (s[i] == '"' && s[i]) 
 			{
 				i++;
 				cd++;
-			}
+			}*/
 		}
 		else if (s[i] == 39)
 		{
-			cs++;
-			i++;
-			i += single_quotes(&s[i]);
-			while (s[i] == 39 && s[i])
+			cs += 2;
+			//cs++;
+			//i++;
+			i += single_quotes(&s[i + 1]);
+			/*while (s[i] == 39 && s[i])
 			{
 				i++;
 				cs++;
-			}
+			}*/
 		}
 		i++;
 	}
