@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/19 12:34:15 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:12:57 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ typedef struct s_general
 void	rl_replace_line(const char *text, int clear_undo);
 
 /*en teophilus, lexer/expand*/
-int     comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w);
-int     comillas_simples(char *s, char *of, t_general_data *gen_data, int ref, int w);
-int     dollar(char *s, char *of, t_general_data *gen_data, int ref, int w);
+int		comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w);
+int		comillas_simples(char *s, char *of, t_general_data *gen_data, int ref, int w);
+int		dollar(char *s, char *of, t_general_data *gen_data, int ref, int w);
 char	*teophilus(t_general_data *gen_data);
 
 /*en utils.c*/
