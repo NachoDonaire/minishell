@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 10:03:07 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:06:09 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	*variable(t_general_data *gen_data, char *c)
 			while (gen_data->s_env[x][y]
 				&& gen_data->s_env[x][y] != '=')
 				y++;
-			jutels = ft_substr(&gen_data->s_env[x][y + 1], 0, ft_strlen(&gen_data->s_env[x][y + 1]));
+			i = ft_strlen(&gen_data->s_env[x][y + 1]);
+			jutels = ft_substr(&gen_data->s_env[x][y + 1], 0, i);
 			return (jutels);
 		}
 		else if (ft_strncmp(c, "OLDPWD=", 7) == 0 && gen_data->path == 1)
@@ -57,7 +58,8 @@ char	*variable(t_general_data *gen_data, char *c)
 			while (gen_data->s_env[x][y]
 				&& gen_data->s_env[x][y] != '=')
 				y++;
-			jutels = ft_substr(&gen_data->s_env[x][y + 1], 0, ft_strlen(&gen_data->s_env[x][y + 1]));
+			i = ft_strlen(&gen_data->s_env[x][y + 1]);
+			jutels = ft_substr(&gen_data->s_env[x][y + 1], 0, i);
 			return (jutels);
 		}
 		else if (ft_strncmp(c, "PATH=", 5) == 0 && gen_data->path == 1)
@@ -73,7 +75,8 @@ char	*variable(t_general_data *gen_data, char *c)
 			while (gen_data->s_env[x][y]
 				&& gen_data->s_env[x][y] != '=')
 				y++;
-			jutels = ft_substr(&gen_data->s_env[x][y + 1], 0, ft_strlen(&gen_data->s_env[x][y + 1]));
+			i = ft_strlen(&gen_data->s_env[x][y + 1]);
+			jutels = ft_substr(&gen_data->s_env[x][y + 1], 0, i);
 			return (jutels);
 		}
 		return ("");
@@ -207,7 +210,7 @@ int	dollar(char *s, char *of, t_general_data *gen_data, int ref, int w)
 	c = copy_var(&s[i + 1]);
 	if (!c[0])
 	{
-		while (s[i] == '$' &&  s[i])
+		while (s[i] == '$' && s[i])
 			of[w++] = s[i++];
 		return (w);
 	}
@@ -247,16 +250,18 @@ int	tiberio(t_general_data *gen_data, char *of, int i, int w)
 			if (gen_data->s[i + 1] != '"' && gen_data->s[i + 1] != 39)
 			{
 				w = dollar(&gen_data->s[i], of, gen_data, 0, w);
-					while (gen_data->s[i] != ' ' && gen_data->s[i] != 39 && gen_data->s[i] != '"' && gen_data->s[i]	&& gen_data->s[i] != '/' && gen_data->s[i] != '=')
+				while (gen_data->s[i] != ' ' && gen_data->s[i] != 39
+					&& gen_data->s[i] != '"' && gen_data->s[i]
+					&& gen_data->s[i] != '/' && gen_data->s[i] != '=')
+				{
+					if (gen_data->s[i] == '$')
 					{
-						if (gen_data->s[i] == '$')
-						{
-							i++;
-							if (gen_data->s[i] >= '0' && gen_data->s[i] <= '9')
-								return (tiberio(gen_data, of, i + 1, w));
-						}
 						i++;
+						if (gen_data->s[i] >= '0' && gen_data->s[i] <= '9')
+							return (tiberio(gen_data, of, i + 1, w));
 					}
+					i++;
+				}
 				return (tiberio(gen_data, of, i, w));
 			}
 			else
