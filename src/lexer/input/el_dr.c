@@ -6,17 +6,18 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 09:00:01 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 12:01:56 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:00:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-char	**fill_wallace(char **wallace, char *s)
+char	**fill_wallace(char *s)
 {
-	int	i;
-	int	y;
-	int	z;
+	int		i;
+	int		y;
+	int		z;
+	char	**wallace;
 
 	z = 0;
 	i = 0;
@@ -26,9 +27,7 @@ char	**fill_wallace(char **wallace, char *s)
 		if (s[i] == ' ' )
 			y++;
 		if (s[i] == '"' || s[i] == 39)
-		{
 			z++;
-		}
 		i++;
 	}
 	wallace = malloc(sizeof(char *) * (y + 2 + (z / 2)));
@@ -136,22 +135,16 @@ char	**dr_comillas(char *s)
 
 	w = 0;
 	i = 0;
-	wallace = 0;
-	wallace = fill_wallace(wallace, s);
+	wallace = fill_wallace(s);
 	while (s[i] && s[i] != '<' && s[i] != '>')
 	{
 		while (s[i] == ' ' && s[i])
 			i++;
 		if (s[i] == '"' || s[i] == 39)
-		{
 			i = gest_comillas(s, wallace, i, w, 0);
-			w++;
-		}
 		else
-		{
 			i = dr_no_comillas(s, wallace, i, w, 0);
-			w++;
-		}
+		w++;
 		while (s[i] == ' ' && s[i])
 			i++;
 		if (s[i] == '\0')

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 10:04:20 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/19 12:42:10 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,11 @@ char	*free_for_checkin_cmd(char **sol, char *k, int y, char *cmd)
 	return (k);
 }
 
-char	*check_cmd(char *cmd, t_general_data *gen_data)
+void	check_cmd_no_path(t_general_data *gen_data, char *path)
 {
-	char		*path;
-	char		*k;
-	char		**sol;
-	size_t		i;
-	int			x;
+	int	i;
+	int	x;
 
-	x = 0;
-	path = NULL;
-	while (gen_data->env[x])
-	{
-		if (ft_strncmp(gen_data->env[x], "PATH=", 5) == 0)
-			path = ft_substr(gen_data->env[x], 0, ft_strlen(gen_data->env[x]));
-		x++;
-	}
 	if (!path)
 	{
 		x = 0;
@@ -73,14 +62,14 @@ char	*check_cmd(char *cmd, t_general_data *gen_data)
 			x++;
 		}
 	}
+}
+
+char	*check_cmd2(char *cmd, char **sol, char *path)
+{
+	int		i;
+	char	*k;
+
 	i = 0;
-	if (path)
-		sol = ft_split(&path[5], ':');
-	else
-	{
-		k = ft_substr(cmd, 0, ft_strlen(cmd));
-		return (k);
-	}
 	k = pseudo_join(sol[i], cmd);
 	while (sol[i] && access(k, F_OK) < 0)
 	{
@@ -91,4 +80,30 @@ char	*check_cmd(char *cmd, t_general_data *gen_data)
 	}
 	free(path);
 	return (free_for_checkin_cmd(sol, k, i, cmd));
+}
+
+char	*check_cmd(char *cmd, t_general_data *gen_data)
+{
+	char		*path;
+	char		*k;
+	char		**sol;
+	int			x;
+
+	x = 0;
+	path = NULL;
+	while (gen_data->env[x])
+	{
+		if (ft_strncmp(gen_data->env[x], "PATH=", 5) == 0)
+			path = ft_substr(gen_data->env[x], 0, ft_strlen(gen_data->env[x]));
+		x++;
+	}
+	check_cmd_no_path(gen_data, path);
+	if (path)
+		sol = ft_split(&path[5], ':');
+	else
+	{
+		k = ft_substr(cmd, 0, ft_strlen(cmd));
+		return (k);
+	}
+	return (check_cmd2(cmd, sol, path));
 }	

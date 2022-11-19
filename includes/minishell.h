@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 21:24:49 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/19 12:34:15 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,12 @@ int		ft_exec(t_general_data *gen_data, int position, int n_built);
 void	ft_path(char *command, char *envp[], char **fd_path);
 void	dup_reds(t_general_data *gen_data, int position, int n_built);
 void	dup_in_reds(t_general_data *gen_data, int position, int n_built);
+void	ft_dup_in_reds_exit(char *s, int *pipedo);
+void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo);
+void	ft_dup_in_reds_blt(t_general_data *gen_data, int n_built, int *pipedo);
+void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position, int *pipedo);
+void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i);
+void	ft_dup_in_reds_cmd2(t_general_data *gen_data, int p, int *pipedo, int i);
 
 /*funciones libft*/
 size_t	ft_strlen(const char *s);
