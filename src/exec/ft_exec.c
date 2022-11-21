@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/19 12:33:22 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:05:43 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	dup_reds(t_general_data *gen_data, int position, int n_built)
 	}
 }
 
-void	ft_dup_in_reds_cmd2(t_general_data *gen_data, int p, int *pipedo, int i)
+void	ft_dup_in_reds_cm2(t_general_data *gen_data, int p, int *pipedo, int i)
 {
 	int		piddy_gonzalez;
 	char	*s;

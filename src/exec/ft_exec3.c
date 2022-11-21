@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:40:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/19 12:33:25 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:05:48 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position, int *pipedo)
 		if (gen_data->cmd[position].in_dred[i] == 0)
 			dup2(gen_data->cmd[position].fd_in[i], 0);
 		else if (gen_data->cmd[position].in_dred[i] == 1)
-			ft_dup_in_reds_cmd2(gen_data, position, pipedo, i);
+			ft_dup_in_reds_cm2(gen_data, position, pipedo, i);
 	}
 }
 
