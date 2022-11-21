@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 10:24:19 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:29:15 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,22 +278,29 @@ int	not_dollar(char *s, int w, int i, char *of)
 	return (w);
 }
 
+int	dollar_ref_0_w(char *c, char *of, int w)
+{
+	int	y;
+
+	y = 0;
+	while (c[y])
+		of[w++] = c[y++];
+	return (w);
+}
+
 int	dollar(char *s, char *of, t_general_data *gen_data, int ref, int w)
 {
 	int		i;
-	int		y;
 	char	*c;
 
 	i = 0;
-	y = 0;
 	c = copy_var(&s[i + 1]);
 	if (!c[0])
 		return (not_dollar(s, w, i, of));
 	if (ref == 0)
 	{
 		c = variable(gen_data, c);
-		while (c[y])
-			of[w++] = c[y++];
+		w = dollar_ref_0_w(c, of, w);
 		i++;
 		if (s[i] >= '0' && s[i] <= '9')
 			return (w);
