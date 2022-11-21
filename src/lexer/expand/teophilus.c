@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 10:15:07 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:24:19 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,21 @@ char	*copy_var(char *s)
 	return (jefferson);
 }
 
+int comillas_dobles_i(char *s, int i)
+{
+	while (s[i] != ' ' && s[i] != '"'
+		&& s[i] != 39 && s[i] != '/' && s[i] != '=')
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			i++;
+			break ;
+		}
+		i++;
+	}
+	return (i);
+}
+
 int	comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w)
 {
 	int	i;
@@ -191,16 +206,7 @@ int	comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w)
 		else if (s[i] == '$')
 		{
 			w = dollar(&s[i], of, gen_data, ref, w);
-			while (s[i] != ' ' && s[i] != '"'
-				&& s[i] != 39 && s[i] != '/' && s[i] != '=')
-			{
-				if (s[i] >= '0' && s[i] <= '9')
-				{
-					i++;
-					break ;
-				}
-				i++;
-			}
+			i = comillas_dobles_i(s, i);
 			if (s[i] == '"')
 			{
 				of[w++] = s[i];
@@ -215,7 +221,22 @@ int	comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w)
 	return (w);
 }
 
-int	comillas_simples(char *s, char *of, t_general_data *gen_data, int ref, int w)
+int	comillas_simples_i(char *s, int i)
+{
+	while (s[i] != ' ' && s[i] != '"'
+		&& s[i] != 39 && s[i] != '/' && s[i] != '=')
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			i++;
+			break ;
+		}
+		i++;
+	}
+	return (i);
+}
+
+int	comillas_simples(char *s, char *of, t_general_data *gen_data, int f, int w)
 {
 	int	i;
 
@@ -223,20 +244,11 @@ int	comillas_simples(char *s, char *of, t_general_data *gen_data, int ref, int w
 	while (s[i] && s[i] != 39)
 	{
 		if (s[i] == '"')
-			w = comillas_dobles(&s[i], of, gen_data, ref, w);
+			w = comillas_dobles(&s[i], of, gen_data, f, w);
 		else if (s[i] == '$')
 		{
-			w = dollar(&s[i], of, gen_data, ref, w);
-			while (s[i] != ' ' && s[i] != '"'
-				&& s[i] != 39 && s[i] != '/' && s[i] != '=')
-			{
-				if (s[i] >= '0' && s[i] <= '9')
-				{
-					i++;
-					break ;
-				}
-				i++;
-			}
+			w = dollar(&s[i], of, gen_data, f, w);
+			i = comillas_simples_i(s, i);
 			if (s[i] == 39)
 			{
 				of[w++] = s[i++];
@@ -245,9 +257,24 @@ int	comillas_simples(char *s, char *of, t_general_data *gen_data, int ref, int w
 		}
 		of[w++] = s[i++];
 	}
-	if (i == 0 && ref == 0)
+	if (i == 0 && f == 0)
 		return (w);
 	of[w++] = s[i++];
+	return (w);
+}
+
+int	dollar_ref_0_i(char *s, int i)
+{
+	while (s[i] != ' ' && s[i] != 39 && s[i] != '"'
+		&& s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
+		i++;
+	return (i);
+}
+
+int	not_dollar(char *s, int w, int i, char *of)
+{
+	while (s[i] == '$' && s[i])
+		of[w++] = s[i++];
 	return (w);
 }
 
@@ -261,11 +288,7 @@ int	dollar(char *s, char *of, t_general_data *gen_data, int ref, int w)
 	y = 0;
 	c = copy_var(&s[i + 1]);
 	if (!c[0])
-	{
-		while (s[i] == '$' && s[i])
-			of[w++] = s[i++];
-		return (w);
-	}
+		return (not_dollar(s, w, i, of));
 	if (ref == 0)
 	{
 		c = variable(gen_data, c);
@@ -274,9 +297,7 @@ int	dollar(char *s, char *of, t_general_data *gen_data, int ref, int w)
 		i++;
 		if (s[i] >= '0' && s[i] <= '9')
 			return (w);
-		while (s[i] != ' ' && s[i] != 39 && s[i] != '"'
-			&& s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
-			i++;
+		i = dollar_ref_0_i(s, i);
 		if (s[i] == '$')
 			return (dollar(&s[i], of, gen_data, ref, w));
 	}
