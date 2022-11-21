@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 09:00:01 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/19 13:00:06 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/21 09:44:29 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,16 @@ int	memory_for_wallace(char *s, char **wallace, int i, int w, int y)
 {
 	if (s[i] == 39)
 	{
-		i++;
-		while (s[i] != 39 && s[i])
-		{
+		while (s[++i] != 39 && s[i])
 			y++;
-			i++;
-		}
-		i++;
-		if (s[i] != ' ')
+		if (s[++i] != ' ')
 			return (memory_for_wallace(s, wallace, i, w, y));
 	}
 	else if (s[i] == '"')
 	{
-		i++;
-		while (s[i] != '"' && s[i])
-		{
+		while (s[++i] != '"' && s[i])
 			y++;
-			i++;
-		}
-		i++;
-		if (s[i] != ' ')
+		if (s[++i] != ' ')
 			return (memory_for_wallace(s, wallace, i, w, y));
 	}
 	else
@@ -73,28 +63,30 @@ int	memory_for_wallace(char *s, char **wallace, int i, int w, int y)
 	return (i);
 }
 
+void	gest_comillas_not_s(char *s, char **wallace, int i, int w, int y)
+{
+	if (!s[i])
+		wallace[w][y] = '\0';
+}
+
 int	gest_comillas(char *s, char **wallace, int i, int w, int y)
 {
 	if (y == 0)
 		memory_for_wallace(s, wallace, i, w, y);
 	if (s[i] == 39)
 	{
-		i++;
-		while (s[i] != 39 && s[i])
-			wallace[w][y++] = s[i++];
+		while (s[++i] != 39 && s[i])
+			wallace[w][y++] = s[i];
 		wallace[w][y] = '\0';
-		i++;
-		if (s[i] != ' ' && s[i])
+		if (s[++i] != ' ' && s[i])
 			return (gest_comillas(s, wallace, i, w, y));
 	}
 	if (s[i] == '"')
 	{
-		i++;
-		while (s[i] != '"' && s[i])
-			wallace[w][y++] = s[i++];
+		while (s[++i] != '"' && s[i])
+			wallace[w][y++] = s[i];
 		wallace[w][y] = '\0';
-		i++;
-		if (s[i] != ' ' && s[i])
+		if (s[++i] != ' ' && s[i])
 			return (gest_comillas(s, wallace, i, w, y));
 	}
 	else if (s[i] != ' ' && s[i])
@@ -105,8 +97,7 @@ int	gest_comillas(char *s, char **wallace, int i, int w, int y)
 				return (gest_comillas(s, wallace, i, w, y));
 			wallace[w][y++] = s[i++];
 		}
-		if (!s[i])
-			wallace[w][y] = '\0';
+		gest_comillas_not_s(s, wallace, i, w, y);
 	}
 	return (i);
 }
