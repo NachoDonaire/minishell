@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 10:53:38 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:03:09 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,16 @@ char	**dr_comillas(char *s);
 void	ft_reset_table_6(int *t);
 void	dr_comillas_aviso(char *s, char **wallace, int *t);
 void	dr_comillas_not_aviso(char *s, char **wallace, int *t);
+int		gest_comillas(char *s, char **wallace, int i, int w, int y);
+int		gest_comillas_34(char *s, char **wallace, int i, int w, int y);
+int		gest_comillas_39(char *s, char **wallace, int i, int w, int y);
+int		gest_comillas(char *s, char **wallace, int i, int w, int y);
+int		dr_no_comillas(char *s, char **wallace, int i, int w, int y);
+char	**dr_comillas(char *s);
+void	gest_comillas_not_y(char *s, char **wallace, int i, int w, int y);
+void	gest_comillas_not_s(char *s, char **wallace, int i, int w, int y);
+int		memory_for_wallace(char *s, char **wallace, int i, int w, int y);
+char	**fill_wallace(char *s);
 
 /*en ft_process_input.c*/
 void	process_string(char *s, t_general_data *gen_data, int y);
