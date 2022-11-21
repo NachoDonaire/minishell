@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 09:01:51 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:53:38 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,31 @@ typedef struct s_general
 void	rl_replace_line(const char *text, int clear_undo);
 
 /*en teophilus, lexer/expand*/
-int		comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w);
-int		comillas_simples(char *s, char *of, t_general_data *gen_data, int ref, int w);
-int		dollar(char *s, char *of, t_general_data *gen_data, int ref, int w);
 char	*teophilus(t_general_data *gen_data);
 int		tiberio(t_general_data *gen_data, char *of, int i, int w);
+int		tiberio_dollar(t_general_data *gen_data, char *of, int i, int w);
+int		tiberio_39(t_general_data *gen_data, char *of, int i, int w);
+int		tiberio_34(t_general_data *gen_data, char *of, int i, int w);
+char	*variable_pwd(t_general_data *gen_data);
+char	*variable_oldpwd(t_general_data *gen_data);
+char	*variable_path(t_general_data *gen_data);
+int		variable_size(t_general_data *gen_data, char *c);
+char	*not_variable(t_general_data *gen_data, char *c);
+int		char_size(t_general_data *gen_data, int i);
+char	*variable(t_general_data *gen_data, char *c);
+char	*copy_var(char *s);
+int		comillas_dobles_i(char *s, int i);
+int		comillas_dobles(char *s, char *o, t_general_data *data, int f, int w);
+int		comillas_simples_i(char *s, int i);
+int		comillas_simples(char *s, char *o, t_general_data *data, int f, int w);
+int		dollar_ref_0_i(char *s, int i);
+int		not_dollar(char *s, int w, int i, char *of);
+int		dollar_ref_0_w(char *c, char *of, int w);
+int		dollar_d(char *s, char *o, t_general_data *data, int f, int w, int i);
+int		dollar_2(char *s, char *o, t_general_data *data, int f, int w, int i);
+int		dollar(char *s, char *o, t_general_data *gen_data, int ref, int w);
+int		ft_tiberio_comillas_simples(t_general_data *gen_data, int i);
+int		ft_tiberio_comillas_dobles(t_general_data *gen_data, int i);
 
 /*en utils.c*/
 char	*find_path(char *const env[]);
