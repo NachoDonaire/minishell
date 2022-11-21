@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 09:30:20 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:10:56 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,33 @@ char	*copy_var(char *s)
 	return (jefferson);
 }
 
+int	comillas_dobles_34(char *s, char *of, int i, int w)
+{
+	of[w++] = s[i];
+	return (w);
+}
+
+int	comillas_dobles_w(char *s, char *of, int i, int w)
+{
+	of[w++] = s[i++];
+	return (w);
+}
+
+int	comillas_dobles_i(char *s, int i)
+{
+	while (s[i] != ' ' && s[i] != '"'
+		&& s[i] != 39 && s[i] != '/' && s[i] != '=')
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			i++;
+			break ;
+		}
+		i++;
+	}
+	return (i);
+}
+
 int	comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w)
 {
 	int	i;
@@ -191,28 +218,15 @@ int	comillas_dobles(char *s, char *of, t_general_data *gen_data, int ref, int w)
 		else if (s[i] == '$')
 		{
 			w = dollar(&s[i], of, gen_data, ref, w);
-			while (s[i] != ' ' && s[i] != '"'
-				&& s[i] != 39 && s[i] != '/' && s[i] != '=')
-			{
-				if (s[i] >= '0' && s[i] <= '9')
-				{
-					i++;
-					break ;
-				}
-				i++;
-			}
+			i = comillas_dobles_i(s, i);
 			if (s[i] == '"')
-			{
-				of[w++] = s[i];
-				return (w);
-			}
+				comillas_dobles_34(s, of, i, w);
 		}
 		of[w++] = s[i++];
 	}
 	if (i == 0 && ref == 1)
 		return (w);
-	of[w++] = s[i++];
-	return (w);
+	return (comillas_dobles_w(s, of, i, w));
 }
 
 int	comillas_simples(char *s, char *of, t_general_data *gen_data, int ref, int w)
