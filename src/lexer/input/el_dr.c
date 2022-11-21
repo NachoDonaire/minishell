@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 09:00:01 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 09:44:29 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/21 09:56:43 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,15 @@ void	gest_comillas_not_s(char *s, char **wallace, int i, int w, int y)
 		wallace[w][y] = '\0';
 }
 
-int	gest_comillas(char *s, char **wallace, int i, int w, int y)
+void	gest_comillas_not_y(char *s, char **wallace, int i, int w, int y)
 {
 	if (y == 0)
 		memory_for_wallace(s, wallace, i, w, y);
+}
+
+int	gest_comillas(char *s, char **wallace, int i, int w, int y)
+{
+	gest_comillas_not_y(s, wallace, i, w, y);
 	if (s[i] == 39)
 	{
 		while (s[++i] != 39 && s[i])
