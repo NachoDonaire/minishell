@@ -6,68 +6,68 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:01:25 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 11:04:20 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/22 10:16:24 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int	gest_comillas_34(char *s, char **wallace, int i, int w, int y)
+int	gest_comillas_34(char *s, t_dr dr_comillas, int y)
 {
-	wallace[w][y] = '\0';
-	if (s[++i] != ' ' && s[i])
-		return (gest_comillas(s, wallace, i, w, y));
-	return (i);
+	dr_comillas.wallace[dr_comillas.w][y] = '\0';
+	if (s[++dr_comillas.i] != ' ' && s[dr_comillas.i])
+		return (gest_comillas(s, dr_comillas, y));
+	return (dr_comillas.i);
 }
 
-int	gest_comillas_39(char *s, char **wallace, int i, int w, int y)
+int	gest_comillas_39(char *s, t_dr dr_comillas, int y)
 {
-	wallace[w][y] = '\0';
-	if (s[++i] != ' ' && s[i])
-		return (gest_comillas(s, wallace, i, w, y));
-	return (i);
+	dr_comillas.wallace[dr_comillas.w][y] = '\0';
+	if (s[++dr_comillas.i] != ' ' && s[dr_comillas.i])
+		return (gest_comillas(s, dr_comillas, y));
+	return (dr_comillas.i);
 }
 
-int	gest_comillas(char *s, char **wallace, int i, int w, int y)
+int	gest_comillas(char *s, t_dr dr_comillas, int y)
 {
-	gest_comillas_not_y(s, wallace, i, w, y);
-	if (s[i] == 39)
+	gest_comillas_not_y(s, dr_comillas, y);
+	if (s[dr_comillas.i] == 39)
 	{
-		while (s[++i] != 39 && s[i])
-			wallace[w][y++] = s[i];
-		return (gest_comillas_39(s, wallace, i, w, y));
+		while (s[++dr_comillas.i] != 39 && s[dr_comillas.i])
+			dr_comillas.wallace[dr_comillas.w][y++] = s[dr_comillas.i];
+		return (gest_comillas_39(s, dr_comillas, y));
 	}
-	else if (s[i] == '"')
+	else if (s[dr_comillas.i] == '"')
 	{
-		while (s[++i] != '"' && s[i])
-			wallace[w][y++] = s[i];
-		return (gest_comillas_34(s, wallace, i, w, y));
+		while (s[++dr_comillas.i] != '"' && s[dr_comillas.i])
+			dr_comillas.wallace[dr_comillas.w][y++] = s[dr_comillas.i];
+		return (gest_comillas_34(s, dr_comillas, y));
 	}
-	else if (s[i] != ' ' && s[i])
+	else if (s[dr_comillas.i] != ' ' && s[dr_comillas.i])
 	{
-		while (s[i] != ' ' && s[i])
+		while (s[dr_comillas.i] != ' ' && s[dr_comillas.i])
 		{
-			if (s[i] == '"' || s[i] == 39)
-				return (gest_comillas(s, wallace, i, w, y));
-			wallace[w][y++] = s[i++];
+			if (s[dr_comillas.i] == '"' || s[dr_comillas.i] == 39)
+				return (gest_comillas(s, dr_comillas, y));
+			dr_comillas.wallace[dr_comillas.w][y++] = s[dr_comillas.i++];
 		}
-		gest_comillas_not_s(s, wallace, i, w, y);
+		gest_comillas_not_s(s, dr_comillas, y);
 	}
-	return (i);
+	return (dr_comillas.i);
 }
 
-int	dr_no_comillas(char *s, char **wallace, int i, int w, int y)
+int	dr_no_comillas(char *s, t_dr dr_comillas, int y)
 {
-	memory_for_wallace(s, wallace, i, w, y);
-	while (s[i] != ' ' && s[i] != '<'
-		&& s[i] != '>' && s[i])
+	memory_for_wallace(s, dr_comillas, y);
+	while (s[dr_comillas.i] != ' ' && s[dr_comillas.i] != '<'
+		&& s[dr_comillas.i] != '>' && s[dr_comillas.i])
 	{
-		if (s[i] == '"')
-			return (gest_comillas(s, wallace, i, w, y));
-		else if (s[i] == 39)
-			return (gest_comillas(s, wallace, i, w, y));
-		wallace[w][y++] = s[i++];
+		if (s[dr_comillas.i] == '"')
+			return (gest_comillas(s, dr_comillas, y));
+		else if (s[dr_comillas.i] == 39)
+			return (gest_comillas(s, dr_comillas, y));
+		dr_comillas.wallace[dr_comillas.w][y++] = s[dr_comillas.i++];
 	}
-	wallace[w][y] = '\0';
-	return (i);
+	dr_comillas.wallace[dr_comillas.w][y] = '\0';
+	return (dr_comillas.i);
 }

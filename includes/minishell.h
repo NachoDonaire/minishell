@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 11:05:37 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/22 10:16:05 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,13 @@ typedef struct s_general
 	char			*s;
 }	t_general_data;
 
+typedef struct s_dr
+{
+	char	**wallace;
+	int		i;
+	int		w;
+}	t_dr;
+
 void	rl_replace_line(const char *text, int clear_undo);
 
 /*en teophilus, lexer/expand*/
@@ -139,15 +146,14 @@ char	**dr_comillas(char *s);
 void	ft_reset_table_6(int *t);
 void	dr_comillas_aviso(char *s, char **wallace, int *t);
 void	dr_comillas_not_aviso(char *s, char **wallace, int *t);
-int		gest_comillas(char *s, char **wallace, int i, int w, int y);
-int		gest_comillas_34(char *s, char **wallace, int i, int w, int y);
-int		gest_comillas_39(char *s, char **wallace, int i, int w, int y);
-int		gest_comillas(char *s, char **wallace, int i, int w, int y);
-int		dr_no_comillas(char *s, char **wallace, int i, int w, int y);
+int		gest_comillas(char *s, t_dr dr_comillas, int y);
+int		gest_comillas_34(char *s, t_dr dr_comillas, int y);
+int		gest_comillas_39(char *s, t_dr dr_comillas, int y);
+int		dr_no_comillas(char *s, t_dr dr_comillas, int y);
 char	**dr_comillas(char *s);
-void	gest_comillas_not_y(char *s, char **wallace, int i, int w, int y);
-void	gest_comillas_not_s(char *s, char **wallace, int i, int w, int y);
-int		memory_for_wallace(char *s, char **wallace, int i, int w, int y);
+void	gest_comillas_not_y(char *s, t_dr dr_comillas, int y);
+void	gest_comillas_not_s(char *s, t_dr dr_comillas, int y);
+int		memory_for_wallace(char *s, t_dr dr_comillas, int y);
 char	**fill_wallace(char *s);
 
 /*en ft_process_input.c*/
