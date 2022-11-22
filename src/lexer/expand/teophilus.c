@@ -6,78 +6,80 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 10:48:18 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/22 11:21:32 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int	tiberio_39(t_general_data *gen_data, char *of, int i, int w)
+int	tiberio_39(t_general_data *gen_data, t_teo teophi)
 {
-	of[w++] = gen_data->s[i++];
-	w = comillas_simples(&gen_data->s[i], of, gen_data, 1, w);
-	i = ft_tiberio_comillas_simples(gen_data, i);
-	return (tiberio(gen_data, of, i, w));
+	teophi.of[teophi.w++] = gen_data->s[teophi.i++];
+	teophi.w = comillas_simples(&gen_data->s[teophi.i], gen_data, 1, teophi);
+	teophi.i = ft_tiberio_comillas_simples(gen_data, teophi.i);
+	return (tiberio(gen_data, teophi));
 }
 
-int	tiberio_34(t_general_data *gen_data, char *of, int i, int w)
+int	tiberio_34(t_general_data *gen_data, t_teo teophi)
 {
-	of[w++] = gen_data->s[i++];
-	w = comillas_dobles(&gen_data->s[i], of, gen_data, 0, w);
-	i = ft_tiberio_comillas_dobles(gen_data, i);
-	return (tiberio(gen_data, of, i, w));
+	teophi.of[teophi.w++] = gen_data->s[teophi.i++];
+	teophi.w = comillas_dobles(&gen_data->s[teophi.i], gen_data, 0, teophi);
+	teophi.i = ft_tiberio_comillas_dobles(gen_data, teophi.i);
+	return (tiberio(gen_data, teophi));
 }
 
-int	tiberio_dollar(t_general_data *gen_data, char *of, int i, int w)
+int	tiberio_dollar(t_general_data *gen_data, t_teo teophi)
 {
-	if (gen_data->s[i + 1] != '"' && gen_data->s[i + 1] != 39)
+	if (gen_data->s[teophi.i + 1] != '"' && gen_data->s[teophi.i + 1] != 39)
 	{
-		w = dollar(&gen_data->s[i], of, gen_data, 0, w);
-		while (gen_data->s[i] != ' ' && gen_data->s[i] != 39
-			&& gen_data->s[i] != '"' && gen_data->s[i]
-			&& gen_data->s[i] != '/' && gen_data->s[i] != '=')
+		teophi.w = dollar(&gen_data->s[teophi.i], gen_data, 0, teophi);
+		while (gen_data->s[teophi.i] != ' ' && gen_data->s[teophi.i] != 39
+			&& gen_data->s[teophi.i] != '"' && gen_data->s[teophi.i]
+			&& gen_data->s[teophi.i] != '/' && gen_data->s[teophi.i] != '=')
 		{
-			if (gen_data->s[i] == '$')
+			if (gen_data->s[teophi.i] == '$')
 			{
-				i++;
-				if (gen_data->s[i] >= '0' && gen_data->s[i] <= '9')
-					return (tiberio(gen_data, of, i + 1, w));
+				teophi.i++;
+				if (gen_data->s[teophi.i] >= '0'
+					&& gen_data->s[teophi.i] <= '9')
+				{
+					teophi.i++;
+					return (tiberio(gen_data, teophi));
+				}
 			}
-			i++;
+			teophi.i++;
 		}
-		return (tiberio(gen_data, of, i, w));
+		return (tiberio(gen_data, teophi));
 	}
 	else
-		return (tiberio(gen_data, of, i + 1, w));
+		return (tiberio_dollar2(gen_data, teophi));
 }
 
-int	tiberio(t_general_data *gen_data, char *of, int i, int w)
+int	tiberio(t_general_data *gen_data, t_teo teophi)
 {
-	if (gen_data->s[i])
+	if (gen_data->s[teophi.i])
 	{
-		if (gen_data->s[i] == '$')
-			return (tiberio_dollar(gen_data, of, i, w));
-		else if (gen_data->s[i] == 39)
-			return (tiberio_39(gen_data, of, i, w));
-		else if (gen_data->s[i] == '"')
-			return (tiberio_34(gen_data, of, i, w));
-		of[w++] = gen_data->s[i++];
-		return (tiberio(gen_data, of, i, w));
+		if (gen_data->s[teophi.i] == '$')
+			return (tiberio_dollar(gen_data, teophi));
+		else if (gen_data->s[teophi.i] == 39)
+			return (tiberio_39(gen_data, teophi));
+		else if (gen_data->s[teophi.i] == '"')
+			return (tiberio_34(gen_data, teophi));
+		teophi.of[teophi.w++] = gen_data->s[teophi.i++];
+		return (tiberio(gen_data, teophi));
 	}
-	return (w);
+	return (teophi.w);
 }
 
 char	*teophilus(t_general_data *gen_data)
 {
-	int		i;
-	char	*of;
-	int		w;
+	t_teo	teophi;
 
-	i = 0;
-	w = 0;
-	of = malloc(sizeof(char ) * (lens(gen_data->s) + 500));
-	w = tiberio(gen_data, of, i, w);
-	of[w] = '\0';
+	teophi.i = 0;
+	teophi.w = 0;
+	teophi.of = malloc(sizeof(char ) * (lens(gen_data->s) + 500));
+	teophi.w = tiberio(gen_data, teophi);
+	teophi.of[teophi.w] = '\0';
 	free(gen_data->s);
-	return (of);
+	return (teophi.of);
 }

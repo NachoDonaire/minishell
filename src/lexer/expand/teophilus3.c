@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:40:54 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/21 10:52:59 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/22 11:07:05 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	comillas_dobles_i(char *s, int i)
 	return (i);
 }
 
-int	comillas_dobles(char *s, char *o, t_general_data *data, int f, int w)
+int	comillas_dobles(char *s, t_general_data *data, int f, t_teo teophi)
 {
 	int	i;
 
@@ -103,21 +103,21 @@ int	comillas_dobles(char *s, char *o, t_general_data *data, int f, int w)
 	while (s[i] && s[i] != '"')
 	{
 		if (s[i] == 39)
-			w = comillas_simples(&s[i], o, data, f, w);
+			teophi.w = comillas_simples(&s[i], data, f, teophi);
 		else if (s[i] == '$')
 		{
-			w = dollar(&s[i], o, data, f, w);
+			teophi.w = dollar(&s[i], data, f, teophi);
 			i = comillas_dobles_i(s, i);
 			if (s[i] == '"')
 			{
-				o[w++] = s[i];
-				return (w);
+				teophi.of[teophi.w++] = s[i];
+				return (teophi.w);
 			}
 		}
-		o[w++] = s[i++];
+		teophi.of[teophi.w++] = s[i++];
 	}
 	if (i == 0 && f == 1)
-		return (w);
-	o[w++] = s[i++];
-	return (w);
+		return (teophi.w);
+	teophi.of[teophi.w++] = s[i++];
+	return (teophi.w);
 }
