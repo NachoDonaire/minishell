@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:42:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 11:45:19 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:41:29 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 		cp = the_arg(s);
 		ft_free_arg(gen_data->blt[gen_data->n_built].args);
 		gen_data->blt[gen_data->n_built].args = dr_comillas(cp);
+		free(cp);
 	}
 	gen_data->built = 1;
 	gen_data->blt[gen_data->n_built].can_exec = 1;
