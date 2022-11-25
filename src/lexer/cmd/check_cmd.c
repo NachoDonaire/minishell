@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/19 12:42:10 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:13:42 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*free_for_checkin_cmd(char **sol, char *k, int y, char *cmd)
 {
 	if (!sol[y])
 	{
-		k = malloc(sizeof(char) * (lens(cmd) + 1));
 		k = ft_substr(cmd, 0, lens(cmd));
 		ft_free_arg(sol);
 		return (k);
