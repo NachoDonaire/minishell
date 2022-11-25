@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/24 18:57:25 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:23:53 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ void	ft_not_built(char *s, t_general_data *gen_data, int y)
 	char	**com;
 
 	gen_data->cmd[y].can_exec = 1;
-	process_sing_red(gen_data, s, y, 0);
-	process_in_red(gen_data, s, y, 0);
+	if (gen_data->n_pipes == 0)
+	{
+		process_sing_red(gen_data, s, y, 0);
+		process_in_red(gen_data, s, y, 0);
+	}
 	com = dr_comillas(s);
 	if (finder(com[0], "./") == 1)
 	{
