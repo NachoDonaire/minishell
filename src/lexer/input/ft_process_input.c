@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/25 12:23:53 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:03:49 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ void	process_string(char *s, t_general_data *gen_data, int y)
 	}
 	gen_data->built = 0;
 	if (gen_data->n_pipes == 0)
-	{
 		check_builtins(s, gen_data, y);
-	}
 	if (gen_data->built == 0)
 		ft_not_built(s, gen_data, y);
 }

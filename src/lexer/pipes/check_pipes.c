@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:59 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 08:57:28 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:02:46 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_reset_table_3(int *table)
 void	ft_handle_cmd_pipes2(t_general_data *gen_data, int *t, char **tmp)
 {
 	gen_data->built = 0;
-	check_builtins(tmp[t[1]], gen_data, t[2]);
+	//check_builtins(tmp[t[1]], gen_data, t[2]);
 	if (gen_data->built != 1)
 	{
 		gen_data->sort[t[0]] = '1';
