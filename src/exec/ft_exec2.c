@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 20:40:32 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:40:00 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,11 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	}
 }
 
-void	ft_father(t_general_data *gen_data, int position, int n_built)
+void	ft_father(t_general_data *gen_data)
 {
 	int	i;
 
 	i = 0;
-	(void)position;
-	(void)n_built;
 	if (gen_data->n_pipes != 0)
 	{
 		if (gen_data->pipe_pos != gen_data->n_pipes)
@@ -124,7 +122,7 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 	}
 	else
 	{
-		ft_father(gen_data, position, n_built);
+		ft_father(gen_data);
 		i = gen_data->sort[gen_data->exec_pos - 1];
 		if (i == '1' && gen_data->sort[gen_data->exec_pos])
 			ft_exec(gen_data, position + 1, n_built);
