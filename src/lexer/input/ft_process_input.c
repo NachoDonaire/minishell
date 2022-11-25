@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/25 13:03:49 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:15:00 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,4 @@ void	process_input(char *s, t_general_data *gen_data, char *env[])
 		else if (gen_data->built == 0)
 			gen_data->sort[0] = '1';
 	}
-	/*if (gen_data->built == 1 && gen_data->n_pipes == 0)
-		ft_reset_cmd(gen_data, 0);*/
 }
