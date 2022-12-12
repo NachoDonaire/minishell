@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/22 11:23:09 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:56:45 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,9 @@ void	ft_reset_table_7(int *t, t_general_data *gen_data);
 
 void	ft_exec2(t_general_data *gen_data, int position, int n_built);
 void	ft_status_error(t_general_data *gen_data, int position, int n_built);
-
+int		ft_find_path(t_general_data *gen_data);
+void	ft_change_root(t_general_data *gen_data, char **s3, int position);
+void	ft_child_2(t_general_data *gen_data, char **s3, int position);
 /*exec builtins*/
 
 void	ft_check_comand(t_general_data *gen_data);

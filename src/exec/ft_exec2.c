@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/25 14:40:00 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:58:06 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 		s3[0] = gen_data->cmd[position].cmd;
 		if (gen_data->cmd[position].can_exec == 0)
 			exit (1);
-		execve(s3[0], gen_data->cmd[position].args, gen_data->env);
+		ft_child_2(gen_data, s3, position);
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
 	{
