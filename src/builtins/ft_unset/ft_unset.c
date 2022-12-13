@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:58:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 20:44:34 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/13 16:47:12 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ static void	ft_eliminate(char **env, int position)
 	x = position;
 	while (env[x + 1])
 	{
-		env[x] = env[x + 1];
+		free(env[x]);
+		env[x] = ft_substr(env[x + 1], 0, ft_strlen(env[x + 1]));
 		x++;
 	}
+	free(env[x]);
 	env[x] = NULL;
 }
 
