@@ -83,7 +83,7 @@ void	ft_check_comand(t_general_data *gen_data)
 	else
 	{
 		n_cmd = ft_exec(gen_data, n_cmd, n_blt);
-	//	ft_check_status(gen_data, n_cmd);
+//		ft_check_status(gen_data, n_cmd);
 	}
 	gen_data->exec_pos++;
 }

@@ -29,7 +29,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, int y)
 	if (check_tukle(s) == 1)
 	{
 		gen_data->cmd[y].can_exec = 0;
-		com = ft_split(s, ' ');
+		gen_data->cmd[y].syn_er = 23;
 		return ;
 	}
 	if (gen_data->n_pipes == 0)
@@ -63,7 +63,6 @@ void	process_string(char *s, t_general_data *gen_data, int y)
 		process_sing_red(gen_data, s, y, 0);
 		process_in_red(gen_data, s, y, 0);
 	}
-	
 	gen_data->built = 0;
 	if (gen_data->n_pipes == 0)
 		check_builtins(s, gen_data, y);

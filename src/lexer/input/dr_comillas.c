@@ -47,7 +47,7 @@ int	memory_for_wallace(char *s, char **wallace, int i, int w, int y)
 		}
 		i++;
 		if (s[i] == 39)
-			memory_for_wallace(s, wallace, i, w, y);
+			return (memory_for_wallace(s, wallace, i, w, y));
 	}
 	else if (s[i] == '"')
 	{
@@ -59,7 +59,7 @@ int	memory_for_wallace(char *s, char **wallace, int i, int w, int y)
 		}
 		i++;
 		if (s[i] == '"')
-			memory_for_wallace(s, wallace, i, w, y);
+			return (memory_for_wallace(s, wallace, i, w, y));
 	}
 	else
 	{

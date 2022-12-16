@@ -42,6 +42,7 @@ typedef struct s_builtin
 	char	**in;
 	int		*fd_out;
 	int		*fd_in;
+	int		syn_er;
 	int		*dred;
 	int		*in_dred;
 	int		nb_arguments;
@@ -52,6 +53,7 @@ typedef struct s_builtin
 typedef struct s_comand
 {
 	char	*cmd;
+	int	syn_er;
 	char	**args;
 	char	**out;
 	char	**in;
