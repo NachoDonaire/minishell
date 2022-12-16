@@ -41,7 +41,10 @@ void	fd_reds_out_b(t_general_data *gen_data)
 			t[3] = open(s, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		gen_data->blt[gen_data->n_built].fd_out[t[0]] = t[3];
 		if (gen_data->blt[gen_data->n_built].fd_out[t[0]] < 0)
-			write(2, "error\n", 7);
+		{
+			gen_data->blt[gen_data->n_built].can_exec = 0;
+			perror("file not found");
+		}
 		t[0]++;
 		t[1]++;
 	}
@@ -71,7 +74,7 @@ void	fd_reds_in_b(t_general_data *gen_data)
 				perror("file not found");
 			}
 		}
-		if (gen_data->blt[gen_data->n_built].in_dred[t[3]] < 0)
+		if (gen_data->blt[gen_data->n_built].in_dred[t[0]] < 0)
 			break ;
 	}
 	gen_data->blt[gen_data->n_built].fd_in[t[0]] = -2;
@@ -99,7 +102,10 @@ void	fd_reds_out(t_general_data *gen_data, int z)
 			a = open(s, O_RDWR | O_CREAT | O_TRUNC, 0644);
 		gen_data->cmd[z].fd_out[table[0]] = a;
 		if (gen_data->cmd[z].fd_out[table[0]] < 0)
-			write(2, "error\n", 7);
+		{
+			gen_data->cmd[z].can_exec = 0;
+			perror("file not found");
+		}
 		table[0]++;
 	}
 	gen_data->cmd[z].fd_out[table[0]] = -2;

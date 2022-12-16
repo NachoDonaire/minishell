@@ -56,7 +56,7 @@ void	ft_dup_in_reds_cm2(t_general_data *gen_data, int p, int *pipedo, int i)
 	{
 		close(pipedo[0]);
 		s = readline("> ");
-		x = lens(gen_data->cmd[p].in[i]);
+		x = lens(s);
 		if (ft_strncmp(s, gen_data->cmd[p].in[i], x) != 0)
 		{
 			ft_putstr_fd(s, pipedo[1]);
@@ -85,7 +85,7 @@ void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i)
 	{
 		close(p[0]);
 		s = readline("> ");
-		x = lens(gen_data->blt[n_b].in[i]);
+		x = lens(s);
 		if (ft_strncmp(s, gen_data->blt[n_b].in[i], x) != 0)
 		{
 			ft_putstr_fd(s, p[1]);

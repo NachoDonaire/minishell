@@ -57,15 +57,28 @@ void	ft_check_comand(t_general_data *gen_data)
 {
 	int	n_blt;
 	int	n_cmd;
+	int	piddy;
+	int	pipedo[2];
 
+	pipe(pipedo);
 	n_cmd = 0;
 	n_blt = 0;
 	if (gen_data->n_pipes == 0 && gen_data->built != 0)
 	{
 		if (gen_data->blt[n_blt].can_exec == 0)
 			return ;
-		ft_built(gen_data, n_blt);
-		n_blt++;
+		piddy = fork();
+		if (piddy == 0)
+		{
+			ft_dup_in_reds_blt(gen_data, n_blt, pipedo);
+			exit (0);
+		}
+		else
+		{
+			wait(NULL);
+			ft_built(gen_data, n_blt);
+			n_blt++;
+		}
 	}
 	else
 	{

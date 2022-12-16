@@ -369,4 +369,7 @@ void	ft_change_oldpwd(char *tmp, t_general_data *gen_data);
 void	ft_error_cd(char *arguments, char **env, t_general_data *gen_data);
 void	ft_reset_pwd_2(t_general_data *gen_data, char *buf, int y);
 
+/* en hasta los huevos. tema de heredoc para builtins*/
+void	dup_in_reds_blt(t_general_data *gen_data, int n_built, int pipedo[2]);
+
 #endif
