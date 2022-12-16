@@ -7,10 +7,9 @@ SRCS	=	src/main.c src/utils/utils.c src/utils/utils2.c src/free/memory.c src/sta
 			src/exec/ft_check_commands.c src/exec/ft_check_builtins.c src/exec/ft_exec.c src/exec/ft_path.c src/funciones_libft/ft_itoa.c src/exec/ft_exec2.c \
 			src/signal/ft_signal.c src/exit/ft_exit.c src/lexer/input/ft_process_input.c src/lexer/redirects/fd_reds.c src/exec/ft_exec3.c\
 			src/gnl/get_next_line_utils.c src/gnl/get_next_line.c src/lexer/redirects/fd_reds2.c  src/lexer/redirects/out_reds4.c \
-			src/lexer/redirects/d_red.c src/lexer/builtins/check_builtins2.c src/lexer/input/el_dr.c src/lexer/redirects/in_reds4.c src/free/memory2.c src/exec/ft_exec4.c\
+			src/lexer/redirects/d_red.c src/lexer/builtins/check_builtins2.c  src/lexer/redirects/in_reds4.c src/free/memory2.c src/exec/ft_exec4.c\
 			src/lexer/input/syntax_error.c src/lexer/expand/teophilus.c src/lexer/input/syntax_error2.c src/lexer/input/syntax_error3.c src/builtins/ft_cd/ft_cd2.c \
-			src/lexer/expand/teophilus2.c src/lexer/expand/teophilus3.c src/lexer/expand/teophilus4.c src/lexer/expand/teophilus5.c src/lexer/expand/teophilus6.c src/lexer/input/el_dr2.c
-
+			src/lexer/expand/teophilus2.c src/lexer/expand/teophilus3.c src/lexer/expand/teophilus4.c src/lexer/expand/teophilus5.c src/lexer/expand/teophilus6.c src/lexer/input/dr_comillas.c
 
 OBJS	=	${SRCS:.c=.o}
 NAME	=	minishell
@@ -21,7 +20,7 @@ all:	${NAME}
 
 $(NAME):	${OBJS}
 	@echo "\nCompiling minishell, please be patient..."
-	@${CC} ${CFLAGS}  -o ${NAME} ${OBJS} -lreadline -L ~/.brew/Cellar/readline/8.2.1/lib -I ~/.brew/Cellar/readline/8.2.1/include
+	@${CC} ${CFLAGS}  -o ${NAME} ${OBJS} -lreadline -L ~/.brew/Cellar/readline/8.1.2/lib -I ~/.brew/Cellar/readline/8.1.2/include
 	@echo "Done!"
 
 %.o: %.c

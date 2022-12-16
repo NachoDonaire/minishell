@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:27:40 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 11:29:04 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:44:08 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,3 +102,43 @@ int	check_reds(char *s)
 	ft_free_arg(tommy);
 	return (0);
 }
+
+int	check_tukle(char *s)
+{
+	int		i;
+	int		y;
+	int		z;
+	char	**tmp;
+
+	y = 0;
+	z = 0;
+	i = 0;
+	tmp = ft_split(s, '|');
+	while (tmp[i])
+	{
+		while (tmp[i][y] == ' ' && tmp[i][y])
+		{
+			z++;
+			y++;
+		}
+		while (tmp[i][y])
+		{
+			if (tmp[i][y] == '>' || tmp[i][y] == '<')
+			{
+				if (y == z)
+				{
+					ft_free_arg(tmp);
+					return (1);
+				}
+			}
+			y++;
+		}
+		i++;
+		y = 0;
+		z = 0;
+	}
+	ft_free_arg(tmp);
+	return (0);
+}
+
+				

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/25 13:15:00 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/16 20:40:38 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void	ft_not_built(char *s, t_general_data *gen_data, int y)
 	char	**com;
 
 	gen_data->cmd[y].can_exec = 1;
+	if (check_tukle(s) == 1)
+	{
+		gen_data->cmd[y].can_exec = 0;
+		com = ft_split(s, ' ');
+		return ;
+	}
 	if (gen_data->n_pipes == 0)
 	{
 		process_sing_red(gen_data, s, y, 0);
@@ -52,9 +58,12 @@ void	process_string(char *s, t_general_data *gen_data, int y)
 	if (gen_data->n_pipes > 0)
 	{
 		gen_data->cmd[y].can_exec = 1;
+		if (check_tukle(s) == 1)
+			gen_data->cmd[y].can_exec = 0;
 		process_sing_red(gen_data, s, y, 0);
 		process_in_red(gen_data, s, y, 0);
 	}
+	
 	gen_data->built = 0;
 	if (gen_data->n_pipes == 0)
 		check_builtins(s, gen_data, y);

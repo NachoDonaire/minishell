@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:42:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/24 18:41:29 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/16 20:36:32 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	check_builtins2(char *s, t_general_data *gen_data, int y)
 	}
 	gen_data->built = 1;
 	gen_data->blt[gen_data->n_built].can_exec = 1;
+	if (check_tukle(s) == 1)
+		gen_data->blt[gen_data->n_built].can_exec = 0;
 	process_sing_red(gen_data, s, y, 1);
 	process_in_red(gen_data, s, y, 1);
 	gen_data->n_built++;

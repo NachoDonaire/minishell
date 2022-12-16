@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 14:30:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 11:30:13 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:51:50 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,11 @@ int	syntax_error(char *s)
 		free(s);
 		return (1);
 	}
+/*	if (check_tukle(s) == 1)
+	{
+		perror("Minishell: Syntax error");
+		free(s);
+		return (1);
+	}	*/
 	return (0);
 }
