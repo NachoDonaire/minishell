@@ -47,3 +47,20 @@ void	ft_change_root(t_general_data *gen_data, char **s3, int position)
 	if (ft_strncmp(cmd, "pwd", 3) == 0)
 		s3[0] = "/bin/pwd";
 }
+
+void	error_can_exec(t_general_data *gen_data,
+		int n_built, int position, int ref)
+{
+	if (ref == 0)
+	{
+		if (gen_data->cmd[position].syn_er == 23)
+			perror("Syntax error ");
+		exit (1);
+	}
+	else if (ref == 1)
+	{
+		if (gen_data->blt[n_built].syn_er == 23)
+			perror("Syntax error ");
+		exit (1);
+	}
+}

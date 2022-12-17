@@ -51,24 +51,13 @@ int	check_spaces(char *s)
 
 void	ft_can_syntax(t_general_data	*gen_data)
 {
-	/*int	i;
-
-	i = 0;
-	*/
 	if (syntax_error(gen_data->s) == 0)
 	{
 		reserva(gen_data);
 		gen_data->s = teophilus(gen_data);
-		//printf("--%s--\n", gen_data->s);
 		process_input(gen_data->s, gen_data, gen_data->env);
-		//if (gen_data->n_built != 0)
-		//{
-		/*while (gen_data->blt[0].args[i])
-			printf("--%s--\n", gen_data->blt[0].args[i++]);
-		}*/
 		ft_check_comand(gen_data);
 		copy_dup(gen_data);
-	//	ft_free_all(gen_data, gen_data->s);
 	}
 }
 

@@ -53,37 +53,48 @@ int	ft_last_built(char *s)
 	return (y);
 }
 
-void	ft_check_comand(t_general_data *gen_data)
+int	galois_blt(t_general_data *gen_data, int n_blt)
 {
-	int	n_blt;
-	int	n_cmd;
 	int	piddy;
 	int	pipedo[2];
 
 	pipe(pipedo);
+	if (gen_data->blt[n_blt].can_exec == 0)
+		return (1);
+	piddy = fork();
+	if (piddy == 0)
+	{
+		ft_dup_in_reds_blt(gen_data, n_blt, pipedo);
+		exit (0);
+	}
+	else
+	{
+		wait(NULL);
+		ft_built(gen_data, n_blt);
+		n_blt++;
+	}
+	return (0);
+}
+
+void	ft_check_comand(t_general_data *gen_data)
+{
+	int	n_blt;
+	int	n_cmd;
+	int	galois;
+
 	n_cmd = 0;
 	n_blt = 0;
+	galois = 0;
 	if (gen_data->n_pipes == 0 && gen_data->built != 0)
 	{
-		if (gen_data->blt[n_blt].can_exec == 0)
+		galois = galois_blt(gen_data, n_blt);
+		if (galois == 1)
 			return ;
-		piddy = fork();
-		if (piddy == 0)
-		{
-			ft_dup_in_reds_blt(gen_data, n_blt, pipedo);
-			exit (0);
-		}
-		else
-		{
-			wait(NULL);
-			ft_built(gen_data, n_blt);
-			n_blt++;
-		}
 	}
 	else
 	{
 		n_cmd = ft_exec(gen_data, n_cmd, n_blt);
-//		ft_check_status(gen_data, n_cmd);
+		ft_check_status(gen_data, n_cmd);
 	}
 	gen_data->exec_pos++;
 }

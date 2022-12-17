@@ -85,11 +85,5 @@ int	syntax_error(char *s)
 		free(s);
 		return (1);
 	}
-/*	if (check_tukle(s) == 1)
-	{
-		perror("Minishell: Syntax error");
-		free(s);
-		return (1);
-	}	*/
 	return (0);
 }

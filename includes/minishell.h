@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/16 20:40:43 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:56:45 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ typedef struct s_builtin
 	char	**in;
 	int		*fd_out;
 	int		*fd_in;
-	int		syn_er;
 	int		*dred;
 	int		*in_dred;
+	int		syn_er;
 	int		nb_arguments;
 	int		can_exec;
 }	t_builtin_data;
@@ -53,12 +53,12 @@ typedef struct s_builtin
 typedef struct s_comand
 {
 	char	*cmd;
-	int	syn_er;
 	char	**args;
 	char	**out;
 	char	**in;
 	int		*fd_out;
 	int		*fd_in;
+	int		syn_er;
 	int		*in_dred;
 	int		*dred;
 	int		can_exec;
@@ -157,15 +157,15 @@ char	**dr_comillas(char *s);
 void	ft_reset_table_6(int *t);
 void	dr_comillas_aviso(char *s, char **wallace, int *t);
 void	dr_comillas_not_aviso(char *s, char **wallace, int *t);
-int		gest_comillas(char *s, char **wallace, int i, int w, int y);
+int		gest_comillas(char *s, t_dr dr_comillas, int y);
 int		gest_comillas_34(char *s, t_dr dr_comillas, int y);
 int		gest_comillas_39(char *s, t_dr dr_comillas, int y);
-int		dr_no_comillas(char *s, char **wallace, int i, int w, int y);
+int		dr_no_comillas(char *s, t_dr dr_comillas, int y);
 char	**dr_comillas(char *s);
 void	gest_comillas_not_y(char *s, t_dr dr_comillas, int y);
-void	gest_comillas_not_s(char *s, char **wallace, int i, int w, int y);
-int		memory_for_wallace(char *s, char **wallace, int i, int w, int y);
-char	**fill_wallace(char **wallace, char *s);
+void	gest_comillas_not_s(char *s, t_dr dr_comillas, int y);
+int		memory_for_wallace(char *s, t_dr dr_comillas, int y);
+char	**fill_wallace(char *s);
 
 /*en ft_process_input.c*/
 void	process_string(char *s, t_general_data *gen_data, int y);
@@ -372,7 +372,11 @@ void	ft_error_cd(char *arguments, char **env, t_general_data *gen_data);
 void	ft_reset_pwd_2(t_general_data *gen_data, char *buf, int y);
 
 /* en hasta los huevos. tema de heredoc para builtins*/
-void	dup_in_reds_blt(t_general_data *gen_data, int n_built, int pipedo[2]);
-int		check_tukle(char *s);
+void    dup_in_reds_blt(t_general_data *gen_data, int n_built, int pipedo[2]);
+int             check_tukle(char *s);
+void    so_f_tired(t_general_data *gen_data, int z);
+void    error_can_exec(t_general_data *gen_data, int n_built, int position, int ref);
+void    initialise_dr(t_dr *doctorsito);
+int	oficial_tukle(char *s, t_general_data *gen_data, int y);
 
 #endif

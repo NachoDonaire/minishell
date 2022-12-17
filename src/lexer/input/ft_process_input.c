@@ -26,12 +26,8 @@ void	ft_not_built(char *s, t_general_data *gen_data, int y)
 	char	**com;
 
 	gen_data->cmd[y].can_exec = 1;
-	if (check_tukle(s) == 1)
-	{
-		gen_data->cmd[y].can_exec = 0;
-		gen_data->cmd[y].syn_er = 23;
+	if (oficial_tukle(s, gen_data, y) == 1)
 		return ;
-	}
 	if (gen_data->n_pipes == 0)
 	{
 		process_sing_red(gen_data, s, y, 0);

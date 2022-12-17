@@ -102,10 +102,7 @@ void	fd_reds_out(t_general_data *gen_data, int z)
 			a = open(s, O_RDWR | O_CREAT | O_TRUNC, 0644);
 		gen_data->cmd[z].fd_out[table[0]] = a;
 		if (gen_data->cmd[z].fd_out[table[0]] < 0)
-		{
-			gen_data->cmd[z].can_exec = 0;
-			perror("file not found");
-		}
+			so_f_tired(gen_data, z);
 		table[0]++;
 	}
 	gen_data->cmd[z].fd_out[table[0]] = -2;

@@ -49,9 +49,11 @@ void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position, int *pipedo)
 	i = -1;
 	while (gen_data->cmd[position].in[++i])
 	{
-		if (gen_data->cmd[position].in_dred[i] == 0 && gen_data->cmd[position].syn_er != 23)
+		if (gen_data->cmd[position].in_dred[i] == 0
+			&&gen_data->cmd[position].syn_er != 23)
 			dup2(gen_data->cmd[position].fd_in[i], 0);
-		else if (gen_data->cmd[position].in_dred[i] == 1 && gen_data->cmd[position].syn_er != 23)
+		else if (gen_data->cmd[position].in_dred[i] == 1
+			&& gen_data->cmd[position].syn_er != 23)
 			ft_dup_in_reds_cm2(gen_data, position, pipedo, i);
 	}
 }

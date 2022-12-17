@@ -29,3 +29,17 @@ void	ft_reset_blt(t_general_data *gen_data)
 	gen_data->blt[gen_data->n_built].fd_in = malloc(sizeof(int) * 1);
 	gen_data->blt[gen_data->n_built].fd_in[0] = -1;
 }
+
+int	oficial_tukle(char *s, t_general_data *gen_data, int y)
+{
+	if (check_tukle(s) == 1)
+	{
+		gen_data->cmd[y].can_exec = 0;
+		gen_data->cmd[y].syn_er = 23;
+		gen_data->cmd[y].args = ft_split(s, ' ');
+		gen_data->cmd[y].cmd = gen_data->cmd[y].args[0];
+		return (1);
+	}
+	gen_data->cmd[y].syn_er = 0;
+	return (0);
+}

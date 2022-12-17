@@ -77,11 +77,7 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	{
 		s3[0] = gen_data->cmd[position].cmd;
 		if (gen_data->cmd[position].can_exec == 0)
-		{
-			if (gen_data->cmd[position].syn_er == 23)
-				perror("Syntax error ");
-			exit (1);
-		}
+			error_can_exec(gen_data, n_built, position, 0);
 		ft_child_2(gen_data, s3, position);
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
@@ -89,11 +85,7 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 		s3[1] = gen_data->blt[n_built].blt;
 		s3[1] = check_cmd(s3[1], gen_data);
 		if (gen_data->blt[n_built].can_exec == 0)
-		{
-			if (gen_data->cmd[position].syn_er == 23)
-				perror("Syntax error ");
-			exit (1);
-		}
+			error_can_exec(gen_data, n_built, position, 1);
 		execve(s3[1], gen_data->blt[n_built].args, gen_data->env);
 	}
 }

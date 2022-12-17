@@ -38,3 +38,9 @@ void	ft_reset_table_7(int *t, t_general_data *gen_data)
 	t[1] = 0;
 	t[2] = ft_count_blt_out(gen_data);
 }
+
+void	so_f_tired(t_general_data *gen_data, int z)
+{
+	gen_data->cmd[z].can_exec = 0;
+	perror("file not found");
+}
