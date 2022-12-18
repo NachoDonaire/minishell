@@ -378,5 +378,6 @@ void    so_f_tired(t_general_data *gen_data, int z);
 void    error_can_exec(t_general_data *gen_data, int n_built, int position, int ref);
 void    initialise_dr(t_dr *doctorsito);
 int	oficial_tukle(char *s, t_general_data *gen_data, int y);
+void	qhagocntigo(t_general_data *gen_data, int y, char *s);
 
 #endif
