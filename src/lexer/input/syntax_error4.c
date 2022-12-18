@@ -43,3 +43,4 @@ int	check_tukle(char *s)
 	}
 	ft_free_arg(tmp);
 	return (0);
+}

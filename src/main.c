@@ -58,6 +58,7 @@ void	ft_can_syntax(t_general_data	*gen_data)
 		process_input(gen_data->s, gen_data, gen_data->env);
 		ft_check_comand(gen_data);
 		copy_dup(gen_data);
+		ft_free_all(gen_data, gen_data->s);
 	}
 }
 

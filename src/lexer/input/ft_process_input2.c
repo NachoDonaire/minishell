@@ -36,8 +36,7 @@ int	oficial_tukle(char *s, t_general_data *gen_data, int y)
 	{
 		gen_data->cmd[y].can_exec = 0;
 		gen_data->cmd[y].syn_er = 23;
-		gen_data->cmd[y].args = ft_split(s, ' ');
-		gen_data->cmd[y].cmd = gen_data->cmd[y].args[0];
+		gen_data->n_cmd--;
 		return (1);
 	}
 	gen_data->cmd[y].syn_er = 0;
