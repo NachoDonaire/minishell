@@ -1,0 +1,2 @@
+echo "taca |"
+echo "cat lol.c | cat > lol.c"

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 09:00:01 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/22 10:17:57 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:16:19 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**fill_wallace(char *s)
 			z++;
 		i++;
 	}
-	wallace = malloc(sizeof(char *) * (y + 2 + (z / 2)));
+	wallace = malloc(sizeof(char *) * (y + 2 + (z)));
 	return (wallace);
 }
 
