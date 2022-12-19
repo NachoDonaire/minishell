@@ -85,6 +85,7 @@ void	ft_check_comand(t_general_data *gen_data)
 	n_cmd = 0;
 	n_blt = 0;
 	galois = 0;
+	printf("--%d--\n", gen_data->n_pipes);
 	if (gen_data->n_pipes == 0 && gen_data->built != 0)
 	{
 		galois = galois_blt(gen_data, n_blt);

@@ -19,11 +19,13 @@ void	ft_print(int x, t_general_data *gen_data, int position)
 
 	s = gen_data->blt[position].args;
 	y = 0;
+	write(1, "b", 1);
 	while (s[x][y])
 	{
 		ft_print_fdout(gen_data, s[x][y]);
 		y++;
 	}
+	write(1, "b", 1);
 }
 
 int	ft_check_nl(t_general_data *gen_data, int position)
