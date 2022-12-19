@@ -6,11 +6,40 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/16 20:40:40 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:22:27 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	ft_file(t_general_data *gen_data, int position, int cmd)
+{
+	int	i;
+
+	i = 1;
+	if (cmd == 0)
+	{
+		while (gen_data->cmd[position].args[i])
+		{
+			if (gen_data->cmd[position].args[i] && access(gen_data->cmd[position].args[i], F_OK) != 1
+				&& gen_data->cmd[position].args[i][0] != '-')
+				ft_change_permission_status(gen_data->env, gen_data);
+			i++;
+		}
+	}
+	else
+	{
+		while (gen_data->blt[position].args[i])
+		{
+			if (gen_data->blt[position].args[i] && access(gen_data->blt[position].args[i], F_OK) != 1
+				&& gen_data->blt[position].args[i][0] != '-')
+				ft_change_permission_status(gen_data->env, gen_data);
+			i++;
+		}
+	}
+	
+	
+}
 
 void	ft_status_blt(t_general_data *gen_data, int position)
 {
@@ -31,6 +60,7 @@ void	ft_status_blt(t_general_data *gen_data, int position)
 		ft_change_bad_status(gen_data->env, gen_data);
 	free(path);
 	free(copy);
+	ft_file(gen_data, position, 0);
 }
 
 void	ft_status_cmd(t_general_data *gen_data, int position)
@@ -52,6 +82,7 @@ void	ft_status_cmd(t_general_data *gen_data, int position)
 		ft_change_bad_status(gen_data->env, gen_data);
 	free(path);
 	free(copy);
+	ft_file(gen_data, position, 1);
 }
 
 void	ft_check_status(t_general_data *gen_data, int position)

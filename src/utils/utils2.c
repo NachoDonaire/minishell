@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:08:11 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 08:47:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:56:13 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_change_permission_status(char **env, t_general_data *gen_data)
 	int		x;
 	char	*y;
 
-	gen_data->good_status = 126;
+	gen_data->good_status = 1;
 	x = 0;
 	while (env[x])
 	{
