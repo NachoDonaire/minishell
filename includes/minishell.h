@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/19 09:52:25 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:22:37 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_general
 	int				std_out;
 	int				count_wait;
 	int				smith_blt;
+	int				ojito;
 	char			*s;
 }	t_general_data;
 

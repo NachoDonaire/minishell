@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:30:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/14 09:05:42 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:22:38 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	oficial_tukle(char *s, t_general_data *gen_data, int y)
 	{
 		gen_data->cmd[y].can_exec = 0;
 		gen_data->cmd[y].syn_er = 420;
+		gen_data->ojito = 23;
 		gen_data->n_cmd--;
 		gen_data->cmd[y].in = dr_comillas(&s[mela(s)]);
 		if (!gen_data->cmd[y].in[0])

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:40:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/16 19:40:01 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:22:34 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo)
 {
 	waitpid(piddy_gonzalez, NULL, 0);
 	close(pipedo[1]);
-	dup2(pipedo[0], 0);
 }
 
 void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position, int *pipedo)

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/16 20:40:52 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:07:40 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_iniciate(t_general_data *gen_data)
 	gen_data->std_in = dup(0);
 	gen_data->std_out = dup(1);
 	gen_data->count_wait = 0;
+	gen_data->ojito = 0;
 }
 
 void	copy_dup(t_general_data	*gen_data)
