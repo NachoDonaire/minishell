@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/12 19:56:45 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/19 09:52:25 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -372,12 +372,13 @@ void	ft_error_cd(char *arguments, char **env, t_general_data *gen_data);
 void	ft_reset_pwd_2(t_general_data *gen_data, char *buf, int y);
 
 /* en hasta los huevos. tema de heredoc para builtins*/
-void    dup_in_reds_blt(t_general_data *gen_data, int n_built, int pipedo[2]);
-int             check_tukle(char *s);
-void    so_f_tired(t_general_data *gen_data, int z);
-void    error_can_exec(t_general_data *gen_data, int n_built, int position, int ref);
-void    initialise_dr(t_dr *doctorsito);
-int	oficial_tukle(char *s, t_general_data *gen_data, int y);
+void	dup_in_reds_blt(t_general_data *gen_data, int n_built, int pipedo[2]);
+int		check_tukle(char *s);
+void	so_f_tired(t_general_data *gen_data, int z);
+void	error_can_exec(t_general_data *gen_data,
+			int n_built, int position, int ref);
+void	initialise_dr(t_dr *doctorsito);
+int		oficial_tukle(char *s, t_general_data *gen_data, int y);
 void	qhagocntigo(t_general_data *gen_data, int y, char *s);
 
 #endif
