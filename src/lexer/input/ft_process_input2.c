@@ -126,10 +126,12 @@ int	oficial_tukle(char *s, t_general_data *gen_data, int y)
 	}
 	else if (check_tukle(s) == 1)
 	{
+		megajoin = ft_strjoin(caligula[i++], "");
 		while (caligula[i])
-			megajoin = ft_strjoin(caligula[i++], "");
+			megajoin = ft_strjoin(megajoin, caligula[i++]);
 		gen_data->cmd[y].in = dr_comillas(megajoin);
 		gen_data->cmd[y].syn_er = 420;
+		gen_data->latuka = 60;
 		gen_data->cmd[y].can_exec = 0;
 		//gen_data->n_cmd--;
 		if (gen_data->n_pipes == 0)

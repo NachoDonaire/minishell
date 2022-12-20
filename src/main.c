@@ -24,6 +24,7 @@ void	ft_iniciate(t_general_data *gen_data)
 	gen_data->exec_pos = 0;
 	gen_data->pipe_pos = 0;
 	gen_data->std_in = dup(0);
+	//gen_data->otrostdin = dup(0);
 	gen_data->std_out = dup(1);
 	gen_data->count_wait = 0;
 	gen_data->ojito = 0;
@@ -52,21 +53,34 @@ int	check_spaces(char *s)
 
 void	ft_can_syntax(t_general_data	*gen_data)
 {
-	//int	i;
+/*	int	i;
+	int	y;
 //
-	//i = 0;
+	y = 0;
+	i = 0;
+	*/
 	if (syntax_error(gen_data->s) == 0)
 	{
 		reserva(gen_data);
 		gen_data->s = teophilus(gen_data);
-		printf("--%s--\n", gen_data->s);
+		//printf("--%s--\n", gen_data->s);
 		process_input(gen_data->s, gen_data, gen_data->env);
+		//while (y < gen_data->n_cmd)
+		//{
+		//while (gen_data->cmd[y].args[i])
+		//	printf("--%s--\n", gen_data->cmd[y].args[i++]);
+		//y++;
+		//i = 0;
+	//	}
+	//	i = 0;
+	//	y = 0;
 	//	write(1, "aa", 2);
 		//printf("--%d--", gen_data->n_cmd);
-		//printf("--%d--\n", gen_data->n_pipes);
+	//exit
 	//	while (gen_data->blt[0].args[i])
 	//		printf("--%s--\n", gen_data->blt[0].args[i++]);
 		ft_check_comand(gen_data);
+		//write(1, "1", 1);
 	//	write(1, "aa", 2);
 		copy_dup(gen_data);
 		ft_free_all(gen_data, gen_data->s);

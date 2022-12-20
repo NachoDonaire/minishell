@@ -87,6 +87,8 @@ typedef struct s_general
 	int				std_out;
 	int				count_wait;
 	int				smith_blt;
+	int				latuka;
+	int				otrostdin;
 	int				ojito;
 	char			*s;
 }	t_general_data;
@@ -312,7 +314,7 @@ void	ft_path(char *command, char *envp[], char **fd_path);
 void	dup_reds(t_general_data *gen_data, int position, int n_built);
 void	dup_in_reds(t_general_data *gen_data, int position, int n_built);
 void	ft_dup_in_reds_exit(char *s, int *pipedo);
-void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo);
+void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo, t_general_data *gen_data);
 void	ft_dup_in_reds_blt(t_general_data *gen_data, int n_built, int *pipedo);
 void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position, int *pipedo);
 void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i);

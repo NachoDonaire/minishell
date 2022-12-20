@@ -77,7 +77,7 @@ void	ft_dup_in_reds_cm2(t_general_data *gen_data, int p, int *pipedo, int i)
 		ft_dup_in_reds_exit(s, pipedo);
 	}
 	else
-		ft_dup_in_reds_wait(piddy_gonzalez, pipedo);
+		ft_dup_in_reds_wait(piddy_gonzalez, pipedo, gen_data);
 }
 
 void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i)
@@ -106,7 +106,7 @@ void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i)
 		ft_dup_in_reds_exit(s, p);
 	}
 	else
-		ft_dup_in_reds_wait(piddy_gonzalez, p);
+		ft_dup_in_reds_wait(piddy_gonzalez, p, gen_data);
 }
 
 void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
@@ -116,12 +116,12 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 	pipe(pipedo);
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
-		if (gen_data->cmd[position].syn_er != 23)
+		if (gen_data->cmd[position].syn_er != 23 && gen_data->cmd[position].in[0])
 			ft_dup_in_reds_cmd(gen_data, position, pipedo);
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
 	{
-		if (gen_data->blt[n_built].syn_er != 23)
+		if (gen_data->blt[n_built].syn_er != 23 && gen_data->blt[n_built].in[0])
 			ft_dup_in_reds_blt(gen_data, n_built, pipedo);
 	}
 }

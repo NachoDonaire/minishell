@@ -12,8 +12,11 @@
 
 #include "../../includes/minishell.h"
 
-void	ft_child_pipes(t_general_data *gen_data)
+void	ft_child_pipes(t_general_data *gen_data, int position, int n_built)
 {
+	int	z;
+
+	z = 0;
 	if (gen_data->pipe_pos == 0)
 	{
 		close(gen_data->pipe[gen_data->pipe_pos][0]);
@@ -30,9 +33,19 @@ void	ft_child_pipes(t_general_data *gen_data)
 	}
 	else
 	{
-		dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
+		if (gen_data->sort[gen_data->exec_pos] == '1')
+		{
+			if (gen_data->cmd[position].in[0])
+				z = 23;
+		}
+		else if (gen_data->sort[gen_data->exec_pos] == '0')
+			if (gen_data->blt[n_built].in[0])
+				z = 23;
+		if (z != 23) 
+			dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
 		close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
 	}
+	dup_in_reds(gen_data, position, n_built);
 }
 
 void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
@@ -40,6 +53,7 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 	int	exec;
 
 	exec = 0;
+	dup_in_reds(gen_data, position, n_built);
 	if (gen_data->cmd[position].can_exec != 0)
 		dup_reds(gen_data, position, n_built);
 	if (gen_data->cmd[position].can_exec == 0)
@@ -68,11 +82,11 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	dup_in_reds(gen_data, position, n_built);
+	//dup_in_reds(gen_data, position, n_built);
 	if (gen_data->n_pipes == 0)
 		ft_child_not_pipes(gen_data, position, n_built);
 	else
-		ft_child_pipes(gen_data);
+		ft_child_pipes(gen_data, position, n_built);
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
 		if (gen_data->cmd[position].can_exec != 0)
