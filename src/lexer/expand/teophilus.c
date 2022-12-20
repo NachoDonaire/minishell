@@ -30,7 +30,7 @@ int	tiberio_34(t_general_data *gen_data, t_teo teophi)
 
 int	tiberio_dollar(t_general_data *gen_data, t_teo teophi)
 {
-	if (gen_data->s[teophi.i + 1] != '"' && gen_data->s[teophi.i + 1] != 39)
+	if (gen_data->s[teophi.i + 1] != '"' && gen_data->s[teophi.i + 1] != 39) //&& gen_data->s[teophi.i + 1] != ' ')
 	{
 		teophi.w = dollar(&gen_data->s[teophi.i], gen_data, 0, teophi);
 		while (gen_data->s[teophi.i] != ' ' && gen_data->s[teophi.i] != 39
@@ -46,6 +46,7 @@ int	tiberio_dollar(t_general_data *gen_data, t_teo teophi)
 					teophi.i++;
 					return (tiberio(gen_data, teophi));
 				}
+				return (tiberio(gen_data, teophi));
 			}
 			teophi.i++;
 		}

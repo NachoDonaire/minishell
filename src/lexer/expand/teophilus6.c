@@ -14,6 +14,15 @@
 
 int	tiberio_dollar2(t_general_data *gen_data, t_teo teophi)
 {
+	if (gen_data->s[teophi.i] == ' ')
+	{
+		teophi.i--;
+		return (tiberio(gen_data, teophi));
+		/*while (gen_data->s[teophi.i] == ' ' && gen_data->s[teophi.i])
+			teophi.i++;
+		return (tiberio(gen_data, teophi));
+		*/
+	}
 	teophi.i++;
 	return (tiberio(gen_data, teophi));
 }

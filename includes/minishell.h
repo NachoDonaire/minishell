@@ -104,6 +104,7 @@ typedef struct s_teo
 	char	*of;
 	int		w;
 	int		f;
+	int		ojito;
 }	t_teo;
 
 void	rl_replace_line(const char *text, int clear_undo);

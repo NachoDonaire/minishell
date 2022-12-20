@@ -52,19 +52,20 @@ int	check_spaces(char *s)
 
 void	ft_can_syntax(t_general_data	*gen_data)
 {
-//	int	i;
+	//int	i;
 //
-//	i = 0;
+	//i = 0;
 	if (syntax_error(gen_data->s) == 0)
 	{
 		reserva(gen_data);
 		gen_data->s = teophilus(gen_data);
+		printf("--%s--\n", gen_data->s);
 		process_input(gen_data->s, gen_data, gen_data->env);
 	//	write(1, "aa", 2);
 		//printf("--%d--", gen_data->n_cmd);
 		//printf("--%d--\n", gen_data->n_pipes);
-		//while (gen_data->blt[0].args[i])
-		//	printf("--%s--\n", gen_data->blt[0].args[i++]);
+	//	while (gen_data->blt[0].args[i])
+	//		printf("--%s--\n", gen_data->blt[0].args[i++]);
 		ft_check_comand(gen_data);
 	//	write(1, "aa", 2);
 		copy_dup(gen_data);
