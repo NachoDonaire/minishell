@@ -57,7 +57,7 @@ void	error_can_exec(t_general_data *gen_data,
 			perror("Syntax error ");
 		exit (1);
 	}
-	else if (ref == 1)
+	else if (ref == 0)
 	{
 		if (gen_data->blt[n_built].syn_er == 23)
 			perror("Syntax error ");

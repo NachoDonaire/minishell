@@ -21,7 +21,7 @@ void	close_fds2(t_general_data *gen_data)
 	while (++i < gen_data->n_cmd - gen_data->n_built)
 	{
 		y = 0;
-		while (gen_data->cmd[i].fd_in[y] > 2)
+		while (gen_data->cmd[i].syn_er == 0 && gen_data->cmd[i].fd_in[y] > 2 && gen_data->cmd[i].fd_in[y])
 			close(gen_data->cmd[i].fd_in[y++]);
 	}
 	i = -1;
@@ -66,11 +66,11 @@ void	needed_free_cmd(t_general_data *gen_data)
 
 void	ft_free_all(t_general_data *gen_data, char *s)
 {
-	if (gen_data->ojito == 23)
+	/*if (gen_data->ojito == 23)
 	{
 		ft_free_arg(gen_data->cmd[0].in);
 		free(gen_data->cmd[0].in_dred);
-	}
+	}*/
 	free(s);
 	needed_free(gen_data, gen_data->n_cmd - gen_data->n_built);
 }

@@ -27,7 +27,15 @@ void	ft_not_built(char *s, t_general_data *gen_data, int y)
 
 	gen_data->cmd[y].can_exec = 1;
 	if (oficial_tukle(s, gen_data, y) == 1)
+	{
+		gen_data->n_cmd--;
 		return ;
+	}
+	else if (oficial_tukle(s, gen_data, y) == 2)
+	{
+		gen_data->n_cmd--;
+		return ;
+	}
 	if (gen_data->n_pipes == 0)
 	{
 		process_sing_red(gen_data, s, y, 0);
@@ -42,6 +50,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, int y)
 	gen_data->cmd[y].cmd = check_cmd(com[0], gen_data);
 	process_args(s, gen_data, y, 0);
 	ft_free_arg(com);
+	gen_data->n_cmd++;
 	if (gen_data->n_pipes == 0)
 	{
 		gen_data->sort[0] = '1';
@@ -54,8 +63,16 @@ void	process_string(char *s, t_general_data *gen_data, int y)
 	if (gen_data->n_pipes > 0)
 	{
 		gen_data->cmd[y].can_exec = 1;
-		if (check_tukle(s) == 1)
-			gen_data->cmd[y].can_exec = 0;
+		if (oficial_tukle(s, gen_data, y) == 1)
+		{
+			//gen_data->n_cmd--;
+			return ;
+		}
+		else if (oficial_tukle(s, gen_data, y) == 2)
+		{
+			//gen_data->n_cmd--;
+			return ;
+		}
 		process_sing_red(gen_data, s, y, 0);
 		process_in_red(gen_data, s, y, 0);
 	}

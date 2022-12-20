@@ -20,7 +20,7 @@ void	ft_iniciate(t_general_data *gen_data)
 	gen_data->built = 0;
 	gen_data->smith_blt = 1;
 	gen_data->n_built = 0;
-	gen_data->n_cmd = 1;
+	gen_data->n_cmd = 0;
 	gen_data->exec_pos = 0;
 	gen_data->pipe_pos = 0;
 	gen_data->std_in = dup(0);
@@ -60,10 +60,13 @@ void	ft_can_syntax(t_general_data	*gen_data)
 		reserva(gen_data);
 		gen_data->s = teophilus(gen_data);
 		process_input(gen_data->s, gen_data, gen_data->env);
-	//	printf("--%d--\n", gen_data->n_pipes);
+	//	write(1, "aa", 2);
+		//printf("--%d--", gen_data->n_cmd);
+		//printf("--%d--\n", gen_data->n_pipes);
 		//while (gen_data->blt[0].args[i])
 		//	printf("--%s--\n", gen_data->blt[0].args[i++]);
 		ft_check_comand(gen_data);
+	//	write(1, "aa", 2);
 		copy_dup(gen_data);
 		ft_free_all(gen_data, gen_data->s);
 	}

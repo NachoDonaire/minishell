@@ -51,8 +51,8 @@ void	handle_cmd_pipes(t_general_data *gen_data, char *s, char *env[])
 	while (tmp[++table[1]])
 		ft_handle_cmd_pipes2(gen_data, table, tmp);
 	gen_data->sort[table[0]] = '\0';
-	gen_data->n_cmd = table[2];
-	x = gen_data->n_cmd + gen_data->n_built;
+	//gen_data->n_cmd = table[2];
+	x = gen_data->n_pipes + 1;//gen_data->n_cmd + gen_data->n_built;
 	gen_data->pipe = malloc(sizeof(int *) * (x + 1));
 	while (++i < x)
 	{

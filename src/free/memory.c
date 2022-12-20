@@ -14,7 +14,7 @@
 
 void	reserva(t_general_data *gen_data)
 {
-	gen_data->cmd = malloc(sizeof(t_cmd_data) * (gen_data->n_pipes + 1));
+	gen_data->cmd = malloc(sizeof(t_cmd_data) * (gen_data->n_pipes + 2));
 	gen_data->blt = malloc(sizeof(t_builtin_data) * (gen_data->n_pipes + 1));
 	gen_data->sort = malloc(sizeof(char) * (gen_data->n_pipes + 2));
 }
@@ -80,22 +80,22 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	i = 0;
 	while (i < y)
 	{
-		if (gen_data->cmd[i].cmd)
-			free(gen_data->cmd[i].cmd);
-		if (gen_data->cmd[i].args)
-			ft_free_arg(gen_data->cmd[i].args);
-		if (gen_data->cmd[i].fd_out)
-			free(gen_data->cmd[i].fd_out);
-		if (gen_data->cmd[i].fd_in)
-			free(gen_data->cmd[i].fd_in);
-		if (gen_data->cmd[i].out)
-			ft_free_arg(gen_data->cmd[i].out);
-		if (gen_data->cmd[i].in)
-			ft_free_arg(gen_data->cmd[i].in);
-		if (gen_data->cmd[i].dred)
-			free(gen_data->cmd[i].dred);
-		if (gen_data->cmd[i].in_dred)
-			free(gen_data->cmd[i].in_dred);
+			if (gen_data->cmd[i].cmd)
+				free(gen_data->cmd[i].cmd);
+			if (gen_data->cmd[i].args)
+				ft_free_arg(gen_data->cmd[i].args);
+			if (gen_data->cmd[i].fd_out)
+				free(gen_data->cmd[i].fd_out);
+			if (gen_data->cmd[i].fd_in)
+				free(gen_data->cmd[i].fd_in);
+			if (gen_data->cmd[i].out)
+				ft_free_arg(gen_data->cmd[i].out);
+			if (gen_data->cmd[i].in)
+				ft_free_arg(gen_data->cmd[i].in);
+			if (gen_data->cmd[i].dred)
+				free(gen_data->cmd[i].dred);
+			if (gen_data->cmd[i].in_dred)
+				free(gen_data->cmd[i].in_dred);
 		i++;
 	}
 }

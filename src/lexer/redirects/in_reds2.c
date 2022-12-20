@@ -58,6 +58,18 @@ int	find_in_red(t_general_data *gen_data, char *s, int pos, int ref)
 		gen_data->blt[gen_data->n_built].in_dred[table[2]] = -1;
 	while (s[table[0]])
 	{
+		if (s[table[0]] == '"')
+                {
+                        table[0]++;
+                        while (s[table[0]] != '"' && s[table[0]])
+                                table[0]++;
+                }
+                else if (s[table[0]] == 39)
+                {
+                        table[0]++;
+                        while (s[table[0]] != 39 && s[table[0]])
+                                table[0]++;
+                }
 		while (s[table[0]] == '<')
 		{
 			table[0]++;

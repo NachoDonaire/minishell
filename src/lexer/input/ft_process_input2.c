@@ -95,15 +95,43 @@ void	aunmas(t_general_data *gen_data, char *s, int y)
 
 int	oficial_tukle(char *s, t_general_data *gen_data, int y)
 {
-	if (check_tukle(s) == 1)
+	char	**caligula;
+	char	*megajoin;
+	int	i;
+
+	i = 0;
+	megajoin = NULL;
+	caligula = ft_split(s, '<');
+	if (check_tukle(s) == 2)
 	{
+		//while (caligula[i])
+		//	megajoin = ft_strjoin(caligula[i++], "");
 		gen_data->cmd[y].can_exec = 0;
-		gen_data->cmd[y].syn_er = 420;
+		gen_data->cmd[y].syn_er = 23;
 		gen_data->ojito = 23;
-		gen_data->n_cmd--;
-		gen_data->cmd[y].in = dr_comillas(&s[mela(s)]);
-		if (!gen_data->cmd[y].in[0])
+		//gen_data->n_cmd--;
+		gen_data->cmd[y].in = dr_comillas(s);
+		if (!gen_data->cmd[y].in)
 			gen_data->cmd[y].syn_er = 23;
+		if (gen_data->n_pipes == 0)
+		{
+			gen_data->sort[0] = '1';
+			gen_data->sort[1] = '\0';
+		}
+		pela(gen_data, s, y);
+		aunmas(gen_data, s, y);
+		free(megajoin);
+		ft_free_arg(caligula);
+		return (1);
+	}
+	else if (check_tukle(s) == 1)
+	{
+		while (caligula[i])
+			megajoin = ft_strjoin(caligula[i++], "");
+		gen_data->cmd[y].in = dr_comillas(megajoin);
+		gen_data->cmd[y].syn_er = 420;
+		gen_data->cmd[y].can_exec = 0;
+		//gen_data->n_cmd--;
 		if (gen_data->n_pipes == 0)
 		{
 			gen_data->sort[0] = '1';

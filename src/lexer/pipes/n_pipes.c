@@ -19,14 +19,23 @@ void	n_pipes(t_general_data *gen_data, char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i++] == '"')
+		if (s[i] == '"' && s[i])
+		{
+			i++;
 			while (s[i] != '"' && s[i])
 				i++;
-		else if (s[i++] == '\'')
+		}
+		else if (s[i] == '\'' && s[i])
+		{
+			i++;
 			while (s[i] != 39 && s[i])
 				i++;
-		else if (s[i++] == '|')
+		}
+		else if (s[i] == '|' && s[i])
+		{
+			i++;
 			gen_data->n_pipes++;
+		}
 		else
 			i++;
 	}
