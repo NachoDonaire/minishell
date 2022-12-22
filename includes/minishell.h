@@ -85,7 +85,7 @@ typedef struct s_general
 	int				pipe_pos;
 	int				std_in;
 	int				std_out;
-	int				count_wait;
+	int				raskolnikof;
 	int				smith_blt;
 	int				latuka;
 	int				otrostdin;
@@ -384,5 +384,8 @@ void	error_can_exec(t_general_data *gen_data,
 void	initialise_dr(t_dr *doctorsito);
 int		oficial_tukle(char *s, t_general_data *gen_data, int y);
 void	qhagocntigo(t_general_data *gen_data, int y, char *s);
+int	check_xlacara(t_general_data *gen_data, int position, int n_built);
+void	free_heredoc(t_general_data *gen_data, int i);
+int	in_dred_finder(int *tak);
 
 #endif

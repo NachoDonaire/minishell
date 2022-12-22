@@ -18,16 +18,20 @@ void	close_fds2(t_general_data *gen_data)
 	int	i;
 
 	i = -1;
-	while (++i < gen_data->n_cmd - gen_data->n_built)
+	while (++i < gen_data->n_cmd)
 	{
 		y = 0;
-		while (gen_data->cmd[i].syn_er == 0 && gen_data->cmd[i].fd_in[y] > 2 && gen_data->cmd[i].fd_in[y])
+		if (gen_data->cmd[i].syn_er == 420 || gen_data->cmd[i].syn_er == 23)
+			i++;
+		while (gen_data->cmd[i].fd_in[y] > 2 && gen_data->cmd[i].fd_in[y])
 			close(gen_data->cmd[i].fd_in[y++]);
 	}
 	i = -1;
-	while (++i < gen_data->n_cmd - gen_data->n_built)
+	while (++i < gen_data->n_cmd)
 	{
 		y = 0;
+		if (gen_data->cmd[i].syn_er == 420 || gen_data->cmd[i].syn_er == 23)
+			i++;
 		while (gen_data->cmd[i].fd_out[y] > 2)
 			close(gen_data->cmd[i].fd_out[y++]);
 	}
@@ -73,4 +77,14 @@ void	ft_free_all(t_general_data *gen_data, char *s)
 	}*/
 	free(s);
 	needed_free(gen_data, gen_data->n_cmd - gen_data->n_built);
+}
+
+void	free_heredoc(t_general_data *gen_data, int i)
+{
+	ft_free_arg(gen_data->cmd[i].in);
+	free(gen_data->cmd[i].in_dred);
+	if (gen_data->cmd[i].out[0])
+		ft_free_arg(gen_data->cmd[i].out);
+	if (gen_data->cmd[i].fd_in)
+		free(gen_data->cmd[i].fd_in);
 }

@@ -38,10 +38,11 @@ void	ft_dup_in_reds_exit(char *s, int *pipedo)
 void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo, t_general_data *gen_data)
 {
 	(void)gen_data;
-	close(pipedo[1]);
 	if (gen_data->n_pipes != 0)
 		dup2(pipedo[0], 0);
 	waitpid(piddy_gonzalez, NULL, 0);
+	close(pipedo[1]);
+	close(pipedo[0]);
 }
 
 void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position, int *pipedo)
@@ -52,7 +53,7 @@ void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position, int *pipedo)
 	while (gen_data->cmd[position].in[++i])
 	{
 		if (gen_data->cmd[position].in_dred[i] == 0
-			&&gen_data->cmd[position].syn_er != 23)
+			&&gen_data->cmd[position].syn_er != 23 && in_dred_finder(gen_data->cmd[position].in_dred) == 0)
 			dup2(gen_data->cmd[position].fd_in[i], 0);
 		else if (gen_data->cmd[position].in_dred[i] == 1
 			&& gen_data->cmd[position].syn_er != 23)

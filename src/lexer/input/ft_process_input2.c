@@ -91,6 +91,7 @@ void	aunmas(t_general_data *gen_data, char *s, int y)
 		}
 		i++;
 	}
+	gen_data->cmd[y].in_dred[z] = -1;
 }
 
 int	oficial_tukle(char *s, t_general_data *gen_data, int y)
@@ -129,11 +130,16 @@ int	oficial_tukle(char *s, t_general_data *gen_data, int y)
 		megajoin = ft_strjoin(caligula[i++], "");
 		while (caligula[i])
 			megajoin = ft_strjoin(megajoin, caligula[i++]);
+		process_sing_red(gen_data, megajoin, y, 0);
 		gen_data->cmd[y].in = dr_comillas(megajoin);
+		//while (gen_data->cmd[y].in[i])
+		//	printf("--%s--", gen_data->cmd[y].in[i++]);
+		//i = 0;
+		//while (gen_data->cmd[y].in_dred[i] > 0)
+		//	printf("--%d--\n", gen_data->cmd[y].in_dred[i++]);
 		gen_data->cmd[y].syn_er = 420;
-		gen_data->latuka = 60;
 		gen_data->cmd[y].can_exec = 0;
-		//gen_data->n_cmd--;
+		gen_data->n_cmd++;
 		if (gen_data->n_pipes == 0)
 		{
 			gen_data->sort[0] = '1';
@@ -141,6 +147,8 @@ int	oficial_tukle(char *s, t_general_data *gen_data, int y)
 		}
 		pela(gen_data, s, y);
 		aunmas(gen_data, s, y);
+		free(megajoin);
+		ft_free_arg(caligula);
 		return (1);
 	}
 	gen_data->cmd[y].syn_er = 0;

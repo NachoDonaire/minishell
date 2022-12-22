@@ -80,6 +80,10 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	i = 0;
 	while (i < y)
 	{
+		if (gen_data->cmd[i].syn_er == 420)
+			free_heredoc(gen_data, i);
+		else
+		{
 			if (gen_data->cmd[i].cmd)
 				free(gen_data->cmd[i].cmd);
 			if (gen_data->cmd[i].args)
@@ -96,6 +100,7 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 				free(gen_data->cmd[i].dred);
 			if (gen_data->cmd[i].in_dred)
 				free(gen_data->cmd[i].in_dred);
+		}
 		i++;
 	}
 }

@@ -24,9 +24,7 @@ void	ft_iniciate(t_general_data *gen_data)
 	gen_data->exec_pos = 0;
 	gen_data->pipe_pos = 0;
 	gen_data->std_in = dup(0);
-	//gen_data->otrostdin = dup(0);
 	gen_data->std_out = dup(1);
-	gen_data->count_wait = 0;
 	gen_data->ojito = 0;
 }
 
@@ -81,9 +79,9 @@ void	ft_can_syntax(t_general_data	*gen_data)
 	//		printf("--%s--\n", gen_data->blt[0].args[i++]);
 		ft_check_comand(gen_data);
 		//write(1, "1", 1);
-	//	write(1, "aa", 2);
+//		write(1, "aa", 2);
 		copy_dup(gen_data);
-		ft_free_all(gen_data, gen_data->s);
+	//	ft_free_all(gen_data, gen_data->s);
 	}
 }
 

@@ -64,3 +64,17 @@ void	error_can_exec(t_general_data *gen_data,
 		exit (1);
 	}
 }
+
+int	check_xlacara(t_general_data *gen_data, int position, int n_built)
+{
+	if (gen_data->sort[gen_data->exec_pos] == '1')
+	{
+		if (gen_data->cmd[position].in[0])
+			return (23);
+	}
+	else if (gen_data->sort[gen_data->exec_pos] == '0')
+		if (gen_data->blt[n_built].in[0])
+			return (23);
+	return (0);
+}
+

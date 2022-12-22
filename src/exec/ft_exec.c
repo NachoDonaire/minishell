@@ -63,17 +63,20 @@ void	ft_dup_in_reds_cm2(t_general_data *gen_data, int p, int *pipedo, int i)
 		close(pipedo[0]);
 		s = readline("> ");
 		x = lens(s);
+
 		if (ft_strncmp(s, gen_data->cmd[p].in[i], x) != 0)
 		{
 			ft_putstr_fd(s, pipedo[1]);
 			ft_putstr_fd("\n", pipedo[1]);
 		}
+		printf("--%d--", ft_strncmp(s, gen_data->cmd[p].in[i], x)); 
 		while (ft_strncmp(s, gen_data->cmd[p].in[i], x) != 0)
 		{
 			ft_putstr_fd(s, pipedo[1]);
 			ft_putstr_fd("\n", pipedo[1]);
 			s = readline("> ");
 		}
+		write(2, "aa", 2);
 		ft_dup_in_reds_exit(s, pipedo);
 	}
 	else
