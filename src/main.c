@@ -61,7 +61,7 @@ void	ft_can_syntax(t_general_data	*gen_data)
 	{
 		reserva(gen_data);
 		gen_data->s = teophilus(gen_data);
-		//printf("--%s--\n", gen_data->s);
+//		printf("--%s--\n", gen_data->s);
 		process_input(gen_data->s, gen_data, gen_data->env);
 		//while (y < gen_data->n_cmd)
 		//{

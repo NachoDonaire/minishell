@@ -78,6 +78,35 @@ int	check_double(char *s, int a, int n_pipes)
 
 int	check_reds(char *s)
 {
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i++] == '"')
+		{
+			while (s[i] != '"' && s[i])
+				i++;
+			i++;
+		}
+		if (s[i++] == 39)
+		{
+			while (s[i] != 39 && s[i])
+				i++;
+			i++;
+		}
+		if (s[i] == '>')
+		{
+			while (s[i] == ' ' && s[i])
+				i++;
+			if (s[i] == '|' || s[i] == '\0')
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+/*{
 	int		i;
 	char	**tommy;
 	int		n_pipes;
@@ -101,4 +130,4 @@ int	check_reds(char *s)
 	}
 	ft_free_arg(tommy);
 	return (0);
-}
+}*/

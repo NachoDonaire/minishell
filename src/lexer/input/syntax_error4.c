@@ -60,6 +60,8 @@ int	tacataca(char *s)
 			return (1);
 		}
 	}
+	else if (s[i] == '>')
+		return (3);
 	return (2);
 }
 

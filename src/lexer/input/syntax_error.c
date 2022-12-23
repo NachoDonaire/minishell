@@ -76,6 +76,7 @@ int	syntax_error(char *s)
 	if (check_reds(s) == 1)
 	{
 		perror("Minishell: Syntax error");
+		write(1, "aca", 3);
 		free(s);
 		return (1);
 	}
