@@ -56,27 +56,31 @@ void	ft_dup_in_reds_cm2(t_general_data *gen_data, int p, int *pipedo, int i)
 	int		piddy_gonzalez;
 	char	*s;
 	int		x;
+	int		y;
 
+	y = lens(gen_data->cmd[p].in[i]);
 	piddy_gonzalez = fork();
 	if (piddy_gonzalez == 0)
 	{
 		close(pipedo[0]);
 		s = readline("> ");
 		x = lens(s);
-
-		if (ft_strncmp(s, gen_data->cmd[p].in[i], x) != 0)
+		if (y > x)
+			x = y;
+		if (ft_strncmp(s, gen_data->cmd[p].in[i], x) != 0 || !s[0])
 		{
 			ft_putstr_fd(s, pipedo[1]);
 			ft_putstr_fd("\n", pipedo[1]);
 		}
-		printf("--%d--", ft_strncmp(s, gen_data->cmd[p].in[i], x)); 
-		while (ft_strncmp(s, gen_data->cmd[p].in[i], x) != 0)
+		while (ft_strncmp(s, gen_data->cmd[p].in[i], x) != 0 || !s[0])
 		{
 			ft_putstr_fd(s, pipedo[1]);
 			ft_putstr_fd("\n", pipedo[1]);
 			s = readline("> ");
+			x = lens(s);
+			if (y > x)
+				x = y;
 		}
-		write(2, "aa", 2);
 		ft_dup_in_reds_exit(s, pipedo);
 	}
 	else
@@ -88,13 +92,17 @@ void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i)
 	char	*s;
 	int		x;
 	int		piddy_gonzalez;
+	int		y;
 
+	y = lens(gen_data->blt[n_b].in[i]);
 	piddy_gonzalez = fork();
 	if (piddy_gonzalez == 0)
 	{
 		close(p[0]);
 		s = readline("> ");
 		x = lens(s);
+		if (y > x)
+			x = y;
 		if (ft_strncmp(s, gen_data->blt[n_b].in[i], x) != 0)
 		{
 			ft_putstr_fd(s, p[1]);
@@ -105,6 +113,9 @@ void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i)
 			ft_putstr_fd(s, p[1]);
 			ft_putstr_fd("\n", p[1]);
 			s = readline("> ");
+			x = lens(s);
+			if (y > x)
+				x = y;
 		}
 		ft_dup_in_reds_exit(s, p);
 	}

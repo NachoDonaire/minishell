@@ -199,6 +199,7 @@ int	oficial_tukle(char *s, t_general_data *gen_data, int y)
 		//	printf("--%d--\n", gen_data->cmd[y].in_dred[i++]);
 		gen_data->cmd[y].syn_er = 420;
 		gen_data->cmd[y].can_exec = 0;
+		gen_data->taker = 2333;
 		gen_data->n_cmd++;
 		if (gen_data->n_pipes == 0)
 		{

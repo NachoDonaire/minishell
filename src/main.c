@@ -19,6 +19,7 @@ void	ft_iniciate(t_general_data *gen_data)
 	gen_data->n_pipes = 0;
 	gen_data->built = 0;
 	gen_data->smith_blt = 1;
+	gen_data->taker = 0;
 	gen_data->n_built = 0;
 	gen_data->n_cmd = 0;
 	gen_data->exec_pos = 0;

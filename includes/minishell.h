@@ -87,7 +87,7 @@ typedef struct s_general
 	int				std_out;
 	int				raskolnikof;
 	int				smith_blt;
-	int				latuka;
+	int				taker;
 	int				otrostdin;
 	int				ojito;
 	char			*s;

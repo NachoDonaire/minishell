@@ -18,21 +18,25 @@ void	ft_child_pipes(t_general_data *gen_data, int position, int n_built)
 	{
 		close(gen_data->pipe[gen_data->pipe_pos][0]);
 		if (check_xlacara(gen_data, position, n_built) != 23)
+		{
 			dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
+		}
 		close(gen_data->pipe[gen_data->pipe_pos][1]);
 	}
 	else if (gen_data->pipe_pos > 0 && gen_data->pipe_pos < gen_data->n_pipes)
 	{
+		close(gen_data->pipe[gen_data->pipe_pos][0]);
 		if (check_xlacara(gen_data, position, n_built) != 23)
 		{
 			dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
+			close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
 			dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
-			gen_data->raskolnikof++;
 		}
-		close(gen_data->pipe[gen_data->pipe_pos][0]);
-	//	dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
-		close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
-	//	dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
+		else
+		{
+			gen_data->n_pipes -= gen_data->pipe_pos;
+			gen_data->pipe_pos = 0;
+		}
 		close(gen_data->pipe[gen_data->pipe_pos][1]);
 	}
 	else
@@ -115,9 +119,7 @@ void	ft_father(t_general_data *gen_data)
 	if (gen_data->n_pipes != 0)
 	{
 		if (gen_data->pipe_pos != gen_data->n_pipes)
-		{
 			close(gen_data->pipe[gen_data->pipe_pos][1]);
-		}
 		else if (gen_data->exec_pos == gen_data->n_pipes)
 		{
 			while (i <= gen_data->n_pipes)
@@ -148,11 +150,12 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 	{
 		ft_father(gen_data);
 		i = gen_data->sort[gen_data->exec_pos - 1];
-		wait(NULL);
+		if (gen_data->taker != 0)
+			wait(NULL);
 		if (i == '1' && gen_data->sort[gen_data->exec_pos])
 			ft_exec(gen_data, position + 1, n_built);
 		else if (i == '0' && gen_data->sort[gen_data->exec_pos])
 			ft_exec(gen_data, position, n_built + 1);
-		//wait(NULL);
+		wait(NULL);
 	}
 }
