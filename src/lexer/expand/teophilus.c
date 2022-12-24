@@ -38,9 +38,9 @@ int	tiberio_dollar(t_general_data *gen_data, t_teo teophi)
 			&& gen_data->s[teophi.i] != '"' && gen_data->s[teophi.i]
 			&& gen_data->s[teophi.i] != '/' && gen_data->s[teophi.i] != '=')
 		{
-			if (gen_data->s[teophi.i] == '$')
+			/*if (gen_data->s[teophi.i] == '$')
 			{
-				teophi.i++;
+			//	teophi.i++;
 				if (gen_data->s[teophi.i] >= '0'
 					&& gen_data->s[teophi.i] <= '9')
 				{
@@ -48,7 +48,7 @@ int	tiberio_dollar(t_general_data *gen_data, t_teo teophi)
 					return (tiberio(gen_data, teophi));
 				}
 				return (tiberio(gen_data, teophi));
-			}
+			}*/
 			teophi.i++;
 		}
 		return (tiberio(gen_data, teophi));

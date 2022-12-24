@@ -64,7 +64,7 @@ int	dollar_ref_0_i(char *s, int i)
 
 int	not_dollar(char *s, int w, int i, char *of)
 {
-	//while (s[i] == '$' && s[i])
+	while (s[i] == '$' && s[i])
 		of[w++] = s[i++];
 	return (w);
 }

@@ -15,16 +15,21 @@
 int	dollar_d(char *s, t_general_data *data, int i, t_teo teophi)
 {
 	if (s[i] == '$')
+	{
 		return (dollar(&s[i], data, teophi.f, teophi));
+	}
 	return (teophi.w);
 }
 
 int	dollar_2(char *s, t_general_data *data, int i, t_teo teophi)
 {
-	i++;
-	if (s[i] >= '0' && s[i] <= '9')
-		return (teophi.w);
-	i = dollar_ref_0_i(s, i);
+	if (teophi.f == 0)
+	{
+		i++;
+		if (s[i] >= '0' && s[i] <= '9')
+			return (teophi.w);
+		i = dollar_ref_0_i(s, i);
+	}
 	return (dollar_d(s, data, i, teophi));
 }
 
