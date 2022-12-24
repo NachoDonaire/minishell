@@ -1,3 +1,10 @@
+echo $USER$PWD
+echo "$USER$PWD"
+echo '"$USER$PWD"'
+echo '"$USER $PWD"'
+echo $USER $PWD
+echo $USER$wqrf
+echo $USER$PWD$USER
 ls | wc | <<
 echo "taktek | cat > hola"
 echo "taca |"
