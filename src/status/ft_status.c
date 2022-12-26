@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/19 19:22:27 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:08:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_status_blt(t_general_data *gen_data, int position)
 	copy = ft_substr(gen_data->cmd[position].cmd, 0, x);
 	tmp = ft_split(copy, '/');
 	free(copy);
+	if (!tmp)
+		return ;
 	x = ft_nb_arguments(tmp) - 1;
 	copy = ft_substr(tmp[x], 0, ft_strlen(tmp[x]));
 	ft_free_arg(tmp);

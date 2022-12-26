@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/19 17:14:30 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/26 12:43:25 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_can_syntax(t_general_data	*gen_data)
 		//write(1, "1", 1);
 //		write(1, "aa", 2);
 		copy_dup(gen_data);
-	//	ft_free_all(gen_data, gen_data->s);
+		ft_free_all(gen_data, gen_data->s);
 	}
 }
 

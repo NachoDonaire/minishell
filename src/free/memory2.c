@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 21:23:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/19 18:57:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 12:10:20 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ void	close_fds2(t_general_data *gen_data)
 		y = 0;
 		if (gen_data->cmd[i].syn_er == 420 || gen_data->cmd[i].syn_er == 23)
 			i++;
-		while (gen_data->cmd[i].fd_in[y] > 2 && gen_data->cmd[i].fd_in[y])
-			close(gen_data->cmd[i].fd_in[y++]);
+		else
+		{
+			while (gen_data->cmd[i].fd_in[y] > 2 && gen_data->cmd[i].fd_in[y])
+				close(gen_data->cmd[i].fd_in[y++]);
+		}
 	}
 	i = -1;
 	while (++i < gen_data->n_cmd)
@@ -32,8 +35,11 @@ void	close_fds2(t_general_data *gen_data)
 		y = 0;
 		if (gen_data->cmd[i].syn_er == 420 || gen_data->cmd[i].syn_er == 23)
 			i++;
-		while (gen_data->cmd[i].fd_out[y] > 2)
-			close(gen_data->cmd[i].fd_out[y++]);
+		else
+		{
+			while (gen_data->cmd[i].fd_out[y] > 2)
+				close(gen_data->cmd[i].fd_out[y++]);
+		}
 	}
 }
 

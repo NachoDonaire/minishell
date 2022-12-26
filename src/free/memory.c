@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 21:24:02 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:14:32 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	i = 0;
 	while (i < y)
 	{
-		if (gen_data->cmd[i].syn_er == 420)
+		/*if (gen_data->cmd[i].syn_er == 420)
 			free_heredoc(gen_data, i);
 		else
-		{
+		{*/
 			if (gen_data->cmd[i].cmd)
 				free(gen_data->cmd[i].cmd);
 			if (gen_data->cmd[i].args)
@@ -100,7 +100,7 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 				free(gen_data->cmd[i].dred);
 			if (gen_data->cmd[i].in_dred)
 				free(gen_data->cmd[i].in_dred);
-		}
+		//}
 		i++;
 	}
 }

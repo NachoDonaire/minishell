@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:57 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/12 20:34:18 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 12:47:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,30 @@ char	*ft_variables(char *v)
 
 char	*ft_value(char *v)
 {
-	int	x;
+	int		x;
+	int		y;
+	char	*tmp;
 
 	x = 0;
+	y = 0;
 	while (v[x])
 	{
 		if (v[x] == '=' && v[x + 1])
 		{
 			x++;
-			return (&v[x]);
+			y = x;
+			while (v[y])
+				y++;
+			tmp = malloc(y + 1);
+			y = 0;
+			while (v[x])
+			{
+				tmp[y] = v[x];
+				y++;
+				x++;
+			}
+			tmp[y] = '\0';
+			return (tmp);
 		}
 		x++;
 	}
@@ -89,7 +104,6 @@ void	ft_create_variable(char *variable, char *value, char **env)
 			tmp = ft_substr(env[x], 0, ft_strlen(env[x]));
 			free(env[x]);
 			free(env[x + 1]);
-			free(env[x + 2]);
 			env[x] = copy;
 			env[x + 1] = tmp;
 			env[x + 2] = NULL;
