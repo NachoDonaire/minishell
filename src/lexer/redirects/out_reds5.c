@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.c                                           :+:      :+:    :+:   */
+/*   out_reds5.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 13:23:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 14:22:53 by sasalama         ###   ########.fr       */
+/*   Created: 2022/12/26 13:54:05 by sasalama          #+#    #+#             */
+/*   Updated: 2022/12/26 13:54:24 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	in_dred_finder(int	*tak)
+void	find_red2_quote(char *s, int *table)
 {
-	int	i;
-
-	i = 0;
-	while (tak[i] >= 0)
+	if (s[table[2]] == '"')
 	{
-		if (tak[i] == 1)
-			return (1);
-		i++;
+		table[2]++;
+		while (s[table[2]] != '"' && s[table[2]])
+			table[2]++;
 	}
-	return (0);
-}
-
-void	ft_not_built2(t_general_data *gen_data)
-{
-	if (gen_data->n_pipes == 0)
+	else if (s[table[2]] == 39)
 	{
-		gen_data->sort[0] = '1';
-		gen_data->sort[1] = '\0';
+		table[2]++;
+		while (s[table[2]] != 39 && s[table[2]])
+			table[2]++;
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntx_error3.c                                     :+:      :+:    :+:   */
+/*   syntax_error3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:27:40 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/16 19:44:08 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:24:17 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,58 +76,42 @@ int	check_double(char *s, int a, int n_pipes)
 	return (0);
 }
 
-int	check_reds(char *s)
+int	check_reds_quote(char *s, int *i)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	if (s[i[0]++] == '"')
 	{
-		if (s[i++] == '"')
-		{
-			while (s[i] != '"' && s[i])
-				i++;
-			i++;
-		}
-		if (s[i++] == 39)
-		{
-			while (s[i] != 39 && s[i])
-				i++;
-			i++;
-		}
-		if (s[i] == '>')
-		{
-			while (s[i] == ' ' && s[i])
-				i++;
-			if (s[i] == '|' || s[i] == '\0')
-				return (1);
-		}
-		i++;
+		while (s[i[0]] != '"' && s[i[0]])
+			i[0]++;
+		i[0]++;
+	}
+	if (s[i[0]++] == 39)
+	{
+		while (s[i[0]] != 39 && s[i[0]])
+			i[0]++;
+		i[0]++;
+	}
+	if (s[i[0]] == '>')
+	{
+		while (s[i[0]] == ' ' && s[i[0]])
+			i[0]++;
+		if (s[i[0]] == '|' || s[i[0]] == '\0')
+			return (1);
 	}
 	return (0);
 }
-/*{
-	int		i;
-	char	**tommy;
-	int		n_pipes;
 
-	tommy = ft_split(s, '|');
-	n_pipes = pipes_count(s);
-	i = 0;
-	while (tommy[i])
+int	check_reds(char *s)
+{
+	int	i[1];
+	int	x;
+
+	i[0] = 0;
+	while (s[i[0]])
 	{
-		if (check_double(tommy[i], i, n_pipes) == 1)
-		{
-			ft_free_arg(tommy);
+		x = check_reds_quote(s, i);
+		if (x == 1)
 			return (1);
-		}
-		if (check_single(tommy[i], i, n_pipes) == 1)
-		{
-			ft_free_arg(tommy);
-			return (1);
-		}
-		i++;
+		i[0]++;
 	}
-	ft_free_arg(tommy);
 	return (0);
-}*/
+}

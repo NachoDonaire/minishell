@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/16 20:16:32 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:41:09 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,7 @@ void	ft_child_pipes(t_general_data *gen_data, int position, int n_built)
 		close(gen_data->pipe[gen_data->pipe_pos][1]);
 	}
 	else if (gen_data->pipe_pos > 0 && gen_data->pipe_pos < gen_data->n_pipes)
-	{
-		close(gen_data->pipe[gen_data->pipe_pos][0]);
-		if (check_xlacara(gen_data, position, n_built) != 23)
-		{
-			dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
-			close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
-			dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
-		}
-		else
-		{
-			gen_data->n_pipes -= gen_data->pipe_pos;
-			gen_data->pipe_pos = 0;
-		}
-		close(gen_data->pipe[gen_data->pipe_pos][1]);
-	}
+		ft_child_pipes2(gen_data, position, n_built);
 	else
 	{
 		if (check_xlacara(gen_data, position, n_built) != 23)
@@ -82,33 +68,11 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	//dup_in_reds(gen_data, position, n_built);
 	if (gen_data->n_pipes == 0)
 		ft_child_not_pipes(gen_data, position, n_built);
 	else
 		ft_child_pipes(gen_data, position, n_built);
-	if (gen_data->sort[gen_data->exec_pos] == '1')
-	{
-		if (gen_data->cmd[position].can_exec != 0)
-		{
-			dup_reds(gen_data, position, n_built);
-			s3[0] = gen_data->cmd[position].cmd;
-		}
-		if (gen_data->cmd[position].can_exec == 0)
-		{
-			error_can_exec(gen_data, n_built, position, 0);
-		}
-		ft_child_2(gen_data, s3, position);
-	}
-	else if (gen_data->sort[gen_data->exec_pos] == '0')
-	{
-		dup_reds(gen_data, position, n_built);
-		s3[1] = gen_data->blt[n_built].blt;
-		s3[1] = check_cmd(s3[1], gen_data);
-		if (gen_data->blt[n_built].can_exec == 0)
-			error_can_exec(gen_data, n_built, position, 1);
-		execve(s3[1], gen_data->blt[n_built].args, gen_data->env);
-	}
+	ft_child3(gen_data, position, n_built, s3);
 }
 
 void	ft_father(t_general_data *gen_data)
@@ -140,7 +104,6 @@ void	ft_exec2(t_general_data *gen_data, int position, int n_built)
 	gen_data->pid = fork();
 	if (gen_data->pid == 0)
 	{
-
 		ft_child(gen_data, position, n_built);
 		ft_status_error(gen_data, position, n_built);
 		gen_data->good_status = 127;

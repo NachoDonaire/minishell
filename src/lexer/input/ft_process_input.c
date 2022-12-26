@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/16 20:40:38 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:22:44 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ void	ft_not_built(char *s, t_general_data *gen_data, int y)
 	char	**com;
 
 	gen_data->cmd[y].can_exec = 1;
-	if (oficial_tukle(s, gen_data, y) == 1)
-		return ;
-	else if (oficial_tukle(s, gen_data, y) == 2)
+	if (oficial_tukle(s, gen_data, y) == 1
+		|| oficial_tukle(s, gen_data, y) == 2)
 		return ;
 	if (gen_data->n_pipes == 0)
 	{
@@ -45,11 +44,7 @@ void	ft_not_built(char *s, t_general_data *gen_data, int y)
 	process_args(s, gen_data, y, 0);
 	ft_free_arg(com);
 	gen_data->n_cmd++;
-	if (gen_data->n_pipes == 0)
-	{
-		gen_data->sort[0] = '1';
-		gen_data->sort[1] = '\0';
-	}
+	ft_not_built2(gen_data);
 }
 
 void	process_string(char *s, t_general_data *gen_data, int y)
@@ -58,15 +53,9 @@ void	process_string(char *s, t_general_data *gen_data, int y)
 	{
 		gen_data->cmd[y].can_exec = 1;
 		if (oficial_tukle(s, gen_data, y) == 1)
-		{
-			//gen_data->n_cmd--;
 			return ;
-		}
 		else if (oficial_tukle(s, gen_data, y) == 2)
-		{
-			//gen_data->n_cmd--;
 			return ;
-		}
 		process_sing_red(gen_data, s, y, 0);
 		process_in_red(gen_data, s, y, 0);
 	}

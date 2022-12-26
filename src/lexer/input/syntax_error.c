@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 14:30:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/16 19:51:50 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:25:33 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,8 @@ int	check_dots(char *s)
 
 int	syntax_error(char *s)
 {
-	if (check_millas(s) == 1)
-	{
-		perror("Minishell: Syntax error");
-		free(s);
-		return (1);
-	}
-	if (check_pipes(s) == 1)
-	{
-		perror("Minishell: Syntax error");
-		free(s);
-		return (1);
-	}
-	if (check_reds(s) == 1)
-	{
-		perror("Minishell: Syntax error");
-		write(1, "aca", 3);
-		free(s);
-		return (1);
-	}
-	if (check_dots(s) == 1)
+	if (check_millas(s) == 1 || check_pipes(s) == 1
+		|| check_reds(s) == 1 || check_dots(s) == 1)
 	{
 		perror("Minishell: Syntax error");
 		free(s);

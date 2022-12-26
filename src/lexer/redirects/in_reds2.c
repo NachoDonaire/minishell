@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 10:24:51 by sasalama          #+#    #+#             */
-/*   Updated: 2022/10/02 15:20:03 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:48:47 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,7 @@ int	find_in_red(t_general_data *gen_data, char *s, int pos, int ref)
 		gen_data->blt[gen_data->n_built].in_dred[table[2]] = -1;
 	while (s[table[0]])
 	{
-		if (s[table[0]] == '"')
-                {
-                        table[0]++;
-                        while (s[table[0]] != '"' && s[table[0]])
-                                table[0]++;
-                }
-                else if (s[table[0]] == 39)
-                {
-                        table[0]++;
-                        while (s[table[0]] != 39 && s[table[0]])
-                                table[0]++;
-                }
+		find_in_red_quote(s, table);
 		while (s[table[0]] == '<')
 		{
 			table[0]++;

@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:52:08 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/12 19:56:27 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:20:51 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,3 @@ int	check_xlacara(t_general_data *gen_data, int position, int n_built)
 			return (23);
 	return (0);
 }
-

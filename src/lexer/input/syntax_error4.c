@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 09:50:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/19 09:50:57 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:17:16 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,45 +28,47 @@ void	fill_table(int *t, int ref)
 	}
 }
 
+void	ft_declare_table(int *table)
+{
+	table[0] = 0;
+	table[1] = 0;
+	table[2] = 0;
+}
+
+void	tacataca2(char *s, int *table)
+{
+	while (s[table[2]])
+		table[2]++;
+}
+
 int	tacataca(char *s)
 {
-	int	i;
-	int	y;
-	int	z;
+	int	table[3];
 
-	z = 0;
-	y = 0;
-	i = 0;
-	if (s[i] == '<')
+	ft_declare_table(table);
+	if (s[table[2]] == '<')
 	{
-		while (s[i] == '<' && s[i])
+		while (s[table[2]] == '<' && s[table[2]++])
 		{
-			i++;
-			z++;
-			y++;
+			table[0]++;
+			table[1]++;
 		}
-		if (y != 2)
+		if (table[1] != 2)
 			return (2);
-		if (y == 2)
+		if (table[1] == 2)
 		{
-			while (s[i] == ' ' && s[i++])
-				z++;
-			while (s[i])
-				i++;
-			//if (!s[i])
-			//	return (2);
-			if (z == i)
+			while (s[table[2]] == ' ' && s[table[2]++])
+				table[0]++;
+			tacataca2(s, table);
+			if (table[0] == table[2])
 				return (2);
 			return (1);
 		}
 	}
-	else if (s[i] == '>')
+	else if (s[table[2]] == '>')
 		return (3);
 	return (2);
 }
-
-
-			
 
 int	check_tukle(char *s)
 {
@@ -81,44 +83,3 @@ int	check_tukle(char *s)
 		return (tacataca(&s[i]));
 	return (0);
 }
-		/*if (s[i] == '"')
-		{
-			i++;
-			while (s[i] != '"' && s[i])
-				i++;
-		}
-		else if (s[i] == 39)
-		{
-			i++;
-			while (s[i] != 39 && s[i])
-				i++;
-		}
-		else if (s[i] == '<' || s[i] == '>')
-*/
-	/*
-	int		t[3];
-	char	**tmp;
-
-	fill_table(t, 0);
-	tmp = ft_split(s, '|');
-	while (tmp[t[0]])
-	{
-		while (tmp[t[0]][t[1]] == ' ' && tmp[t[0]][t[1]++])
-			t[2]++;
-		while (tmp[t[0]][t[1]])
-		{
-			if (tmp[t[0]][t[1]] == '>' || tmp[t[0]][t[1]] == '<')
-			{
-				if (t[1] == t[2])
-				{
-					ft_free_arg(tmp);
-					return (1);
-				}
-			}
-			t[1]++;
-		}
-		fill_table(t, 420);
-	}
-	ft_free_arg(tmp);
-	return (0);
-}*/

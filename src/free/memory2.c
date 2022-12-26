@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 21:23:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 12:10:20 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:27:20 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void	close_fds2(t_general_data *gen_data)
 	while (++i < gen_data->n_cmd)
 	{
 		y = 0;
-		if (gen_data->cmd[i].syn_er == 420 || gen_data->cmd[i].syn_er == 23)
-			i++;
-		else
+		if (gen_data->cmd[i].syn_er != 420 || gen_data->cmd[i].syn_er != 23)
 		{
 			while (gen_data->cmd[i].fd_in[y] > 2 && gen_data->cmd[i].fd_in[y])
 				close(gen_data->cmd[i].fd_in[y++]);
@@ -33,11 +31,9 @@ void	close_fds2(t_general_data *gen_data)
 	while (++i < gen_data->n_cmd)
 	{
 		y = 0;
-		if (gen_data->cmd[i].syn_er == 420 || gen_data->cmd[i].syn_er == 23)
-			i++;
-		else
+		if (gen_data->cmd[i].syn_er != 420 || gen_data->cmd[i].syn_er != 23)
 		{
-			while (gen_data->cmd[i].fd_out[y] > 2)
+			while (gen_data->cmd[i].fd_out[y] > 2 && gen_data->cmd[i].fd_out[y])
 				close(gen_data->cmd[i].fd_out[y++]);
 		}
 	}
@@ -76,11 +72,6 @@ void	needed_free_cmd(t_general_data *gen_data)
 
 void	ft_free_all(t_general_data *gen_data, char *s)
 {
-	/*if (gen_data->ojito == 23)
-	{
-		ft_free_arg(gen_data->cmd[0].in);
-		free(gen_data->cmd[0].in_dred);
-	}*/
 	free(s);
 	needed_free(gen_data, gen_data->n_cmd - gen_data->n_built);
 }

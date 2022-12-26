@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:42:24 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/22 11:14:05 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:30:30 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ int	dollar(char *s, t_general_data *gen_data, int ref, t_teo teophi)
 	teophi.f = ref;
 	c = copy_var(&s[i + 1]);
 	if (!c[0])
-	{
-		teophi.ojito = 23;
-		return (not_dollar(s, teophi.w, i, teophi.of));
-	}
+		return (dollar_not(s, i, teophi));
 	if (ref == 0)
 	{
 		c = variable(gen_data, c);

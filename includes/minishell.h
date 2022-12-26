@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/19 10:22:37 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:30:25 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,7 +314,8 @@ void	ft_path(char *command, char *envp[], char **fd_path);
 void	dup_reds(t_general_data *gen_data, int position, int n_built);
 void	dup_in_reds(t_general_data *gen_data, int position, int n_built);
 void	ft_dup_in_reds_exit(char *s, int *pipedo);
-void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo, t_general_data *gen_data);
+void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo,
+			t_general_data *gen_data);
 void	ft_dup_in_reds_blt(t_general_data *gen_data, int n_built, int *pipedo);
 void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position, int *pipedo);
 void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i);
@@ -384,8 +385,21 @@ void	error_can_exec(t_general_data *gen_data,
 void	initialise_dr(t_dr *doctorsito);
 int		oficial_tukle(char *s, t_general_data *gen_data, int y);
 void	qhagocntigo(t_general_data *gen_data, int y, char *s);
-int	check_xlacara(t_general_data *gen_data, int position, int n_built);
+int		check_xlacara(t_general_data *gen_data, int position, int n_built);
 void	free_heredoc(t_general_data *gen_data, int i);
-int	in_dred_finder(int *tak);
+int		in_dred_finder(int *tak);
+
+void	ft_dup_in_reds_cm3(t_general_data *gen_data, int p, int *pipedo, int i);
+void	ft_dup_in_reds_blt3(t_general_data *gen_data, int n_b, int *p, int i);
+void	ft_child_pipes2(t_general_data *gen_data, int position, int n_built);
+void	ft_child3(t_general_data *gen_data, int position,
+			int n_built, char **s3);
+void	find_in_red_quote(char *s, int *table);
+void	find_red2_quote(char *s, int *table);
+int		mela(char *s);
+void	pela(t_general_data *gen_data, char *s, int y);
+void	aunmas(t_general_data *gen_data, char *s, int y);
+void	ft_not_built2(t_general_data *gen_data);
+int		dollar_not(char *s, int i, t_teo teophi);
 
 #endif

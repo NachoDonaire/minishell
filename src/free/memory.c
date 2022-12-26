@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 13:14:32 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:29:38 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,22 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	i = 0;
 	while (i < y)
 	{
-		/*if (gen_data->cmd[i].syn_er == 420)
-			free_heredoc(gen_data, i);
-		else
-		{*/
-			if (gen_data->cmd[i].cmd)
-				free(gen_data->cmd[i].cmd);
-			if (gen_data->cmd[i].args)
-				ft_free_arg(gen_data->cmd[i].args);
-			if (gen_data->cmd[i].fd_out)
-				free(gen_data->cmd[i].fd_out);
-			if (gen_data->cmd[i].fd_in)
-				free(gen_data->cmd[i].fd_in);
-			if (gen_data->cmd[i].out)
-				ft_free_arg(gen_data->cmd[i].out);
-			if (gen_data->cmd[i].in)
-				ft_free_arg(gen_data->cmd[i].in);
-			if (gen_data->cmd[i].dred)
-				free(gen_data->cmd[i].dred);
-			if (gen_data->cmd[i].in_dred)
-				free(gen_data->cmd[i].in_dred);
-		//}
+		if (gen_data->cmd[i].cmd)
+			free(gen_data->cmd[i].cmd);
+		if (gen_data->cmd[i].args)
+			ft_free_arg(gen_data->cmd[i].args);
+		if (gen_data->cmd[i].fd_out)
+			free(gen_data->cmd[i].fd_out);
+		if (gen_data->cmd[i].fd_in)
+			free(gen_data->cmd[i].fd_in);
+		if (gen_data->cmd[i].out)
+			ft_free_arg(gen_data->cmd[i].out);
+		if (gen_data->cmd[i].in)
+			ft_free_arg(gen_data->cmd[i].in);
+		if (gen_data->cmd[i].dred)
+			free(gen_data->cmd[i].dred);
+		if (gen_data->cmd[i].in_dred)
+			free(gen_data->cmd[i].in_dred);
 		i++;
 	}
 }

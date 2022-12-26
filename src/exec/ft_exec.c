@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/19 10:22:35 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:35:16 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,71 +54,21 @@ void	dup_reds(t_general_data *gen_data, int position, int n_built)
 void	ft_dup_in_reds_cm2(t_general_data *gen_data, int p, int *pipedo, int i)
 {
 	int		piddy_gonzalez;
-	char	*s;
-	int		x;
-	int		y;
 
-	y = lens(gen_data->cmd[p].in[i]);
 	piddy_gonzalez = fork();
 	if (piddy_gonzalez == 0)
-	{
-		close(pipedo[0]);
-		s = readline("> ");
-		x = lens(s);
-		if (y > x)
-			x = y;
-		if (ft_strncmp(s, gen_data->cmd[p].in[i], x) != 0 || !s[0])
-		{
-			ft_putstr_fd(s, pipedo[1]);
-			ft_putstr_fd("\n", pipedo[1]);
-		}
-		while (ft_strncmp(s, gen_data->cmd[p].in[i], x) != 0 || !s[0])
-		{
-			ft_putstr_fd(s, pipedo[1]);
-			ft_putstr_fd("\n", pipedo[1]);
-			s = readline("> ");
-			x = lens(s);
-			if (y > x)
-				x = y;
-		}
-		ft_dup_in_reds_exit(s, pipedo);
-	}
+		ft_dup_in_reds_cm3(gen_data, p, pipedo, i);
 	else
 		ft_dup_in_reds_wait(piddy_gonzalez, pipedo, gen_data);
 }
 
 void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i)
 {
-	char	*s;
-	int		x;
 	int		piddy_gonzalez;
-	int		y;
 
-	y = lens(gen_data->blt[n_b].in[i]);
 	piddy_gonzalez = fork();
 	if (piddy_gonzalez == 0)
-	{
-		close(p[0]);
-		s = readline("> ");
-		x = lens(s);
-		if (y > x)
-			x = y;
-		if (ft_strncmp(s, gen_data->blt[n_b].in[i], x) != 0)
-		{
-			ft_putstr_fd(s, p[1]);
-			ft_putstr_fd("\n", p[1]);
-		}
-		while (ft_strncmp(s, gen_data->blt[n_b].in[i], x) != 0)
-		{
-			ft_putstr_fd(s, p[1]);
-			ft_putstr_fd("\n", p[1]);
-			s = readline("> ");
-			x = lens(s);
-			if (y > x)
-				x = y;
-		}
-		ft_dup_in_reds_exit(s, p);
-	}
+		ft_dup_in_reds_blt3(gen_data, n_b, p, i);
 	else
 		ft_dup_in_reds_wait(piddy_gonzalez, p, gen_data);
 }
@@ -130,7 +80,8 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 	pipe(pipedo);
 	if (gen_data->sort[gen_data->exec_pos] == '1')
 	{
-		if (gen_data->cmd[position].syn_er != 23 && gen_data->cmd[position].in[0])
+		if (gen_data->cmd[position].syn_er != 23
+			&& gen_data->cmd[position].in[0])
 			ft_dup_in_reds_cmd(gen_data, position, pipedo);
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')

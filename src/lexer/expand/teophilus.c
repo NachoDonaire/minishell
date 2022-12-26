@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:06:55 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/22 11:21:32 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:28:44 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,6 @@ int	tiberio_dollar(t_general_data *gen_data, t_teo teophi)
 			&& gen_data->s[teophi.i] != '"' && gen_data->s[teophi.i]
 			&& gen_data->s[teophi.i] != '/' && gen_data->s[teophi.i] != '=')
 		{
-			/*if (gen_data->s[teophi.i] == '$')
-			{
-			//	teophi.i++;
-				if (gen_data->s[teophi.i] >= '0'
-					&& gen_data->s[teophi.i] <= '9')
-				{
-					teophi.i++;
-					return (tiberio(gen_data, teophi));
-				}
-				return (tiberio(gen_data, teophi));
-			}*/
 			teophi.i++;
 		}
 		return (tiberio(gen_data, teophi));

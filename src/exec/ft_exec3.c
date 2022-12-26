@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:40:22 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 13:12:20 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:20:14 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	ft_dup_in_reds_exit(char *s, int *pipedo)
 	exit(0);
 }
 
-void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo, t_general_data *gen_data)
+void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo,
+	t_general_data *gen_data)
 {
 	if (gen_data->n_pipes != 0)
 	{

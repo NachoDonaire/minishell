@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 13:08:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:23:32 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_file(t_general_data *gen_data, int position, int cmd)
 	{
 		while (gen_data->cmd[position].args[i])
 		{
-			if (gen_data->cmd[position].args[i] && access(gen_data->cmd[position].args[i], F_OK) != 1
+			if (gen_data->cmd[position].args[i]
+				&& access(gen_data->cmd[position].args[i], F_OK) != 1
 				&& gen_data->cmd[position].args[i][0] != '-')
 				ft_change_permission_status(gen_data->env, gen_data);
 			i++;
@@ -31,14 +32,13 @@ void	ft_file(t_general_data *gen_data, int position, int cmd)
 	{
 		while (gen_data->blt[position].args[i])
 		{
-			if (gen_data->blt[position].args[i] && access(gen_data->blt[position].args[i], F_OK) != 1
+			if (gen_data->blt[position].args[i]
+				&& access(gen_data->blt[position].args[i], F_OK) != 1
 				&& gen_data->blt[position].args[i][0] != '-')
 				ft_change_permission_status(gen_data->env, gen_data);
 			i++;
 		}
 	}
-	
-	
 }
 
 void	ft_status_blt(t_general_data *gen_data, int position)

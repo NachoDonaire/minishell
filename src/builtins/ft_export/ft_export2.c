@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:57 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 12:47:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:44:38 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ char	*ft_value(char *v)
 			tmp = malloc(y + 1);
 			y = 0;
 			while (v[x])
-			{
-				tmp[y] = v[x];
-				y++;
-				x++;
-			}
+				tmp[y++] = v[x++];
 			tmp[y] = '\0';
 			return (tmp);
 		}

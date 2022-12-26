@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:21:10 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/08 12:48:00 by ndonaire         ###   ########.fr       */
+/*   Updated: 2022/12/26 13:48:56 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,20 @@ void	gest_in_reds(t_general_data *gen_data, char *s, int y, int ref)
 	memory_for_in_red(gen_data, tmp, y, ref);
 	paste_tmp_in_red(gen_data, tmp, y, ref);
 	ft_free_arg(tmp);
+}
+
+void	find_in_red_quote(char *s, int *table)
+{
+	if (s[table[0]] == '"')
+	{
+		table[0]++;
+		while (s[table[0]] != '"' && s[table[0]])
+			table[0]++;
+	}
+	else if (s[table[0]] == 39)
+	{
+		table[0]++;
+		while (s[table[0]] != 39 && s[table[0]])
+			table[0]++;
+	}
 }
