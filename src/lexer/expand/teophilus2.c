@@ -103,10 +103,20 @@ int	variable_size(t_general_data *gen_data, char *c)
 char	*not_variable(t_general_data *gen_data, char *c)
 {
 	if (ft_strncmp(c, "PWD=", 4) == 0 && gen_data->path == 1)
+	{
+		free(c);
 		return (variable_pwd(gen_data));
+	}
 	else if (ft_strncmp(c, "OLDPWD=", 7) == 0 && gen_data->path == 1)
+	{
+		free(c);
 		return (variable_oldpwd(gen_data));
+	}
 	else if (ft_strncmp(c, "PATH=", 5) == 0 && gen_data->path == 1)
+	{
+		free(c);
 		return (variable_path(gen_data));
+	}
+	free(c);
 	return ("");
 }

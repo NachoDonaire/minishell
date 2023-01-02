@@ -37,20 +37,30 @@ int	dollar(char *s, t_general_data *gen_data, int ref, t_teo teophi)
 {
 	int		i;
 	char	*c;
+	char	*t;
 
 	i = 0;
 	teophi.f = ref;
 	c = copy_var(&s[i + 1]);
 	if (!c[0])
+	{
+		free(c);
 		return (dollar_not(s, i, teophi));
+	}
 	if (ref == 0)
 	{
-		c = variable(gen_data, c);
-		teophi.w = dollar_ref_0_w(c, teophi.of, teophi.w);
+		t = variable(gen_data, c);
+		if (c[0])
+			free(c);
+		teophi.w = dollar_ref_0_w(t, teophi.of, teophi.w);
+		if (t[0])
+			free(t);
 		return (dollar_2(s, gen_data, i, teophi));
 	}
 	else
 	{
+		if (c[0])
+			free(c);
 		if (s[i] == '$')
 			teophi.of[teophi.w++] = s[i++];
 		while (s[i] != ' ' && s[i] != 39 && s[i] != '"'

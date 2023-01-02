@@ -26,19 +26,21 @@ int	char_size(t_general_data *gen_data, int i)
 	return (y);
 }
 
-char	*variable(t_general_data *gen_data, char *c)
+char	*variable(t_general_data *gen_data, char *t)
 {
 	int		i;
 	int		y;
 	int		z;
 	char	*jutels;
+	char	*c;
 
 	y = 0;
 	i = 0;
-	c = ft_strjoin(c, "=");
+	c = ft_strjoin(t, "=");
 	i = variable_size(gen_data, c);
 	if (!gen_data->env[i])
 		return (not_variable(gen_data, c));
+	free(c);
 	y = char_size(gen_data, i);
 	z = y;
 	y++;

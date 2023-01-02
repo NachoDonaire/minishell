@@ -84,4 +84,6 @@ void	free_heredoc(t_general_data *gen_data, int i)
 		ft_free_arg(gen_data->cmd[i].out);
 	if (gen_data->cmd[i].fd_in)
 		free(gen_data->cmd[i].fd_in);
+	if (gen_data->cmd[i].in_dred)
+		free(gen_data->cmd[i].in_dred);
 }

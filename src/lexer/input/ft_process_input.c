@@ -24,10 +24,11 @@ void	ft_programm(t_general_data *gen_data, char	**com, int y, char *s)
 void	ft_not_built(char *s, t_general_data *gen_data, int y)
 {
 	char	**com;
+	int	x;
 
+	x = oficial_tukle(s, gen_data, y);
 	gen_data->cmd[y].can_exec = 1;
-	if (oficial_tukle(s, gen_data, y) == 1
-		|| oficial_tukle(s, gen_data, y) == 2)
+	if (x == 1 || x == 2)
 		return ;
 	if (gen_data->n_pipes == 0)
 	{
