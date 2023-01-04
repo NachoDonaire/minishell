@@ -14,24 +14,21 @@
 
 void	ft_child_pipes(t_general_data *gen_data, int position, int n_built)
 {
+	(void)n_built;
+	(void)position;
 	if (gen_data->pipe_pos == 0)
 	{
 		close(gen_data->pipe[gen_data->pipe_pos][0]);
-		if (check_xlacara(gen_data, position, n_built) != 23)
-		{
 			dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
-		}
 		close(gen_data->pipe[gen_data->pipe_pos][1]);
 	}
 	else if (gen_data->pipe_pos > 0 && gen_data->pipe_pos < gen_data->n_pipes)
 		ft_child_pipes2(gen_data, position, n_built);
 	else
 	{
-		if (check_xlacara(gen_data, position, n_built) != 23)
 			dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
 		close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
 	}
-	dup_in_reds(gen_data, position, n_built);
 }
 
 void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
@@ -71,7 +68,10 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 	if (gen_data->n_pipes == 0)
 		ft_child_not_pipes(gen_data, position, n_built);
 	else
+	{
+		dup_in_reds(gen_data, position, n_built);
 		ft_child_pipes(gen_data, position, n_built);
+	}
 	ft_child3(gen_data, position, n_built, s3);
 }
 

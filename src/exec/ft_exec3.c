@@ -39,10 +39,7 @@ void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo,
 	t_general_data *gen_data)
 {
 	if (gen_data->n_pipes != 0)
-	{
-		dup2(pipedo[1], 1);
 		dup2(pipedo[0], 0);
-	}
 	else
 	{
 		dup2(pipedo[0], 0);
