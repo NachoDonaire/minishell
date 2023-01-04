@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 13:23:32 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:36:58 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	ft_status_blt(t_general_data *gen_data, int position)
 	ft_free_arg(tmp);
 	ft_path(copy, gen_data->env, &path);
 	if (path == NULL)
+	{
 		ft_change_bad_status(gen_data->env, gen_data);
+		return ;
+	}
 	free(path);
 	free(copy);
 	ft_file(gen_data, position, 0);
@@ -81,7 +84,10 @@ void	ft_status_cmd(t_general_data *gen_data, int position)
 	ft_free_arg(tmp);
 	ft_path(copy, gen_data->env, &path);
 	if (path == NULL)
+	{
 		ft_change_bad_status(gen_data->env, gen_data);
+		return ;
+	}
 	free(path);
 	free(copy);
 	ft_file(gen_data, position, 1);
