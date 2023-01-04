@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:34:48 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 13:42:39 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:58:47 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,8 @@ void	ft_child_pipes2(t_general_data *gen_data, int position, int n_built)
 	(void)position;
 	(void)n_built;
 	close(gen_data->pipe[gen_data->pipe_pos][0]);
-	//if (check_xlacara(gen_data, position, n_built) != 23)
-	//{
-		dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
-		close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
-		dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
-	//}
-	/*else
-	{
-		gen_data->n_pipes -= gen_data->pipe_pos;
-		gen_data->pipe_pos = 0;
-	}*/
+	dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
+	close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
+	dup2(gen_data->pipe[gen_data->pipe_pos][1], 1);
 	close(gen_data->pipe[gen_data->pipe_pos][1]);
 }
