@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:18:47 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 14:22:44 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:43:12 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	ft_programm(t_general_data *gen_data, char	**com, int y, char *s)
 void	ft_not_built(char *s, t_general_data *gen_data, int y)
 {
 	char	**com;
-	int	x;
+	int		x;
 
-	x = oficial_tukle(s, gen_data, y);
 	gen_data->cmd[y].can_exec = 1;
+	x = oficial_tukle(s, gen_data, y);
 	if (x == 1 || x == 2)
 		return ;
 	if (gen_data->n_pipes == 0)
