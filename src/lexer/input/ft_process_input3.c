@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:08:56 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 14:12:00 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:15:19 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	oficial_tukle_2(char *s, t_general_data *gen_data, int y)
 		gen_data->sort[0] = '1';
 		gen_data->sort[1] = '\0';
 	}
+	gen_data->n_cmd++;
 	pela(gen_data, s, y);
 	aunmas(gen_data, s, y);
 	ft_free_arg(caligula);
