@@ -36,7 +36,8 @@ int	tiberio_dollar(t_general_data *gen_data, t_teo teophi)
 		teophi.i++;
 		while (gen_data->s[teophi.i] != ' ' && gen_data->s[teophi.i] != 39
 			&& gen_data->s[teophi.i] != '"' && gen_data->s[teophi.i]
-			&& gen_data->s[teophi.i] != '/' && gen_data->s[teophi.i] != '=')
+			&& gen_data->s[teophi.i] != '/' && gen_data->s[teophi.i] != '='
+			&& gen_data->s[teophi.i] != '|')
 		{
 			teophi.i++;
 		}

@@ -63,7 +63,7 @@ int	dollar(char *s, t_general_data *gen_data, int ref, t_teo teophi)
 			free(c);
 		if (s[i] == '$')
 			teophi.of[teophi.w++] = s[i++];
-		while (s[i] != ' ' && s[i] != 39 && s[i] != '"'
+		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] != '|'
 			&& s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
 			teophi.of[teophi.w++] = s[i++];
 		return (dollar_2(s, gen_data, i, teophi));
