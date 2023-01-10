@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:41:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/22 11:10:34 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/10 21:37:04 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ int	dollar_ref_0_w(char *c, char *of, int w)
 	y = 0;
 	while (c[y])
 		of[w++] = c[y++];
+	ft_free_c(c);
 	return (w);
 }

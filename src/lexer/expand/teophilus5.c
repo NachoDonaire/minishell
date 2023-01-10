@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:42:24 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 14:30:30 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/10 21:40:14 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,14 @@ int	dollar(char *s, t_general_data *gen_data, int ref, t_teo teophi)
 	if (ref == 0)
 	{
 		t = variable(gen_data, c);
-		if (c[0])
-			free(c);
+		ft_free_c(c);
 		teophi.w = dollar_ref_0_w(t, teophi.of, teophi.w);
-		if (t[0])
-			free(t);
 		return (dollar_2(s, gen_data, i, teophi));
 	}
 	else
 	{
-		if (c[0])
-			free(c);
-		if (s[i] == '$')
-			teophi.of[teophi.w++] = s[i++];
-		while (s[i] != ' ' && s[i] != 39 && s[i] != '"' && s[i] != '|'
-			&& s[i] && s[i] != '/' && s[i] != '=' && s[i] != '$')
-			teophi.of[teophi.w++] = s[i++];
-		return (dollar_2(s, gen_data, i, teophi));
+		ft_free_c(c);
+		return (dollar_else(s, gen_data, i, teophi));
 	}
 	return (teophi.w);
 }

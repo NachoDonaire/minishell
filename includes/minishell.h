@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 14:30:25 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/10 21:35:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,5 +401,7 @@ void	pela(t_general_data *gen_data, char *s, int y);
 void	aunmas(t_general_data *gen_data, char *s, int y);
 void	ft_not_built2(t_general_data *gen_data);
 int		dollar_not(char *s, int i, t_teo teophi);
+void	ft_free_c(char	*c);
+int		dollar_else(char *s, t_general_data *gen_data, int i, t_teo teophi);
 
 #endif
