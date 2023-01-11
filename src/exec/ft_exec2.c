@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/11 10:46:37 by ndonaire         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:48:33 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 
 	exec = 0;
 	dup_in_reds(gen_data, position, n_built, 0);
-	dup_in_reds(gen_data, position, n_built, 1);
+	//dup_in_reds(gen_data, position, n_built, 1);
 	if (gen_data->cmd[position].can_exec != 0)
 		dup_reds(gen_data, position, n_built);
 	if (gen_data->cmd[position].can_exec == 0)
