@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/10 21:35:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/11 10:48:52 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,12 +312,14 @@ void	ft_change_permission_status(char **env, t_general_data *gen_data);
 int		ft_exec(t_general_data *gen_data, int position, int n_built);
 void	ft_path(char *command, char *envp[], char **fd_path);
 void	dup_reds(t_general_data *gen_data, int position, int n_built);
-void	dup_in_reds(t_general_data *gen_data, int position, int n_built);
+void	dup_in_reds(t_general_data *gen_data, int position,
+			int n_built, int ref);
 void	ft_dup_in_reds_exit(char *s, int *pipedo);
 void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo,
 			t_general_data *gen_data);
 void	ft_dup_in_reds_blt(t_general_data *gen_data, int n_built, int *pipedo);
-void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position, int *pipedo);
+void	ft_dup_in_reds_cmd(t_general_data *gen_data, int position,
+			int *pipedo, int ref);
 void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i);
 void	ft_dup_in_reds_cm2(t_general_data *gen_data, int p, int *pipedo, int i);
 

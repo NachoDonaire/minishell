@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 09:00:01 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/19 17:16:19 by ndonaire         ###   ########.fr       */
+/*   Updated: 2023/01/11 10:43:21 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	memory_for_wallace(char *s, t_dr dr_comillas, int y)
 			y++;
 		}
 	}
-	dr_comillas.wallace[dr_comillas.w] = malloc(sizeof(char ) * (y + 4));
+	dr_comillas.wallace[dr_comillas.w] = malloc(sizeof(char ) * 1024);
 	return (dr_comillas.i);
 }
 

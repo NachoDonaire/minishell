@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:56:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 13:35:16 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/11 10:48:57 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	ft_dup_in_reds_blt2(t_general_data *gen_data, int n_b, int *p, int i)
 		ft_dup_in_reds_wait(piddy_gonzalez, p, gen_data);
 }
 
-void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
+void	dup_in_reds(t_general_data *gen_data, int position,
+		int n_built, int ref)
 {
 	int		pipedo[2];
 
@@ -82,7 +83,7 @@ void	dup_in_reds(t_general_data *gen_data, int position, int n_built)
 	{
 		if (gen_data->cmd[position].syn_er != 23
 			&& gen_data->cmd[position].in[0])
-			ft_dup_in_reds_cmd(gen_data, position, pipedo);
+			ft_dup_in_reds_cmd(gen_data, position, pipedo, ref);
 	}
 	else if (gen_data->sort[gen_data->exec_pos] == '0')
 	{
