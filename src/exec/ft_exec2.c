@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:16:43 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/11 17:48:33 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:12:23 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,13 @@ void	ft_child_pipes(t_general_data *gen_data, int position, int n_built)
 	}
 	else if (gen_data->pipe_pos > 0 && gen_data->pipe_pos < gen_data->n_pipes)
 	{
-
 		if (check_xlacara(gen_data, position, n_built) != 23)
 			ft_child_pipes2(gen_data, position, n_built);
 	}
 	else
 	{
 		if (check_xlacara(gen_data, position, n_built) != 23)
-		{
 			dup2(gen_data->pipe[gen_data->pipe_pos - 1][0], 0);
-		}
 		close(gen_data->pipe[gen_data->pipe_pos - 1][0]);
 	}
 }
@@ -45,7 +42,6 @@ void	ft_child_not_pipes(t_general_data *gen_data, int position, int n_built)
 
 	exec = 0;
 	dup_in_reds(gen_data, position, n_built, 0);
-	//dup_in_reds(gen_data, position, n_built, 1);
 	if (gen_data->cmd[position].can_exec != 0)
 		dup_reds(gen_data, position, n_built);
 	if (gen_data->cmd[position].can_exec == 0)
@@ -78,9 +74,8 @@ void	ft_child(t_general_data *gen_data, int position, int n_built)
 		ft_child_not_pipes(gen_data, position, n_built);
 	else
 	{
-		//dup_in_reds(gen_data, position, n_built, 0);
+		dup_in_reds(gen_data, position, n_built, 0);
 		ft_child_pipes(gen_data, position, n_built);
-		dup_in_reds(gen_data, position, n_built, 1);
 	}
 	ft_child3(gen_data, position, n_built, s3);
 }

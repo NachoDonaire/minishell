@@ -6,11 +6,17 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:34:48 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/04 12:58:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:23:04 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	fts_print_s(char *s, int *p)
+{
+	ft_putstr_fd(s, p[1]);
+	ft_putstr_fd("\n", p[1]);
+}
 
 void	ft_dup_in_reds_blt3(t_general_data *gen_data, int n_b, int *p, int i)
 {
@@ -25,14 +31,10 @@ void	ft_dup_in_reds_blt3(t_general_data *gen_data, int n_b, int *p, int i)
 	if (y > x)
 		x = y;
 	if (ft_strncmp(s, gen_data->blt[n_b].in[i], x) != 0)
-	{
-		ft_putstr_fd(s, p[1]);
-		ft_putstr_fd("\n", p[1]);
-	}
+		fts_print_s(s, p);
 	while (ft_strncmp(s, gen_data->blt[n_b].in[i], x) != 0)
 	{
-		ft_putstr_fd(s, p[1]);
-		ft_putstr_fd("\n", p[1]);
+		fts_print_s(s, p);
 		free(s);
 		s = readline("> ");
 		x = lens(s);

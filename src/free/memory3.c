@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.c                                           :+:      :+:    :+:   */
+/*   memory3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 13:23:44 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/12 14:33:43 by sasalama         ###   ########.fr       */
+/*   Created: 2023/01/12 14:16:49 by sasalama          #+#    #+#             */
+/*   Updated: 2023/01/12 14:17:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	in_dred_finder(int	*tak)
+void	needed_free(t_general_data *gen_data, int y)
 {
-	int	i;
-
-	i = 0;
-	while (tak[i] >= 0)
-	{
-		if (tak[i] == 1)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void	ft_not_built2(t_general_data *gen_data)
-{
-	if (gen_data->n_pipes == 0)
-	{
-		gen_data->sort[0] = '1';
-		gen_data->sort[1] = '\0';
-	}
-}
-
-void	reset_table_pipes(int *t)
-{
-	t[0] = 0;
-	t[1] = 0;
+	close_fds(gen_data);
+	close(gen_data->std_in);
+	close(gen_data->std_out);
+	ft_free_built(gen_data);
+	ft_free_cmd(gen_data, y);
+	free(gen_data->blt);
+	free(gen_data->cmd);
+	free(gen_data->sort);
+	if (gen_data->n_pipes > 0)
+		ft_free_arg((char **)gen_data->pipe);
 }

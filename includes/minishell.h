@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:56:44 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/11 10:48:52 by ndonaire         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:33:46 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -405,5 +405,13 @@ void	ft_not_built2(t_general_data *gen_data);
 int		dollar_not(char *s, int i, t_teo teophi);
 void	ft_free_c(char	*c);
 int		dollar_else(char *s, t_general_data *gen_data, int i, t_teo teophi);
+void	close_fds(t_general_data *gen_data);
+void	close_fds2(t_general_data *gen_data);
+void	ft_free_cmd(t_general_data *gen_data, int y);
+void	frio_cmd(t_general_data *gen_data, int i);
+void	ft_free_built(t_general_data *gen_data);
+void	ft_free_built_0(t_general_data *gen_data);
+void	oficial_tukle_1_2(t_general_data *gen_data, char *s, int y);
+void	reset_table_pipes(int *t);
 
 #endif

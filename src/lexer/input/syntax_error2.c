@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:27:12 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 11:30:04 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:33:37 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,29 @@ int	check_millas(char *s)
 
 int	check_pipes(char *s)
 {
-	int	i;
-	int	pipes;
+	int	t[2];
 
-	i = 0;
-	pipes = 0;
-	while (s[i])
+	reset_table_pipes(t);
+	while (s[t[0]])
 	{
-		if (s[i] == '|')
+		if (s[t[0]] == '|')
 		{
-			i++;
-			if (!s[i])
+			t[0]++;
+			if (!s[t[0]])
 				return (1);
-			while (s[i] && s[i] != '|')
+			while (s[t[0]] && s[t[0]] != '|')
 			{
-				if (s[i] != ' ' && s[i] != '|')
-					pipes++;
-				i++;
+				if (s[t[0]] != ' ' && s[t[0]] != '|')
+					t[1]++;
+				t[0]++;
 			}
-			if (pipes == 0)
+			if (t[1] == 0)
 				return (1);
 		}
-		if (pipes != 0)
-			pipes = 0;
+		if (t[1] != 0)
+			t[1] = 0;
 		else
-			i++;
+			t[0]++;
 	}
 	return (0);
 }

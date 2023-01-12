@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:08:56 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/04 12:15:19 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:28:08 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,7 @@ int	oficial_tukle_1(char *s, t_general_data *gen_data, int y)
 	gen_data->cmd[y].can_exec = 0;
 	gen_data->taker = 2333;
 	gen_data->n_cmd++;
-	if (gen_data->n_pipes == 0)
-	{
-		gen_data->sort[0] = '1';
-		gen_data->sort[1] = '\0';
-	}
-	pela(gen_data, s, y);
-	aunmas(gen_data, s, y);
+	oficial_tukle_1_2(gen_data, s, y);
 	free(megajoin);
 	ft_free_arg(caligula);
 	return (1);

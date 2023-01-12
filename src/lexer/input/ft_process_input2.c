@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:30:52 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 14:11:53 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:13:20 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,15 @@ void	kajutels(t_general_data *gen_data, char *s, int y)
 {
 	int	i;
 	int	z;
-	int	a;
 
 	i = 0;
-	a = 0;
 	z = 0;
 	while (s[i])
 	{
 		if (s[i] == '>')
 		{
 			while (s[i] == '>' && s[i])
-			{
-				a++;
 				i++;
-			}
 			z++;
 		}
 		i++;
