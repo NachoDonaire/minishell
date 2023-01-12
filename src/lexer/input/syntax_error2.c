@@ -70,7 +70,7 @@ int	check_pipes(char *s)
 			i++;
 			if (!s[i])
 				return (1);
-			while (s[i])
+			while (s[i] && s[i] != '|')
 			{
 				if (s[i] != ' ' && s[i] != '|')
 					pipes++;
@@ -79,7 +79,10 @@ int	check_pipes(char *s)
 			if (pipes == 0)
 				return (1);
 		}
-		i++;
+		if (pipes != 0)
+			pipes = 0;
+		else
+			i++;
 	}
 	return (0);
 }
