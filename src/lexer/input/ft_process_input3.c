@@ -68,13 +68,18 @@ int	oficial_tukle_1(char *s, t_general_data *gen_data, int y)
 {
 	char	**caligula;
 	char	*megajoin;
+	char	*aux;
 	int		i;
 
 	i = 0;
 	caligula = ft_split(s, '<');
-	megajoin = ft_strjoin(caligula[i++], "");
+	megajoin = ft_strjoin(caligula[i++], "\0");
 	while (caligula[i])
-		megajoin = ft_strjoin(megajoin, caligula[i++]);
+	{
+		aux = megajoin;
+		megajoin = ft_strjoin(aux, caligula[i++]);
+		free(aux);
+	}
 	process_sing_red(gen_data, megajoin, y, 0);
 	gen_data->cmd[y].in = dr_comillas(megajoin);
 	gen_data->cmd[y].syn_er = 420;

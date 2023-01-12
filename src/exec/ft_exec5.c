@@ -33,6 +33,7 @@ void	ft_dup_in_reds_blt3(t_general_data *gen_data, int n_b, int *p, int i)
 	{
 		ft_putstr_fd(s, p[1]);
 		ft_putstr_fd("\n", p[1]);
+		free(s);
 		s = readline("> ");
 		x = lens(s);
 		if (y > x)
@@ -48,7 +49,6 @@ void	ft_dup_in_reds_cm3(t_general_data *gen_data, int p, int *pipedo, int i)
 	int		y;
 
 	y = lens(gen_data->cmd[p].in[i]);
-	close(pipedo[0]);
 	s = readline("> ");
 	x = lens(s);
 	if (y > x)
@@ -62,6 +62,7 @@ void	ft_dup_in_reds_cm3(t_general_data *gen_data, int p, int *pipedo, int i)
 	{
 		ft_putstr_fd(s, pipedo[1]);
 		ft_putstr_fd("\n", pipedo[1]);
+		free(s);
 		s = readline("> ");
 		x = lens(s);
 		if (y > x)

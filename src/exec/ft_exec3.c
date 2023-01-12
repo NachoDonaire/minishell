@@ -38,13 +38,14 @@ void	ft_dup_in_reds_exit(char *s, int *pipedo)
 void	ft_dup_in_reds_wait(int piddy_gonzalez, int *pipedo,
 	t_general_data *gen_data)
 {
+	waitpid(piddy_gonzalez, NULL, 0);
 	if (gen_data->n_pipes != 0)
-		dup2(pipedo[0], 0);
-	else
 	{
 		dup2(pipedo[0], 0);
+		dup2(pipedo[1], 1);
 	}
-	waitpid(piddy_gonzalez, NULL, 0);
+	else
+		dup2(pipedo[0], 0);
 	close(pipedo[1]);
 	close(pipedo[0]);
 }
