@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:42:24 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/10 21:40:14 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/14 14:44:36 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	dollar_2(char *s, t_general_data *data, int i, t_teo teophi)
 	{
 		i++;
 		if (s[i] >= '0' && s[i] <= '9')
+		{
+			i++;
 			return (teophi.w);
+		}
 		i = dollar_ref_0_i(s, i);
 	}
 	return (dollar_d(s, data, i, teophi));
