@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:22:35 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 13:29:59 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/14 10:27:36 by sasalama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	main(int argc, char **argv, char *env[])
 		}
 		else if (!gen_data.s)
 			ft_exit(gen_data.s, gen_data.env);
+		else
+			free(gen_data.s);
 	}
 	return (0);
 }
