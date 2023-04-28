@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:16:49 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/12 14:17:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:04:59 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	needed_free(t_general_data *gen_data, int y)
 {
+	(void)y;
 	close_fds(gen_data);
 	close(gen_data->std_in);
 	close(gen_data->std_out);

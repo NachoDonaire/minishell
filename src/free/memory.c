@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:35:02 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/12 14:17:06 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:06:55 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ void	ft_free_cmd(t_general_data *gen_data, int y)
 	while (i < y)
 	{
 		if (gen_data->cmd[i].syn_er == 420 || gen_data->cmd[i].syn_er == 23)
+		{
 			free_heredoc(gen_data, i);
+		}
 		else
 			frio_cmd(gen_data, i);
 		i++;

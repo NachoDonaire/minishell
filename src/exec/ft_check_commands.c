@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:57:03 by sasalama          #+#    #+#             */
-/*   Updated: 2022/12/26 13:19:53 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:36:43 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_check_comand(t_general_data *gen_data)
 	else
 	{
 		n_cmd = ft_exec(gen_data, n_cmd, n_blt);
-		ft_check_status(gen_data, n_cmd);
+		ft_check_status(gen_data, gen_data->n_cmd - 1);
 	}
 	gen_data->exec_pos++;
 }

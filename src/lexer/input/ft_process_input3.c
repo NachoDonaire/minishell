@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:08:56 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/12 14:28:08 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:45:58 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	oficial_tukle_1(char *s, t_general_data *gen_data, int y)
 	gen_data->cmd[y].in = dr_comillas(megajoin);
 	gen_data->cmd[y].syn_er = 420;
 	gen_data->cmd[y].can_exec = 0;
+	gen_data->cmd[y].fd_in = malloc(sizeof(int) * 1);
 	gen_data->taker = 2333;
 	gen_data->n_cmd++;
 	oficial_tukle_1_2(gen_data, s, y);

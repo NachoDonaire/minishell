@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:43:23 by sasalama          #+#    #+#             */
-/*   Updated: 2023/01/11 14:01:46 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:51:03 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,18 +97,16 @@ void	ft_status_cmd(t_general_data *gen_data, int position)
 
 void	ft_check_status(t_general_data *gen_data, int position)
 {
-	int		x;
-
 	ft_change_good_status(gen_data->env, gen_data);
 	if (gen_data->n_cmd != 0)
-		ft_status_blt(gen_data, position);
-	else if (gen_data->n_built != 0)
-		ft_status_cmd(gen_data, position);
-	else if (gen_data->n_pipes != 0)
 	{
-		x = gen_data->n_pipes;
-		if (ft_strncmp(gen_data->blt[position].blt, "pwd", 3) == 0
-			&& gen_data->blt[position].args[0] && x > 0)
-			ft_change_bad_status(gen_data->env, gen_data);
+		if (gen_data->cmd[position].syn_er == 23
+			|| gen_data->cmd[position].syn_er == 420)
+			return ;
+		ft_status_blt(gen_data, position);
+	}
+	else if (gen_data->n_built != 0)
+	{
+		ft_status_cmd(gen_data, gen_data->n_built - 1);
 	}
 }

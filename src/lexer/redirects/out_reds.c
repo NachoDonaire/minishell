@@ -6,7 +6,7 @@
 /*   By: sasalama < sasalama@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:23:14 by sasalama          #+#    #+#             */
-/*   Updated: 2022/11/17 08:50:47 by sasalama         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:04:50 by ndonaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_modify_table_2(int *t)
 void	paste_tmp_red_ref(t_general_data *gen_data, int y, int ref, int *t)
 {
 	if (ref == 0)
-		gen_data->cmd[y].out[t[3]] = 0;
-	else if (ref == 0)
-		gen_data->blt[t[4]].out[t[3]] = 0;
+		gen_data->cmd[y].out[t[3]] = NULL;
+	else if (ref == 1)
+		gen_data->blt[t[4]].out[t[3]] = NULL;
 }
