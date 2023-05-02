@@ -1,6 +1,8 @@
 [![ndonaire's 42 minishell Score](https://badge42.vercel.app/api/v2/clcfbow1900160gjy4fdtdtnj/project/2782226)](https://github.com/JaeSeoKim/badge42)
 
-[minishell example](img/fotoprueba.png)
+<p align="center"> 
+<img src="img/fotoprueba.png" alt="minishell_prueba" title="Tests" width="100%"/>
+</p>
 
 # minishell
 
@@ -36,6 +38,9 @@ There are also testfiles that you can indirect to the executable:
 ./minishell < extra_files/test_files/(the file of your choice)
 ```
 Redirections, heredoc, signals like ctrl + C or ctrl + D are also handled.
+
+## About the leaky file
+leaky.sh is a script only available if you have de leak command which appears by default in iOS computers. This file checks the existence of memory leaks in the program once the program is running.
 
 ## Credit
 The project was developed by @salaesteve2 and myself.
